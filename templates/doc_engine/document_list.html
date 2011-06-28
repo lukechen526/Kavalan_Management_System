@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block body %}
+    <li>
+    {% for doc in document_list %}
+
+        <ol>
+            <span>Serial: {{ doc.serial_number }}</span>
+            <span>Title : {{ doc.title }}</span>
+            <span>File: <a href= "{{ doc.file.url }}"> Click here to view </a></span>
+        </ol>
+
+    {% endfor %}
+    </li>
+
+{% endblock %}
