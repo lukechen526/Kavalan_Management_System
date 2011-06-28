@@ -1,4 +1,5 @@
 # Django settings for Kavalan_Management_System project.
+#master branch
 import os
 
 DEBUG = True
