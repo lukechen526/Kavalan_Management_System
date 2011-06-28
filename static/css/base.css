@@ -1,0 +1,44 @@
+body {
+	display:block;
+}
+nav {
+	display:block;
+	position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+	border-bottom: 1px black solid;
+
+}
+
+nav ul {
+	margin: 0 auto;
+	display: block;
+	list-style-type:none;
+	margin:0;
+    padding:0;
+
+}
+
+nav ul li {
+
+	padding:10px;
+	display: inline;
+	padding:0px 20px;
+	float:left;
+	line-height:55px;
+
+    }
+
+nav ul li:hover {
+	padding:0px 20px;
+	display:inline;
+	color:white;
+	background-color:red;
+
+}
+
+nav ul li a{
+    text-decoration: none;
+}
+

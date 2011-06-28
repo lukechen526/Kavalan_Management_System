@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Doc Engine{% endblock %}
+{% block body %}
+
+    <form action="search" method="get">
+
+        <fieldset>
+            <legend> {% trans "Search" %} </legend>
+            <label for="q"> {% trans "Enter Query (Serial Number or Document Title" %}</label><input type="text" name="q">
+            <input type="submit">
+        </fieldset>
+
+
+
+
+
+    </form>
+
+
+
+
+
+{% endblock %}

@@ -1,7 +1,8 @@
 from django.conf.urls.defaults import *
-from django.views.generic import ListView
-from doc_engine.models import Document
+from doc_engine.views import DocumentIndexView, DocumentListView, DocumentSearchView
 
 urlpatterns = patterns('',
-    url(r'^$', ListView.as_view(model=Document, context_object_name='document_list')),
+    url(r'^$', DocumentIndexView.as_view() ),
+    url(r'^list/$', DocumentListView.as_view()),
+    url(r'^search/$', DocumentSearchView),
 )

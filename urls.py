@@ -2,6 +2,7 @@ from django.conf.urls.defaults import patterns, include, url
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf.urls.static import static
 from django.conf import settings
+from views import IndexView
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -12,7 +13,7 @@ urlpatterns = patterns('',
     # url(r'^$', 'Kavalan_Management_System.views.home', name='home'),
     # url(r'^Kavalan_Management_System/', include('Kavalan_Management_System.foo.urls')),
 
-    url(r'^$', 'views.index' ),
+    url(r'^$', IndexView.as_view() ),
     # Uncomment the admin/doc line below to enable admin documentation:
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
