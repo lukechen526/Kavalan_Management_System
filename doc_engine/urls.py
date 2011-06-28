@@ -6,3 +6,4 @@ urlpatterns = patterns('',
     url(r'^list/$', DocumentListView.as_view()),
     url(r'^search/$', DocumentSearchView),
 )
+
