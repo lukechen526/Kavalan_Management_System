@@ -5,20 +5,10 @@
 
     <form action="search" method="get">
 
-        <fieldset>
-            <legend> {% trans "Search" %} </legend>
-            <label for="q"> {% trans "Enter Query (Serial Number or Document Title" %}</label><input type="text" name="q">
-            <input type="submit">
-        </fieldset>
-
-
-
-
+            <label for="q"> {% trans "Enter Query (Serial Number or Document Title)" %}</label><input type="text" name="q" id="q">
 
     </form>
-
-
-
+    <div name="result" id="result"> </div>
 
 
 {% endblock %}

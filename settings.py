@@ -1,5 +1,4 @@
 # Django settings for Kavalan_Management_System project.
-#master branch
 import os
 
 DEBUG = True
@@ -43,6 +42,9 @@ LANGUAGES = (
   ('en', _('English')),
 )
 
+LOCALE_PATHS = (
+    os.path.join(os.path.dirname(__file__), 'localed'),
+)
 
 SITE_ID = 1
 
@@ -142,6 +144,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'doc_engine',
+    'Kavalan_Management_System',
 )
 
 # A sample logging configuration. The only tangible logging

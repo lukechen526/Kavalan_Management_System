@@ -5,7 +5,7 @@ from django.views.generic import TemplateView, ListView
 from django.views.generic.detail import BaseDetailView
 from doc_engine.models import Document
 from django.db.models import Q
-from django.shortcuts import get_object_or_404
+from django.utils.translation import ugettext as _
 
 class DocumentIndexView(TemplateView):
 
@@ -29,6 +29,6 @@ def DocumentSearchView(request):
                                 })
         return HttpResponse(json.dumps(payload), mimetype="application/json")
     else:
-        return HttpResponse("Please Enter a Query")
+        return HttpResponse(_("Please Enter a Query"))
     
     
