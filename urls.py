@@ -24,3 +24,12 @@ urlpatterns = patterns('',
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+js_info_dict = {
+    'domain': 'djangojs',
+    'packages': ('Kavalan_Management_System',),
+}
+
+urlpatterns += patterns('',
+    (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
+)
