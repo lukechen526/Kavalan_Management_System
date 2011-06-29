@@ -4,5 +4,6 @@ It is currently being developed with the support of [Wu-Fu Laboratories, Ltd](ht
 
 #Components
 Several apps have been planned for inclusion in the suite. They are all at very early stage and under heavy development
+
 * Doc Engine (for document search and retrieval)
 * Inventory Management
