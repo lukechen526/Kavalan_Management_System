@@ -143,9 +143,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.admin',
-     'django.contrib.admindocs',
+    'django.contrib.admindocs',
     'doc_engine',
-    'Kavalan_Management_System',
+    'Kavalan_Management_System', #added to permit Javascript i18n
 )
 
 # A sample logging configuration. The only tangible logging
