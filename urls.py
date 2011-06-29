@@ -9,16 +9,11 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    # Examples:
-    # url(r'^$', 'Kavalan_Management_System.views.home', name='home'),
-    # url(r'^Kavalan_Management_System/', include('Kavalan_Management_System.foo.urls')),
+    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^i18n/', include('django.conf.urls.i18n')),
 
     url(r'^$', IndexView.as_view() ),
-    # Uncomment the admin/doc line below to enable admin documentation:
-    url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
-
-    # Uncomment the next line to enable the admin:
-    url(r'^admin/', include(admin.site.urls)),
     url(r'^doc_engine/', include('doc_engine.urls'))
 )
 
@@ -29,7 +24,6 @@ js_info_dict = {
     'domain': 'djangojs',
     'packages': ('Kavalan_Management_System',),
 }
-
 urlpatterns += patterns('',
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),
 )

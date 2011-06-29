@@ -3,12 +3,15 @@
 {% block title %} Doc Engine{% endblock %}
 {% block body %}
 
-    <form action="search" method="get">
+    <div id="search-doc">
+        <form action="search" method="get" onsubmit="return false;">
 
-            <label for="q"> {% trans "Enter Query (Serial Number or Document Title)" %}</label><input type="text" name="q" id="q">
+            <label for="q"> {% trans "Enter Serial Number/Document Title" %}</label>
+            <input type="text" name="q" id="q">
 
-    </form>
-    <div name="result" id="result"> </div>
+        </form>
+        <div id="search-doc-result"></div>
+    </div>
 
 
 {% endblock %}

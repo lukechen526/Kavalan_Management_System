@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-28 21:00+0800\n"
+"POT-Creation-Date: 2011-06-28 22:26+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,9 +70,8 @@ msgid "Asset Management"
 msgstr ""
 
 #: .\templates\doc_engine\index.html.py:8
-#, fuzzy
-msgid "Enter Query (Serial Number or Document Title)"
-msgstr "請輸入要查的序號或主旨"
+msgid "Enter Serial Number/Document Title"
+msgstr "請用文件序號或主旨查詢"
 
 #~ msgid "Search"
 #~ msgstr "查詢"
