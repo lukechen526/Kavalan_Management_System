@@ -15,7 +15,7 @@ $(document).ready(function(){
  );
 
     
- $('#q').bind('keypress', function(event){
+ $('#q').bind('keyup', function(event){
 
     delayExecute(ajaxSearch);
     //
