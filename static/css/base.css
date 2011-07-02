@@ -53,7 +53,7 @@ nav ul li a:link, nav ul li a:visited{
 	margin: 0 10px 4px 10px;
 	padding-bottom: 2px;
 	text-decoration: none;
-    color:white;
+    color: #ffffff;
 }
 
 nav ul li a.active:link, nav ul li a:hover {
@@ -75,14 +75,15 @@ nav ul li a.active:link, nav ul li a:hover {
 }
 
 #search-doc-result {
-
     margin-top: 4%;
-
 }
 
 #search-doc-result a{
 
     font-size:large;
+    text-decoration: none;
+    display:block;
+    padding: 5px 0px;
 }
 
 footer{
@@ -103,11 +104,15 @@ footer p{
 
 #controls * {
     float:left;
-    margin-right:2px;
+    padding: 0 5px;
+}
+
+#username {
+    font-weight: bold;
 }
 #controls a {
     text-decoration: none;
-    color: white;
+    color: #ffffff;
 }
 
 .login-error {

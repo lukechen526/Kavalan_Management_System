@@ -4,7 +4,7 @@
 
 <head>
 <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-<title> {% block title %} {% endblock %}</title>
+<title> {{ flatpage.title }}</title>
 
     <!-- ** CSS ** -->
     <!-- base library -->
@@ -32,7 +32,7 @@
 
         <div id="controls">
             {% if user.is_authenticated %}
-                <a href="/accounts/manage/" id="username">{{ user.username }} </a>
+                <a href="/accounts/manage/"> {{ user.username }}</a>
                 <a href="/accounts/logout"> {% trans "Logout" %}</a>
             {% else %}
                 <a href="/accounts/login/">{% trans "Login" %}</a>
@@ -53,13 +53,12 @@
 
     </nav>
 
-    
+
 <div id="content">
-{% block content %} {% endblock %}
+{{ flatpage.content }}
 </div>
 
     
-{% block footer %}{% endblock %}
 </body>
 
 </html>
