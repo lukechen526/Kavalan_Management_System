@@ -45,11 +45,9 @@ $(document).ready(function(){
         else{
 
             $("#search-doc-result").empty();
-        }
+         }
     }
 
  });
-
-
 
 });
