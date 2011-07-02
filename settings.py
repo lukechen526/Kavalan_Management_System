@@ -53,7 +53,7 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-
+# Use a directory inside the PROJECT_DIR for storing user-uploaded files during development
 MEDIA_ROOT = os.path.join(DIRNAME, 'uploads')
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
@@ -95,6 +95,7 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'secret'
 
+LOGIN_REDIRECT_URL = '/'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
@@ -141,6 +142,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'doc_engine',
+    'accounts',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 

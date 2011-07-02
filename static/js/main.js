@@ -28,13 +28,15 @@ $(document).ready(function(){
                 data:{'q':query},
                 success: function(data){
                     $("#search-doc-result").empty();
+                    console.log(data);
                     if(data.length == 0){
                         $("#search-doc-result").append(gettext("No Result"));
                     }
                     else{
-                        for(item in data ){
-                            $.tmpl( "search-doc-resultTemplate", data[item]).appendTo( "#search-doc-result" );
-                        }
+                        data.forEach(function(item){
+                            $.tmpl( "search-doc-resultTemplate", item).appendTo( "#search-doc-result" );
+                        });
+
                     }
                 }
             });

@@ -12,9 +12,10 @@ urlpatterns = patterns('',
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^i18n/', include('django.conf.urls.i18n')),
-
     url(r'^$', IndexView.as_view() ),
-    url(r'^doc_engine/', include('doc_engine.urls'))
+    url(r'^doc_engine/', include('doc_engine.urls')),
+    url(r'^accounts/', include('accounts.urls')),
+    
 )
 
 urlpatterns += staticfiles_urlpatterns()

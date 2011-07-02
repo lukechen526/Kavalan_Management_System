@@ -3,8 +3,8 @@ from doc_engine.views import DocumentIndexView, DocumentListView, DocumentSearch
 
 urlpatterns = patterns('',
     url(r'^$', DocumentIndexView.as_view() ),
-    url(r'^list/$', DocumentListView.as_view()),
-    url(r'^search/$', DocumentSearchView),
+    url(r'^list', DocumentListView.as_view()),
+    url(r'^search', DocumentSearchView),
 )
 
 

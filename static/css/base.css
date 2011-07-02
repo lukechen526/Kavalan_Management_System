@@ -1,25 +1,49 @@
 body {
 	display:block;
+
 }
+
+#content{
+    display: block;
+    position:absolute;
+    top: 40px;
+    width: 100%;
+
+}
+
 nav {
 	display:block;
     width: 100%;
     vertical-align: middle;
-    height: 28px;
+    height: 30px;
     border-bottom: thin solid black;
-
-
+    position: absolute;
+    top: 0;
+    right:0;
+    background-color: #003399;
+    color:white;
 }
 
 nav ul {
-	margin: 0;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    width:80%;
+    float: left;
 }
 
 nav ul li {
-	margin: 0;
-	padding: 0;
+	margin: 0 auto ;
 	display: inline;
+    float:left;
 	list-style-type: none;
+    height:100%;
+    position:relative;
+    line-height: 24px;
+}
+
+nav ul li:hover {
+    background-color: #3300ff; ;
 }
 
 nav ul li a:link, nav ul li a:visited{
@@ -29,14 +53,12 @@ nav ul li a:link, nav ul li a:visited{
 	margin: 0 10px 4px 10px;
 	padding-bottom: 2px;
 	text-decoration: none;
-	color: black;
+    color:white;
 }
 
-nav ul li a.active:link, nav ul li a.active:visited, nav ul li a:hover {
+nav ul li a.active:link, nav ul li a:hover {
 	border-bottom: 2px solid red;
-	padding-bottom: 2px;
-	background: #fff;
-	color: #696969;
+    margin-bottom: 0;
 	}
 
 #search-doc {
@@ -75,7 +97,19 @@ footer p{
     text-align: center;
 }
 
-#set-lang{
+#controls {
     float:right;
+}
 
+#controls * {
+    float:left;
+    margin-right:2px;
+}
+#controls a {
+    text-decoration: none;
+    color: white;
+}
+
+.login-error {
+    color: red;
 }

@@ -30,19 +30,36 @@
             <li> <a href="/assets/"> {% trans "Asset Management" %} </a></li>
         </ul>
 
-    <form action="/i18n/setlang/" method="post" id="set-lang">
-        {% csrf_token %}
-        <input name="next" type="hidden" value="{{ request.path }}" />
-        <select name="language">
-            <option value="zh-tw">正體中文</option>
-            <option value="en-us">English</option>
-        </select>
-        <input type="submit" value="Go" />
-    </form>
+        <div id="controls">
+            {% if user.is_authenticated %}
+                <a href="/accounts/manage/"> {{ user.username }}</a>
+                <a href="/accounts/logout"> {% trans "Logout" %}</a>
+            {% else %}
+                <a href="/accounts/login/">{% trans "Login" %}</a>
+            {% endif %}
+
+
+            <form action="/i18n/setlang/" method="post" id="set-lang">
+            {% csrf_token %}
+                <input name="next" type="hidden" value="{{ request.path }}" />
+                <select name="language">
+                    <option value="zh-tw">正體中文</option>
+                    <option value="en-us">English</option>
+                 </select>
+                <input type="submit" value="Go" />
+            </form>
+        </div>
+
+
     </nav>
-{% block body %} {% endblock %}
 
+    
+<div id="content">
+{% block content %} {% endblock %}
+</div>
 
+    
+{% block footer %}{% endblock %}
 </body>
 
 </html>
