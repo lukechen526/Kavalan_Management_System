@@ -1,5 +1,9 @@
+Project Overview
+****************
+
 Introduction
 #############
+
 Kavalan Management System is a Enterprise Resource Planning (ERP_) application suite designed to facilitate the business processes at small- to medium-size firms.
 It is currently being developed with the support of `Wu-Fu Laboratories, Ltd`_
 
