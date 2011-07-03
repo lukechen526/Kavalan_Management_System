@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-28 22:26+0800\n"
+"POT-Creation-Date: 2011-07-02 22:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,61 +17,98 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\settings.py:41
+#: .\settings.py:42
 msgid "Chinese-TW"
 msgstr "正體中文"
 
-#: .\settings.py:42
+#: .\settings.py:43
 msgid "English"
 msgstr "英文"
 
-#: .\doc_engine\models.py:7
+#: .\doc_engine\models.py:6
 msgid "Document Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:8
+#: .\doc_engine\models.py:7
 msgid "Title"
 msgstr "主旨"
 
-#: .\doc_engine\models.py:9
+#: .\doc_engine\models.py:8
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:10
+#: .\doc_engine\models.py:9
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:11
+#: .\doc_engine\models.py:10
 msgid "File"
 msgstr "檔案"
 
-#: .\doc_engine\models.py:12
+#: .\doc_engine\models.py:11
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:15
+#: .\doc_engine\models.py:14 .\doc_engine\models.py:15
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\views.py:32
+#: .\doc_engine\views.py:31
 msgid "Please Enter a Query"
 msgstr ""
 
-#: .\templates\index.html.py:8
+#: .\templates\404.html.py:5
+msgid "Not Found"
+msgstr ""
+
+#: .\templates\500.html.py:5
+msgid "Server Error"
+msgstr ""
+
+#: .\templates\base.html.py:28 .\templates\flatpages\default.html.py:27
+msgid "Home"
+msgstr "首頁"
+
+#: .\templates\base.html.py:29 .\templates\flatpages\default.html.py:28
 msgid "Document Search and Retrieval"
 msgstr "文件查詢"
 
-#: .\templates\index.html.py:9
+#: .\templates\base.html.py:30 .\templates\flatpages\default.html.py:29
 msgid "Inventory"
 msgstr "庫存管理"
 
-#: .\templates\index.html.py:10
+#: .\templates\base.html.py:31 .\templates\flatpages\default.html.py:30
 msgid "Asset Management"
 msgstr ""
 
-#: .\templates\doc_engine\index.html.py:8
+#: .\templates\base.html.py:37 .\templates\flatpages\default.html.py:36
+msgid "Logout"
+msgstr "登出"
+
+#: .\templates\base.html.py:39 .\templates\flatpages\default.html.py:38
+#: .\templates\registration\login.html.py:25
+msgid "Login"
+msgstr "登入"
+
+#: .\templates\doc_engine\index.html.py:9
 msgid "Enter Serial Number/Document Title"
 msgstr "請用文件序號或主旨查詢"
+
+#: .\templates\registration\login.html.py:11
+msgid "Your username and password didn't match. Please try again."
+msgstr "您的用戶名及密碼不符，請重新再試"
+
+#: .\templates\registration\login.html.py:25
+msgid "Reset"
+msgstr "重設"
+
+#: .\templates\registration\password_change_done.html.py:7
+msgid "You have successfully changed your password"
+msgstr "密碼變更成功"
+
+#: .\templates\registration\password_change_form.html.py:11
+msgid "Submit"
+msgstr "提交"
 
 #~ msgid "Search"
 #~ msgstr "查詢"

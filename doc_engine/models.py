@@ -12,8 +12,7 @@ class Document(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Document')
+        verbose_name_plural = ugettext_lazy('Document')
         
     def __unicode__(self):
         return self.serial_number
-
-        

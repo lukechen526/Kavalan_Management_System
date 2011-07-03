@@ -16,6 +16,10 @@ class DocumentListView(ListView):
     model = Document
 
 def DocumentSearchView(request):
+    """
+    Receives a query 'q' via GET request, searches the database for rows matching the query in title or serial number,
+    and returns the result as a JSON string.
+    """
     if 'q' in request.GET and request.GET['q']:
         query = request.GET['q']
         results = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query))
