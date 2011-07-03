@@ -18,7 +18,10 @@ def build_query(queryString, model=None):
         try:
             queryString = json.loads(queryString)
         except ValueError:
-            raise
+            raise ValueError("Cannot parse queryString.")
+
+        except TypeError:
+            raise TypeError("queryString must be a dict or JSON string.")
 
     if not model:
         #if model is not provided, use Content Type to load the model
@@ -44,7 +47,8 @@ def build_query(queryString, model=None):
         #'exclude': determines Q(field__lookuptype=value) or ~Q(field__lookuptype=value)
         #Each filter (a dict obj) gets translated into a Q object
 
-
+        if not ('field' in f and 'lookuptype' in f and 'value' in f and 'op' in f and 'exclude' in f):
+            raise KeyError("Must provide all the keys for filter: 'field','lookuptype', 'value', 'op', and 'exclude' ")
 
         kwargs = {'%s__%s'%(f['field'], f['lookuptype']): f['value'] }
         q = Q(**kwargs)
@@ -58,7 +62,6 @@ def build_query(queryString, model=None):
         else:
             #If no op is provided, defaults to OR
             query.add(q, Q.OR)
-
 
     return model._default_manager.filter(query)
 
