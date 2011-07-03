@@ -145,6 +145,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'doc_engine',
     'accounts',
+    'dynamo',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 

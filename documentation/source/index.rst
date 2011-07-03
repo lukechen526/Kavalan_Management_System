@@ -13,6 +13,7 @@ Contents:
 
    intro
    doc_engine
+   dynamo
 
 Indices and tables
 ==================
