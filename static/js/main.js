@@ -11,7 +11,7 @@ $(document).ready(function(){
   }
 
  $.template("search-doc-resultTemplate",
-         "<a href='${FileURL}'>  ${SerialNumber} &nbsp; ${Title}  </a>"
+         "<a href='/static/${file}'>  ${serial_number} &nbsp; ${title}  </a>"
  );
 
     
@@ -24,7 +24,7 @@ $(document).ready(function(){
         var query = $("#q").val();
         if(query !== ""){
             $.ajax({
-                url:"search",
+                url:"/api/documents/",
                 data:{'q':query},
                 success: function(data){
                     $("#search-doc-result").empty();

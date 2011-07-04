@@ -14,5 +14,9 @@ class Document(models.Model):
         verbose_name = ugettext_lazy('Document')
         verbose_name_plural = ugettext_lazy('Document')
         
+    def file_url(self):
+        return self.file.url
+
     def __unicode__(self):
         return self.serial_number
+

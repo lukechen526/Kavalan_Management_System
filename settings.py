@@ -61,6 +61,12 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'uploads')
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
 MEDIA_URL = '/uploads/'
 
+#URL that points to the documentation
+DOCUMENT_URL = '/documentation/'
+
+#The path to the built documentation
+DOCUMENTATION_ROOT = os.path.join(DIRNAME, 'documentation/build')
+
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
@@ -95,6 +101,7 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'secret'
 
+LOGIN_URL ='/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -146,6 +153,7 @@ INSTALLED_APPS = (
     'doc_engine',
     'accounts',
     'dynamo',
+    'piston',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 

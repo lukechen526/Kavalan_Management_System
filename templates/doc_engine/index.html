@@ -4,7 +4,7 @@
 {% block content %}
 
     <div id="search-doc">
-        <form action="search" method="get" onsubmit="return false;">
+        <form action="/api/documents/" method="get" onsubmit="return false;">
 
             <label for="q"> {% trans "Enter Serial Number/Document Title" %}</label>
             <input type="text" name="q" id="q">
