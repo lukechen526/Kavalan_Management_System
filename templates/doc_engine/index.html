@@ -3,15 +3,31 @@
 {% block title %} Doc Engine{% endblock %}
 {% block content %}
 
-    <div id="search-doc">
-        <form action="/api/documents/" method="get" onsubmit="return false;">
+    <div id="search-tabs">
+    	<ul>
+		    <li><a href="#search-doc">{% trans "Search Documents" %}</a></li>
+		    <li><a href="#search-batch-record">{% trans "Search Batch Record" %}</a></li>
+	    </ul>
+        <div id="search-doc">
+            <form action="/api/documents/" method="get" onsubmit="return false;">
 
-            <label for="q"> {% trans "Enter Serial Number/Document Title" %}</label>
-            <input type="text" name="q" id="q">
+                <label for="q"> {% trans "Enter Serial Number/Document Title" %}</label>
+                <input type="text" name="q" id="q">
 
-        </form>
-        <div id="search-doc-result"></div>
+            </form>
+
+        </div>
+
+        <div id="search-batch-record">
+
+            <form action="" method="get" onsubmit="return false;">
+                {{ batch_record_search_form.as_ul }}
+            </form>
+
+        </div>
     </div>
+
+    <div id="search-result"></div>
 
 
 {% endblock %}

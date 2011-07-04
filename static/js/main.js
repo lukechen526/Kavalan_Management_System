@@ -1,7 +1,8 @@
 $(document).ready(function(){
 
+/* section for doc_engine */
 
-    //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
+  //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
   var typingTimer;
   var doneTypingInterval = 700;
   function delayExecute(func){
@@ -9,7 +10,6 @@ $(document).ready(function(){
     typingTimer = setTimeout(func,doneTypingInterval);
     return true;
   }
-
  $.template("search-doc-resultTemplate",
          "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>"
  );
@@ -26,14 +26,14 @@ $(document).ready(function(){
                 url:"/api/documents/",
                 data:{'q':query},
                 success: function(data){
-                    $("#search-doc-result").empty();
+                    $("#search-result").empty();
                     console.log(data);
                     if(data.length == 0){
-                        $("#search-doc-result").append(gettext("No Result"));
+                        $("#search-result").append(gettext("No Result"));
                     }
                     else{
                         data.forEach(function(item){
-                            $.tmpl( "search-doc-resultTemplate", item).appendTo( "#search-doc-result" );
+                            $.tmpl( "search-doc-resultTemplate", item).appendTo( "#search-result" );
                         });
 
                     }
@@ -43,9 +43,64 @@ $(document).ready(function(){
         }
         else{
 
-            $("#search-doc-result").empty();
+            $("#search-result").empty();
         }
     }
  });
+
+ (function(){
+  //Override the default datepicker to display 民國
+    $.datepicker.regional['zh-TW'] = {
+        closeText: '關閉',
+        prevText: '<上月',
+        nextText: '下月>',
+        currentText: '今天',
+        monthNames: ['一月','二月','三月','四月','五月','六月',
+        '七月','八月','九月','十月','十一月','十二月'],
+        monthNamesShort: ['一','二','三','四','五','六',
+        '七','八','九','十','十一','十二'],
+        dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
+        dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
+        dayNamesMin: ['日','一','二','三','四','五','六'],
+        dateFormat: 'yy-mm-dd', firstDay: 1,
+        showMonthAfterYear: false,
+        changeMonth: true,
+        changeYear: true,
+        isRTL: false
+    };
+    $.datepicker.setDefaults($.datepicker.regional['zh-TW']);
+    $.datepicker._phoenixGenerateMonthYearHeader = $.datepicker._generateMonthYearHeader;
+
+    $.datepicker._generateMonthYearHeader = function(inst, drawMonth, drawYear, minDate, maxDate,
+        secondary, monthNames, monthNamesShort) {
+        
+        var result = $($.datepicker._phoenixGenerateMonthYearHeader(inst, drawMonth, drawYear, minDate, maxDate,
+            secondary, monthNames, monthNamesShort));
+        result.children("select.ui-datepicker-year").children().each(function() {
+            $(this).text('民國' + ($(this).text() - 1911) + '年');
+        });
+
+        if( inst.yearshtml ){
+            var origyearshtml = inst.yearshtml;
+            setTimeout(function(){
+                //assure that inst.yearshtml didn't change.
+                if( origyearshtml === inst.yearshtml ){
+                    inst.dpDiv.find('select.ui-datepicker-year:first').replaceWith(inst.yearshtml);
+                    inst.dpDiv.find('select.ui-datepicker-year').children().each(function() {
+                        $(this).text('民國' + ($(this).text() - 1911) + '年');
+                    });
+                }
+                origyearshtml = inst.yearshtml = null;
+            }, 0);
+        }
+        return result.html();
+    };
+
+
+ })();
+ $('#search-tabs').tabs();
+ $('#date_manufactured_from').datepicker();
+ $('#date_manufactured_to').datepicker();
+/* section for */
 
 });

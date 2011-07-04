@@ -6,7 +6,10 @@ Doc Engine
 Overview
 ---------
 
-Doc Engine is the system for document search and retrieval.
+Doc Engine is the system for document search and retrieval. It deals with the following data types:
+
+- **Document**: a digital document file residing on the server.
+- **BatchRecord**: a searchable record in the database that points to the physical location of a batch record
 
 Model
 ------------

@@ -1,8 +1,17 @@
 from django.db import models
+from django import forms
+from django.forms.extras.widgets import SelectDateWidget
 from django.utils.translation import ugettext_lazy
 
+
 # Create your models here.
+
+MINGUO = 1911
+
 class Document(models.Model):
+    """
+    Model for digitally stored documents
+    """
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
     title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
     author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
@@ -19,4 +28,41 @@ class Document(models.Model):
 
     def __unicode__(self):
         return self.serial_number
+
+class BatchRecord(models.Model):
+    """
+    Model for batch records
+    """
+    name = models.CharField(max_length=30, verbose_name=ugettext_lazy('Product Name'))
+    batch_number = models.CharField(max_length=30, verbose_name=ugettext_lazy('Batch Number'))
+    serial_number = models.IntegerField(verbose_name=ugettext_lazy('Serial Number'))
+    date_manufactured = models.DateField(verbose_name=ugettext_lazy('Date Manufactured'))
+    location = models.CharField(max_length=30, verbose_name=ugettext_lazy('Physical Location'))
+
+    class Meta:
+        verbose_name = ugettext_lazy('Batch Record')
+        verbose_name = ugettext_lazy('Batch Record')
+        
+    def __unicode__(self):
+        return self.batch_number
+
+    def save(self, *args, **kwargs):
+        if self.date_manufactured.year <= 1000:
+            #Convert MINGUO Year to CE
+            self.date_manufactured = self.date_manufactured.replace(year=self.date_manufactured.year+MINGUO)
+        super(BatchRecord, self).save(*args, **kwargs)
+
+class BatchRecordInputForm(forms.ModelForm):
+    date_manufactured = forms.DateField(label="Date of Manufacture (CE)", help_text=ugettext_lazy("Enter the date as YYYY-MM-DD. Use CE or Minguo year. Enter Minguo XXX year as 0XXX"))
+    class Meta:
+        model = BatchRecord
+
+class BatchRecordSearchForm(forms.Form):
+    name = forms.CharField(label=ugettext_lazy('Product Name'))
+    batch_number = forms.CharField(label=ugettext_lazy('Batch Number'))
+    date_manufactured_from = forms.DateField(label=ugettext_lazy('From'), required=False)
+    date_manufactured_to = forms.DateField(label=ugettext_lazy('To'), required=False)
+
+
+    
 

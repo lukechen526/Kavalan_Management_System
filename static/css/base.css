@@ -2,7 +2,7 @@ body {
 	display:block;
 
 }
-
+/* for base.html */
 #content{
     display: block;
     position:absolute;
@@ -61,43 +61,8 @@ nav ul li a.active:link, nav ul li a:hover {
     margin-bottom: 0;
 	}
 
-#search-doc {
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    margin-top: 10px;
 
-}
-
-#search-doc input{
-
-    width: 60%;
-}
-
-#search-doc-result {
-    margin-top: 4%;
-}
-
-#search-doc-result a{
-
-    font-size:large;
-    text-decoration: none;
-    display:block;
-    padding: 5px 0px;
-}
-
-footer{
-    position: absolute;
-    bottom: 0px;
-    left:0px;
-    width: 100%;
-    font-size: small;
-}
-
-footer p{
-    text-align: center;
-}
-
+/* for nav bar control */
 #controls {
     float:right;
 }
@@ -114,7 +79,58 @@ footer p{
     text-decoration: none;
     color: #ffffff;
 }
+/* for /accounts/login/ */
 
 .login-error {
     color: red;
+}
+/*for doc_engine/index.html*/
+#search-doc {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    margin-top: 10px;
+
+}
+
+#search-doc input{
+
+    width: 60%;
+}
+
+#search-result {
+    margin-top: 4%;
+}
+
+#search-result a{
+
+    font-size:large;
+    text-decoration: none;
+    display:block;
+    padding: 5px 0px;
+}
+
+#search-batch-record form li{
+    list-style-type: none;
+}
+.ui-datepicker{
+ font-size:12px;
+}
+
+.ui-tabs{
+ font-size: 14px;
+}
+
+
+/* for index.html*/
+footer{
+    position: absolute;
+    bottom: 0px;
+    left:0px;
+    width: 100%;
+    font-size: small;
+}
+
+footer p{
+    text-align: center;
 }

@@ -1,17 +1,8 @@
 from piston.handler import BaseHandler
 from piston.utils import *
-from doc_engine.models import Document
+from doc_engine.models import Document, BatchRecord
 from django.db.models import Q
-from django.http import HttpResponseRedirect
-from django.conf import settings
 
-class DefaultAuthenticationHandler(object):
-    def is_authenticated(self, request):
-        return request.user.is_authenticated()
-
-    def challenge(self):
-        return HttpResponseRedirect(settings.LOGIN_URL)
-        
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = Document
@@ -32,5 +23,8 @@ class DocumentHandler(BaseHandler):
             resp = rc.BAD_REQUEST
             resp.write("Need query parameter")
             return resp
-            
-  
+
+class BatchRecordHandler(BaseHandler):
+    allowed_methods = ('GET',)
+    model = BatchRecord
+    fields = ('name', )

@@ -9,12 +9,14 @@
 
     <!-- ** CSS ** -->
     <!-- base library -->
+    <link href="{{ STATIC_URL }}css/dot-luv/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
     <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css">
 
     <!-- ** Javascript ** -->
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.6.1.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tmpl.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
 
 
@@ -29,6 +31,9 @@
             <li> <a href="/doc_engine/"> {% trans "Document Search and Retrieval" %}</a></li>
             <li> <a href="/inventory/"> {%  trans "Inventory" %}</a></li>
             <li> <a href="/assets/"> {% trans "Asset Management" %} </a></li>
+            {% if user.is_authenticated and user.is_staff %}
+                <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
+            {% endif %}
             <li> <a href="/documentation/index.html"> {% trans "Documentation" %} </a></li>
         </ul>
 
