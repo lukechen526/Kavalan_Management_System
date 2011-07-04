@@ -3,7 +3,7 @@ $(document).ready(function(){
 
     //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
   var typingTimer;
-  var doneTypingInterval = 300;
+  var doneTypingInterval = 700;
   function delayExecute(func){
     clearTimeout(typingTimer);
     typingTimer = setTimeout(func,doneTypingInterval);
@@ -11,10 +11,9 @@ $(document).ready(function(){
   }
 
  $.template("search-doc-resultTemplate",
-         "<a href='/static/${file}'>  ${serial_number} &nbsp; ${title}  </a>"
+         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>"
  );
 
-    
  $('#q').bind('keyup change', function(event){
 
     delayExecute(ajaxSearch);

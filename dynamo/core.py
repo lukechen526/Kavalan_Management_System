@@ -1,6 +1,7 @@
 #Provides the core functionalities of dynamo
 import json
 from django.contrib.contenttypes.models import ContentType
+from django.core.exceptions import FieldError
 from django.db.models import Q
 
 def build_query(queryString, model=None):
@@ -28,8 +29,12 @@ def build_query(queryString, model=None):
         if not ('app' in queryString and 'model' in queryString):
             raise KeyError("Keys 'app' and 'model' required")
 
-        model_type = ContentType.objects.get(app_label=queryString['app'], model=queryString['model'])
-        model = model_type.model_class()
+        try:
+            model_type = ContentType.objects.get(app_label=queryString['app'], model=queryString['model'])
+            model = model_type.model_class()
+        except ContentType.DoesNotExist:
+            raise 
+
 
     if 'filters' not in queryString:
         raise KeyError("No filters specified")
@@ -49,6 +54,10 @@ def build_query(queryString, model=None):
 
         if not ('field' in f and 'lookuptype' in f and 'value' in f and 'op' in f and 'exclude' in f):
             raise KeyError("Must provide all the keys for filter: 'field','lookuptype', 'value', 'op', and 'exclude' ")
+
+        if  f['field'] not in model._meta.get_all_field_names() and f['field'] not in [ m2m.name for m2m in model._meta._many_to_many()]:
+            #Check that the model has f['field'] either as a normal field or a ManyToMany relation
+            raise FieldError("The Model does not have this field: %s" % f['field'])
 
         kwargs = {'%s__%s'%(f['field'], f['lookuptype']): f['value'] }
         q = Q(**kwargs)
