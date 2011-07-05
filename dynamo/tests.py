@@ -2,6 +2,7 @@ from django.core.exceptions import FieldError
 from django.test import TestCase
 from dynamo import core
 from django.db import models
+from doc_engine.models import Document
 
 class BuildQueryTestCase(TestCase):
 
@@ -14,13 +15,22 @@ class BuildQueryTestCase(TestCase):
         result = core.build_query(d_dict)
         self.assertIsInstance(result, models.query.QuerySet)
         #There should be at least one result
+        self.assertTrue(result)
 
     def testJSON(self):
         d_json = '{"app": "doc_engine", "model": "Document", "filters": [{"lookuptype": "contains", "field": "serial_number", "exclude": false, "value": "AF", "op": ""}]}'
         result = core.build_query(d_json)
         self.assertIsInstance(result, models.query.QuerySet)
-        self.assertTrue(result)
         #There should be at least one result
+        self.assertTrue(result)
+
+
+    def testWithModel(self):
+        d_with_model = '{"filters": [{"lookuptype": "contains", "field": "serial_number", "exclude": false, "value": "AF", "op": ""}]}'
+        result = core.build_query(d_with_model, Document)
+        self.assertIsInstance(result, models.query.QuerySet)
+        #There should be at least one result
+        self.assertTrue(result)
 
     def testNoResult(self):
         d_json = '{"app": "doc_engine", "model": "Document", "filters": [{"lookuptype": "contains", "field": "title", "exclude": false, "value": "XXXXXXXXXXXXXXX", "op": ""}]}'

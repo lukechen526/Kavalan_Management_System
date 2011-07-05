@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'kavalan',                      # Or path to database file if using sqlite3.
         'USER': 'wufulab',                      # Not used with sqlite3.
         'PASSWORD': 'wufulab',                  # Not used with sqlite3.
@@ -43,6 +43,7 @@ LANGUAGES = (
   ('en-us', _('English')),
 )
 
+LOCALE_PATHS = (os.path.join(DIRNAME, 'locale'), )
 SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
@@ -76,11 +77,6 @@ STATIC_ROOT = ''
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
 STATIC_URL = '/static/'
-
-# URL prefix for admin static files -- CSS, JavaScript and images.
-# Make sure to use a trailing slash.
-# Examples: "http://foo.com/static/admin/", "/static/admin/".
-ADMIN_MEDIA_PREFIX = '/static/admin/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (

@@ -1,6 +1,5 @@
 from django.db import models
 from django import forms
-from django.forms.extras.widgets import SelectDateWidget
 from django.utils.translation import ugettext_lazy
 
 
@@ -27,7 +26,7 @@ class Document(models.Model):
         return self.file.url
 
     def __unicode__(self):
-        return self.serial_number
+        return unicode(self.serial_number)
 
 class BatchRecord(models.Model):
     """
@@ -44,22 +43,22 @@ class BatchRecord(models.Model):
         verbose_name = ugettext_lazy('Batch Record')
         
     def __unicode__(self):
-        return self.batch_number
+        return unicode(self.batch_number)
 
     def save(self, *args, **kwargs):
         if self.date_manufactured.year <= 1000:
-            #Convert MINGUO Year to CE
+            #Convert MINGUO Year to CE before saving
             self.date_manufactured = self.date_manufactured.replace(year=self.date_manufactured.year+MINGUO)
         super(BatchRecord, self).save(*args, **kwargs)
 
 class BatchRecordInputForm(forms.ModelForm):
-    date_manufactured = forms.DateField(label="Date of Manufacture (CE)", help_text=ugettext_lazy("Enter the date as YYYY-MM-DD. Use CE or Minguo year. Enter Minguo XXX year as 0XXX"))
+    date_manufactured = forms.DateField(label="Date of Manufacture")
     class Meta:
         model = BatchRecord
 
 class BatchRecordSearchForm(forms.Form):
-    name = forms.CharField(label=ugettext_lazy('Product Name'))
-    batch_number = forms.CharField(label=ugettext_lazy('Batch Number'))
+    name = forms.CharField(label=ugettext_lazy('Product Name'), required=False)
+    batch_number = forms.CharField(label=ugettext_lazy('Batch Number'), required=False)
     date_manufactured_from = forms.DateField(label=ugettext_lazy('From'), required=False)
     date_manufactured_to = forms.DateField(label=ugettext_lazy('To'), required=False)
 
