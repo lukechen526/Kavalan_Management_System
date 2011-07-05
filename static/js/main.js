@@ -11,8 +11,11 @@ $(document).ready(function(){
     return true;
   }
  $.template("search-doc-resultTemplate",
-         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>"
- );
+         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>");
+
+ $.template("search-batchrecord-resultTemplate", "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} @ ${location} </span>");
+
+
 
  $('#q').bind('keyup change', function(event){
 
@@ -47,6 +50,45 @@ $(document).ready(function(){
         }
     }
  });
+
+
+ function ajaxBatchRecordSearch(){
+     $.ajax({
+         url:"/api/batchrecords/",
+         data: {name: $("#name").val(),
+               batch_number: $("#batch_number").val(),
+               date_manufactured_from: $("#date_manufactured_from").val(),
+               date_manufactured_to: $("#date_manufactured_to").val()},
+         error: function(jqXHR){$("#search-result").empty();},
+         success: function(data){
+             $("#search-result").empty();
+             if(data.length == 0){
+                 $("#search-result").append(gettext("No Result"));
+             }
+
+             else{
+                  data.forEach(function(item){
+                      $.tmpl( "search-batchrecord-resultTemplate", item).appendTo( "#search-result" );
+                   });
+
+             }
+
+
+         }
+
+
+
+
+     });
+
+
+ }
+
+$("#name").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#batch_number").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#date_manufactured_from").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+
 
  (function(){
   //Override the default datepicker to display 民國
@@ -98,9 +140,14 @@ $(document).ready(function(){
 
 
  })();
+
+
  $('#search-tabs').tabs();
+ $('#search-tabs').bind('tabsselect', function(){
+     $('#search-result').empty();
+     $('#search-tabs form').each(function(){this.reset();});});
  $('#date_manufactured_from').datepicker();
  $('#date_manufactured_to').datepicker();
+ $('#id_date_manufactured').datepicker();
 /* section for */
-
 });
