@@ -20,7 +20,7 @@ nav {
     position: absolute;
     top: 0;
     right:0;
-    background-color: #003399;
+    background-color: #333333;
     color:white;
 }
 
@@ -43,7 +43,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-    background-color: #3300ff; ;
+    background-color: #666666; ;
 }
 
 nav ul li a:link, nav ul li a:visited{

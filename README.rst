@@ -16,7 +16,10 @@ Dependencies
 
 - Python >= 2.6
 - Django 1.3
+- `Django-piston`_ >= 0.2.2
 - Database connectors for MySQL or PostgreSQL
 
 .. _ERP: http://en.wikipedia.org/wiki/Enterprise_resource_planning
 .. _Wu-Fu Laboratories, Ltd: http://www.wufulab.com
+.. _Django-piston: https://bitbucket.org/jespern/django-piston/wiki/Home
+
