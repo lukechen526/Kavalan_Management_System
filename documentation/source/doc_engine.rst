@@ -26,7 +26,7 @@ API
 
 **Resource URL:** /api/documents/
 
-**Parameter:** q(required)=*title or document serial number to query against*
+**Parameter:** q(required)= *title or document serial number to query against*
 
 **Response:** A JSON string containing the records matching the query, or an empty []
 
@@ -84,11 +84,12 @@ API
 +---------------------------------------+-----------------------------------------------+
 |                                       |                                               |
 +=======================================+===============================================+
-| **name** *optional*                   | Product name for the batch record             |
+| **name** *optional*                   |Product name for the batch record              |
 +---------------------------------------+-----------------------------------------------+
-| **batch_number** *optional*           | Batch number of the batch record              |
+| **batch_number** *optional*           |Batch number of the batch record               |
 +---------------------------------------+-----------------------------------------------+
-| **date_manufactured_from** *optional* | Specify the date range to search for:         |
+| **date_manufactured_from** *optional* |Specify the date range to search for           |
+|                                       |                                               |
 | **date_manufactured_to** *optional*   |[date_manufactred_from, date_manufactured_to]  |
 +---------------------------------------+-----------------------------------------------+
 

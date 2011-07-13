@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-04 01:47+0800\n"
+"POT-Creation-Date: 2011-07-14 01:27+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,80 +25,121 @@ msgstr "正體中文"
 msgid "English"
 msgstr "英文"
 
-#: .\doc_engine\models.py:6
+#: .\doc_engine\models.py:14
 msgid "Document Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:7
+#: .\doc_engine\models.py:15
 msgid "Title"
 msgstr "主旨"
 
-#: .\doc_engine\models.py:8
+#: .\doc_engine\models.py:16
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:9
+#: .\doc_engine\models.py:17
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:10
+#: .\doc_engine\models.py:18
 msgid "File"
 msgstr "檔案"
 
-#: .\doc_engine\models.py:11
+#: .\doc_engine\models.py:19
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:14 .\doc_engine\models.py:15
+#: .\doc_engine\models.py:22 .\doc_engine\models.py:23
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\views.py:38
-msgid "Please Enter a Query"
-msgstr ""
+#: .\doc_engine\models.py:35 .\doc_engine\models.py:60
+msgid "Product Name"
+msgstr "產品名稱"
+
+#: .\doc_engine\models.py:36 .\doc_engine\models.py:61
+msgid "Batch Number"
+msgstr "批次序號"
+
+#: .\doc_engine\models.py:37
+#, fuzzy
+msgid "Serial Number"
+msgstr "文件序號"
+
+#: .\doc_engine\models.py:38
+msgid "Date Manufactured"
+msgstr "製造日期"
+
+#: .\doc_engine\models.py:39
+msgid "Physical Location"
+msgstr "實物位置"
+
+#: .\doc_engine\models.py:42 .\doc_engine\models.py:43
+msgid "Batch Record"
+msgstr "批次記錄"
+
+#: .\doc_engine\models.py:62
+msgid "From"
+msgstr "自"
+
+#: .\doc_engine\models.py:63
+msgid "To"
+msgstr "至"
 
 #: .\templates\404.html.py:5
 msgid "File Not Found"
-msgstr ""
+msgstr "無此檔案"
 
 #: .\templates\500.html.py:5
 msgid "Server Error"
-msgstr ""
+msgstr "伺服器錯誤"
 
-#: .\templates\base.html.py:28 .\templates\flatpages\default.html.py:27
+#: .\templates\base.html.py:30 .\templates\flatpages\default.html.py:27
 msgid "Home"
 msgstr "首頁"
 
-#: .\templates\base.html.py:29 .\templates\flatpages\default.html.py:28
+#: .\templates\base.html.py:31 .\templates\flatpages\default.html.py:28
 msgid "Document Search and Retrieval"
 msgstr "文件查詢"
 
-#: .\templates\base.html.py:30 .\templates\flatpages\default.html.py:29
+#: .\templates\base.html.py:32 .\templates\flatpages\default.html.py:29
 msgid "Inventory"
 msgstr "庫存管理"
 
-#: .\templates\base.html.py:31 .\templates\flatpages\default.html.py:30
+#: .\templates\base.html.py:33 .\templates\flatpages\default.html.py:30
 msgid "Asset Management"
-msgstr ""
+msgstr "資產管理"
 
-#: .\templates\base.html.py:32
+#: .\templates\base.html.py:35
+msgid "Admin"
+msgstr "管理頁面"
+
+#: .\templates\base.html.py:37
 msgid "Documentation"
 msgstr "輔助文件"
 
-#: .\templates\base.html.py:38 .\templates\flatpages\default.html.py:36
+#: .\templates\base.html.py:43 .\templates\flatpages\default.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\base.html.py:40 .\templates\flatpages\default.html.py:38
+#: .\templates\base.html.py:45 .\templates\flatpages\default.html.py:38
 #: .\templates\registration\login.html.py:25
 msgid "Login"
 msgstr "登入"
 
 #: .\templates\index.html.py:3
 msgid "Welcome to Kavalan Management System "
-msgstr ""
+msgstr "歡迎使用噶瑪蘭系統"
+
+#: .\templates\doc_engine\index.html.py:8
+msgid "Search Documents"
+msgstr "搜尋文件"
 
 #: .\templates\doc_engine\index.html.py:9
+msgid "Search Batch Record"
+msgstr "搜尋批次記錄"
+
+#: .\templates\doc_engine\index.html.py:14
 msgid "Enter Serial Number/Document Title"
 msgstr "請用文件序號或主旨查詢"
 
