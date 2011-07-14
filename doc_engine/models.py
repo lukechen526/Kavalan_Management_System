@@ -40,7 +40,7 @@ class BatchRecord(models.Model):
 
     class Meta:
         verbose_name = ugettext_lazy('Batch Record')
-        verbose_name = ugettext_lazy('Batch Record')
+        verbose_name_plural = ugettext_lazy('Batch Record')
         
     def __unicode__(self):
         return unicode(self.batch_number)

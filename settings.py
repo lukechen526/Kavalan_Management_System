@@ -153,6 +153,9 @@ INSTALLED_APPS = (
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.

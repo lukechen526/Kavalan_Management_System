@@ -149,5 +149,22 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
  $('#date_manufactured_from').datepicker();
  $('#date_manufactured_to').datepicker();
  $('#id_date_manufactured').datepicker();
-/* section for */
+
+
+
+/* section for navigation bar */
+
+  //Mark the current link in the nav bar
+ $("nav ul li a").each(function(){
+     
+    if($(this).attr("href") == window.location.pathname)
+    {
+        $(this).addClass("current");
+    }
+ });
+
+
+
+
+    
 });

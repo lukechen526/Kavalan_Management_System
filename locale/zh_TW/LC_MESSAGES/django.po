@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-14 01:27+0800\n"
+"POT-Creation-Date: 2011-07-14 11:12+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -151,8 +151,31 @@ msgstr "您的用戶名及密碼不符，請重新再試"
 msgid "Reset"
 msgstr "重設"
 
+#: .\templates\registration\manage.html.py:7
+msgid "Username"
+msgstr "帳號"
+
+#: .\templates\registration\manage.html.py:8
+msgid "Name"
+msgstr "姓名"
+
+#: .\templates\registration\manage.html.py:18
+msgid "Password"
+msgstr "密碼"
+
+#: .\templates\registration\manage.html.py:19
+msgid "Change Password"
+msgstr "密碼重設"
+
+#: .\templates\registration\manage.html.py:21
+msgid "E-mail"
+msgstr ""
+
+#: .\templates\registration\manage.html.py:23
+msgid "Last Login"
+msgstr "上次登入"
+
 #: .\templates\registration\password_change_done.html.py:7
-#, fuzzy
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
 
