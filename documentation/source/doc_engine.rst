@@ -11,6 +11,8 @@ Doc Engine is the system for document search and retrieval. It current handles t
 - **Document**: a database record for a digital file residing on the server.
 - **BatchRecord**: a searchable record in the database that points to the physical location of a batch record
 
+Doc Engine applies strict access control and records all requests for documents in the database. 
+
 Client-Server Communication
 ------------------------------
 The search functionality of *Doc Engine* is exposed via its public API
@@ -68,6 +70,10 @@ Model
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
 Creating/updating/deleting of records is done via the Django admin interface.
+
+
+Access Control
+^^^^^^^^^^^^^^^^
 
 
 Batch Record

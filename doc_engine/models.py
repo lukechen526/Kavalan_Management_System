@@ -1,6 +1,8 @@
 from django.db import models
 from django import forms
+from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
+from django.core.urlresolvers import reverse
 
 
 # Create your models here.
@@ -17,17 +19,37 @@ class Document(models.Model):
     version = models.IntegerField(verbose_name=ugettext_lazy('Version'))
     file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
     last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
+    permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
 
     class Meta:
         verbose_name = ugettext_lazy('Document')
         verbose_name_plural = ugettext_lazy('Document')
         
     def file_url(self):
-        return self.file.url
+        return "/doc_engine/access/%s/" % self.pk
 
     def __unicode__(self):
         return unicode(self.serial_number)
 
+
+
+class AccessRecord(models.Model):
+    """
+    Records the access of any document by any user
+    """
+    user = models.ForeignKey(User, verbose_name=ugettext_lazy('User') )
+    access_time = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Access Time'))
+    ip = models.IPAddressField(verbose_name=ugettext_lazy('IP'))
+    document_accessed = models.ForeignKey(Document, verbose_name=ugettext_lazy('Document Accessed'))
+
+    class Meta:
+        verbose_name = ugettext_lazy('Access Record')
+        verbose_name_plural = ugettext_lazy('Access Records')
+
+    def __unicode__(self):
+        return u"%s accessed %s on %s" %(self.user, self.document_accessed, self.access_time.isoformat(' '))
+    
+    
 class BatchRecord(models.Model):
     """
     Model for batch records
@@ -61,6 +83,7 @@ class BatchRecordSearchForm(forms.Form):
     batch_number = forms.CharField(label=ugettext_lazy('Batch Number'), required=False)
     date_manufactured_from = forms.DateField(label=ugettext_lazy('From'), required=False)
     date_manufactured_to = forms.DateField(label=ugettext_lazy('To'), required=False)
+
 
 
     

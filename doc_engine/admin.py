@@ -1,5 +1,5 @@
 from django.contrib import admin
-from doc_engine.models import Document, BatchRecord, BatchRecordInputForm
+from doc_engine.models import Document, AccessRecord, BatchRecord, BatchRecordInputForm
 
 class BatchRecordAdmin(admin.ModelAdmin):
     form = BatchRecordInputForm
@@ -9,5 +9,6 @@ class BatchRecordAdmin(admin.ModelAdmin):
         css ={'all':('css/dot-luv/jquery-ui-1.8.14.custom.css',)}
     
 admin.site.register(Document)
+admin.site.register(AccessRecord)
 admin.site.register(BatchRecord, BatchRecordAdmin)
   
