@@ -177,4 +177,4 @@ LOGGING = {
 }
 
 #Uncomment to import from settings_production.py
-#from settings_production import *
+from settings_production import *
