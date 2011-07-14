@@ -24,9 +24,13 @@ Dependencies
 
 - Python >= 2.6
 - Django 1.3
-- `Django-Piston`_ >= 0.2.2
-- Python database connectors for MySQL or PostgreSQL
+- `Django-piston`_ >= 0.2.2
+- `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
+- Database connectors for MySQL or PostgreSQL
 
 .. _ERP: http://en.wikipedia.org/wiki/Enterprise_resource_planning
 .. _Wu-Fu Laboratories, Ltd: http://www.wufulab.com
 .. _Django-piston: https://bitbucket.org/jespern/django-piston/wiki/Home
+.. _PIC/S: http://www.picscheme.org/
+.. _pyPDF: http://pybrary.net/pyPdf/
+.. _ReportLab ToolKit: http://www.reportlab.com/software/opensource/rl-toolkit/

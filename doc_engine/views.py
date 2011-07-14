@@ -7,6 +7,7 @@ from django.conf import settings
 from StringIO import StringIO
 from reportlab.pdfgen import canvas
 from pyPdf import PdfFileWriter, PdfFileReader
+from django.utils.translation import ugettext
 import os.path
 
 class DocumentIndexView(TemplateView):
@@ -36,9 +37,10 @@ def createPDFHttpResponse(filename, user, access_time):
         output.addPage(page)
 
     response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'attachment; filename=%s' % attachment.getDocumentInfo().title
+    response['Content-Disposition'] = 'inline; filename=%s' % attachment.getDocumentInfo().title
     output.write(response)
     return response
+
 
 def DocumentAccess(request, pk):
     MEDIA_ROOT = settings.MEDIA_ROOT
@@ -64,6 +66,6 @@ def DocumentAccess(request, pk):
                                             user=user,
                                             access_time=record.access_time)
             
-    return HttpResponseForbidden("Access Denied")
+    return HttpResponseForbidden(ugettext("Access Denied"))
 
     
