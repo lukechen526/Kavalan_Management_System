@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'doc_engine',
     'accounts',
     'dynamo',
+    'hermes',
     'piston',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
