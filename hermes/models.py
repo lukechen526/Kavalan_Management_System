@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 
 class MessageThread(models.Model):
@@ -41,17 +41,28 @@ def update_thread_time(sender, **kwargs):
     kwargs['instance'].thread.save()
 
 @receiver(post_save, sender=MessageThread)
-def notify_user_thread_participation_or_update(sender, **kwargs):
+def notify_user_thread_update(sender, **kwargs):
     thread = kwargs['instance']
     is_new = kwargs['created']
     participants = thread.participants.all()
-
-    if is_new:
-        for participant in participants:
-            participant.get_profile().notify(u"%s '%s'" %(ugettext_lazy("You have been added to"), thread.subject))
-    else:
+    if not is_new:
         for participant in participants:
             participant.get_profile().notify(u"%s '%s'" %(ugettext_lazy("New message in "), thread.subject))
 
 
+@receiver(m2m_changed, sender=MessageThread)
+def notify_user_paritipation_change(sender, **kwargs):
+    action = kwargs['action']
+    thread = kwargs['instance']
+
+    if action == 'post_add':
+        for pk in kwargs['pk_set']:
+           User.objects.get(pk=pk).get_profile().notify(u"%s '%s'" %
+                                                        (ugettext_lazy("You have been added to"),
+                                                         thread.subject))
+    if action == 'post_remove':
+        for pk in kwargs['pk_set']:
+            User.objects.get(pk=pk).get_profile().notify(u"%s '%s'" %
+                                                         (ugettext_lazy("You have been removed from"),
+                                                          thread.subject))
 
