@@ -84,6 +84,13 @@ nav ul li a.active:link, nav ul li a:hover, nav ul li a.current {
 .login-error {
     color: red;
 }
+
+/* for forms */
+
+.errorlist{
+    color: red;
+}
+
 /*for doc_engine/index.html*/
 #search-doc {
     margin-right: auto;

@@ -35,22 +35,6 @@ API
 Example Request:
 
 GET /api/documents/?q=AF
-::
-
-    [
-        {
-            "serial_number": "AF-110",
-            "file_url": "/uploads/documents/Cover_Letter_Sheneman.jpg",
-            "title": "hello"
-        },
-        
-        {
-            "serial_number": "AFBJ-11033",
-            "file_url": "/uploads/documents/base.css",
-            "title": "On Document Security"
-        }
-    ]
-
 
 
 
@@ -60,12 +44,27 @@ Model
 ::
 
     class Document(models.Model):
+        """
+        Model for digitally stored documents
+        """
         serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
         title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
         author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
         version = models.IntegerField(verbose_name=ugettext_lazy('Version'))
         file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
         last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
+        permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
+
+        class Meta:
+            verbose_name = ugettext_lazy('Document')
+            verbose_name_plural = ugettext_lazy('Document')
+
+        def file_url(self):
+            return "/doc_engine/access/%s/" % self.pk
+
+        def __unicode__(self):
+            return unicode(self.serial_number)
+
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
@@ -74,6 +73,9 @@ Creating/updating/deleting of records is done via the Django admin interface.
 
 Access Control
 ^^^^^^^^^^^^^^^^
+Access control is performed via the view DocumentAccess. Every document can be accessed at /doc_engine/access/*pk*/ .
+
+.. autofunction:: doc_engine.views.DocumentAccess
 
 
 Batch Record

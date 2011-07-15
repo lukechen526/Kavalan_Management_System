@@ -18,6 +18,11 @@ import sys, os
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #sys.path.insert(0, os.path.abspath('.'))
 
+DIRNAME = os.path.dirname(__file__)
+PROJDIR = os.path.join(DIRNAME, "../../")
+sys.path.append(PROJDIR)
+os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+
 # -- General configuration -----------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.

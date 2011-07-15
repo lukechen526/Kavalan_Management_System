@@ -41,14 +41,22 @@ class AccessRecord(models.Model):
     access_time = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Access Time'))
     ip = models.IPAddressField(verbose_name=ugettext_lazy('IP'))
     document_accessed = models.ForeignKey(Document, verbose_name=ugettext_lazy('Document Accessed'))
+    success = models.BooleanField(verbose_name=ugettext_lazy('Success?'))
 
     class Meta:
         verbose_name = ugettext_lazy('Access Record')
         verbose_name_plural = ugettext_lazy('Access Records')
+        permissions = (
+            ("view_accessrecord", "Can view but not add/change/delete records"),
+        )
 
     def __unicode__(self):
-        return u"%s accessed %s on %s" %(self.user, self.document_accessed, self.access_time.isoformat(' '))
-    
+        if self.success:
+            return u"%s: %s %s %s" %(ugettext_lazy('SUCCESS'),self.user, self.document_accessed, self.access_time.isoformat(' '))
+        else:
+            return u"%s: %s %s %s" %(ugettext_lazy('FAILURE'),self.user, self.document_accessed, self.access_time.isoformat(' '))
+
+
     
 class BatchRecord(models.Model):
     """

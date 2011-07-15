@@ -2,13 +2,17 @@
 from django.views.generic import TemplateView
 from doc_engine.models import Document, BatchRecordSearchForm, AccessRecord
 from django.shortcuts import get_object_or_404
-from django.http import HttpResponse, HttpResponseForbidden
+from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from django.conf import settings
-from StringIO import StringIO
 from reportlab.pdfgen import canvas
 from pyPdf import PdfFileWriter, PdfFileReader
 from django.utils.translation import ugettext
-import os.path
+import os
+import mimetypes
+try:
+    from cStringIO import StringIO
+except ImportError:
+    from StringIO import StringIO
 
 class DocumentIndexView(TemplateView):
     template_name = "doc_engine/index.html"
@@ -18,6 +22,24 @@ class DocumentIndexView(TemplateView):
         # Add in a QuerySet of all the books
         context['batch_record_search_form'] = BatchRecordSearchForm(auto_id=True)
         return context
+
+
+def createGenericHttpResponse(filename,user, access_time):
+    #Check the mimetype of the file
+    mimetype = mimetypes.guess_type(filename)
+    if mimetype[0] == 'application/pdf':
+        return createPDFHttpResponse(filename, user, access_time)
+    else:
+        response = HttpResponse(mimetype=mimetype[0])
+        response['Content-Disposition'] = 'attachment; filename=%s' % os.path.basename(filename)
+        with open(filename, 'rb') as f:
+            buffer = StringIO()
+            for line in f.readlines():
+                buffer.write(line)
+        attachment = buffer.getvalue()
+        buffer.close()
+        response.write(attachment)
+        return response
 
 def createPDFHttpResponse(filename, user, access_time):
     #Add access watermark
@@ -43,29 +65,43 @@ def createPDFHttpResponse(filename, user, access_time):
 
 
 def DocumentAccess(request, pk):
+    """
+    Searches for the requested document for the given primary key, then checks if the user belongs to a group
+    that has the permission to access the document. 
+    :param request:
+    :param pk:
+    :return: returns the requested document as a PDF file or raises Http errors
+    """
     MEDIA_ROOT = settings.MEDIA_ROOT
     user = request.user
     user_groups = user.groups.all()
     document = get_object_or_404(Document, pk=pk)
     document_groups = list(document.permitted_groups.all())
 
+    filepath = os.path.join(MEDIA_ROOT, document.file.name)
+
+    #check if the file exists. Return 404 if not
+    if not os.access(filepath, os.F_OK):
+        return HttpResponseNotFound
+    
     #Check if the user has the necessary group permission to access the document or is a superuser
 
     if user.is_superuser:
-        record= AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document)
-        return createPDFHttpResponse(filename=os.path.join(MEDIA_ROOT, document.file.name),
-                                     user=user,
-                                     access_time=record.access_time)
-
+        record= AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
+        return createGenericHttpResponse(filename=filepath,
+                                         user=user,
+                                         access_time=record.access_time)
     elif user_groups:
         for group in user_groups:
             if group in document_groups:
                 #Allows access if the user is in the permitted group
-                record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document)
-                return createPDFHttpResponse(filename=os.path.join(MEDIA_ROOT, document.file.name),
-                                            user=user,
-                                            access_time=record.access_time)
-            
+                record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
+                return createGenericHttpResponse(filename=filepath,
+                                                 user=user,
+                                                 access_time=record.access_time)
+
+    #If the user is not authorized, record the attempt, and then return error 403
+    record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=False)
     return HttpResponseForbidden(ugettext("Access Denied"))
 
     
