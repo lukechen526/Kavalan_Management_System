@@ -79,12 +79,6 @@ specifying the user who downloaded the file and the time of access.
 
 .. autofunction:: doc_engine.views.createPDFHttpResponse
 
-.. important::
-
-    Currently, access control is implemented by having Django read the file into memory and then write it into a HttpResponse object.
-    Since this approach is relatively inefficient, support for X-Sendfile-based approach is being developed.
-
-
 Batch Record
 ----------------
 

@@ -6,6 +6,7 @@ from django.conf import settings
 from reportlab.pdfgen import canvas
 from pyPdf import PdfFileWriter, PdfFileReader
 from django.utils.translation import ugettext
+from django.conf import settings
 import os
 import mimetypes
 try:
@@ -47,16 +48,25 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
     if mimetype[0] == 'application/pdf':
         return createPDFHttpResponse(filepath, output_filename, user, access_time)
     else:
-        response = HttpResponse(mimetype=mimetype[0])
-        response['Content-Disposition'] = 'attachment; filename=%s' % output_filename
-        with open(filepath, 'rb') as f:
-            buffer = StringIO()
-            for line in f.readlines():
-                buffer.write(line)
-        attachment = buffer.getvalue()
-        buffer.close()
-        response.write(attachment)
-        return response
+        #Only serve file from Django in development mode; otherwise, use X-sendfile
+        if settings.DEBUG:
+            response = HttpResponse(mimetype=mimetype[0])
+            response['Content-Disposition'] = 'attachment; filename=%s' % output_filename
+            with open(filepath, 'rb') as f:
+                buffer = StringIO()
+                for line in f.readlines():
+                    buffer.write(line)
+            attachment = buffer.getvalue()
+            buffer.close()
+            response.write(attachment)
+            return response
+        else:
+            response = HttpResponse(mimetype=mimetype[0])
+            del response['content-type'] #Leave it to the server to decide
+            response['X-Sendfile'] = filepath
+            response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename
+            return response
+
 
 def createPDFHttpResponse(filepath, output_filename, user, access_time):
     """
