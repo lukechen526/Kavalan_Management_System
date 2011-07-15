@@ -180,5 +180,6 @@ LOGGING = {
     }
 }
 
-#Uncomment to import from settings_production.py
-#from settings_production import *
+#Import settings_production.py for production environment
+if not DEBUG:
+    from settings_production import *
