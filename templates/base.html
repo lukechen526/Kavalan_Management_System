@@ -29,12 +29,10 @@
         <ul>
             <li> <a href="/"> {% trans "Home" %} </a></li>
             <li> <a href="/doc_engine/"> {% trans "Document Search and Retrieval" %}</a></li>
-            <li> <a href="/inventory/"> {%  trans "Inventory" %}</a></li>
-            <li> <a href="/assets/"> {% trans "Asset Management" %} </a></li>
             {% if user.is_authenticated and user.is_staff %}
                 <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
             {% endif %}
-            <li> <a href="/documentation/index.html"> {% trans "Documentation" %} </a></li>
+            <li> <a href="/documentation/index.html"> {% trans "Help" %} </a></li>
         </ul>
 
         <div id="controls">

@@ -131,6 +131,12 @@ nav ul li a.active:link, nav ul li a:hover, nav ul li a.current {
  font-size: 14px;
 }
 
+.physical location{
+    font-size: larger;
+    font-weight: bold;
+
+}
+
 
 /* for index.html*/
 footer{

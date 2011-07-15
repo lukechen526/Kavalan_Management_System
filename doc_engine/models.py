@@ -2,11 +2,11 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
-from django.core.urlresolvers import reverse
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 
 # Create your models here.
-
 MINGUO = 1911
 
 class Document(models.Model):
@@ -16,22 +16,29 @@ class Document(models.Model):
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
     title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
     author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
-    version = models.IntegerField(verbose_name=ugettext_lazy('Version'))
+    version = models.FloatField(default=1.0, verbose_name=ugettext_lazy('Version'))
     file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
     last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
 
     class Meta:
         verbose_name = ugettext_lazy('Document')
-        verbose_name_plural = ugettext_lazy('Document')
+        verbose_name_plural = ugettext_lazy('Documents')
         
     def file_url(self):
         return "/doc_engine/access/%s/" % self.pk
 
     def __unicode__(self):
-        return unicode(self.serial_number)
+        return unicode(u'%s %s v%s' %(self.serial_number, self.title, self.version))
 
-
+@receiver(pre_delete, sender=Document)
+def deleteFileOnServer(sender, **kwargs):
+    """
+    Deletes the file from storage before the Document record is removed from the database
+    """
+    document = kwargs['instance']
+    #delete the file from storage
+    document.file.delete()
 
 class AccessRecord(models.Model):
     """
@@ -49,6 +56,7 @@ class AccessRecord(models.Model):
         permissions = (
             ("view_accessrecord", "Can view but not add/change/delete records"),
         )
+        ordering = ['-access_time', 'user']
 
     def __unicode__(self):
         if self.success:
@@ -56,8 +64,6 @@ class AccessRecord(models.Model):
         else:
             return u"%s: %s %s %s" %(ugettext_lazy('FAILURE'),self.user, self.document_accessed, self.access_time.isoformat(' '))
 
-
-    
 class BatchRecord(models.Model):
     """
     Model for batch records

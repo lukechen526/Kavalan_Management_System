@@ -9,7 +9,7 @@ from piston.utils import validate
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = Document
-    fields = ('title', 'serial_number', 'file_url')
+    fields = ('title', 'serial_number', 'version', 'file_url')
 
     @classmethod
     def read(self, request):

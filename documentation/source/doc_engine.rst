@@ -22,7 +22,7 @@ The search functionality of *Doc Engine* is exposed via its public API
 
 Document
 -------------------------
-API
+Search API
 ^^^^^^^^
 **GET /documents/**
 
@@ -34,48 +34,32 @@ API
 
 Example Request:
 
-GET /api/documents/?q=AF
-
-
-
-
-Model
-^^^^^^^
+GET /api/documents/?q=Lab
 ::
 
-    class Document(models.Model):
-        """
-        Model for digitally stored documents
-        """
-        serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
-        title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
-        author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
-        version = models.IntegerField(verbose_name=ugettext_lazy('Version'))
-        file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
-        last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
-        permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
-
-        class Meta:
-            verbose_name = ugettext_lazy('Document')
-            verbose_name_plural = ugettext_lazy('Document')
-
-        def file_url(self):
-            return "/doc_engine/access/%s/" % self.pk
-
-        def __unicode__(self):
-            return unicode(self.serial_number)
-
+    [
+        {
+            "serial_number": "Lab 101",
+            "version": 1.3,
+            "file_url": "/doc_engine/access/1/",
+            "title": "Lab 101 SOP"
+        }
+    ]
+ 
+Model
+^^^^^^^
+.. autoclass:: doc_engine.models.Document
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
-Creating/updating/deleting of records is done via the Django admin interface.
+Creating/updating/deleting of records is done via the Django admin interface
 
+Access the actual file and security
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The search result provides a link to the actual file at /doc_engine/access/*primary key*/ . Access control is employed to
+ensure that only authorized users are permitted to access the document.
 
-Access Control
-^^^^^^^^^^^^^^^^
-Access control is performed via the view DocumentAccess. Every document can be accessed at /doc_engine/access/*pk*/ .
-
-.. autofunction:: doc_engine.views.DocumentAccess
+Security is ensured through the following mechanisms:
 
 
 Batch Record
@@ -122,30 +106,8 @@ GET /api/batchrecords/?name=Ampi&batch_number=&date_manufactured_from=2011-07-07
 
 Model
 ^^^^^^^
-::
 
-    class BatchRecord(models.Model):
-        """
-        Model for batch records
-        """
-        name = models.CharField(max_length=30, verbose_name=ugettext_lazy('Product Name'))
-        batch_number = models.CharField(max_length=30, verbose_name=ugettext_lazy('Batch Number'))
-        serial_number = models.IntegerField(verbose_name=ugettext_lazy('Serial Number'))
-        date_manufactured = models.DateField(verbose_name=ugettext_lazy('Date Manufactured'))
-        location = models.CharField(max_length=30, verbose_name=ugettext_lazy('Physical Location'))
-
-        class Meta:
-            verbose_name = ugettext_lazy('Batch Record')
-            verbose_name = ugettext_lazy('Batch Record')
-
-        def __unicode__(self):
-            return unicode(self.batch_number)
-
-        def save(self, *args, **kwargs):
-            if self.date_manufactured.year <= 1000:
-                #Convert MINGUO Year to CE before saving
-                self.date_manufactured = self.date_manufactured.replace(year=self.date_manufactured.year+MINGUO)
-            super(BatchRecord, self).save(*args, **kwargs)
+.. autoclass:: doc_engine.models.BatchRecord
 
 
 Create/Update/Delete

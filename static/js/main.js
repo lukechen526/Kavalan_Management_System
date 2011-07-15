@@ -11,9 +11,10 @@ $(document).ready(function(){
     return true;
   }
  $.template("search-doc-resultTemplate",
-         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>");
+         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title} &nbsp; v${version} </a>");
 
- $.template("search-batchrecord-resultTemplate", "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} @ ${location} </span>");
+ $.template("search-batchrecord-resultTemplate",
+     "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} &nbsp; <span class='physical-location'>  @ ${location}</span></span>");
 
 
 
