@@ -5,18 +5,23 @@ from django.utils.translation import ugettext_lazy
 from django.db.models.signals import pre_delete
 from django.dispatch import receiver
 
-
-# Create your models here.
-MINGUO = 1911
-
 class Document(models.Model):
     """
     Model for digitally stored documents
+    
+    - serial_number: CharField
+    - title: CharField
+    - author: CharField
+    - version: CharField
+    - file: FileField
+    - last_updated: DateTimeField
+    - permitted_groups: ManytoManyField
+
     """
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
     title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
     author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
-    version = models.FloatField(default=1.0, verbose_name=ugettext_lazy('Version'))
+    version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Version'))
     file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
     last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
@@ -34,15 +39,21 @@ class Document(models.Model):
 @receiver(pre_delete, sender=Document)
 def deleteFileOnServer(sender, **kwargs):
     """
-    Deletes the file from storage before the Document record is removed from the database
+    When a Document record is being removed, deletes the associated file from storage
     """
     document = kwargs['instance']
-    #delete the file from storage
     document.file.delete()
 
 class AccessRecord(models.Model):
     """
-    Records the access of any document by any user
+    Model for recording the access of any document by any user
+
+    - user: ForeignKey
+    - access_time: DateTimeField
+    - ip: IPAddressField
+    - document_accessed: ForeignKey
+    - success: BooleanField
+
     """
     user = models.ForeignKey(User, verbose_name=ugettext_lazy('User') )
     access_time = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Access Time'))
@@ -67,6 +78,13 @@ class AccessRecord(models.Model):
 class BatchRecord(models.Model):
     """
     Model for batch records
+
+    - name: CharField
+    - batch_number: CharField
+    - serial_number: IntegerField
+    - date_manufactured: DateField
+    - location: CharField
+
     """
     name = models.CharField(max_length=30, verbose_name=ugettext_lazy('Product Name'))
     batch_number = models.CharField(max_length=30, verbose_name=ugettext_lazy('Batch Number'))
@@ -88,7 +106,7 @@ class BatchRecord(models.Model):
         super(BatchRecord, self).save(*args, **kwargs)
 
 class BatchRecordInputForm(forms.ModelForm):
-    date_manufactured = forms.DateField(label="Date of Manufacture")
+    date_manufactured = forms.DateField(label=ugettext_lazy('Date of Manufacture'))
     class Meta:
         model = BatchRecord
 

@@ -112,7 +112,7 @@ nav ul li a.active:link, nav ul li a:hover, nav ul li a.current {
     width:60%;
 }
 
-#search-result a, #search-result span{
+#search-result a, #search-result>span{
 
     font-size:large;
     text-decoration: none;
@@ -131,10 +131,9 @@ nav ul li a.active:link, nav ul li a:hover, nav ul li a.current {
  font-size: 14px;
 }
 
-.physical location{
+.physical-location{
     font-size: larger;
     font-weight: bold;
-
 }
 
 
