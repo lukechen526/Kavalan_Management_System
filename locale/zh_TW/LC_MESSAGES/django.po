@@ -27,47 +27,47 @@ msgstr "英文"
 
 #: .\accounts\models.py:13 .\hermes\models.py:22
 msgid "Content"
-msgstr ""
+msgstr "內容"
 
 #: .\accounts\models.py:15
 msgid "unread"
-msgstr ""
+msgstr "未讀"
 
 #: .\accounts\models.py:16
 msgid "read"
-msgstr ""
+msgstr "已讀"
 
 #: .\accounts\models.py:18
 msgid "Status"
-msgstr ""
+msgstr "狀態"
 
 #: .\accounts\models.py:21
 msgid "Notification"
-msgstr ""
+msgstr "通知"
 
 #: .\accounts\models.py:22 .\accounts\models.py:30
 msgid "Notifications"
-msgstr ""
+msgstr "通知"
 
 #: .\accounts\models.py:29
 msgid "Department"
-msgstr ""
+msgstr "部門"
 
 #: .\accounts\models.py:31
 msgid "New Notification Count"
-msgstr ""
+msgstr "新通知數"
 
 #: .\accounts\models.py:34
 msgid "User Profile"
-msgstr ""
+msgstr "用戶配置"
 
 #: .\accounts\models.py:35
 msgid "User Profiles"
-msgstr ""
+msgstr "用戶配置"
 
 #: .\accounts\models.py:57
 msgid "Groups"
-msgstr ""
+msgstr "群組"
 
 #: .\doc_engine\models.py:21
 msgid "Document Serial Number"
@@ -95,25 +95,23 @@ msgstr "上次更新"
 
 #: .\doc_engine\models.py:27
 msgid "Permitted Groups"
-msgstr ""
+msgstr "授權群組"
 
 #: .\doc_engine\models.py:30
 msgid "Document"
 msgstr "文件"
 
 #: .\doc_engine\models.py:31
-#, fuzzy
 msgid "Documents"
 msgstr "文件"
 
 #: .\doc_engine\models.py:58
-#, fuzzy
 msgid "User"
 msgstr "帳號"
 
 #: .\doc_engine\models.py:59
 msgid "Access Time"
-msgstr ""
+msgstr "存取時間"
 
 #: .\doc_engine\models.py:60
 msgid "IP"
@@ -126,25 +124,24 @@ msgstr "文件"
 
 #: .\doc_engine\models.py:62
 msgid "Success?"
-msgstr ""
+msgstr "成功?"
 
 #: .\doc_engine\models.py:65
 #, fuzzy
 msgid "Access Record"
-msgstr "批次記錄"
+msgstr "存取記錄"
 
 #: .\doc_engine\models.py:66
-#, fuzzy
 msgid "Access Records"
-msgstr "批次記錄"
+msgstr "存取記錄"
 
 #: .\doc_engine\models.py:74
 msgid "SUCCESS"
-msgstr ""
+msgstr "存取成功"
 
 #: .\doc_engine\models.py:76
 msgid "FAILURE"
-msgstr ""
+msgstr "存取失敗"
 
 #: .\doc_engine\models.py:89 .\doc_engine\models.py:114
 msgid "Product Name"
@@ -172,7 +169,6 @@ msgid "Batch Record"
 msgstr "批次記錄"
 
 #: .\doc_engine\models.py:109
-#, fuzzy
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
@@ -186,55 +182,55 @@ msgstr "至"
 
 #: .\doc_engine\views.py:135
 msgid "Access Denied"
-msgstr ""
+msgstr "無權存取"
 
 #: .\hermes\models.py:8
 msgid "Thread Subject"
-msgstr ""
+msgstr "會話群組主題"
 
 #: .\hermes\models.py:9
 msgid "Participants"
-msgstr ""
+msgstr "參與者"
 
 #: .\hermes\models.py:13
 msgid "Message Thread"
-msgstr ""
+msgstr "群組訊息"
 
 #: .\hermes\models.py:14
 msgid "Message Threads"
-msgstr ""
+msgstr "群組訊息"
 
 #: .\hermes\models.py:20
 msgid "Poster"
-msgstr ""
+msgstr "寄件者"
 
 #: .\hermes\models.py:21
 msgid "Date"
-msgstr ""
+msgstr "日期"
 
 #: .\hermes\models.py:23
 msgid "Thread"
-msgstr ""
+msgstr "會話群組"
 
 #: .\hermes\models.py:26
 msgid "Message"
-msgstr ""
+msgstr "訊息"
 
 #: .\hermes\models.py:27
 msgid "Messages"
-msgstr ""
+msgstr "訊息"
 
 #: .\hermes\models.py:50
 msgid "New message in "
-msgstr ""
+msgstr "有新訊息"
 
 #: .\hermes\models.py:61
 msgid "You have been added to"
-msgstr ""
+msgstr "你已被加到"
 
 #: .\hermes\models.py:66
 msgid "You have been removed from"
-msgstr ""
+msgstr "你已被移除"
 
 #: .\templates\404.html.py:5
 msgid "File Not Found"
@@ -258,7 +254,7 @@ msgstr "管理頁面"
 
 #: .\templates\base.html.py:35
 msgid "Help"
-msgstr ""
+msgstr "說明"
 
 #: .\templates\base.html.py:41 .\templates\flatpages\default.html.py:36
 msgid "Logout"
