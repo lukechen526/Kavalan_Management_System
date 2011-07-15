@@ -1,10 +1,14 @@
 from django.conf.urls.defaults import *
 
-urlpatterns = patterns('',
-    url(r'^login/$', 'django.contrib.auth.views.login'),
-    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
-    url(r'^password_change/$', 'django.contrib.auth.views.password_change'),
-    url(r'^password_change_done/$', 'django.contrib.auth.views.password_change_done'),
+urlpatterns = patterns('django.contrib.auth.views',
+    url(r'^login/$', 'login'),
+    url(r'^logout/$', 'logout', {'next_page': '/'}),
+    url(r'^password_change/$', 'password_change'),
+    url(r'^password_change_done/$', 'password_change_done'),
+)
 
+urlpatterns += patterns('accounts.views',
+    url(r'^manage/$', 'account_manage'),
+    url(r'^create_user/$', 'create_user')
 )
   

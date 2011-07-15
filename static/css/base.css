@@ -56,7 +56,7 @@ nav ul li a:link, nav ul li a:visited{
     color: #ffffff;
 }
 
-nav ul li a.active:link, nav ul li a:hover {
+nav ul li a.active:link, nav ul li a:hover, nav ul li a.current {
 	border-bottom: 2px solid red;
     margin-bottom: 0;
 	}
@@ -84,6 +84,13 @@ nav ul li a.active:link, nav ul li a:hover {
 .login-error {
     color: red;
 }
+
+/* for forms */
+
+.errorlist{
+    color: red;
+}
+
 /*for doc_engine/index.html*/
 #search-doc {
     margin-right: auto;
@@ -105,7 +112,7 @@ nav ul li a.active:link, nav ul li a:hover {
     width:60%;
 }
 
-#search-result a, #search-result span{
+#search-result a, #search-result>span{
 
     font-size:large;
     text-decoration: none;
@@ -124,6 +131,11 @@ nav ul li a.active:link, nav ul li a:hover {
  font-size: 14px;
 }
 
+.physical-location{
+    font-size: larger;
+    font-weight: bold;
+}
+
 
 /* for index.html*/
 footer{
@@ -136,4 +148,11 @@ footer{
 
 footer p{
     text-align: center;
+}
+
+/* for registration/manage.html */
+
+
+.user-info-label{
+     font-weight: bold;
 }

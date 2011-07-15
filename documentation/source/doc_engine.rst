@@ -3,6 +3,8 @@
 Doc Engine
 ===========
 
+version 0.4
+
 Overview
 ---------
 
@@ -10,6 +12,8 @@ Doc Engine is the system for document search and retrieval. It current handles t
 
 - **Document**: a database record for a digital file residing on the server.
 - **BatchRecord**: a searchable record in the database that points to the physical location of a batch record
+
+Doc Engine applies strict access control and records all requests for documents in the database. 
 
 Client-Server Communication
 ------------------------------
@@ -20,8 +24,8 @@ The search functionality of *Doc Engine* is exposed via its public API
 
 Document
 -------------------------
-API
-^^^^^^^^
+Search API
+^^^^^^^^^^^^^
 **GET /documents/**
 
 **Resource URL:** /api/documents/
@@ -32,43 +36,48 @@ API
 
 Example Request:
 
-GET /api/documents/?q=AF
+GET /api/documents/?q=Lab
 ::
 
     [
         {
-            "serial_number": "AF-110",
-            "file_url": "/uploads/documents/Cover_Letter_Sheneman.jpg",
-            "title": "hello"
-        },
-        
-        {
-            "serial_number": "AFBJ-11033",
-            "file_url": "/uploads/documents/base.css",
-            "title": "On Document Security"
+            "serial_number": "Lab 101",
+            "version": 1.3,
+            "file_url": "/doc_engine/access/1/",
+            "title": "Lab 101 SOP"
         }
     ]
-
-
-
-
-
+ 
 Model
 ^^^^^^^
-::
-
-    class Document(models.Model):
-        serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
-        title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
-        author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
-        version = models.IntegerField(verbose_name=ugettext_lazy('Version'))
-        file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
-        last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
+.. autoclass:: doc_engine.models.Document
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
-Creating/updating/deleting of records is done via the Django admin interface.
+Creating/updating/deleting of records is done via the Django admin interface
 
+Access the actual file and security
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The search result provides a link to the actual file at /doc_engine/access/*primary key*/ . Access control is employed to
+ensure that only authorized users are permitted to access the document.
+
+Security is ensured through the following mechanisms:
+
+1. **Group-based permission model:** Each Document has a set of permitted groups. When a user tries to access the document,
+his/her group membership is checked against that of the Document. Only a user who passes the test will be given access to the file.
+Others will see "Access Denied."
+
+.. autofunction:: doc_engine.views.createFileHttpResponse
+
+2. **Access recording:** Each time a user attempts to access a document, a record is written in the database, regardless of
+the outcome (success or access denial).
+
+.. autoclass:: doc_engine.models.AccessRecord
+
+3. **Watermarking of PDF documents:** If the document to be accessed is a PDF file, an access watermark is added to the bottom of every page,
+specifying the user who downloaded the file and the time of access.
+
+.. autofunction:: doc_engine.views.createPDFHttpResponse
 
 Batch Record
 ----------------
@@ -114,31 +123,8 @@ GET /api/batchrecords/?name=Ampi&batch_number=&date_manufactured_from=2011-07-07
 
 Model
 ^^^^^^^
-::
 
-    class BatchRecord(models.Model):
-        """
-        Model for batch records
-        """
-        name = models.CharField(max_length=30, verbose_name=ugettext_lazy('Product Name'))
-        batch_number = models.CharField(max_length=30, verbose_name=ugettext_lazy('Batch Number'))
-        serial_number = models.IntegerField(verbose_name=ugettext_lazy('Serial Number'))
-        date_manufactured = models.DateField(verbose_name=ugettext_lazy('Date Manufactured'))
-        location = models.CharField(max_length=30, verbose_name=ugettext_lazy('Physical Location'))
-
-        class Meta:
-            verbose_name = ugettext_lazy('Batch Record')
-            verbose_name = ugettext_lazy('Batch Record')
-
-        def __unicode__(self):
-            return unicode(self.batch_number)
-
-        def save(self, *args, **kwargs):
-            if self.date_manufactured.year <= 1000:
-                #Convert MINGUO Year to CE before saving
-                self.date_manufactured = self.date_manufactured.replace(year=self.date_manufactured.year+MINGUO)
-            super(BatchRecord, self).save(*args, **kwargs)
-
+.. autoclass:: doc_engine.models.BatchRecord
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^

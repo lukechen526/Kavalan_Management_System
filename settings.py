@@ -1,7 +1,7 @@
 # Django settings for Kavalan_Management_System project.
 import os
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 DIRNAME = os.path.dirname(__file__)
@@ -149,9 +149,13 @@ INSTALLED_APPS = (
     'doc_engine',
     'accounts',
     'dynamo',
+    'hermes',
     'piston',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
+
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -176,5 +180,6 @@ LOGGING = {
     }
 }
 
-#Uncomment to import from settings_production.py
-from settings_production import *
+#Import settings_production.py for production environment
+if not DEBUG:
+    from settings_production import *

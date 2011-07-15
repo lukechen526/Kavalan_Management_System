@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-14 01:27+0800\n"
+"POT-Creation-Date: 2011-07-15 16:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,66 +25,212 @@ msgstr "正體中文"
 msgid "English"
 msgstr "英文"
 
-#: .\doc_engine\models.py:14
+#: .\accounts\models.py:13 .\hermes\models.py:22
+msgid "Content"
+msgstr "內容"
+
+#: .\accounts\models.py:15
+msgid "unread"
+msgstr "未讀"
+
+#: .\accounts\models.py:16
+msgid "read"
+msgstr "已讀"
+
+#: .\accounts\models.py:18
+msgid "Status"
+msgstr "狀態"
+
+#: .\accounts\models.py:21
+msgid "Notification"
+msgstr "通知"
+
+#: .\accounts\models.py:22 .\accounts\models.py:30
+msgid "Notifications"
+msgstr "通知"
+
+#: .\accounts\models.py:29
+msgid "Department"
+msgstr "部門"
+
+#: .\accounts\models.py:31
+msgid "New Notification Count"
+msgstr "新通知數"
+
+#: .\accounts\models.py:34
+msgid "User Profile"
+msgstr "用戶配置"
+
+#: .\accounts\models.py:35
+msgid "User Profiles"
+msgstr "用戶配置"
+
+#: .\accounts\models.py:57
+msgid "Groups"
+msgstr "群組"
+
+#: .\doc_engine\models.py:21
 msgid "Document Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:15
+#: .\doc_engine\models.py:22
 msgid "Title"
 msgstr "主旨"
 
-#: .\doc_engine\models.py:16
+#: .\doc_engine\models.py:23
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:17
+#: .\doc_engine\models.py:24
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:18
+#: .\doc_engine\models.py:25
 msgid "File"
 msgstr "檔案"
 
-#: .\doc_engine\models.py:19
+#: .\doc_engine\models.py:26 .\hermes\models.py:10
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:22 .\doc_engine\models.py:23
+#: .\doc_engine\models.py:27
+msgid "Permitted Groups"
+msgstr "授權群組"
+
+#: .\doc_engine\models.py:30
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\models.py:35 .\doc_engine\models.py:60
+#: .\doc_engine\models.py:31
+msgid "Documents"
+msgstr "文件"
+
+#: .\doc_engine\models.py:58
+msgid "User"
+msgstr "帳號"
+
+#: .\doc_engine\models.py:59
+msgid "Access Time"
+msgstr "存取時間"
+
+#: .\doc_engine\models.py:60
+msgid "IP"
+msgstr ""
+
+#: .\doc_engine\models.py:61
+#, fuzzy
+msgid "Document Accessed"
+msgstr "文件"
+
+#: .\doc_engine\models.py:62
+msgid "Success?"
+msgstr "成功?"
+
+#: .\doc_engine\models.py:65
+#, fuzzy
+msgid "Access Record"
+msgstr "存取記錄"
+
+#: .\doc_engine\models.py:66
+msgid "Access Records"
+msgstr "存取記錄"
+
+#: .\doc_engine\models.py:74
+msgid "SUCCESS"
+msgstr "存取成功"
+
+#: .\doc_engine\models.py:76
+msgid "FAILURE"
+msgstr "存取失敗"
+
+#: .\doc_engine\models.py:89 .\doc_engine\models.py:114
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\models.py:36 .\doc_engine\models.py:61
+#: .\doc_engine\models.py:90 .\doc_engine\models.py:115
 msgid "Batch Number"
 msgstr "批次序號"
 
-#: .\doc_engine\models.py:37
+#: .\doc_engine\models.py:91
 #, fuzzy
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:38
+#: .\doc_engine\models.py:92
 msgid "Date Manufactured"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:39
+#: .\doc_engine\models.py:93
 msgid "Physical Location"
 msgstr "實物位置"
 
-#: .\doc_engine\models.py:42 .\doc_engine\models.py:43
+#: .\doc_engine\models.py:96 .\doc_engine\models.py:97
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:62
+#: .\doc_engine\models.py:109
+msgid "Date of Manufacture"
+msgstr "製造日期"
+
+#: .\doc_engine\models.py:116
 msgid "From"
 msgstr "自"
 
-#: .\doc_engine\models.py:63
+#: .\doc_engine\models.py:117
 msgid "To"
 msgstr "至"
+
+#: .\doc_engine\views.py:135
+msgid "Access Denied"
+msgstr "無權存取"
+
+#: .\hermes\models.py:8
+msgid "Thread Subject"
+msgstr "會話群組主題"
+
+#: .\hermes\models.py:9
+msgid "Participants"
+msgstr "參與者"
+
+#: .\hermes\models.py:13
+msgid "Message Thread"
+msgstr "群組訊息"
+
+#: .\hermes\models.py:14
+msgid "Message Threads"
+msgstr "群組訊息"
+
+#: .\hermes\models.py:20
+msgid "Poster"
+msgstr "寄件者"
+
+#: .\hermes\models.py:21
+msgid "Date"
+msgstr "日期"
+
+#: .\hermes\models.py:23
+msgid "Thread"
+msgstr "會話群組"
+
+#: .\hermes\models.py:26
+msgid "Message"
+msgstr "訊息"
+
+#: .\hermes\models.py:27
+msgid "Messages"
+msgstr "訊息"
+
+#: .\hermes\models.py:50
+msgid "New message in "
+msgstr "有新訊息"
+
+#: .\hermes\models.py:61
+msgid "You have been added to"
+msgstr "你已被加到"
+
+#: .\hermes\models.py:66
+msgid "You have been removed from"
+msgstr "你已被移除"
 
 #: .\templates\404.html.py:5
 msgid "File Not Found"
@@ -102,27 +248,19 @@ msgstr "首頁"
 msgid "Document Search and Retrieval"
 msgstr "文件查詢"
 
-#: .\templates\base.html.py:32 .\templates\flatpages\default.html.py:29
-msgid "Inventory"
-msgstr "庫存管理"
-
-#: .\templates\base.html.py:33 .\templates\flatpages\default.html.py:30
-msgid "Asset Management"
-msgstr "資產管理"
-
-#: .\templates\base.html.py:35
+#: .\templates\base.html.py:33
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\base.html.py:37
-msgid "Documentation"
-msgstr "輔助文件"
+#: .\templates\base.html.py:34 .\templates\base.html.py:36
+msgid "Help"
+msgstr "說明"
 
-#: .\templates\base.html.py:43 .\templates\flatpages\default.html.py:36
+#: .\templates\base.html.py:47 .\templates\flatpages\default.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\base.html.py:45 .\templates\flatpages\default.html.py:38
+#: .\templates\base.html.py:49 .\templates\flatpages\default.html.py:38
 #: .\templates\registration\login.html.py:25
 msgid "Login"
 msgstr "登入"
@@ -143,6 +281,19 @@ msgstr "搜尋批次記錄"
 msgid "Enter Serial Number/Document Title"
 msgstr "請用文件序號或主旨查詢"
 
+#: .\templates\flatpages\default.html.py:29
+msgid "Inventory"
+msgstr "庫存管理"
+
+#: .\templates\flatpages\default.html.py:30
+msgid "Asset Management"
+msgstr "資產管理"
+
+#: .\templates\registration\create_user.html.py:12
+#: .\templates\registration\password_change_form.html.py:11
+msgid "Submit"
+msgstr "提交"
+
 #: .\templates\registration\login.html.py:11
 msgid "Your username and password didn't match. Please try again."
 msgstr "您的用戶名及密碼不符，請重新再試"
@@ -151,14 +302,41 @@ msgstr "您的用戶名及密碼不符，請重新再試"
 msgid "Reset"
 msgstr "重設"
 
+#: .\templates\registration\manage.html.py:7
+msgid "Username"
+msgstr "帳號"
+
+#: .\templates\registration\manage.html.py:8
+msgid "Name"
+msgstr "姓名"
+
+#: .\templates\registration\manage.html.py:18
+msgid "Password"
+msgstr "密碼"
+
+#: .\templates\registration\manage.html.py:19
+msgid "Change Password"
+msgstr "密碼重設"
+
+#: .\templates\registration\manage.html.py:21
+msgid "E-mail"
+msgstr ""
+
+#: .\templates\registration\manage.html.py:23
+msgid "Last Login"
+msgstr "上次登入"
+
+#: .\templates\registration\manage.html.py:25
+#: .\templates\registration\manage.html.py:26
+msgid "Create User"
+msgstr "增新帳號"
+
 #: .\templates\registration\password_change_done.html.py:7
-#, fuzzy
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
 
-#: .\templates\registration\password_change_form.html.py:11
-msgid "Submit"
-msgstr "提交"
+#~ msgid "Documentation"
+#~ msgstr "輔助文件"
 
 #~ msgid "Search"
 #~ msgstr "查詢"

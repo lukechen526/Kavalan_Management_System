@@ -11,9 +11,10 @@ $(document).ready(function(){
     return true;
   }
  $.template("search-doc-resultTemplate",
-         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title}  </a>");
+         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title} &nbsp; v${version} </a>");
 
- $.template("search-batchrecord-resultTemplate", "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} @ ${location} </span>");
+ $.template("search-batchrecord-resultTemplate",
+     "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} &nbsp; <span class='physical-location'>  @ ${location}</span></span>");
 
 
 
@@ -99,13 +100,13 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
         currentText: '今天',
         monthNames: ['一月','二月','三月','四月','五月','六月',
         '七月','八月','九月','十月','十一月','十二月'],
-        monthNamesShort: ['一','二','三','四','五','六',
-        '七','八','九','十','十一','十二'],
+        monthNamesShort: ['一月','二月','三月','四月','五月','六月',
+        '七月','八月','九月','十月','十一月','十二月'],
         dayNames: ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
         dayNamesShort: ['周日','周一','周二','周三','周四','周五','周六'],
         dayNamesMin: ['日','一','二','三','四','五','六'],
         dateFormat: 'yy-mm-dd', firstDay: 1,
-        showMonthAfterYear: false,
+        showMonthAfterYear: true,
         changeMonth: true,
         changeYear: true,
         isRTL: false
@@ -149,5 +150,22 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
  $('#date_manufactured_from').datepicker();
  $('#date_manufactured_to').datepicker();
  $('#id_date_manufactured').datepicker();
-/* section for */
+
+
+
+/* section for navigation bar */
+
+  //Mark the current link in the nav bar
+ $("nav ul li a").each(function(){
+     
+    if($(this).attr("href") == window.location.pathname)
+    {
+        $(this).addClass("current");
+    }
+ });
+
+
+
+
+    
 });
