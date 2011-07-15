@@ -1,18 +1,21 @@
 Introduction
-#############
+===============
 Kavalan Management System is a Enterprise Resource Planning (ERP_) application suite designed to facilitate the business processes at small- to medium-size firms.
 It is currently being developed with the support of `Wu-Fu Laboratories, Ltd`_. The system aims to be `PIC/S`_ compliant.
 
 Sub-systems
-###########
+================
 Several apps have been planned for inclusion in the suite. They are all at very early stage of development
 
 - Doc Engine (for document search and retrieval)
-- Inventory Management
 - Account and Profile Management
 
+Author(s)
+===========
+Luke (Yu-Po) Chen, lukechen526@gmail.com
+
 Dependencies
-#############
+==================
 
 - Python >= 2.6
 - Django 1.3

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-15 15:44+0800\n"
+"POT-Creation-Date: 2011-07-15 16:54+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -252,15 +252,15 @@ msgstr "文件查詢"
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\base.html.py:35
+#: .\templates\base.html.py:34 .\templates\base.html.py:36
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\base.html.py:41 .\templates\flatpages\default.html.py:36
+#: .\templates\base.html.py:47 .\templates\flatpages\default.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\base.html.py:43 .\templates\flatpages\default.html.py:38
+#: .\templates\base.html.py:49 .\templates\flatpages\default.html.py:38
 #: .\templates\registration\login.html.py:25
 msgid "Login"
 msgstr "登入"
@@ -325,6 +325,11 @@ msgstr ""
 #: .\templates\registration\manage.html.py:23
 msgid "Last Login"
 msgstr "上次登入"
+
+#: .\templates\registration\manage.html.py:25
+#: .\templates\registration\manage.html.py:26
+msgid "Create User"
+msgstr "增新帳號"
 
 #: .\templates\registration\password_change_done.html.py:7
 msgid "You have successfully changed your password."

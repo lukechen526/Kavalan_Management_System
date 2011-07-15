@@ -67,6 +67,8 @@ Security is ensured through the following mechanisms:
 his/her group membership is checked against that of the Document. Only a user who passes the test will be given access to the file.
 Others will see "Access Denied."
 
+.. autofunction:: doc_engine.views.createFileHttpResponse
+
 2. **Access recording:** Each time a user attempts to access a document, a record is written in the database, regardless of
 the outcome (success or access denial).
 
@@ -75,14 +77,13 @@ the outcome (success or access denial).
 3. **Watermarking of PDF documents:** If the document to be accessed is a PDF file, an access watermark is added to the bottom of every page,
 specifying the user who downloaded the file and the time of access.
 
-Currently, access control is implemented by reading the file into memoery and writing it into the HttpResponse object.
-Since this approach is relatively inefficient, support for X-Sendfile based approach is being developed.
-
-Current approach:
-
-.. autofunction:: doc_engine.views.createFileHttpResponse
-
 .. autofunction:: doc_engine.views.createPDFHttpResponse
+
+.. important::
+
+    Currently, access control is implemented by having Django read the file into memory and then write it into a HttpResponse object.
+    Since this approach is relatively inefficient, support for X-Sendfile-based approach is being developed.
+
 
 Batch Record
 ----------------
