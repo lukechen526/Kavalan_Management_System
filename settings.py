@@ -1,7 +1,7 @@
 # Django settings for Kavalan_Management_System project.
 import os
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 DIRNAME = os.path.dirname(__file__)
