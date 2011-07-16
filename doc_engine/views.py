@@ -61,7 +61,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
             response.write(attachment)
             return response
         else:
-            response = HttpResponse(mimetype=mimetype[0])
+            response = HttpResponse(mimetype=mimetypes[0])
             del response['content-type'] #Leave it to the server to decide
             response['X-Sendfile'] = filepath
             response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename
@@ -120,8 +120,9 @@ def DocumentAccess(request, pk):
     document_groups = list(document.permitted_groups.all())
 
     filepath = os.path.join(MEDIA_ROOT, document.file.name)
-    #Generate safe file names for output based on document's serial number and version
-    output_filename = "".join([x for x in u"%sv%s" %(document.serial_number, document.version) if x.isalpha() or x.isdigit()])
+    #Generate safe file names for output based on document's serial number and version; the extension should be preserved
+    extension = os.path.splitext(filepath)[1]
+    output_filename = "".join([x for x in u"%sv%s" %(document.serial_number, document.version) if x.isalpha() or x.isdigit()]) + extension
 
     #Check if the user has the necessary group permission to access the document or is a superuser
     if user.is_superuser:
