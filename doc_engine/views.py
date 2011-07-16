@@ -41,7 +41,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
     
     #check if the file exists. Return 404 if not
     if not os.access(filepath, os.F_OK):
-        return HttpResponseNotFound("File Not Found")
+        return HttpResponseNotFound("File Not Found!")
 
     #Check the mimetype of the file
     mimetype = mimetypes.guess_type(filepath)
