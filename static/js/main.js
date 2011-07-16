@@ -151,8 +151,9 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
  $('#date_manufactured_to').datepicker();
  $('#id_date_manufactured').datepicker();
 
-
-
+    /* Style buttons with jQuery UI*/
+$('input:submit, input:reset').button();
+    
 /* section for navigation bar */
 
   //Mark the current link in the nav bar
@@ -164,7 +165,12 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
     }
  });
 
+//Toggle the display of account-options based on clicking of #username
+ $("#username").bind('click', function(event){
+     event.preventDefault();
+     $("#account-options").toggle();
 
+ });
 
 
     

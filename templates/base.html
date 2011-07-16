@@ -9,7 +9,7 @@
 
     <!-- ** CSS ** -->
     <!-- base library -->
-    <link href="{{ STATIC_URL }}css/cupertino/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom-theme/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
     <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css">
 
     <!-- ** Javascript ** -->
@@ -43,8 +43,16 @@
 
         <div id="controls">
             {% if user.is_authenticated %}
-                <a href="/accounts/manage/" id="username">{{ user.username }} </a>
-                <a href="/accounts/logout"> {% trans "Logout" %}</a>
+                <div id="account-menu">
+                    <a href="#" id="username">{{ user.username }}</a>
+                    <div id="account-options">
+                        <ul>
+                            <li><a href="/accounts/manage/" id="manage">{% trans "Manage Account" %}</a></li>
+                            <li><a href="/accounts/logout"> {% trans "Logout" %}</a></li>
+                        </ul>
+                     </div>
+
+                </div>
             {% else %}
                 <a href="/accounts/login/">{% trans "Login" %}</a>
             {% endif %}

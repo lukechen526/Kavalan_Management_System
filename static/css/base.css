@@ -43,7 +43,7 @@ nav ul li {
 }
 
 nav ul li:hover {
-    background-color: #666666; ;
+    background-color: #666666; 
 }
 
 nav ul li a:link, nav ul li a:visited{
@@ -72,13 +72,42 @@ nav ul li a.current {
     padding: 0 5px;
 }
 
-#username {
+#controls a, #controls a:visited, #controls a:link {
     font-weight: bold;
-}
-#controls a {
+    color:#ffffff;
     text-decoration: none;
-    color: #ffffff;
+    line-height: 24px;
 }
+
+#account-menu{
+    position:relative;
+}
+
+#account-menu div{
+    position:absolute;
+    top:31px;
+    left: -100px;
+    display: none;
+    width:auto;
+    z-index: 100;
+    border-width: 0 1px 1px 1px;
+    border-style: solid;
+    border-color:  #000000;
+}
+
+#account-menu div ul li{
+    width: 100%;
+    background-color: #ffffff;
+}
+
+#account-menu div ul li a{
+    color: #000000 !important;
+}
+
+#account-menu div ul li a:hover{
+    color: gray !important;
+}
+
 /* for /accounts/login/ */
 
 .login-error {
@@ -119,6 +148,10 @@ nav ul li a.current {
     display:block;
     padding: 5px 0px;
 }
+#search-tabs, #search-tabs>* {
+    border: 0;
+}
+
 
 #search-batch-record form li{
     list-style-type: none;
@@ -155,4 +188,9 @@ footer p{
 
 .user-info-label{
      font-weight: bold;
+}
+
+/*For input buttons*/
+input.ui-widget{
+    font-size: 0.9em !important;
 }
