@@ -12,15 +12,12 @@ mkdir scripts
 #copy django.wsgi
 cp ./Kavalan_Management_System/deployment_configs_scripts/django.wsgi ./scripts
 
-#copy and enable Apache and Nginx configs
+#copy and enable Apache and nginx configs
 cp ./Kavalan_Management_System/deployment_configs_scripts/domain-apache.conf /etc/apache2/sites-available
 sudo a2ensite domain-apache.conf
 
 cp ./Kavalan_Management_System/deployment_configs_scripts/domain-nginx.conf /etc/nginx/sites-available
 sudo ln -s /etc/nginx/sites-available/domain-nginx.conf /etc/nginx/sites-enabled/domain-nginx.conf
-
-
-#copy nginx config
 
 #Setup Django
 source ./bin/activate

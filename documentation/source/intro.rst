@@ -26,6 +26,7 @@ Dependencies
 - Django 1.3
 - `Django-piston`_ >= 0.2.2
 - `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
+- Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
 Author(s)
