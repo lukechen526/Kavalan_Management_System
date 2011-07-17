@@ -122,20 +122,23 @@ span.arrow-down {
 }
 
 #account-options{
-
     position: absolute;
     top: 30px;
     display: none;
-    width:150px;
+    width:auto;
     right:0px;
     z-index: 100;
     box-shadow: 5px 5px 5px #ccc;
     border-color: #ffffff;
 }
-
+#account-options ul{
+    width: 100%;
+}
 #account-options ul li{
     background-color: #ffffff;
     width:100%;
+    white-space: nowrap;
+    padding: 0 10px;
 }
 
 #account-options ul li a{
@@ -174,13 +177,22 @@ span.arrow-down {
     position:absolute;
     top:30px;
     width:150px;
-    right:0px;
+    right:20px;
     z-index: 100;
     box-shadow: 5px 5px 5px #ccc;
     border-color: #ffffff;
 }
 
+#options-menu ul{
+    width: 100%;
+}
 
+#options-menu ul li{
+    background-color: #ffffff;
+    width:100%;
+    white-space: nowrap;
+    padding: 0 10px;
+}
 
 #set-lang input.ui-widget[type="submit"] {
     padding: 0.2em !important;
