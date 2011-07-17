@@ -16,7 +16,6 @@ nav {
     width: 100%;
     vertical-align: middle;
     height: 30px;
-    border-bottom: thin solid black;
     position: absolute;
     top: 0;
     right:0;
@@ -51,7 +50,6 @@ nav ul li a:link, nav ul li a:visited{
 	font-size: small;
 	font-weight: bold;
 	margin: 0 10px 4px 10px;
-	padding-bottom: 2px;
 	text-decoration: none;
     color: #ffffff;
 }
@@ -62,50 +60,132 @@ nav ul li a.current {
 	}
 
 
-/* for nav bar control */
+/* for the nav bar controls on the top right corner */
 #controls {
     float:right;
+    height: 100%;
 }
 
-#controls * {
+#controls>* {
     float:left;
-    padding: 0 5px;
 }
 
-#controls a, #controls a:visited, #controls a:link {
-    font-weight: bold;
-    color:#ffffff;
+#controls>a, #controls>a:link, #controls>a:visited, #controls>a:active{
     text-decoration: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 0 5px;
     line-height: 24px;
+
 }
 
 #account-menu{
-    position:relative;
+    position: relative;
+    height:100%;
 }
 
-#account-menu div{
-    position:absolute;
-    top:31px;
-    left: -100px;
-    display: none;
-    width:auto;
-    z-index: 100;
-    border-width: 0 1px 1px 1px;
-    border-style: solid;
-    border-color:  #000000;
+#expand-menu{
+    height: 100%;
+    padding: 0 5px;
+    margin: 0 5px;
+    cursor: pointer;
 }
 
-#account-menu div ul li{
-    width: 100%;
+#expand-menu *{
+    float: left;
+}
+
+#username{
+	text-decoration: none;
+    color: #ffffff;
+    line-height: 30px;
+}
+
+#expand-menu.active{
     background-color: #ffffff;
 }
 
-#account-menu div ul li a{
+#username.active{
+    color: #000000;
+}
+/* create an arrow that points down */
+span.arrow-down {
+  position: relative;
+  top: 15px;
+  width:0px;
+  height:0px;
+  border-left:3px solid transparent;
+  border-right:3px solid transparent;
+  border-top:3px solid #ffffff;
+  font-size:0px;
+  margin: 0 5px;
+}
+
+#account-options{
+
+    position: absolute;
+    top: 30px;
+    display: none;
+    width:150px;
+    right:0px;
+    z-index: 100;
+    box-shadow: 5px 5px 5px #ccc;
+    border-color: #ffffff;
+}
+
+#account-options ul li{
+    background-color: #ffffff;
+    width:100%;
+}
+
+#account-options ul li a{
     color: #000000 !important;
 }
 
-#account-menu div ul li a:hover{
-    color: gray !important;
+#account-options ul li a:hover{
+    color: #BAB5B6 !important;
+}
+
+/* For options */
+
+#options{
+
+    position: relative;
+    height: 100%;
+    width:auto;
+}
+
+#options-icon{
+    background-image: url('/static/css/gear.png');
+    background-repeat: no-repeat;
+    background-size: 25px 25px;
+    width:30px;
+    height: 30px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right:10px;
+}
+
+#options-icon.active{
+  background-color: white;   
+}
+#options-menu{
+    display: none;
+    position:absolute;
+    top:30px;
+    width:150px;
+    right:0px;
+    z-index: 100;
+    box-shadow: 5px 5px 5px #ccc;
+    border-color: #ffffff;
+}
+
+
+
+#set-lang input.ui-widget[type="submit"] {
+    padding: 0.2em !important;
+    margin: 0 0.2em !important;
+    font-size: 0.7em !important;
 }
 
 /* for /accounts/login/ */
