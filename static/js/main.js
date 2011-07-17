@@ -166,7 +166,7 @@ $('input:submit, input:reset').button();
  });
 
 //Toggle the display of account-options based on clicking of #username
- $("#username").bind('click', function(event){
+ $("#expand-menu").bind('click', function(event){
      event.preventDefault();
      $('#account-options').toggle();
      $('#expand-menu, #username').toggleClass('active');

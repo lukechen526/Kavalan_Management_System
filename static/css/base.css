@@ -23,7 +23,7 @@ nav {
     color:white;
 }
 
-nav ul {
+nav>ul {
     height: 100%;
     padding: 0;
     margin: 0;
@@ -31,7 +31,7 @@ nav ul {
     float: left;
 }
 
-nav ul li {
+nav>ul li {
 	margin: 0 auto ;
 	display: inline;
     float:left;
@@ -41,11 +41,11 @@ nav ul li {
     line-height: 24px;
 }
 
-nav ul li:hover {
+nav>ul li:hover {
     background-color: #666666; 
 }
 
-nav ul li a:link, nav ul li a:visited{
+nav>ul li a:link, nav>ul li a:visited{
 	float: left;
 	font-size: small;
 	font-weight: bold;
@@ -54,7 +54,7 @@ nav ul li a:link, nav ul li a:visited{
     color: #ffffff;
 }
 
-nav ul li a.current {
+nav>ul li a.current {
 	border-bottom: 2px solid red;
     margin-bottom: 0;
 	}
@@ -96,7 +96,6 @@ nav ul li a.current {
 }
 
 #username{
-	text-decoration: none;
     color: #ffffff;
     line-height: 30px;
 }
@@ -106,7 +105,7 @@ nav ul li a.current {
 }
 
 #username.active{
-    color: #000000;
+    color: #3366CC;
 }
 /* create an arrow that points down */
 span.arrow-down {
@@ -128,25 +127,30 @@ span.arrow-down {
     width:auto;
     right:0px;
     z-index: 100;
-    box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 0 1px 5px #CCCCCC;
     border-color: #ffffff;
 }
 #account-options ul{
     width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 #account-options ul li{
+    list-style-type: none;
     background-color: #ffffff;
     width:100%;
     white-space: nowrap;
-    padding: 0 10px;
+    line-height: 24px;
 }
 
 #account-options ul li a{
-    color: #000000 !important;
+    color: #3366CC !important;
+    padding: 0 10px;
 }
 
 #account-options ul li a:hover{
-    color: #BAB5B6 !important;
+    text-decoration: underline;
 }
 
 /* For options */
@@ -179,19 +183,22 @@ span.arrow-down {
     width:150px;
     right:20px;
     z-index: 100;
-    box-shadow: 5px 5px 5px #ccc;
+    box-shadow: 0 1px 5px #CCCCCC;
     border-color: #ffffff;
 }
 
 #options-menu ul{
     width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
 }
 
 #options-menu ul li{
     background-color: #ffffff;
     width:100%;
     white-space: nowrap;
-    padding: 0 10px;
+    list-style-type: none;
 }
 
 #set-lang input.ui-widget[type="submit"] {
