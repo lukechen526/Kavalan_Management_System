@@ -26,9 +26,9 @@ Document
 -------------------------
 Search API
 ^^^^^^^^^^^^^
-**GET /documents/**
+**GET /documents**
 
-**Resource URL:** /api/documents/
+**Resource URL:** /api/documents
 
 **Parameter:** q(required)= *title or document serial number to query against*
 
@@ -36,7 +36,7 @@ Search API
 
 Example Request:
 
-GET /api/documents/?q=Lab
+GET /api/documents?q=Lab
 ::
 
     [
@@ -84,9 +84,9 @@ Batch Record
 
 API
 ^^^^
-**GET /batchrecords/**
+**GET /batchrecords**
 
-**Resource URL:** /api/batchrecords/
+**Resource URL:** /api/batchrecords
 
 **Parameters:**
 
@@ -108,7 +108,7 @@ API
 
 Example Request:
 
-GET /api/batchrecords/?name=Ampi&batch_number=&date_manufactured_from=2011-07-07&date_manufactured_to=
+GET /api/batchrecords?name=Ampi&batch_number=&date_manufactured_from=2011-07-07&date_manufactured_to=
 ::
 
     [

@@ -27,7 +27,7 @@ $(document).ready(function(){
         var query = $("#q").val();
         if(query !== ""){
             $.ajax({
-                url:"/api/documents/",
+                url:"/api/documents",
                 data:{'q':query},
                 success: function(data){
                     $("#search-result").empty();
@@ -55,7 +55,7 @@ $(document).ready(function(){
 
  function ajaxBatchRecordSearch(){
      $.ajax({
-         url:"/api/batchrecords/",
+         url:"/api/batchrecords",
          data: {name: $("#name").val(),
                batch_number: $("#batch_number").val(),
                date_manufactured_from: $("#date_manufactured_from").val(),

@@ -6,7 +6,9 @@ from django.dispatch import receiver
 
 class MessageThread(models.Model):
     subject = models.CharField(max_length=200, verbose_name=ugettext_lazy('Thread Subject'))
-    participants = models.ManyToManyField(User, verbose_name=ugettext_lazy('Participants'))
+    creator = models.ForeignKey(User)
+    participants = models.ManyToManyField(User, through='ThreadParticipation', related_name='threads_participated', verbose_name=ugettext_lazy('Participants'))
+    owners = models.ManyToManyField(User, through='ThreadOwnership', related_name='threads_owned', verbose_name=ugettext_lazy('Owners'))
     last_updated = models.DateTimeField(auto_now=True, verbose_name=ugettext_lazy('Last Updated'))
 
     class Meta:
@@ -14,7 +16,7 @@ class MessageThread(models.Model):
         verbose_name_plural = ugettext_lazy('Message Threads')
 
     def __unicode__(self):
-        return self.subject
+        return unicode(self.id)
 
 class Message(models.Model):
     poster = models.ForeignKey(User, verbose_name=ugettext_lazy('Poster'))
@@ -29,6 +31,35 @@ class Message(models.Model):
     def __unicode__(self):
         return unicode(self.id)
 
+class ThreadParticipation(models.Model):
+    participant = models.ForeignKey(User)
+    thread = models.ForeignKey(MessageThread)
+    last_updated = models.DateTimeField(auto_now=True, verbose_name=ugettext_lazy('Last Updated'))
+    unread = models.BooleanField(default=True, verbose_name=ugettext_lazy('Unread'))
+
+class ThreadOwnership(models.Model):
+    owner = models.ForeignKey(User)
+    thread = models.ForeignKey(MessageThread)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+
+    
+class Notification(models.Model):
+    time = models.TimeField(auto_now=True)
+    content = models.CharField(max_length=200, default="Default Notification", verbose_name=ugettext_lazy('Content'))
+    STATUS_CHOICES = (
+        ('UNREAD', ugettext_lazy('unread')),
+        ('READ', ugettext_lazy('read'))
+    )
+    status = models.CharField(max_length=10, default='UNREAD',choices=STATUS_CHOICES, verbose_name=ugettext_lazy('Status'))
+
+    class Meta:
+        verbose_name = ugettext_lazy('Notification')
+        verbose_name_plural = ugettext_lazy('Notifications')
+
+    def __unicode__(self):
+        return self.content
+
 
 @receiver(post_save, sender=Message)
 def update_thread_time(sender, **kwargs):
@@ -40,29 +71,12 @@ def update_thread_time(sender, **kwargs):
     """
     kwargs['instance'].thread.save()
 
-@receiver(post_save, sender=MessageThread)
-def notify_user_thread_update(sender, **kwargs):
-    thread = kwargs['instance']
-    is_new = kwargs['created']
-    participants = thread.participants.all()
-    if not is_new:
-        for participant in participants:
-            participant.get_profile().notify(u"%s '%s'" %(ugettext_lazy("New message in "), thread.subject))
 
+class UserHAuthParameters(models.Model):
+    user = models.ForeignKey(User)
+    key = models.CharField(max_length=30, default="0")
+    secret = models.CharField(max_length=30, default="0")
+    last_timestamp = models.CharField(max_length=15, default='0')
+    last_nonce = models.CharField(max_length=30, default='0')
 
-@receiver(m2m_changed, sender=MessageThread)
-def notify_user_paritipation_change(sender, **kwargs):
-    action = kwargs['action']
-    thread = kwargs['instance']
-
-    if action == 'post_add':
-        for pk in kwargs['pk_set']:
-           User.objects.get(pk=pk).get_profile().notify(u"%s '%s'" %
-                                                        (ugettext_lazy("You have been added to"),
-                                                         thread.subject))
-    if action == 'post_remove':
-        for pk in kwargs['pk_set']:
-            User.objects.get(pk=pk).get_profile().notify(u"%s '%s'" %
-                                                         (ugettext_lazy("You have been removed from"),
-                                                          thread.subject))
-
+    
