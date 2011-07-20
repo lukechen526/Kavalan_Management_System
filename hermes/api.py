@@ -6,25 +6,34 @@ from django.http import HttpResponseBadRequest, QueryDict
 import random
 import string
 import hmac, hashlib
-from urllib import quote_plus
+from urllib import quote_plus, unquote
 import binascii
 
 #WARNING!
 #It is expected that all request will be conducted via https
 
+#Utility functions
+def escape(s):
+    return quote_plus(s, safe='~')
+
+
+
+
 class RequestKeySecretPairHandler(BaseHandler):
+    """
+    The handler used to generate a key/secret pair. Limited to authenticated users only.
+    """
     allowed_methods = ('POST',)
     model = UserHAuthParameters
     fields = ('key', 'secret')
 
-    @classmethod
     def create(self, request):
         user = request.user
         key, secret = self.generate_key_secret_pair()
-        pair, created = UserHAuthParameters.objects.get_or_create(user=user)
-        pair.key, pair.secret = key, secret
-        pair.save()
-        return pair
+        user_params, created = UserHAuthParameters.objects.get_or_create(user=user)
+        user_params.key, user_params.secret = key, secret
+        user_params.save()
+        return user_params
     
     def generate_key_secret_pair(self, length=30):
         """
@@ -37,33 +46,6 @@ class RequestKeySecretPairHandler(BaseHandler):
         return key, secret
 
 
-
-class CreateThreadHandler(BaseHandler):
-    allowed_methods = ('POST',)
-    model = MessageThread
-    fields = ('pk', 'subject', 'creator', 'last_updated')
-    
-    @classmethod
-    def create(self, request):
-        if (('subject' in request.POST and request.POST['subject']) and
-            ('creator' in request.POST and request.POST['creator'])
-            ):
-            pass
-        else:
-            resp = rc.BAD_REQUEST.write('Needs to have a subject!')
-
-            
-
-
-class JoinThreadHandler(BaseHandler):
-    allowed_methods = ('POST', )
-    model = ThreadParticipation
-    fields = ('user', 'thread' )
-
-
-def escape(s):
-    return quote_plus(s, safe='~')
-
 class HAuthenticationHandler(object):
     """
     Implements a OAuth-like, but more lightweight protocol for authentication/authorization in Hermes.
@@ -73,23 +55,19 @@ class HAuthenticationHandler(object):
     def is_authenticated(self, request):
         #Validates that the request has all the necessary HAuth parameters and
         #
-        if not self.is_valid_request(request):
+        if not HAuthenticationHandler.is_valid_request(request):
             return False
         
         #Verifies the signature
-        if not self.verify_signature(request):
+        if not HAuthenticationHandler.verify_signature(request):
             return False
-        
-        
 
-
-
-
-    def is_valid_request(self, request):
+    @staticmethod
+    def is_valid_request(request):
 
         must_have = [ 'hauth_' + s for s in ['key', 'signature', 'timestamp', 'nonce', 'signature_method']]
         is_in = lambda l: all([ (p in l) for p in must_have ])
-        auth_params = request.META.get('AUTHORIZATION', '')
+        auth_params = request.META.get('HTTP_AUTHORIZATION', '')
         req_params = request.REQUEST
              
         if not is_in(auth_params) and  not is_in(req_params):
@@ -97,8 +75,25 @@ class HAuthenticationHandler(object):
 
         #Checks the timestamp and the nonce
 
+    @staticmethod
+    def _split_header(header):
+        """Turn Authorization: header into parameters."""
+        params = {}
+        parts = header.split(',')
+        for param in parts:
+            # Ignore realm parameter.
+            if param.find('realm') > -1:
+                continue
+            # Remove whitespace.
+            param = param.strip()
+            # Split key-value.
+            param_parts = param.split('=', 1)
+            # Remove quotes and unescape the value.
+            params[param_parts[0]] = unquote(param_parts[1].strip('\"'))
+        return params
 
-    def verify_signature(self, request):
+    @staticmethod
+    def verify_signature(request):
         """
         Verifies the HAuth signature
         Required hauth parameters in the request:
@@ -112,8 +107,16 @@ class HAuthenticationHandler(object):
         :param request: the HttpRequest object
         :return: True if the verification succeeds, False if not.
         """
+        auth_header = request.META.get('HTTP_AUTHORIZATION', '')
+        if auth_header[:6] == 'HAuth ':
+            auth_header = auth_header[6:]
+            try:
+                # Get the parameters from the header.
+                auth_params = HAuthenticationHandler._split_header(auth_header)
+            except:
+                auth_params = dict()
+                raise Exception('Unable to parse HAuth parameters from Authorization header.')
 
-        auth_params = request.META.get('AUTHORIZATION', '')
         req_params = request.REQUEST
         all_params = req_params.copy()
         all_params.update(auth_params)
@@ -126,8 +129,8 @@ class HAuthenticationHandler(object):
         
         #Tries retrieving the secret
         try:
-            user = UserHAuthParameters.objects.get(key=user_key)
-            user_secret = escape(user.secret)
+            user_params = UserHAuthParameters.objects.get(key=user_key)
+            user_secret = escape(user_params.secret)
         except UserHAuthParameters.DoesNotExist:
             return False
 
@@ -135,20 +138,27 @@ class HAuthenticationHandler(object):
         hauth_timestamp = all_params['hauth_timestamp']
         hauth_nonce = all_params['hauth_nonce']
 
-        if int(hauth_timestamp) < int(user.last_timestamp):
+        #Verifies that the timestamp used for this request is at least as recent as the last used one
+        if int(hauth_timestamp) < int(user_params.last_timestamp):
             return False
-        if hauth_nonce == user.last_nonce:
+        #Verifies that the nonce is unique for this timestamp. EACH request using the same timestamp needs a unique
+        #nonce
+        if user_params.check_duplicate_nonce(hauth_nonce):
             return False
 
         #Checks if the calculated signature is identical to the one sent in the request
         #Sorts the keys of all_params and generate the string with normalized request parameters. All parameters
         #need to be encoded in UTF-8 first, the URL-escaped.
         
-        normalized_string = '&'.join(['%s=%s' % (escape(key), escape(all_params[key])) for key in sorted(all_params.keys())])
+        normalized_string = '&'.join(['%s=%s' % (escape(key.encode('utf-8')),
+                                                 escape(all_params[key].encode('utf-8'))
+                                                 )
+                                      for key in sorted(all_params.keys())
+                                     ])
 
         #Obtains the method and the request url
         request_method = request.method
-        request_url = request.get_host() + request.path
+        request_url = request.build_absolute_uri(request.path)
 
         SIGNATURE_BASE_STRING = '%s&%s&%s' % (escape(request_method),
                                               escape(request_url),
@@ -168,11 +178,35 @@ class HAuthenticationHandler(object):
             return False
 
         if hauth_signature == signature:
-            user.last_nonce = hauth_nonce
-            user.last_timestamp = hauth_timestamp
-            
-
+            if hauth_timestamp != user_params.last_timestamp:
+                user_params.last_timestamp = hauth_timestamp
+                user_params.clear_all_nonces()
+                user_params.add_nonce(hauth_nonce)
+            else:
+                user_params.add_nonce(hauth_nonce)
+            user_params.save()
+            return True
+        
+        else:
+            return False
 
     def challenge(self):
-        return HttpResponseBadRequest
+        return rc.FORBIDDEN
 
+
+class TestAuthenticationHandler(BaseHandler):
+    """
+    Returns an empty response with code 200. Used to test HAuthenticationHandler
+    """
+    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
+    model = UserHAuthParameters
+    fields = ('user',('username',))
+
+    def read(self):
+        return rc.ALL_OK
+    def create(self):
+        return rc.ALL_OK
+    def update(self):
+        return rc.ALL_OK
+    def delete(self):
+        return rc.ALL_OK

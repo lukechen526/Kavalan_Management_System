@@ -11,7 +11,6 @@ class DocumentHandler(BaseHandler):
     model = Document
     fields = ('title', 'serial_number', 'version', 'file_url')
 
-    @classmethod
     def read(self, request):
         """
         Searches 'Document' for entries with title and/or serial_number containing the query

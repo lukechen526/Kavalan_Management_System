@@ -72,11 +72,32 @@ def update_thread_time(sender, **kwargs):
     kwargs['instance'].thread.save()
 
 
+class NonceValue(models.Model):
+    value = models.CharField(max_length=30, default='0')
+
 class UserHAuthParameters(models.Model):
     user = models.ForeignKey(User)
     key = models.CharField(max_length=30, default="0")
     secret = models.CharField(max_length=30, default="0")
     last_timestamp = models.CharField(max_length=15, default='0')
-    last_nonce = models.CharField(max_length=30, default='0')
+    nonces = models.ManyToManyField(NonceValue)
+
+    def check_duplicate_nonce(self, nonce_value):
+        return self.nonces.filter(value__exact=nonce_value).exists()
+
+    def clear_all_nonces(self):
+        nonces = self.nonces.all()
+        self.nonces.clear()
+        nonces.delete()
+
+    def add_nonce(self, nonce_value):
+        nonce = NonceValue.objects.create(value=nonce_value)
+        self.nonces.add(nonce)
+        self.save()
+        
+
+        
+
+            
 
     
