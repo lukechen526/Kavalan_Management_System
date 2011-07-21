@@ -51,7 +51,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
         #Only serve file from Django in development mode; otherwise, use X-sendfile
         if settings.DEBUG:
             response = HttpResponse(mimetype=mimetype[0])
-            response['Content-Disposition'] = 'attachment; filename=%s' % output_filename
+            response['Content-Disposition'] = 'attachment; filename=%s' % output_filename.encode('utf-8')
             with open(filepath, 'rb') as f:
                 buffer = StringIO()
                 for line in f.readlines():
@@ -64,7 +64,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
             response = HttpResponse('application/force-download')
             del response['content-type'] #Leave it to the server to decide
             response['X-Sendfile'] = filepath
-            response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename
+            response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename.encode('utf-8')
             return response
 
 
@@ -99,7 +99,7 @@ def createPDFHttpResponse(filepath, output_filename, user, access_time):
         output.addPage(page)
 
     response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'inline; filename=%s' % output_filename
+    response['Content-Disposition'] = 'inline; filename=%s' % output_filename.encode('utf-8')
     output.write(response)
     return response
 
