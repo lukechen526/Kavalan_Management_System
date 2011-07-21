@@ -65,7 +65,13 @@ class HermesAPITestCase(TestCase):
         #Setup a valid request
         request_method = 'POST'
         request_path = 'http://localhost:8000/api/hermes/test_authentication'
-        HTTP_AUTHORIZATION = 
+        HTTP_AUTHORIZATION = '''HAuth
+        hauth_key="%s",
+        
+
+
+
+        '''
 
 
 

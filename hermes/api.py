@@ -16,9 +16,6 @@ import binascii
 def escape(s):
     return quote_plus(s, safe='~')
 
-
-
-
 class RequestKeySecretPairHandler(BaseHandler):
     """
     The handler used to generate a key/secret pair. Limited to authenticated users only.
@@ -114,8 +111,8 @@ class HAuthenticationHandler(object):
                 # Get the parameters from the header.
                 auth_params = HAuthenticationHandler._split_header(auth_header)
             except:
+                #If any exception was encountered
                 auth_params = dict()
-                raise Exception('Unable to parse HAuth parameters from Authorization header.')
 
         req_params = request.REQUEST
         all_params = req_params.copy()
@@ -150,11 +147,8 @@ class HAuthenticationHandler(object):
         #Sorts the keys of all_params and generate the string with normalized request parameters. All parameters
         #need to be encoded in UTF-8 first, the URL-escaped.
         
-        normalized_string = '&'.join(['%s=%s' % (escape(key.encode('utf-8')),
-                                                 escape(all_params[key].encode('utf-8'))
-                                                 )
-                                      for key in sorted(all_params.keys())
-                                     ])
+        normalized_string = '&'.join(['%s=%s' % (escape(key.encode('utf-8')),escape(all_params[key].encode('utf-8')))
+                                      for key in sorted(all_params.keys()) ])
 
         #Obtains the method and the request url
         request_method = request.method
