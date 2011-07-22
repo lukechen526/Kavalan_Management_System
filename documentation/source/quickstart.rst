@@ -18,10 +18,10 @@ Viewing your user profile
 After you log in, you can see your profile and additional options by clicking on your user name.
 
 
-
 Create Users
 --------------------
-If you are authorized to create new users,
+If you are authorized to create new users, you will find the link to **Create New User** under **Manage Account**.
+
 
 Searching Documents or Batch Records
 -------------------------------------
@@ -31,6 +31,7 @@ Go to **文件查詢** . On that page, you will the the tabs for **搜尋文件*
     - For **搜尋文件** , enter the Serial Number (序號) or the Title (主旨) of the document you want to search. You do not need to press *Enter*.
     - For **搜尋批次記錄** , enter the serial number or the product name of the record you want to search. In addition, you can specify the date range
       you are interested in. Just click on the From(自) or To (至)  field and select the date you want to specify.
+
 
 Adding/Editing/Deleting Documents or Batch Records
 -----------------------------------------------------
