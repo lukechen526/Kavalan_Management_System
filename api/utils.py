@@ -1,12 +1,9 @@
-from django.http import HttpResponseRedirect
-from django.conf import settings
+from piston.utils import rc
 
 class DefaultAuthenticationHandler(object):
     def is_authenticated(self, request):
         return request.user.is_authenticated()
 
     def challenge(self):
-        return HttpResponseRedirect(settings.LOGIN_URL)
+        return rc.FORBIDDEN
         
-
-  

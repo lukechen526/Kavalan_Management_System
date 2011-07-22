@@ -9,7 +9,7 @@
 
     <!-- ** CSS ** -->
     <!-- base library -->
-    <link href="{{ STATIC_URL }}css/cupertino/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
+    <link href="{{ STATIC_URL }}css/custom-theme/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
     <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css">
 
     <!-- ** Javascript ** -->
@@ -28,7 +28,7 @@
     <nav>
         <ul>
             <li> <a href="/"> {% trans "Home" %} </a></li>
-            <li> <a href="/doc_engine/"> {% trans "Document Search and Retrieval" %}</a></li>
+            <li> <a href="/doc_engine/"> {% trans "Document Search" %}</a></li>
             {% if user.is_staff %}
                 <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
                 <li> <a href="/documentation/index.html"> {% trans "Help" %} </a></li>
@@ -43,25 +43,49 @@
 
         <div id="controls">
             {% if user.is_authenticated %}
-                <a href="/accounts/manage/" id="username">{{ user.username }} </a>
-                <a href="/accounts/logout"> {% trans "Logout" %}</a>
+            <div id="account-menu">
+
+                <div id="expand-menu">
+                    <span id="username">{{ user.username }}</span>
+                    <span class="arrow-down"></span>
+                </div>
+
+                <div id="account-options">
+                    <ul>
+                        <li><a href="/accounts/manage/" id="manage">{% trans "Manage Account" %}</a></li>
+                        <li><a href="/accounts/logout"> {% trans "Logout" %}</a></li>
+                    </ul>
+                 </div>
+            </div>
             {% else %}
-                <a href="/accounts/login/">{% trans "Login" %}</a>
+            <a href="/accounts/login/">{% trans "Login" %}</a>
             {% endif %}
 
+            <span id="options-icon"></span>
+            <div id="options">
+                <div id="options-menu">
+                    <ul>
+                        <li>
+                                <form action="/i18n/setlang/" method="post" id="set-lang">
+                                {% csrf_token %}
+                                    <input name="next" type="hidden" value="{{ request.path }}" />
+                                    <select name="language">
+                                        <option value="zh-tw">正體中文</option>
+                                        <option value="en-us">English</option>
+                                    </select>
+                                    <input type="submit" value="Go" />
+                                </form>
+                        </li>
+                    </ul>
 
-            <form action="/i18n/setlang/" method="post" id="set-lang">
-            {% csrf_token %}
-                <input name="next" type="hidden" value="{{ request.path }}" />
-                <select name="language">
-                    <option value="zh-tw">正體中文</option>
-                    <option value="en-us">English</option>
-                 </select>
-                <input type="submit" value="Go" />
-            </form>
+            </div>
+
+
+
+            </div>
+
+
         </div>
-
-
     </nav>
 
     
