@@ -10,14 +10,12 @@ $(document).ready(function(){
     typingTimer = setTimeout(func,doneTypingInterval);
     return true;
   }
- $.template("search-doc-resultTemplate",
+
+/*Document search*/
+$.template("search-doc-resultTemplate",
          "<a href='${file_url}'>  ${serial_number} &nbsp; ${title} &nbsp; v${version} </a>");
 
- $.template("search-batchrecord-resultTemplate",
-     "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} &nbsp; <span class='physical-location'>  @ ${location}</span></span>");
-
-
-
+    
  $('#q').bind('keyup change', function(event){
 
     delayExecute(ajaxSearch);
@@ -52,6 +50,10 @@ $(document).ready(function(){
     }
  });
 
+/* Batch Record Search*/
+
+ $.template("search-batchrecord-resultTemplate",
+     "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} &nbsp; <span class='physical-location'>  @ ${location}</span></span>");
 
  function ajaxBatchRecordSearch(){
      $.ajax({
@@ -84,13 +86,6 @@ $(document).ready(function(){
 
 
  }
-
-$("#name").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#batch_number").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_from").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-
-
  (function(){
   //Override the default datepicker to display 民國
     $.datepicker.regional['zh-TW'] = {
@@ -109,7 +104,9 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
         showMonthAfterYear: true,
         changeMonth: true,
         changeYear: true,
-        isRTL: false
+        isRTL: false,
+        hideIfNoPrevNext: true,
+        yearRange:'-15:+5'
     };
     $.datepicker.setDefaults($.datepicker.regional['zh-TW']);
     $.datepicker._phoenixGenerateMonthYearHeader = $.datepicker._generateMonthYearHeader;
@@ -142,16 +139,37 @@ $("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajax
 
  })();
 
+ var dates = $('#date_manufactured_from, #date_manufactured_to').datepicker({
+     //Restrict the range of date for date_manufactured_to to those no earlier than date_manufactured_from
+     onSelect: function( selectedDate ) {
+             var option = this.id == "date_manufactured_from" ? "minDate" : "maxDate",
+                 instance = $( this ).data( "datepicker" ),
+                 date = $.datepicker.parseDate(
+                     instance.settings.dateFormat ||
+                     $.datepicker._defaults.dateFormat,
+                     selectedDate, instance.settings );
+             dates.not( this ).datepicker( "option", option, date );
+         },
+     onClose: function(){delayExecute(ajaxBatchRecordSearch);}
 
+ });
+
+$("#name").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#batch_number").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#date_manufactured_from").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+
+
+/*Doc Engine tabs*/
  $('#search-tabs').tabs();
  $('#search-tabs').bind('tabsselect', function(){
      $('#search-result').empty();
      $('#search-tabs form').each(function(){this.reset();});});
- $('#date_manufactured_from').datepicker();
- $('#date_manufactured_to').datepicker();
+
+/* Datepicker for adding Batch Records in Admin*/
  $('#id_date_manufactured').datepicker();
 
-    /* Style buttons with jQuery UI*/
+/* Style buttons with jQuery UI*/
 $('input:submit, input:reset').button();
     
 /* section for navigation bar */

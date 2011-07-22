@@ -245,7 +245,7 @@ msgid "Home"
 msgstr "首頁"
 
 #: .\templates\base.html.py:31 .\templates\flatpages\default.html.py:28
-msgid "Document Search and Retrieval"
+msgid "Document Search"
 msgstr "文件查詢"
 
 #: .\templates\base.html.py:33

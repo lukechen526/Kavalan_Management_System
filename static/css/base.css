@@ -7,7 +7,9 @@ body {
     display: block;
     position:absolute;
     top: 40px;
+    left: 0;
     width: 100%;
+
 
 }
 
@@ -19,6 +21,7 @@ nav {
     position: absolute;
     top: 0;
     right:0;
+    left:0;
     background-color: #333333;
     color:white;
 }
@@ -38,7 +41,7 @@ nav>ul li {
 	list-style-type: none;
     height:100%;
     position:relative;
-    line-height: 24px;
+    line-height: 26px;
 }
 
 nav>ul li:hover {
@@ -49,7 +52,8 @@ nav>ul li a:link, nav>ul li a:visited{
 	float: left;
 	font-size: small;
 	font-weight: bold;
-	margin: 0 10px 4px 10px;
+	margin: 0 10px 0 10px;
+    padding: 0;
 	text-decoration: none;
     color: #ffffff;
 }
@@ -201,10 +205,18 @@ span.arrow-down {
     list-style-type: none;
 }
 
+#options-menu ul li > *{
+    margin: 5px 10px;
+}
+
+#options-menu ul li *{
+    color: #3366CC;
+}
 #set-lang input.ui-widget[type="submit"] {
     padding: 0.2em !important;
     margin: 0 0.2em !important;
     font-size: 0.7em !important;
+    color: #ffffff !important;
 }
 
 /* for /accounts/login/ */
