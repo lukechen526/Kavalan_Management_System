@@ -106,6 +106,7 @@ nav>ul li a.current {
 
 #expand-menu.active{
     background-color: #ffffff;
+    display:block;
 }
 
 #username.active{
@@ -191,6 +192,9 @@ span.arrow-down {
     border-color: #ffffff;
 }
 
+#options-menu.active{
+    display:block;
+}
 #options-menu ul{
     width: 100%;
     height: 100%;

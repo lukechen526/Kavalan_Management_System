@@ -5,7 +5,7 @@ from django.conf.urls.defaults import *
 from piston.resource import Resource
 from api.utils import DefaultAuthenticationHandler
 from doc_engine.api import *
-
+from stream.api import *
 
 document_handler = Resource(DocumentHandler, authentication=DefaultAuthenticationHandler())
 batch_record_handler = Resource(BatchRecordHandler, authentication=DefaultAuthenticationHandler())
