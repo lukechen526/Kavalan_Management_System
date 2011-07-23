@@ -2,6 +2,7 @@
 from piston.handler import BaseHandler
 from piston.utils import *
 from stream.models import StreamPost, StreamPostComment, StreamPostForm
+from django.utils.translation import ugettext
 import json
 
 
@@ -9,7 +10,7 @@ import json
 class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPost
-    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')), 'time_posted', 'content', 'link', 'comment_count' )
+    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')), 'time_posted', 'escaped_content', 'link', 'comment_count' )
 
     def read(self, request, post_id=None):
         user = request.user
@@ -43,7 +44,7 @@ class StreamHandler(BaseHandler):
             #Checks that either content or link is non-empty
             if not post.cleaned_data['content'] and not post.cleaned_data['link']:
                 resp = rc.BAD_REQUEST
-                resp.write('Either content or link has to be non-empty')
+                resp.write(ugettext('Either content or link has to be non-empty'))
                 return resp
 
             #If all fields are valid, save the post
@@ -57,20 +58,20 @@ class StreamHandler(BaseHandler):
     def update(self, request, post_id=None):
         if not post_id:
             resp = rc.BAD_REQUEST
-            resp.write('StreamPost ID must be supplied')
+            resp.write(ugettext('StreamPost ID must be supplied'))
             return resp
 
         try:
             post = StreamPost.objects.get(id=post_id)
         except StreamPost.DoesNotExist:
             resp = rc.NOT_FOUND
-            resp.write('No StreamPost with the specified ID was found')
+            resp.write(ugettext('No StreamPost with the specified ID was found'))
             return resp
 
         #Checks that the user is the poster
         if request.user != post.poster:
             resp = rc.FORBIDDEN
-            resp.write('Only the original poster can update the post')
+            resp.write(ugettext('Only the original poster can update the post'))
             return resp
         
         #Checks if there is a parameter 'model' in the request, created by Backbone.js
@@ -84,7 +85,7 @@ class StreamHandler(BaseHandler):
             #Checks that either content or link is non-empty
             if not post.cleaned_data['content'] and not post.cleaned_data['link']:
                 resp = rc.BAD_REQUEST
-                resp.write('Either content or link has to be non-empty')
+                resp.write(ugettext('Either content or link has to be non-empty'))
                 return resp
 
             #If all fields are valid, update the post
@@ -98,20 +99,20 @@ class StreamHandler(BaseHandler):
     def delete(self, request, post_id=None):
         if not post_id:
             resp = rc.BAD_REQUEST
-            resp.write('StreamPost ID must be supplied')
+            resp.write(ugettext('StreamPost ID must be supplied'))
             return resp
 
         try:
             post = StreamPost.objects.get(id=post_id)
         except StreamPost.DoesNotExist:
             resp = rc.NOT_FOUND
-            resp.write('No StreamPost with the specified ID was found')
+            resp.write(ugettext('No StreamPost with the specified ID was found'))
             return resp
 
         #Checks that the user is the poster
         if request.user != post.poster:
             resp = rc.FORBIDDEN
-            resp.write('Only the original poster can delete the post')
+            resp.write(ugettext('Only the original poster can delete the post'))
             return resp
 
         post.delete()

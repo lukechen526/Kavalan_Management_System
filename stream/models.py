@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import time
+import cgi
 
 def calculate_rank(inst):
 
@@ -33,6 +34,9 @@ class StreamPost(models.Model):
     def comment_count(self):
         return self.comments.count()
 
+    def escaped_content(self):
+        return unicode(cgi.escape(self.content))
+
 
 class StreamPostForm(ModelForm):
     class Meta:
@@ -47,6 +51,9 @@ class StreamPostComment(models.Model):
 
     class Meta:
         ordering = ['-stream_post', 'time_posted']
+
+    def escaped_content(self):
+        return unicode(cgi.escape(self.content))
 
 @receiver(post_save, sender=StreamPost)
 def update_rank(sender, **kwargs):
