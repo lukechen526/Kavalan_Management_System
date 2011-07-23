@@ -150,6 +150,7 @@ INSTALLED_APPS = (
     'accounts',
     'dynamo',
     'piston',
+    'stream',
     'south',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )

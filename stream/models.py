@@ -29,9 +29,8 @@ class StreamPost(models.Model):
     def comment_count(self):
         return self.comments.count()
 
-    def save(self, *args, **kwargs):
-        self.rank = calculate_rank(self)
-        super(StreamPost, self).save(*args, **kwargs)
+    def __unicode__(self):
+        return unicode('%s %s %d' %(self.poster, self.time_posted, self.rank ))
 
 
 class StreamPostComment(models.Model):
@@ -43,11 +42,21 @@ class StreamPostComment(models.Model):
     class Meta:
         ordering = ['-stream_post', 'time_posted']
 
+@receiver(post_save, sender=StreamPost)
+def update_rank(sender, **kwargs):
+    """
+    Updates the rank of a post after it is saved
+    :param sender:
+    :param kwargs:
+    :return:
+    """
+    pk = kwargs['instance'].pk
+    StreamPost.objects.filter(pk__exact=pk).update(rank=calculate_rank(kwargs['instance']))
 
 @receiver(post_save, sender=StreamPostComment)
 def update_stream_post_rank(sender, **kwargs):
     """
-    After a comment is saved, updates the rank of the StreamPost it is associated with
+    After a comment is saved, re-saves the StreamPost it is associated with to update the rank
     :param sender:
     :param kwargs:
     :return:
