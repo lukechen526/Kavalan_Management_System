@@ -132,8 +132,9 @@ span.arrow-down {
     width:auto;
     right:0px;
     z-index: 100;
-    box-shadow: 0 1px 5px #CCCCCC;
-    border-color: #ffffff;
+    box-shadow: 0 0 2px 1px #CCCCCC;
+    border: 1px solid #bebebe;
+
 }
 
 #account-options.active{
@@ -192,8 +193,8 @@ span.arrow-down {
     width:150px;
     right:20px;
     z-index: 100;
-    box-shadow: 0 1px 5px #CCCCCC;
-    border-color: #ffffff;
+    box-shadow: 0 0 2px 1px #CCCCCC;
+    border: 1px solid #bebebe;
 }
 
 #options-menu.active{
