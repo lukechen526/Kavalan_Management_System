@@ -19,7 +19,7 @@ class StreamHandler(BaseHandler):
         #Retrieves the user's group in a list
         groups = user.groups.all().values_list('id', flat=True).order_by('id')
         #Retrieves the posts accessible to those groups, sorted by rank.
-        posts = StreamPost.objects.filter(groups__id__in=groups)
+        posts = StreamPost.objects.filter(groups__id__in=groups).distinct('id')
         if post_id:
             return posts.filter(id=post_id)
         else:

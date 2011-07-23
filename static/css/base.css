@@ -230,7 +230,23 @@ span.arrow-down {
 }
 
 /* for /accounts/login/ */
+#login-form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#login-form table{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#login-form table tr{
+
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .login-error {
     color: red;
 }
