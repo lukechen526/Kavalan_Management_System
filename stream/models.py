@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import ModelForm
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
 from django.db.models.signals import post_save
@@ -26,12 +27,17 @@ class StreamPost(models.Model):
     class Meta:
         ordering = ['-rank']
 
-    def comment_count(self):
-        return self.comments.count()
-
     def __unicode__(self):
         return unicode('%s %s %d' %(self.poster, self.time_posted, self.rank ))
 
+    def comment_count(self):
+        return self.comments.count()
+
+
+class StreamPostForm(ModelForm):
+    class Meta:
+        model = StreamPost
+        fields = ('groups', 'content', 'link')
 
 class StreamPostComment(models.Model):
     poster = models.ForeignKey(User, verbose_name=ugettext_lazy('Poster'))
