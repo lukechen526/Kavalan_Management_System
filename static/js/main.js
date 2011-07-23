@@ -184,16 +184,17 @@ $('input:submit, input:reset').button();
  });
 
 //Toggle the display of account-options based on clicking of #username
+
  $("#expand-menu").bind('click', function(event){
      event.preventDefault();
-     $('#account-options').toggle();
-     $('#expand-menu, #username').toggleClass('active');
+     $('#options-icon, #options-menu').removeClass('active');
+     $('#expand-menu, #username, #account-options').toggleClass('active');
  });
 
  $("#options-icon").bind('click', function(event){
         event.preventDefault();
-        $('#options-menu').toggle();
-        $('#options-icon').toggleClass('active');
+        $('#expand-menu, #username, #account-options').removeClass('active');
+        $('#options-icon, #options-menu').toggleClass('active');
   });
 
 

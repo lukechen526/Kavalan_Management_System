@@ -134,6 +134,10 @@ span.arrow-down {
     box-shadow: 0 1px 5px #CCCCCC;
     border-color: #ffffff;
 }
+
+#account-options.active{
+    display: block;
+}
 #account-options ul{
     width: 100%;
     height: 100%;
@@ -189,6 +193,10 @@ span.arrow-down {
     z-index: 100;
     box-shadow: 0 1px 5px #CCCCCC;
     border-color: #ffffff;
+}
+
+#options-menu.active{
+    display: block;
 }
 
 #options-menu ul{
