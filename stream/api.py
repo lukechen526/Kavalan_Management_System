@@ -10,35 +10,34 @@ import json
 class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPost
-    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')), 'time_posted', 'escaped_content', 'link', 'comment_count' )
+    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')),
+              'formatted_time_posted', 'processed_content', 'link', 'comment_count', 'rank'  )
 
     def read(self, request, post_id=None):
         user = request.user
-        offset = request.GET.get('offset', 0)
+        offset = int(request.GET.get('offset', 0))
 
         #Retrieves the user's group in a list
         groups = user.groups.all().values_list('id', flat=True).order_by('id')
         #Retrieves the posts accessible to those groups, sorted by rank.
         posts = StreamPost.objects.filter(groups__id__in=groups).distinct('id')
         if post_id:
+            post_id = int(post_id)
             return posts.filter(id=post_id)
         else:
             #If no post_id was specified, returns 20 results, offset by 'offset'.
-            return posts[offset:offset+20]
+            return posts[offset:offset+10]
 
 
     def create(self,request, post_id=None):
-
-        #Initialize post with user
-        post = StreamPost(poster=request.user)
 
         #Checks if there is a parameter 'model' in the request, created by Backbone.js
         model = request.POST.get('model', '')
 
         if model:
-            post = StreamPostForm(json.loads(model), instance=post)
+            post = StreamPostForm(json.loads(model))
         else:
-            post = StreamPostForm(request.POST, instance=post)
+            post = StreamPostForm(request.POST)
 
         if post.is_valid():
             #Checks that either content or link is non-empty
@@ -48,7 +47,10 @@ class StreamHandler(BaseHandler):
                 return resp
 
             #If all fields are valid, save the post
-            saved_post = post.save()
+            saved_post = post.save(commit=False)
+            saved_post.poster = request.user
+            saved_post.save()
+            post.save_m2m()
             return saved_post
         else:
             resp = rc.BAD_REQUEST
@@ -62,6 +64,7 @@ class StreamHandler(BaseHandler):
             return resp
 
         try:
+            post_id = int(post_id)
             post = StreamPost.objects.get(id=post_id)
         except StreamPost.DoesNotExist:
             resp = rc.NOT_FOUND
@@ -103,6 +106,7 @@ class StreamHandler(BaseHandler):
             return resp
 
         try:
+            post_id = int(post_id)
             post = StreamPost.objects.get(id=post_id)
         except StreamPost.DoesNotExist:
             resp = rc.NOT_FOUND

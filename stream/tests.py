@@ -61,13 +61,14 @@ class StreamAPITest(TestCase):
 
         model = {'groups':[self.group_id_1],
                  'content': 'Hello World!',
-                 'link': 'http://www.google.com'
+                 'link': ''
                  }
 
         resp = c.post('/api/stream/', {'model': json.dumps(model)})
         print resp.content
         post_id = json.loads(resp.content)['id']
         model['content'] = 'UPDATED!'
+        model['link'] = 'http://www.yahoo.com'
         resp = c.put('/api/stream/%s' % (post_id,), {'model': json.dumps(model)})
         print resp.content
         self.assertEqual(resp.status_code, 200)

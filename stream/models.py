@@ -4,15 +4,18 @@ from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-import time
+import time, datetime
 import cgi
 
 def calculate_rank(inst):
 
     #Convert both the time posted and current time to seconds since the Epoch time
-    time_posted = int(time.mktime(inst.time_posted.timetuple()))
+    try:
+        time_posted = int(time.mktime(inst.time_posted.timetuple()))
+    except AttributeError:
+        time_posted = int(time.mktime(datetime.datetime.now().timetuple()))
     current_time = int(time.time())
-
+    
     #Calculates the rank, giving more weight to the current time (i.e. the time when the StreamPost is updated again).
     return int(0.7*current_time + 0.3*time_posted)
 
@@ -31,12 +34,18 @@ class StreamPost(models.Model):
     def __unicode__(self):
         return unicode('%s %s %d' %(self.poster, self.time_posted, self.rank ))
 
+    def save(self, *args, **kwargs):
+        self.rank = calculate_rank(self)
+        super(StreamPost, self).save(*args, **kwargs)
+        
     def comment_count(self):
         return self.comments.count()
 
-    def escaped_content(self):
+    def processed_content(self):
         return unicode(cgi.escape(self.content))
 
+    def formatted_time_posted(self):
+        pass
 
 class StreamPostForm(ModelForm):
     class Meta:
@@ -52,19 +61,12 @@ class StreamPostComment(models.Model):
     class Meta:
         ordering = ['-stream_post', 'time_posted']
 
-    def escaped_content(self):
+    def processed_content(self):
         return unicode(cgi.escape(self.content))
 
-@receiver(post_save, sender=StreamPost)
-def update_rank(sender, **kwargs):
-    """
-    Updates the rank of a post after it is saved
-    :param sender:
-    :param kwargs:
-    :return:
-    """
-    pk = kwargs['instance'].pk
-    StreamPost.objects.filter(pk__exact=pk).update(rank=calculate_rank(kwargs['instance']))
+    def formatted_time_posted(self):
+        now = datetime.datetime.now()
+
 
 @receiver(post_save, sender=StreamPostComment)
 def update_stream_post_rank(sender, **kwargs):

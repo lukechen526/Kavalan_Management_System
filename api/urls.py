@@ -20,7 +20,7 @@ stream_handler = CsrfExemptResource(StreamHandler, authentication=DefaultAuthent
 urlpatterns = patterns('',
     url(r'^documents$',document_handler),
     url(r'^batchrecords$', batch_record_handler ),
-    url(r'^stream/(?P<post_id>\d*)$', stream_handler),
+    url(r'^stream/(?P<post_id>\d*)', stream_handler),
 )
 
   
