@@ -374,6 +374,11 @@ input.ui-widget{
 #create-post *.ui-multiselect{
 }
 
+#create-post-errors{
+    color: red;
+    display: block;
+}
+
 #stream-posts{
     width: 100%;
     margin-left:auto;
@@ -383,7 +388,7 @@ input.ui-widget{
 
 .stream-post{
     border: 1px solid #F2F2F2;
-    padding: 3px 5px;
+    padding: 10px 5px;
 
 }
 .poster-name{
@@ -398,4 +403,12 @@ input.ui-widget{
 .group-name{
     padding: 0 5px;
     color: #3366CC;
+}
+
+.link{
+    display: block;
+}
+#load-more{
+    width: 100%;
+    text-align: center;
 }

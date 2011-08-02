@@ -4,20 +4,24 @@
 {% block content %}
 
 <div id="stream">
+
     <div id="create-post">
         <span id="prompt"> {% trans "What's new?" %}</span>
         <textarea id ="new-post-content" rows="5" cols="40"></textarea>
         <input id="new-post-link" placeholder="{% trans 'Share a Link!' %}" type="text"/>
-        {{ stream_post_form.groups }}
+        {{ user_group_select_form.groups }}
         <input id="post-button" type="submit" value="{% trans "Post!" %}"/>
+        <span id="create-post-errors"></span>
     </div>
-
-
 
     <div id="stream-posts">
 
 
     </div>
+
+    <div id="load-more"><a href=""> {% trans "Load more" %}</a></div>
+
+
 
 
 <script type="text/template" id="post-template">
@@ -36,6 +40,12 @@
         <div class="processed-content">
             <%=processed_content%>
         </div>
+
+        <% if (link != ""){ %>
+            <span class="link">
+                {% trans "Link" %}: <a href="<%=link%>"><%=link%></a>
+            </span>
+        <%}%>
 
         <span>{% trans "Groups" %}:
         <%_.each(groups, function(group){%>

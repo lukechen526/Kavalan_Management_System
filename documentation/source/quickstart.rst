@@ -12,13 +12,18 @@ Logging in
 
 Click on Login (登入) to log in.
 
+Changing Interface Language
+-----------------------------
+You can change the interface language by clicking on the Gear, selecting the language to use, and then clicking 'Go'.
+
+
 Viewing your user profile
 --------------------------
 
 After you log in, you can see your profile and additional options by clicking on your user name.
 
 
-Create Users
+Creating Users
 --------------------
 If you are authorized to create new users, you will find the link to **Create New User** under **Manage Account**.
 

@@ -15,6 +15,7 @@ Contents:
    quickstart
    doc_engine
    dynamo
+   stream
 
 Indices and tables
 ==================

@@ -7,8 +7,13 @@ Sub-systems
 ================
 Several apps have been planned for inclusion in the suite. They are all at very early stage of development
 
-- Doc Engine (for document search and retrieval)
+- *Doc Engine* for document search and retrieval
+- *Dynamo* for creating database query dynamically based on user input.
+- Stream (for posting status updates and sharing links)
+- Inventory Management
 - Account and Profile Management
+- The *API* sub-system is used to centralize the management of public APIs exposed by the other sub-systems.
+
 
 Author(s)
 ===========

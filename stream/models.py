@@ -1,7 +1,7 @@
 from django.db import models
 from django.forms import ModelForm
 from django.contrib.auth.models import User, Group
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext_lazy, ugettext
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 import time, datetime
@@ -45,9 +45,33 @@ class StreamPost(models.Model):
         return unicode(cgi.escape(self.content))
 
     def formatted_time_posted(self):
-        pass
+        now = datetime.datetime.now()
+        diff = now - self.time_posted
 
-class StreamPostForm(ModelForm):
+        if diff.days > 0:
+            if diff.days == 1:
+                return unicode('%d %s' %(1, ugettext('day ago') ))
+            else:
+                return unicode('%d %s' %(diff.days, ugettext('days ago') ))
+
+        if diff.seconds >= 60*60: #if the post was posted no less than an hour but less than a day ago
+            if diff.seconds < 2 * 60* 60:
+                return unicode('%d %s' %(1, ugettext('hour ago') ))
+            else:
+                return unicode('%d %s' %(int(diff.seconds/3600), ugettext('hours ago') ))
+
+        if diff.seconds >= 60: #if the post was posted no less than a minute but less than an hour ago
+            if diff.seconds < 2 * 60:
+                return unicode('%d %s' %(1, ugettext('minute ago') ))
+            else:
+                return unicode('%d %s' %(int(diff.seconds/60), ugettext('minutes ago') ))
+        else:
+            if diff.seconds <= 1:
+                return unicode('%d %s' %(1, ugettext('second ago') ))
+            else:
+                return unicode('%d %s' %(diff.seconds, ugettext('seconds ago') ))
+
+class StreamPostValidationForm(ModelForm):
     class Meta:
         model = StreamPost
         fields = ('groups', 'content', 'link')
@@ -66,6 +90,30 @@ class StreamPostComment(models.Model):
 
     def formatted_time_posted(self):
         now = datetime.datetime.now()
+        diff = now - self.time_posted
+        
+        if diff.days > 0:
+            if diff.days == 1:
+                return unicode('%d %s' %(1, ugettext('day ago') ))
+            else:
+                return unicode('%d %s' %(diff.days, ugettext('days ago') ))
+
+        if diff.seconds >= 60*60: #if the post was posted no less than an hour but less than a day ago
+            if diff.seconds < 2 * 60* 60:
+                return unicode('%d %s' %(1, ugettext('hour ago') ))
+            else:
+                return unicode('%d %s' %(int(diff.seconds/3600), ugettext('hours ago') ))
+
+        if diff.seconds >= 60: #if the post was posted no less than a minute but less than an hour ago
+            if diff.seconds < 2 * 60:
+                return unicode('%d %s' %(1, ugettext('minute ago') ))
+            else:
+                return unicode('%d %s' %(int(diff.seconds/60), ugettext('minutes ago') ))
+        else:
+            if diff.seconds <= 1:
+                return unicode('%d %s' %(1, ugettext('second ago') ))
+            else:
+                return unicode('%d %s' %(diff.seconds, ugettext('seconds ago') ))
 
 
 @receiver(post_save, sender=StreamPostComment)

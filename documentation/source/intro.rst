@@ -15,6 +15,7 @@ Several apps have been planned for inclusion in the suite. They are all at very 
 
 - *Doc Engine* for document search and retrieval
 - *Dynamo* for creating database query dynamically based on user input.
+- Stream (for posting status updates and sharing links)
 - Inventory Management
 - Account and Profile Management
 - The *API* sub-system is used to centralize the management of public APIs exposed by the other sub-systems.
@@ -26,6 +27,7 @@ Dependencies
 - Django 1.3
 - `Django-piston`_ >= 0.2.2
 - `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
+- `South`_ >= 0.7.3
 - Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
@@ -71,3 +73,4 @@ LICENSE
 .. _PIC/S: http://www.picscheme.org/
 .. _pyPDF: http://pybrary.net/pyPdf/
 .. _ReportLab ToolKit: http://www.reportlab.com/software/opensource/rl-toolkit/
+.. _South: http://south.aeracode.org/

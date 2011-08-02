@@ -1,7 +1,7 @@
 #API for Stream
 from piston.handler import BaseHandler
 from piston.utils import *
-from stream.models import StreamPost, StreamPostComment, StreamPostForm
+from stream.models import StreamPost, StreamPostComment, StreamPostValidationForm
 from django.utils.translation import ugettext
 import json
 
@@ -11,7 +11,7 @@ class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPost
     fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')),
-              'formatted_time_posted', 'processed_content', 'link', 'comment_count', 'rank'  )
+              'processed_content', 'formatted_time_posted', 'link', 'comment_count', 'rank'  )
 
     def read(self, request, post_id=None):
         user = request.user
@@ -25,7 +25,7 @@ class StreamHandler(BaseHandler):
             post_id = int(post_id)
             return posts.filter(id=post_id)
         else:
-            #If no post_id was specified, returns 20 results, offset by 'offset'.
+            #If no post_id was specified, returns 10 results, offset by 'offset'.
             return posts[offset:offset+10]
 
 
@@ -35,9 +35,9 @@ class StreamHandler(BaseHandler):
         model = request.POST.get('model', '')
 
         if model:
-            post = StreamPostForm(json.loads(model))
+            post = StreamPostValidationForm(json.loads(model))
         else:
-            post = StreamPostForm(request.POST)
+            post = StreamPostValidationForm(request.POST)
 
         if post.is_valid():
             #Checks that either content or link is non-empty
@@ -80,9 +80,9 @@ class StreamHandler(BaseHandler):
         #Checks if there is a parameter 'model' in the request, created by Backbone.js
         model = request.POST.get('model', '')
         if model:
-            post = StreamPostForm(json.loads(model), instance=post)
+            post = StreamPostValidationForm(json.loads(model), instance=post)
         else:
-            post = StreamPostForm(request.POST, instance=post)
+            post = StreamPostValidationForm(request.POST, instance=post)
 
         if post.is_valid():
             #Checks that either content or link is non-empty

@@ -51,10 +51,11 @@ window.PostView = Backbone.View.extend({
 window.StreamView = Backbone.View.extend({
     el: $('#stream'),
     events:{
-        "click #post-button": "createNewPost"
+        "click #post-button": "createNewPost",
+        "click #load-more a": "loadMorePost"
     },
     initialize: function(){
-        _.bindAll(this, 'addOne', 'addAll', 'refresh');
+        _.bindAll(this, 'addOne', 'addOneAnimated', 'addAll', 'refresh');
         Stream.bind('reset', this.refresh);
         Stream.bind('error', this.showError);
         Stream.fetch();
@@ -63,6 +64,15 @@ window.StreamView = Backbone.View.extend({
     createNewPost: function(e){
         e.preventDefault();
         var groups = $("#id_groups").multiselect("getChecked").map(function(){return this.value;}).get();
+
+        //Validation
+        $('#create-post-errors').empty();
+        if(groups.length == 0){
+            $('#create-post-errors').append(document.createTextNode(gettext('You must select at least one group to post to!')));
+            return 0;
+        }
+
+        //Create the post object
         var post = Stream.create({
             content: this.$('#new-post-content').val(),
             link: this.$('#new-post-link').val(),
@@ -70,16 +80,29 @@ window.StreamView = Backbone.View.extend({
         });
 
         if(post){
-            this.addOne(post);
+            this.addOneAnimated(post);
         }
 
+    },
+
+    loadMorePost: function(e){
+        e.preventDefault();
+        Stream.fetchNext({success:this.refresh});
     },
 
     showError: function(model, error){
         console.log(error);
     },
 
-    addOne: function(post){
+    addOneAnimated: function(post){
+        var view = new PostView({model:post});
+        el = view.render().el;
+        $(el).css('display', 'none');
+        this.$("#stream-posts").prepend(el);
+        $(el).fadeIn(5000);
+    },
+
+    addOne: function(post, isNew){
 
         var view = new PostView({model:post});
         this.$("#stream-posts").prepend(view.render().el);// Lower-ranked posts will be at the bottom
@@ -90,6 +113,8 @@ window.StreamView = Backbone.View.extend({
     },
     
     refresh: function(){
+        console.log('This is called');
+        console.log(Stream.length);
         $('#stream-posts').empty();
         this.addAll();
     },
