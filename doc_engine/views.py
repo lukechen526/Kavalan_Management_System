@@ -62,7 +62,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
         else:
             response = HttpResponse('application/force-download')
             del response['content-type'] #Leave it to the server to decide
-            response['X-Sendfile'] = filepath
+            response['X-Sendfile'] = filepath.encode('utf-8')
             response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename.encode('utf-8')
             return response
 
