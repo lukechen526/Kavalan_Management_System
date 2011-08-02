@@ -2,7 +2,6 @@ from django.views.generic import TemplateView
 from doc_engine.models import Document, BatchRecordSearchForm, AccessRecord
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
-from django.conf import settings
 from reportlab.pdfgen import canvas
 from pyPdf import PdfFileWriter, PdfFileReader
 from django.utils.translation import ugettext

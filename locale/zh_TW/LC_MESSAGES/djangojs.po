@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-06-28 21:10+0800\n"
+"POT-Creation-Date: 2011-08-02 10:42+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\static\js\main.js.py:19
+#: .\static\js\main.js.c:34 .\static\js\main.js.c:69
 msgid "No Result"
 msgstr "無結果"
+
+#: .\static\js\stream.js.c:71
+msgid "You must select at least one group to post to!"
+msgstr "請最少選擇一個群組"
+
+#: .\static\js\stream.js.c:134
+msgid "Post to which groups?"
+msgstr "發到哪一個群組呢？"
+
+#: .\static\js\stream.js.c:135
+msgid "Select all groups"
+msgstr "選擇所有群組"
+
+#: .\static\js\stream.js.c:136
+msgid "Unselect all groups"
+msgstr "不選任何群組"
+
+#: .\static\js\stream.js.c:137
+msgid "# groups selected"
+msgstr "已選 # 個群組"

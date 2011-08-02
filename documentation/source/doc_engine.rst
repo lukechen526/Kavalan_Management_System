@@ -3,8 +3,6 @@
 Doc Engine
 ===========
 
-version 0.4
-
 Overview
 ---------
 

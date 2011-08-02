@@ -1,3 +1,4 @@
+
 body {
 	display:block;
 
@@ -131,8 +132,9 @@ span.arrow-down {
     width:auto;
     right:0px;
     z-index: 100;
-    box-shadow: 0 1px 5px #CCCCCC;
-    border-color: #ffffff;
+    box-shadow: 0 0 2px 1px #CCCCCC;
+    border: 1px solid #bebebe;
+
 }
 
 #account-options.active{
@@ -191,8 +193,8 @@ span.arrow-down {
     width:150px;
     right:20px;
     z-index: 100;
-    box-shadow: 0 1px 5px #CCCCCC;
-    border-color: #ffffff;
+    box-shadow: 0 0 2px 1px #CCCCCC;
+    border: 1px solid #bebebe;
 }
 
 #options-menu.active{
@@ -228,7 +230,23 @@ span.arrow-down {
 }
 
 /* for /accounts/login/ */
+#login-form{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+#login-form table{
+    width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+}
+#login-form table tr{
+
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
 .login-error {
     color: red;
 }
@@ -312,4 +330,85 @@ footer p{
 /*For input buttons*/
 input.ui-widget{
     font-size: 0.9em !important;
+}
+
+
+
+/*For Stream app related items*/
+
+#stream{
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+#create-post{
+    width:95%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+
+}
+#prompt{
+    display:block;
+    width: 100%;
+}
+#new-post-content{
+    resize: none;
+    text-align: left;
+    width: 100%;
+
+}
+#new-post-link{
+    display: block;
+    width: 100%;
+    padding:  1px 1px;
+}
+
+#post-button{
+   font-size: 1.1em !important;
+   padding:  2px 4px 2px 4px;
+}
+
+#create-post *.ui-multiselect{
+}
+
+#create-post-errors{
+    color: red;
+    display: block;
+}
+
+#stream-posts{
+    width: 100%;
+    margin-left:auto;
+    margin-right: auto;
+    margin-top: 30px;
+}
+
+.stream-post{
+    border: 1px solid #F2F2F2;
+    padding: 10px 5px;
+
+}
+.poster-name{
+  color: #3366CC;
+}
+
+.processed-content{
+    padding: 5px 0;
+
+}
+
+.group-name{
+    padding: 0 5px;
+    color: #3366CC;
+}
+
+.link{
+    display: block;
+}
+#load-more{
+    width: 100%;
+    text-align: center;
 }

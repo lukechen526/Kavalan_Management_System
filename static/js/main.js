@@ -195,7 +195,9 @@ $('input:submit, input:reset').button();
         event.preventDefault();
         $('#expand-menu, #username, #account-options').removeClass('active');
         $('#options-icon, #options-menu').toggleClass('active');
-  });
+ });
 
 
+
+    
 });

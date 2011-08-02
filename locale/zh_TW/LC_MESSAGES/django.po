@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-07-15 16:54+0800\n"
+"POT-Creation-Date: 2011-08-02 10:59+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,47 +25,15 @@ msgstr "正體中文"
 msgid "English"
 msgstr "英文"
 
-#: .\accounts\models.py:13 .\hermes\models.py:22
-msgid "Content"
-msgstr "內容"
-
 #: .\accounts\models.py:15
-msgid "unread"
-msgstr "未讀"
-
-#: .\accounts\models.py:16
-msgid "read"
-msgstr "已讀"
-
-#: .\accounts\models.py:18
-msgid "Status"
-msgstr "狀態"
-
-#: .\accounts\models.py:21
-msgid "Notification"
-msgstr "通知"
-
-#: .\accounts\models.py:22 .\accounts\models.py:30
-msgid "Notifications"
-msgstr "通知"
-
-#: .\accounts\models.py:29
-msgid "Department"
-msgstr "部門"
-
-#: .\accounts\models.py:31
-msgid "New Notification Count"
-msgstr "新通知數"
-
-#: .\accounts\models.py:34
 msgid "User Profile"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:35
+#: .\accounts\models.py:16
 msgid "User Profiles"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:57
+#: .\accounts\models.py:31 .\stream\models.py:25 .\templates\index.html.py:50
 msgid "Groups"
 msgstr "群組"
 
@@ -89,7 +57,7 @@ msgstr "版本"
 msgid "File"
 msgstr "檔案"
 
-#: .\doc_engine\models.py:26 .\hermes\models.py:10
+#: .\doc_engine\models.py:26
 msgid "Last Updated"
 msgstr "上次更新"
 
@@ -115,7 +83,7 @@ msgstr "存取時間"
 
 #: .\doc_engine\models.py:60
 msgid "IP"
-msgstr ""
+msgstr "IP"
 
 #: .\doc_engine\models.py:61
 #, fuzzy
@@ -180,57 +148,85 @@ msgstr "自"
 msgid "To"
 msgstr "至"
 
-#: .\doc_engine\views.py:135
+#: .\doc_engine\views.py:145
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\hermes\models.py:8
-msgid "Thread Subject"
-msgstr "會話群組主題"
+#: .\stream\api.py:46 .\stream\api.py:91
+msgid "Either content or link has to be non-empty"
+msgstr "內容或連接不可為空"
 
-#: .\hermes\models.py:9
-msgid "Participants"
-msgstr "參與者"
+#: .\stream\api.py:63 .\stream\api.py:105
+msgid "StreamPost ID must be supplied"
+msgstr ""
 
-#: .\hermes\models.py:13
-msgid "Message Thread"
-msgstr "群組訊息"
+#: .\stream\api.py:71 .\stream\api.py:113
+msgid "No StreamPost with the specified ID was found"
+msgstr ""
 
-#: .\hermes\models.py:14
-msgid "Message Threads"
-msgstr "群組訊息"
+#: .\stream\api.py:77
+msgid "Only the original poster can update the post"
+msgstr ""
 
-#: .\hermes\models.py:20
+#: .\stream\api.py:119
+msgid "Only the original poster can delete the post"
+msgstr ""
+
+#: .\stream\models.py:24 .\stream\models.py:80
 msgid "Poster"
 msgstr "寄件者"
 
-#: .\hermes\models.py:21
-msgid "Date"
-msgstr "日期"
+#: .\stream\models.py:26 .\stream\models.py:82
+msgid "Time Posted"
+msgstr ""
 
-#: .\hermes\models.py:23
-msgid "Thread"
-msgstr "會話群組"
+#: .\stream\models.py:27 .\stream\models.py:83
+msgid "Content"
+msgstr "內容"
 
-#: .\hermes\models.py:26
-msgid "Message"
-msgstr "訊息"
+#: .\stream\models.py:28 .\templates\index.html.py:46
+msgid "Link"
+msgstr "連接"
 
-#: .\hermes\models.py:27
-msgid "Messages"
-msgstr "訊息"
+#: .\stream\models.py:29
+msgid "Rank"
+msgstr ""
 
-#: .\hermes\models.py:50
-msgid "New message in "
-msgstr "有新訊息"
+#: .\stream\models.py:53 .\stream\models.py:97
+msgid "day ago"
+msgstr "天前"
 
-#: .\hermes\models.py:61
-msgid "You have been added to"
-msgstr "你已被加到"
+#: .\stream\models.py:55 .\stream\models.py:99
+msgid "days ago"
+msgstr "天前"
 
-#: .\hermes\models.py:66
-msgid "You have been removed from"
-msgstr "你已被移除"
+#: .\stream\models.py:59 .\stream\models.py:103
+msgid "hour ago"
+msgstr "小時前"
+
+#: .\stream\models.py:61 .\stream\models.py:105
+msgid "hours ago"
+msgstr "小時前"
+
+#: .\stream\models.py:65 .\stream\models.py:109
+msgid "minute ago"
+msgstr "分鐘前"
+
+#: .\stream\models.py:67 .\stream\models.py:111
+msgid "minutes ago"
+msgstr "分鐘前"
+
+#: .\stream\models.py:70 .\stream\models.py:114
+msgid "second ago"
+msgstr "秒前"
+
+#: .\stream\models.py:72 .\stream\models.py:116
+msgid "seconds ago"
+msgstr "秒前"
+
+#: .\stream\models.py:81
+msgid "Original Post"
+msgstr ""
 
 #: .\templates\404.html.py:5
 msgid "File Not Found"
@@ -240,34 +236,55 @@ msgstr "無此檔案"
 msgid "Server Error"
 msgstr "伺服器錯誤"
 
-#: .\templates\base.html.py:30 .\templates\flatpages\default.html.py:27
+#: .\templates\base.html.py:37 .\templates\flatpages\default.html.py:27
 msgid "Home"
 msgstr "首頁"
 
-#: .\templates\base.html.py:31 .\templates\flatpages\default.html.py:28
+#: .\templates\base.html.py:38
 msgid "Document Search"
 msgstr "文件查詢"
 
-#: .\templates\base.html.py:33
+#: .\templates\base.html.py:40
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\base.html.py:34 .\templates\base.html.py:36
+#: .\templates\base.html.py:41 .\templates\base.html.py:43
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\base.html.py:47 .\templates\flatpages\default.html.py:36
+#: .\templates\base.html.py:62
+msgid "Manage Account"
+msgstr "管理帳號"
+
+#: .\templates\base.html.py:63 .\templates\flatpages\default.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\base.html.py:49 .\templates\flatpages\default.html.py:38
-#: .\templates\registration\login.html.py:25
+#: .\templates\base.html.py:68 .\templates\flatpages\default.html.py:38
+#: .\templates\registration\login.html.py:26
 msgid "Login"
 msgstr "登入"
 
 #: .\templates\index.html.py:3
 msgid "Welcome to Kavalan Management System "
 msgstr "歡迎使用噶瑪蘭系統"
+
+#: .\templates\index.html.py:9
+msgid "What's new?"
+msgstr "有新聞嗎？"
+
+#: .\templates\index.html.py:11
+msgid "Share a Link!"
+msgstr "分享連接"
+
+#: .\templates\index.html.py:13
+#, fuzzy
+msgid "Post!"
+msgstr "寄件者"
+
+#: .\templates\index.html.py:22
+msgid "Load more"
+msgstr "更多"
 
 #: .\templates\doc_engine\index.html.py:8
 msgid "Search Documents"
@@ -280,6 +297,11 @@ msgstr "搜尋批次記錄"
 #: .\templates\doc_engine\index.html.py:14
 msgid "Enter Serial Number/Document Title"
 msgstr "請用文件序號或主旨查詢"
+
+#: .\templates\flatpages\default.html.py:28
+#, fuzzy
+msgid "Document Search and Retrieval"
+msgstr "文件查詢"
 
 #: .\templates\flatpages\default.html.py:29
 msgid "Inventory"
@@ -298,7 +320,7 @@ msgstr "提交"
 msgid "Your username and password didn't match. Please try again."
 msgstr "您的用戶名及密碼不符，請重新再試"
 
-#: .\templates\registration\login.html.py:25
+#: .\templates\registration\login.html.py:26
 msgid "Reset"
 msgstr "重設"
 
@@ -320,7 +342,7 @@ msgstr "密碼重設"
 
 #: .\templates\registration\manage.html.py:21
 msgid "E-mail"
-msgstr ""
+msgstr "E-mail"
 
 #: .\templates\registration\manage.html.py:23
 msgid "Last Login"
@@ -334,6 +356,60 @@ msgstr "增新帳號"
 #: .\templates\registration\password_change_done.html.py:7
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
+
+#~ msgid "unread"
+#~ msgstr "未讀"
+
+#~ msgid "read"
+#~ msgstr "已讀"
+
+#~ msgid "Status"
+#~ msgstr "狀態"
+
+#~ msgid "Notification"
+#~ msgstr "通知"
+
+#~ msgid "Notifications"
+#~ msgstr "通知"
+
+#~ msgid "Department"
+#~ msgstr "部門"
+
+#~ msgid "New Notification Count"
+#~ msgstr "新通知數"
+
+#~ msgid "Thread Subject"
+#~ msgstr "會話群組主題"
+
+#~ msgid "Participants"
+#~ msgstr "參與者"
+
+#~ msgid "Message Thread"
+#~ msgstr "群組訊息"
+
+#~ msgid "Message Threads"
+#~ msgstr "群組訊息"
+
+#~ msgid "Date"
+#~ msgstr "日期"
+
+#~ msgid "Thread"
+#~ msgstr "會話群組"
+
+#~ msgid "Message"
+#~ msgstr "訊息"
+
+#~ msgid "Messages"
+#~ msgstr "訊息"
+
+#~ msgid "New message in "
+#~ msgstr "有新訊息"
+
+#~ msgid "You have been added to"
+#~ msgstr "你已被加到"
+
+#~ msgid "You have been removed from"
+#~ msgstr "你已被移除"
 
 #~ msgid "Documentation"
 #~ msgstr "輔助文件"
