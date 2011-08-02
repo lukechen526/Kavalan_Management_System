@@ -1,5 +1,8 @@
 $(function(){
 
+//Prevents the browser (aka. IE) from caching the JSON response. 
+$.ajaxSetup({ cache: false });
+
 Backbone.emulateJSON = true;
 window.StreamPost = Backbone.Model.extend({
     defaults: {content:'', link:'', groups:[]},
