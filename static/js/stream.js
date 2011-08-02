@@ -90,7 +90,9 @@ window.StreamView = Backbone.View.extend({
 
     loadMorePost: function(e){
         e.preventDefault();
-        Stream.fetchNext({success:this.refresh});
+        Stream.fetchNext({
+            success:this.refresh,
+            error: function(collection, response){console.log(response);}});
     },
 
     showError: function(model, error){
@@ -116,18 +118,10 @@ window.StreamView = Backbone.View.extend({
     },
     
     refresh: function(){
-        console.log('This is called');
-        console.log(Stream.length);
         $('#stream-posts').empty();
         this.addAll();
-    },
-
-    loadMore: function(){
-        Stream.fetchNext({
-            success:this.refresh,
-            error: function(collection, response){console.log(response);}
-        });
     }
+
 
 });
 
