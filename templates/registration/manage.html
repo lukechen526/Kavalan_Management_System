@@ -21,10 +21,14 @@
 <tr><td><span class="user-info-label">{% trans "E-mail" %}:</span></td><td>{{ user.email }}</td></tr>
 
 <tr><td><span class="user-info-label">{% trans "Last Login" %}:</span></td><td>{{ user.last_login }}</td></tr>
+
+
 {% if perms.auth.add_user %}
 <tr><td><span class="user-info-label">{% trans "Create User" %}:</span></td>
     <td><a href={% url 'accounts.views.create_user' %}>{% trans "Create User" %}</a></td></tr>
 {% endif %}
+
+
 </table>
 
 
