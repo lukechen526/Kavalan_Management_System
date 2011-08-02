@@ -32,7 +32,6 @@ $.template("search-doc-resultTemplate",
                 data:{'q':query},
                 success: function(data){
                     $("#search-result").empty();
-                    console.log(data);
                     if(data.length == 0){
                         $("#search-result").append(gettext("No Result"));
                     }
