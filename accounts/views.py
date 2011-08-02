@@ -18,7 +18,7 @@ def create_user(request):
     else:
         form = CustomUserCreationForm(request.POST)
         if form.is_valid():
-            user = User.objects.create_user(username=form.cleaned_data['username'], email=None, password=form.cleaned_data['password1'])
+            user = User.objects.create_user(username=form.cleaned_data['username'], email='default@example.com', password=form.cleaned_data['password1'])
             user.groups = form.cleaned_data['groups']
             user.save()
             
