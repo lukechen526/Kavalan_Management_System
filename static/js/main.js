@@ -1,5 +1,8 @@
 $(document).ready(function(){
 
+ //Prevents the browser from caching the JSON response. 
+$.ajaxSetup({ cache: false });
+    
 /* section for doc_engine */
 
   //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
