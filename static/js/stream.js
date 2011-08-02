@@ -18,13 +18,23 @@ window.StreamPost = Backbone.Model.extend({
 window.StreamCollection = Backbone.Collection.extend({
     model: StreamPost,
     url: '/api/stream/',
+    initialize: function(){
+        _.bindAll(this, 'updateStream');
+    },
     comparator: function(post){
         return post.get('rank');
     },
-    setOffset: function(offset){this.url = '/api/stream/?offset='+offset.toString();},
+    setParams: function(offset, num_posts){
+        this.url = '/api/stream/?offset='+offset.toString()+'&num_posts='+num_posts.toString();},
+
     fetchNext: function(options){
-        this.setOffset(this.length);
+        this.setParams(this.length, 10);
         this.fetch($({add: true}).extend(options));
+    },
+
+    updateStream: function(options){
+        this.setParams(0, this.length);
+        this.fetch();
     }
 });
 
@@ -62,6 +72,9 @@ window.StreamView = Backbone.View.extend({
         Stream.bind('reset', this.refresh);
         Stream.bind('error', this.showError);
         Stream.fetch();
+        
+        //Refresh the stream every 30 seconds
+        setInterval(Stream.updateStream, 30*1000);
     },
 
     createNewPost: function(e){

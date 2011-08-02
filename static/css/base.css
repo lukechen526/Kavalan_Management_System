@@ -389,6 +389,7 @@ input.ui-widget{
 .stream-post{
     border: 1px solid #F2F2F2;
     padding: 10px 5px;
+    font-size: 15px;
 
 }
 .poster-name{
@@ -396,7 +397,7 @@ input.ui-widget{
 }
 
 .processed-content{
-    padding: 5px 0;
+    padding: 15px 0;
 
 }
 

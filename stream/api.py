@@ -16,6 +16,7 @@ class StreamHandler(BaseHandler):
     def read(self, request, post_id=None):
         user = request.user
         offset = int(request.GET.get('offset', 0))
+        num_posts = int(request.GET.get('num_posts', 10))
 
         #Retrieves the user's group in a list
         groups = user.groups.all().values_list('id', flat=True).order_by('id')
@@ -25,8 +26,8 @@ class StreamHandler(BaseHandler):
             post_id = int(post_id)
             return posts.filter(id=post_id)
         else:
-            #If no post_id was specified, returns 10 results, offset by 'offset'.
-            return posts[offset:offset+10]
+            #If no post_id was specified, returns 'num_posts' results, offset by 'offset'.
+            return posts[offset:offset+num_posts]
 
 
     def create(self,request, post_id=None):
