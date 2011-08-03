@@ -16,6 +16,7 @@ Contents:
    doc_engine
    dynamo
    stream
+   security
 
 Indices and tables
 ==================

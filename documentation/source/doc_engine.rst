@@ -54,6 +54,8 @@ Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
 Creating/updating/deleting of records is done via the Django admin interface
 
+.. _doc-engine-security:
+
 Access the actual file and security
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The search result provides a link to the actual file at /doc_engine/access/*primary key*/ . Access control is employed to
