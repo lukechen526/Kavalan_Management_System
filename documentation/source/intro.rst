@@ -28,13 +28,14 @@ Dependencies
 - `Django-piston`_ >= 0.2.2
 - `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
 - `South`_ >= 0.7.3
+- `Django-axes`_ >= 1.2.4
 - Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
 Author(s)
 ---------------
 
-Luke (Yu-Po) Chen, lukechen526@gmail.com
+Luke (Yu-Po) Chen, nuemail@gmail.com
 
 LICENSE
 ----------------
@@ -74,3 +75,4 @@ LICENSE
 .. _pyPDF: http://pybrary.net/pyPdf/
 .. _ReportLab ToolKit: http://www.reportlab.com/software/opensource/rl-toolkit/
 .. _South: http://south.aeracode.org/
+.. _Django-axes: http://pypi.python.org/pypi/django-axes/

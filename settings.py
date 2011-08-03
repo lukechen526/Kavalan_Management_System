@@ -1,5 +1,6 @@
 # Django settings for Kavalan_Management_System project.
 import os
+import datetime
 
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
@@ -126,6 +127,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+    'axes.middleware.FailedLoginMiddleware'
 )
 
 ROOT_URLCONF = 'Kavalan_Management_System.urls'
@@ -152,10 +154,21 @@ INSTALLED_APPS = (
     'piston',
     'stream',
     'south',
+    'axes',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
+
+
+#Configuration for Django-Axes
+AXES_LOGIN_FAILURE_LIMIT = True
+AXES_LOCK_OUT_AT_FAILURE = True
+AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
+AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
+AXES_LOCKOUT_URL = '/accounts/lockout/'
+
 
 
 # A sample logging configuration. The only tangible logging

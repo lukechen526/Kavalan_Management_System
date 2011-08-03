@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-02 10:59+0800\n"
+"POT-Creation-Date: 2011-08-03 16:14+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\settings.py:42
+#: .\settings.py:43
 msgid "Chinese-TW"
 msgstr "正體中文"
 
-#: .\settings.py:43
+#: .\settings.py:44
 msgid "English"
 msgstr "英文"
 
@@ -152,23 +152,23 @@ msgstr "至"
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\stream\api.py:46 .\stream\api.py:91
+#: .\stream\api.py:47 .\stream\api.py:92
 msgid "Either content or link has to be non-empty"
 msgstr "內容或連接不可為空"
 
-#: .\stream\api.py:63 .\stream\api.py:105
+#: .\stream\api.py:64 .\stream\api.py:106
 msgid "StreamPost ID must be supplied"
 msgstr ""
 
-#: .\stream\api.py:71 .\stream\api.py:113
+#: .\stream\api.py:72 .\stream\api.py:114
 msgid "No StreamPost with the specified ID was found"
 msgstr ""
 
-#: .\stream\api.py:77
+#: .\stream\api.py:78
 msgid "Only the original poster can update the post"
 msgstr ""
 
-#: .\stream\api.py:119
+#: .\stream\api.py:120
 msgid "Only the original poster can delete the post"
 msgstr ""
 
@@ -316,6 +316,20 @@ msgstr "資產管理"
 msgid "Submit"
 msgstr "提交"
 
+#: .\templates\registration\lockout.html.py:8
+#, python-format
+msgid ""
+"\n"
+"    \n"
+"You have failed too many times! Please try logging in again in %"
+"(cooloff_time)s.\n"
+"\n"
+msgstr ""
+"\n"
+"    \n"
+"嘗試登入太多次！請等 %"
+"(cooloff_time)s 再試！\n"
+"\n"
 #: .\templates\registration\login.html.py:11
 msgid "Your username and password didn't match. Please try again."
 msgstr "您的用戶名及密碼不符，請重新再試"
@@ -348,8 +362,8 @@ msgstr "E-mail"
 msgid "Last Login"
 msgstr "上次登入"
 
-#: .\templates\registration\manage.html.py:25
-#: .\templates\registration\manage.html.py:26
+#: .\templates\registration\manage.html.py:27
+#: .\templates\registration\manage.html.py:28
 msgid "Create User"
 msgstr "增新帳號"
 

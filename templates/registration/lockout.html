@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+<div id="lockout-message">
+
+{% blocktrans%}
+    
+You have failed too many times! Please try logging in again in {{ cooloff_time }}.
+
+{% endblocktrans %}
+
+</div>
+
+{% endblock %}
