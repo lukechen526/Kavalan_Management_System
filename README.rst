@@ -17,7 +17,7 @@ Several apps have been planned for inclusion in the suite. They are all at very 
 
 Author(s)
 ===========
-Luke (Yu-Po) Chen, lukechen526@gmail.com
+Luke (Yu-Po) Chen, nuemail@gmail.com
 
 Dependencies
 ==================
@@ -27,6 +27,7 @@ Dependencies
 - `Django-piston`_ >= 0.2.2
 - `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
 - `South`_ >= 0.7.3
+- `Django-axes`_ >= 0.1.1
 - Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
@@ -37,4 +38,5 @@ Dependencies
 .. _pyPDF: http://pybrary.net/pyPdf/
 .. _ReportLab ToolKit: http://www.reportlab.com/software/opensource/rl-toolkit/
 .. _South: http://south.aeracode.org/
+.. _Django-axes: http://code.google.com/p/django-axes/
 

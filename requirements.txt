@@ -1,0 +1,6 @@
+Django>=1.3
+Django-piston>=0.2.2
+pyPDF>=1.13
+ReportLab ToolKit>= 2.5
+South>=0.7.3
+Sphinx>=1.0.7
