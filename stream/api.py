@@ -23,8 +23,13 @@ class StreamHandler(BaseHandler):
         #Retrieves the posts accessible to those groups, sorted by rank.
         posts = StreamPost.objects.filter(groups__id__in=groups).distinct('id')
         if post_id:
-            post_id = int(post_id)
-            return posts.filter(id=post_id)
+            try:
+                return posts.get(id__exact=post_id)
+            
+            except StreamPost.DoesNotExist:
+                resp = rc.BAD_REQUEST
+                resp.write('Invalid Post ID')
+                return resp
         else:
             #If no post_id was specified, returns 'num_posts' results, offset by 'offset'.
             return posts[offset:offset+num_posts]

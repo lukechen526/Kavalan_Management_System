@@ -20,10 +20,10 @@ window.StreamCommentCollection = Backbone.Collection.extend({
     }
 });
 
+//This is used as local storage for Stream comments to avoid having to fetch them again when the Stream refreshes
 window.StreamComments = {};
 
 window.CommentView = Backbone.View.extend({
-
     tagName: "div",
     template: _.template($('#post-comment-template').html()),
     initialize: function(){
@@ -45,8 +45,12 @@ window.CommentView = Backbone.View.extend({
 window.StreamPost = Backbone.Model.extend({
     defaults: {content:'', link:'', groups:[]},
     initialize: function(){
-        _.bindAll(this, 'setCommentCollection', 'loadComments');
+        _.bindAll(this,'refresh','setCommentCollection', 'loadComments');
         this.setCommentCollection();
+    },
+
+    refresh: function(){
+        this.fetch();
     },
     validate: function(attrs){
         if(attrs.content == '' && attrs.link == ''){
@@ -54,6 +58,7 @@ window.StreamPost = Backbone.Model.extend({
             return 'Either content or link has to be non-empty.';
         }
     },
+
     setCommentCollection: function(){
         if(this.has('id') && window.StreamComments[this.id] !== undefined){
             this.set({comments: window.StreamComments[this.id]});
@@ -74,6 +79,8 @@ window.StreamPost = Backbone.Model.extend({
             
             this.setCommentCollection();
             window.StreamComments[this.id].fetch(options);
+            window.StreamComments[this.id].bind('add', this.refresh);
+            window.StreamComments[this.id].bind('remove', this.refresh);
         }
     }
 
@@ -86,10 +93,9 @@ window.PostView = Backbone.View.extend({
     initialize: function(){
         this.model.view = this;
         _.bindAll(this, 'loadComments','addOne', 'addOneAnimated', 'addAll','render');
-        this.model.bind('change', this.render);
-        
+        this.model.bind('change', this.render, this);
         //Reloads comments every 40 secs
-        setInterval(this.loadComments, 40*1000);
+        //setInterval(this.loadComments, 40*1000);
     },
     events: {
       "keydown .write-comment": "writeComment",
@@ -194,7 +200,7 @@ window.StreamView = Backbone.View.extend({
         Stream.fetch();
 
          //Refresh the stream every 30 seconds
-        setInterval(Stream.updateStream, 30*1000);
+        //setInterval(Stream.updateStream, 30*1000);
     },
     createNewPost: function(e){
         e.preventDefault();
