@@ -80,7 +80,7 @@ class StreamPostComment(models.Model):
     poster = models.ForeignKey(User, verbose_name=ugettext_lazy('Poster'))
     stream_post = models.ForeignKey(StreamPost, related_name='comments', verbose_name=ugettext_lazy('Original Post'))
     time_posted = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Time Posted'))
-    content = models.TextField(blank=True, verbose_name=ugettext_lazy('Content'))
+    content = models.TextField(verbose_name=ugettext_lazy('Content'))
 
     class Meta:
         ordering = ['-stream_post', 'time_posted']
@@ -127,3 +127,7 @@ def update_stream_post_rank(sender, **kwargs):
     stream_post = kwargs['instance'].stream_post
     stream_post.save()
     
+class StreamPostCommentValidationForm(ModelForm):
+    class Meta:
+        model = StreamPostComment
+        fields = ('content',)

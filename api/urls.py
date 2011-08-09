@@ -16,11 +16,14 @@ class CsrfExemptResource(Resource):
 document_handler = Resource(DocumentHandler, authentication=DefaultAuthenticationHandler())
 batch_record_handler = Resource(BatchRecordHandler, authentication=DefaultAuthenticationHandler())
 stream_handler = CsrfExemptResource(StreamHandler, authentication=DefaultAuthenticationHandler())
+stream_comment_handler = CsrfExemptResource(StreamCommentHandler, authentication=DefaultAuthenticationHandler())
+
 
 urlpatterns = patterns('',
     url(r'^documents$',document_handler),
     url(r'^batchrecords$', batch_record_handler ),
-    url(r'^stream/(?P<post_id>\d*)', stream_handler),
+    url(r'stream/(?P<post_id>\d*)/comments/(?P<comment_id>\d*)', stream_comment_handler),
+    url(r'^stream/(?P<post_id>\d*)', stream_handler)
 )
 
   

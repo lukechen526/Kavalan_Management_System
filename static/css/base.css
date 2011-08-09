@@ -424,3 +424,33 @@ input.ui-widget{
     width: 100%;
     text-align: center;
 }
+.comment-list{
+    position: relative;
+    padding: 10px 5px 10px 5px;
+    display:none;
+}
+
+.comment-count{
+    text-decoration: underline;
+    cursor: pointer;
+    color: #3366CC;
+}
+
+.stream-post-comment{
+    font-size: smaller;
+    background-color: #EDEFF4;
+    width: 100%;
+    padding-top: 3px;
+    padding-left: 3px;
+    margin-bottom: 3px;
+}
+
+.stream-post-comment div {
+    padding: 10px 0 10px 0;
+}
+
+.write-comment{
+    width: 90%;
+    margin-top: 5px;
+
+}
