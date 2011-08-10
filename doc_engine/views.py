@@ -118,7 +118,7 @@ def DocumentAccess(request, pk):
     document = get_object_or_404(Document, pk=pk)
     document_groups = list(document.permitted_groups.all())
 
-    filepath = os.path.join(MEDIA_ROOT, document.file.name)
+    filepath = os.path.join(MEDIA_ROOT, document.file().name)
     #Generate safe file names for output based on document's serial number and version; the extension should be preserved
     extension = os.path.splitext(filepath)[1]
     output_filename = "".join([x for x in u"%sv%s" %(document.serial_number, document.version) if x.isalpha() or x.isdigit()]) + extension
