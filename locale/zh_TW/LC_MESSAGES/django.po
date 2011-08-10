@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-09 18:41+0800\n"
+"POT-Creation-Date: 2011-08-10 17:40+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,113 +38,146 @@ msgstr "用戶配置"
 msgid "Groups"
 msgstr "群組"
 
-#: .\doc_engine\models.py:21
+#: .\doc_engine\models.py:20
 msgid "Document Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:22
+#: .\doc_engine\models.py:21
 msgid "Title"
 msgstr "主旨"
 
-#: .\doc_engine\models.py:23
+#: .\doc_engine\models.py:22
 msgid "Author"
 msgstr "作者"
 
+#: .\doc_engine\models.py:23 .\doc_engine\models.py:86
+msgid "Active Version"
+msgstr "使用中版本"
+
 #: .\doc_engine\models.py:24
-msgid "Version"
-msgstr "版本"
-
-#: .\doc_engine\models.py:25
-msgid "File"
-msgstr "檔案"
-
-#: .\doc_engine\models.py:26
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:27
+#: .\doc_engine\models.py:25
 msgid "Permitted Groups"
 msgstr "授權群組"
 
-#: .\doc_engine\models.py:30
+#: .\doc_engine\models.py:28
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\models.py:31
+#: .\doc_engine\models.py:29
 msgid "Documents"
 msgstr "文件"
 
-#: .\doc_engine\models.py:58
+#: .\doc_engine\models.py:48 .\doc_engine\models.py:81
+msgid "File"
+msgstr "檔案"
+
+#: .\doc_engine\models.py:49
+msgid "Version"
+msgstr "版本"
+
+#: .\doc_engine\models.py:53
+msgid "File Object"
+msgstr "檔案物件"
+
+#: .\doc_engine\models.py:54
+msgid "File Objects"
+msgstr "檔案物件"
+
+#: .\doc_engine\models.py:82
+msgid ""
+"Upload a new version of the document, or keep the same version number "
+"but                           upload a new file to overwrite the old "
+"one.                            If you are just changing the version number, "
+"do not upload any file."
+msgstr ""
+"上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。"
+""
+"如果只更動文件的版本、主旨、序號，則不要上傳任何檔案。"
+""
+#: .\doc_engine\models.py:88
+msgid ""
+"Enter a new version number, or pick a previous version number to make it "
+"active."
+msgstr "請輸入新的版本，或使用現有的版本。"
+
+#: .\doc_engine\models.py:103
 msgid "User"
 msgstr "帳號"
 
-#: .\doc_engine\models.py:59
+#: .\doc_engine\models.py:104
 msgid "Access Time"
 msgstr "存取時間"
 
-#: .\doc_engine\models.py:60
+#: .\doc_engine\models.py:105
 msgid "IP"
 msgstr "IP"
 
-#: .\doc_engine\models.py:61
+#: .\doc_engine\models.py:106
 #, fuzzy
 msgid "Document Accessed"
 msgstr "文件"
 
-#: .\doc_engine\models.py:62
+#: .\doc_engine\models.py:107
 msgid "Success?"
 msgstr "成功?"
 
-#: .\doc_engine\models.py:65
+#: .\doc_engine\models.py:110
 #, fuzzy
 msgid "Access Record"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:66
+#: .\doc_engine\models.py:111
 msgid "Access Records"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:74
+#: .\doc_engine\models.py:119
 msgid "SUCCESS"
 msgstr "存取成功"
 
-#: .\doc_engine\models.py:76
+#: .\doc_engine\models.py:121
 msgid "FAILURE"
 msgstr "存取失敗"
 
-#: .\doc_engine\models.py:89 .\doc_engine\models.py:114
+#: .\doc_engine\models.py:134 .\doc_engine\models.py:159
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\models.py:90 .\doc_engine\models.py:115
+#: .\doc_engine\models.py:135 .\doc_engine\models.py:160
 msgid "Batch Number"
 msgstr "批次序號"
 
-#: .\doc_engine\models.py:91
+#: .\doc_engine\models.py:136
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:92
+#: .\doc_engine\models.py:137
 msgid "Date Manufactured"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:93
+#: .\doc_engine\models.py:138
 msgid "Physical Location"
 msgstr "實物位置"
 
-#: .\doc_engine\models.py:96 .\doc_engine\models.py:97
+#: .\doc_engine\models.py:141
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:109
+#: .\doc_engine\models.py:142
+msgid "Batch Records"
+msgstr "批次記錄"
+
+#: .\doc_engine\models.py:154
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:116
+#: .\doc_engine\models.py:161
 msgid "From"
 msgstr "自"
 
-#: .\doc_engine\models.py:117
+#: .\doc_engine\models.py:162
 msgid "To"
 msgstr "至"
 
@@ -152,52 +185,52 @@ msgstr "至"
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\stream\api.py:47 .\stream\api.py:92
+#: .\stream\api.py:52 .\stream\api.py:97
 msgid "Either content or link has to be non-empty"
 msgstr "內容或連接不可為空"
 
-#: .\stream\api.py:64 .\stream\api.py:106
+#: .\stream\api.py:69 .\stream\api.py:111
 msgid "StreamPost ID must be supplied"
 msgstr ""
 
-#: .\stream\api.py:72 .\stream\api.py:114
+#: .\stream\api.py:77 .\stream\api.py:119
 msgid "No StreamPost with the specified ID was found"
 msgstr ""
 
-#: .\stream\api.py:78
+#: .\stream\api.py:83
 msgid "Only the original poster can update the post"
 msgstr ""
 
-#: .\stream\api.py:120
+#: .\stream\api.py:125
 msgid "Only the original poster can delete the post"
 msgstr ""
 
-#: .\stream\api.py:147 .\stream\api.py:180
+#: .\stream\api.py:152 .\stream\api.py:185
 msgid ""
 "No post has the specified ID, or the user has no permission to access it"
 msgstr ""
 
-#: .\stream\api.py:151 .\stream\api.py:185
+#: .\stream\api.py:156 .\stream\api.py:190
 msgid "No Post ID was supplied!"
 msgstr ""
 
-#: .\stream\api.py:176 .\stream\api.py:215
+#: .\stream\api.py:181 .\stream\api.py:220
 msgid "Invalid content"
 msgstr ""
 
-#: .\stream\api.py:192 .\stream\api.py:227
+#: .\stream\api.py:197 .\stream\api.py:232
 msgid "Both Post and Comment IDs must be supplied!"
 msgstr ""
 
-#: .\stream\api.py:206
+#: .\stream\api.py:211
 msgid "Only the original poster can update the comment!"
 msgstr ""
 
-#: .\stream\api.py:220 .\stream\api.py:243
+#: .\stream\api.py:225 .\stream\api.py:248
 msgid "Invalid Post or Comment ID"
 msgstr ""
 
-#: .\stream\api.py:235
+#: .\stream\api.py:240
 msgid "Only the original poster can delete the comment!"
 msgstr ""
 
@@ -307,7 +340,6 @@ msgid "Enter Serial Number/Document Title"
 msgstr "請用文件序號或主旨查詢"
 
 #: .\templates\flatpages\default.html.py:28
-#, fuzzy
 msgid "Document Search and Retrieval"
 msgstr "文件查詢"
 

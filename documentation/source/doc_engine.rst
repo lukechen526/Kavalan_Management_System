@@ -49,6 +49,7 @@ GET /api/documents?q=Lab
 Model
 ^^^^^^^
 .. autoclass:: doc_engine.models.Document
+.. autoclass:: doc_engine.models.FileObject
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^

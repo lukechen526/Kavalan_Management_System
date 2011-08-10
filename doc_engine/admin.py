@@ -54,7 +54,6 @@ class BatchRecordAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Document, DocumentAdmin)
-admin.site.register(FileObject)
 admin.site.register(AccessRecord)
 admin.site.register(BatchRecord, BatchRecordAdmin)
   

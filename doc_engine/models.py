@@ -74,10 +74,8 @@ def deleteDocumentWithZeroVersion(sender, **kwargs):
     try:
         if file_obj.document.versions.count() == 0 :
             file_obj.document.delete()
-            
     except Document.DoesNotExist:
         pass
-
 
 class DocumentForm(forms.ModelForm):
     file = forms.FileField(label=ugettext_lazy('File'), required=False,
