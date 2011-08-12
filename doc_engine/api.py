@@ -29,7 +29,7 @@ class DocumentHandler(BaseHandler):
 class BatchRecordHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = BatchRecord
-    fields = ('name', 'batch_number', 'date_manufactured', 'location')
+    fields = ('name', 'batch_number', 'date_manufactured', 'date_manufactured_minguo', 'location')
 
     @validate(BatchRecordSearchForm, 'GET')
     def read(self, request):

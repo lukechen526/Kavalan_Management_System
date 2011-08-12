@@ -4,6 +4,7 @@ from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
 from django.db.models.signals import pre_delete, post_delete
 from django.dispatch import receiver
+from datetime import timedelta
 
 class Document(models.Model):
     """
@@ -42,7 +43,13 @@ class Document(models.Model):
 class FileObject(models.Model):
     """
     Model for storing the file path to the actual file on the disk and the version number. It then points
-    to the Document object. 
+    to the Document object.
+
+    - document: ForeignKey to Document
+    - file: FileField
+    - version: CharField
+    - uploaded_date: DateTimeField, auto_now_add=True
+    
     """
     document = models.ForeignKey(Document, related_name='versions')
     file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
@@ -59,7 +66,7 @@ class FileObject(models.Model):
 @receiver(pre_delete, sender=FileObject)
 def deleteFileOnServer(sender, **kwargs):
     """
-    When a FileObject record is being removed, deletes the associated file from storage
+    When a FileObject row is being removed from the database, deletes the associated file from storage.
     """
     file_obj = kwargs['instance']
     file_obj.file.delete()
@@ -67,8 +74,8 @@ def deleteFileOnServer(sender, **kwargs):
 @receiver(post_delete, sender=FileObject)
 def deleteDocumentWithZeroVersion(sender, **kwargs):
     """
-    After a FileObject is deleted, if the Document it points toward to no longer has any more associated FileObjects,
-    then remove it from database
+    After a FileObject is deleted, if the Document it points to no longer has any associated FileObjects,
+    this function removes it from the database.
     """
     file_obj = kwargs['instance']
     try:
@@ -144,11 +151,9 @@ class BatchRecord(models.Model):
     def __unicode__(self):
         return unicode(self.batch_number)
 
-    def save(self, *args, **kwargs):
-        if self.date_manufactured.year <= 1000:
-            #Convert MINGUO Year to CE before saving
-            self.date_manufactured = self.date_manufactured.replace(year=self.date_manufactured.year+MINGUO)
-        super(BatchRecord, self).save(*args, **kwargs)
+    def date_manufactured_minguo(self):
+        return self.date_manufactured.replace(year=self.date_manufactured.year-1911)
+
 
 class BatchRecordInputForm(forms.ModelForm):
     date_manufactured = forms.DateField(label=ugettext_lazy('Date of Manufacture'))
