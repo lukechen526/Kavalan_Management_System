@@ -21,8 +21,14 @@
     <script type="text/javascript" src={{ STATIC_URL }}js/backbone-min.js></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.multiselect.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/stream.js"></script>
+
+    {% if not debug %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/stream.js"></script>
+    {% else %}
+        <script type="text/javascript" src="{{ STATIC_URL }}js/all-min.js"></script>
+    {% endif %}
+
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
 
 

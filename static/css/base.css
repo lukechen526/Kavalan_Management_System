@@ -347,96 +347,96 @@ input.ui-widget{
 
 /*For Stream app related items*/
 
-#stream{
+.stream{
     width: 40%;
     margin-left: auto;
     margin-right: auto;
 
 }
 
-#create-post{
+.stream .create-post{
     width:95%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
 
 }
-#prompt{
+.stream .prompt{
     display:block;
     width: 100%;
 }
-#new-post-content{
+.stream .new-post-content{
     resize: none;
     text-align: left;
     width: 100%;
 
 }
-#new-post-link{
+.stream .new-post-link{
     display: block;
     width: 100%;
     padding:  1px 1px;
 }
 
-#post-button{
+.stream .post-button{
    font-size: 1.1em !important;
    padding:  2px 4px 2px 4px;
 }
 
-#create-post *.ui-multiselect{
+.stream .create-post *.ui-multiselect{
 }
 
-#create-post-errors{
+.stream .create-post-errors{
     color: red;
     display: block;
 }
 
-#stream-posts{
+.stream .stream-posts{
     width: 100%;
     margin-left:auto;
     margin-right: auto;
     margin-top: 30px;
 }
 
-.stream-post{
+.stream .stream-post{
     border: 1px solid #F2F2F2;
     padding: 10px 5px;
     font-size: 15px;
 
 }
-.poster-name{
+.stream .poster-name{
   color: #3366CC;
 }
 
-.processed-content{
+.stream .processed-content{
     padding: 15px 0;
 
 }
 
-.group-name{
+.stream .group-name{
     padding: 0 5px;
     color: #3366CC;
 }
 
-.link{
+.stream .link{
     display: block;
 }
-#load-more{
+.stream .load-more{
     width: 100%;
     text-align: center;
 }
-.comment-list{
+.stream .comment-list{
     position: relative;
     padding: 10px 5px 10px 5px;
     display:none;
 }
 
-.comment-count{
+.stream .comment-count{
     text-decoration: underline;
     cursor: pointer;
     color: #3366CC;
 }
 
-.stream-post-comment{
+.stream .stream-post-comment{
     font-size: smaller;
     background-color: #EDEFF4;
     width: 100%;
@@ -445,11 +445,11 @@ input.ui-widget{
     margin-bottom: 3px;
 }
 
-.stream-post-comment div {
+.strea .stream-post-comment div {
     padding: 10px 0 10px 0;
 }
 
-.write-comment{
+.stream .write-comment{
     width: 90%;
     margin-top: 5px;
 

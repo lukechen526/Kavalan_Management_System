@@ -25,7 +25,7 @@ window.StreamComments = {};
 
 window.CommentView = Backbone.View.extend({
     tagName: "div",
-    template: _.template($('#post-comment-template').html()),
+    template: _.template($('.stream .post-comment-template').html()),
     initialize: function(){
         this.model.view = this;
         _.bindAll(this, 'render');
@@ -89,7 +89,7 @@ window.StreamPost = Backbone.Model.extend({
 window.PostView = Backbone.View.extend({
 
     tagName: "div",
-    template: _.template($('#post-template').html()),
+    template: _.template($('.stream .post-template').html()),
     initialize: function(){
         this.model.view = this;
         _.bindAll(this, 'loadComments','addOne', 'addOneAnimated', 'addAll','render');
@@ -170,17 +170,25 @@ window.StreamCollection = Backbone.Collection.extend({
     comparator: function(post){
         return post.get('rank');
     },
+
+    resetParams: function(){
+        this.url = '/api/stream/';
+    },
+
     setParams: function(offset, num_posts){
         this.url = '/api/stream/?offset='+offset.toString()+'&num_posts='+num_posts.toString();},
 
     fetchNext: function(options){
         this.setParams(this.length, 10);
         this.fetch($({add: true}).extend(options));
+        this.resetParams();
+
     },
 
     updateStream: function(options){
         this.setParams(0, this.length);
         this.fetch();
+        this.resetParams();
     }
 });
 
@@ -188,15 +196,39 @@ window.Stream = new StreamCollection;
 
 
 window.StreamView = Backbone.View.extend({
-    el: $('#stream'),
+    el: $('.stream'),
     events:{
-        "click #post-button": "createNewPost",
-        "click #load-more a": "loadMorePost"
+        "click .post-button": "createNewPost",
+        "click .load-more a": "loadMorePost"
     },
     initialize: function(){
+
+        //Initialize the UI elements
+        this.$('select').multiselect({
+            noneSelectedText: gettext('Post to which groups?'),
+            checkAllText: gettext('Select all groups'),
+            uncheckAllText: gettext('Unselect all groups'),
+            selectedText: gettext('# groups selected')
+        });
+
+        //The Post! button starts out disabled
+        this.$('.post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
+
+        //Toggles the Post! button based on whether or not text is present in new-post-content or new-post-link
+        this.$('.new-post-content, .new-post-link').bind('keyup change', function(){
+            $(this).parents('.stream').find('.post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
+            //Re-enable the button if either content or link is non-empty
+            if($(this).parents('.stream').find('.new-post-content').val() != '' ||$(this).parents('.stream').find('.new-post-link').val() != ''){
+                $(this).parents('.stream').find('.post-button').removeAttr('disabled').removeClass('ui-state-disabled');
+            }
+        });
+
+        //Binds functions
         _.bindAll(this, 'addOne', 'addOneAnimated', 'addAll', 'refresh');
         Stream.bind('reset', this.refresh);
         Stream.bind('error', this.showError);
+
+        //Initializes the Stream collection
         Stream.fetch();
 
          //Refresh the stream every 30 seconds
@@ -204,25 +236,25 @@ window.StreamView = Backbone.View.extend({
     },
     createNewPost: function(e){
         e.preventDefault();
-        var groups = $("#id_groups").multiselect("getChecked").map(function(){return this.value;}).get();
+        var groups = this.$("select").multiselect("getChecked").map(function(){return this.value;}).get();
 
         //Validation
-        $('#create-post-errors').empty();
+        $('.create-post-errors').empty();
         if(groups.length == 0){
-            $('#create-post-errors').append(document.createTextNode(gettext('You must select at least one group to post to!')));
+           this.$('.create-post-errors').append(document.createTextNode(gettext('You must select at least one group to post to!')));
             return 0;
         }
 
         //Create the post object
         var post = Stream.create({
-            content: this.$('#new-post-content').val(),
-            link: this.$('#new-post-link').val(),
+            content: this.$('.new-post-content').val(),
+            link: this.$('.new-post-link').val(),
             groups: groups
         });
 
         if(post){
-            this.$('#new-post-content').val('');
-            this.$('#new-post-link').val('');
+            this.$('new-post-content').val('');
+            this.$('.new-post-link').val('');
             post.setCommentCollection();
             this.addOneAnimated(post);
         }
@@ -244,14 +276,14 @@ window.StreamView = Backbone.View.extend({
         var view = new PostView({model:post});
         el = view.render().el;
         $(el).css('display', 'none');
-        this.$("#stream-posts").prepend(el);
+        this.$(".stream-posts").prepend(el);
         $(el).fadeIn(5000);
     },
 
     addOne: function(post, isNew){
 
         var view = new PostView({model:post});
-        this.$("#stream-posts").prepend(view.render().el);// Lower-ranked posts will be at the bottom
+        this.$(".stream-posts").prepend(view.render().el);// Lower-ranked posts will be at the bottom
     },
 
     addAll: function(){
@@ -259,7 +291,7 @@ window.StreamView = Backbone.View.extend({
     },
     
     refresh: function(){
-        $('#stream-posts').empty();
+        this.$('.stream-posts').empty();
         this.addAll();
     }
 
@@ -267,25 +299,6 @@ window.StreamView = Backbone.View.extend({
 });
 
 window.StreamApp = new StreamView;
-
-$('#id_groups').multiselect({
-    noneSelectedText: gettext('Post to which groups?'),
-    checkAllText: gettext('Select all groups'),
-    uncheckAllText: gettext('Unselect all groups'),
-    selectedText: gettext('# groups selected')
-});
-
-//The Post! button starts out disabled
-$('#post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
-    
-$('#new-post-content, #new-post-link').bind('keyup change', function(){
-    $('#post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
-
-    //Re-enable the button if either content or link is non-empty
-    if($('#new-post-content').val() != '' || $('#new-post-link').val() != ''){
-        $('#post-button').removeAttr('disabled').removeClass('ui-state-disabled');
-    }
-})
 
 
 });
