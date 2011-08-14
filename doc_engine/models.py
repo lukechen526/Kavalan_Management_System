@@ -8,7 +8,6 @@ from datetime import timedelta
 
 class Document(models.Model):
     """
-
     Model for digitally stored documents. The model doesn't actually store the file path; it only stores the version
     number, then delegates the task of storing the file to FileObject, which has a ForeignKey to the Document model.
     
@@ -44,7 +43,6 @@ class Document(models.Model):
 
 class FileObject(models.Model):
     """
-    
     Model for storing the file path to the actual file on the disk and the version number. It then points
     to the Document object.
 
