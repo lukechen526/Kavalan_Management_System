@@ -20,10 +20,8 @@ class UserProfile(models.Model):
 
 @receiver(post_save, sender=User)
 def create_profile(sender, **kwargs):
-    if kwargs['created']:
-        profile = UserProfile(user=kwargs['instance'])
-    else:
-        profile = UserProfile.objects.get(user__pk__exact=kwargs['instance'].pk)
+
+    profile, new = UserProfile.objects.get_or_create(user=kwargs['instance'])
     
      #Figure out the correct format for the full name based on the language
     s = u'%s%s' % (profile.user.first_name, profile.user.last_name)
