@@ -5,3 +5,4 @@ reportlab>= 2.5
 South>=0.7.3
 django-axes>=1.2.4
 Sphinx>=1.0.7
+django-celery>=2.3.1

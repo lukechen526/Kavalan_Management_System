@@ -4,7 +4,6 @@ from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
 from django.db.models.signals import pre_delete, post_delete
 from django.dispatch import receiver
-from datetime import timedelta
 
 class Document(models.Model):
     """
