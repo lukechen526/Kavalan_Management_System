@@ -1,0 +1,50 @@
+/*for document_index.html*/
+#search-doc {
+    margin-right: auto;
+    margin-left: auto;
+    width: 80%;
+    margin-top: 10px;
+
+}
+
+#search-doc input{
+
+    width: 60%;
+}
+
+#search-result {
+    margin-top: 2%;
+    margin-left:auto;
+    margin-right: auto;
+    width:60%;
+}
+
+#search-result a, #search-result>span{
+
+    font-size:large;
+    text-decoration: none;
+    display:block;
+    padding: 5px 0px;
+}
+#search-tabs, #search-tabs>* {
+    border: 0;
+}
+
+
+#search-batch-record form li{
+    list-style-type: none;
+}
+.ui-datepicker{
+ font-size:12px;
+}
+
+.ui-tabs{
+ font-size: 14px;
+}
+
+.physical-location{
+    font-size: larger;
+    font-weight: bold;
+}
+
+}

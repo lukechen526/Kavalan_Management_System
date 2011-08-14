@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-13 10:46+0800\n"
+"POT-Creation-Date: 2011-08-14 18:35+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\settings.py:43
+#: .\settings.py:45
 msgid "Chinese-TW"
 msgstr "正體中文"
 
-#: .\settings.py:44
+#: .\settings.py:46
 msgid "English"
 msgstr "英文"
 
@@ -34,7 +34,7 @@ msgid "User Profiles"
 msgstr "用戶配置"
 
 #: .\accounts\models.py:31 .\stream\models.py:38
-#: .\templates\stream\index.html.py:52
+#: .\stream\templates\stream.html.py:44
 msgid "Groups"
 msgstr "群組"
 
@@ -183,6 +183,18 @@ msgstr "至"
 msgid "Access Denied"
 msgstr "無權存取"
 
+#: .\doc_engine\templates\document_index.html.py:8
+msgid "Search Documents"
+msgstr "搜尋文件"
+
+#: .\doc_engine\templates\document_index.html.py:9
+msgid "Search Batch Record"
+msgstr "搜尋批次記錄"
+
+#: .\doc_engine\templates\document_index.html.py:14
+msgid "Enter Serial Number/Document Title"
+msgstr "請用文件序號或主旨查詢"
+
 #: .\stream\api.py:52 .\stream\api.py:97
 msgid "Either content or link has to be non-empty"
 msgstr "內容或連接不可為空"
@@ -244,7 +256,7 @@ msgstr ""
 msgid "Content"
 msgstr "內容"
 
-#: .\stream\models.py:41 .\templates\stream\index.html.py:48
+#: .\stream\models.py:41 .\stream\templates\stream.html.py:40
 msgid "Link"
 msgstr "連接"
 
@@ -288,6 +300,38 @@ msgstr "秒前"
 msgid "Original Post"
 msgstr ""
 
+#: .\stream\templates\stream.html.py:5
+msgid "What's new?"
+msgstr "有新聞嗎？"
+
+#: .\stream\templates\stream.html.py:7
+msgid "Share a Link!"
+msgstr "分享連接"
+
+#: .\stream\templates\stream.html.py:9
+msgid "Post!"
+msgstr "發文！"
+
+#: .\stream\templates\stream.html.py:16
+msgid "Load more"
+msgstr "更多"
+
+#: .\stream\templates\stream.html.py:52
+msgid "Comment"
+msgstr "留言"
+
+#: .\stream\templates\stream.html.py:56
+msgid "comment"
+msgstr "則留言"
+
+#: .\stream\templates\stream.html.py:60
+msgid "comments"
+msgstr "則留言"
+
+#: .\stream\templates\stream.html.py:67
+msgid "Write a comment"
+msgstr "寫一則留言"
+
 #: .\templates\404.html.py:5
 msgid "File Not Found"
 msgstr "無此檔案"
@@ -296,46 +340,38 @@ msgstr "無此檔案"
 msgid "Server Error"
 msgstr "伺服器錯誤"
 
-#: .\templates\base.html.py:37 .\templates\flatpages\default.html.py:27
+#: .\templates\base.html.py:43 .\templates\flatpages\default.html.py:27
 msgid "Home"
 msgstr "首頁"
 
-#: .\templates\base.html.py:38
+#: .\templates\base.html.py:44
 msgid "Document Search"
 msgstr "文件查詢"
 
-#: .\templates\base.html.py:40
+#: .\templates\base.html.py:46
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\base.html.py:41 .\templates\base.html.py:43
+#: .\templates\base.html.py:47 .\templates\base.html.py:49
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\base.html.py:62
+#: .\templates\base.html.py:68
 msgid "Manage Account"
 msgstr "管理帳號"
 
-#: .\templates\base.html.py:63 .\templates\flatpages\default.html.py:36
+#: .\templates\base.html.py:69 .\templates\flatpages\default.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\base.html.py:68 .\templates\flatpages\default.html.py:38
+#: .\templates\base.html.py:74 .\templates\flatpages\default.html.py:38
 #: .\templates\registration\login.html.py:26
 msgid "Login"
 msgstr "登入"
 
-#: .\templates\doc_engine\index.html.py:8
-msgid "Search Documents"
-msgstr "搜尋文件"
-
-#: .\templates\doc_engine\index.html.py:9
-msgid "Search Batch Record"
-msgstr "搜尋批次記錄"
-
-#: .\templates\doc_engine\index.html.py:14
-msgid "Enter Serial Number/Document Title"
-msgstr "請用文件序號或主旨查詢"
+#: .\templates\index.html.py:3
+msgid "Welcome to Kavalan Management System "
+msgstr "歡迎使用噶瑪蘭系統"
 
 #: .\templates\flatpages\default.html.py:28
 msgid "Document Search and Retrieval"
@@ -408,42 +444,6 @@ msgstr "增新帳號"
 #: .\templates\registration\password_change_done.html.py:7
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
-
-#: .\templates\stream\index.html.py:3
-msgid "Welcome to Kavalan Management System "
-msgstr "歡迎使用噶瑪蘭系統"
-
-#: .\templates\stream\index.html.py:9
-msgid "What's new?"
-msgstr "有新聞嗎？"
-
-#: .\templates\stream\index.html.py:11
-msgid "Share a Link!"
-msgstr "分享連接"
-
-#: .\templates\stream\index.html.py:13
-msgid "Post!"
-msgstr "發文！"
-
-#: .\templates\stream\index.html.py:22
-msgid "Load more"
-msgstr "更多"
-
-#: .\templates\stream\index.html.py:60
-msgid "Comment"
-msgstr "留言"
-
-#: .\templates\stream\index.html.py:64
-msgid "comment"
-msgstr "則留言"
-
-#: .\templates\stream\index.html.py:68
-msgid "comments"
-msgstr "則留言"
-
-#: .\templates\stream\index.html.py:75
-msgid "Write a comment"
-msgstr "寫一則留言"
 
 #~ msgid "unread"
 #~ msgstr "未讀"

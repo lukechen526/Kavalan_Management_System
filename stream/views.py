@@ -1,11 +1,8 @@
-#views for Stream/Index here
 from django.views.generic import TemplateView
 from django import forms
 from django.contrib.auth.models import Group
 
 class StreamIndexView(TemplateView):
-    template_name = "stream/index.html"
-
     def get_context_data(self, **kwargs):
 
         if self.request.user.is_superuser:
