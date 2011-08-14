@@ -45,13 +45,11 @@ window.CommentView = Backbone.View.extend({
 window.StreamPost = Backbone.Model.extend({
     defaults: {content:'', link:'', groups:[]},
     initialize: function(){
-        _.bindAll(this,'refresh','setCommentCollection', 'loadComments');
-        this.setCommentCollection();
+        _.bindAll(this,'setCommentCollection', 'loadComments', 'updateCommentCount');
+        var options = {};
+        this.setCommentCollection(options);
     },
 
-    refresh: function(){
-        this.fetch();
-    },
     validate: function(attrs){
         if(attrs.content == '' && attrs.link == ''){
             
@@ -59,9 +57,15 @@ window.StreamPost = Backbone.Model.extend({
         }
     },
 
-    setCommentCollection: function(){
+    setCommentCollection: function(options){
         if(this.has('id') && window.StreamComments[this.id] !== undefined){
+
+            window.StreamComments[this.id].bind('add', this.updateCommentCount);
+            window.StreamComments[this.id].bind('remove', this.updateCommentCount);
+            window.StreamComments[this.id].bind('reset', this.updateCommentCount);
+
             this.set({comments: window.StreamComments[this.id]});
+            this.get('comments').fetch(options);
         }
         else{
             this.set({comments: undefined});
@@ -70,18 +74,19 @@ window.StreamPost = Backbone.Model.extend({
     
     loadComments: function(options){
         if(this.has('id')){
-            //Check if a local collection of comments already exists. If not, create a new
+             //Check if a local collection of comments already exists. If not, create a new
              //StreamCommentCollection
              if(window.StreamComments[this.id] == undefined){
                     window.StreamComments[this.id] = new StreamCommentCollection;
                     window.StreamComments[this.id].setPostID(this.id);
              }
             
-            this.setCommentCollection();
-            window.StreamComments[this.id].fetch(options);
-            window.StreamComments[this.id].bind('add', this.refresh);
-            window.StreamComments[this.id].bind('remove', this.refresh);
+            this.setCommentCollection(options);
         }
+    },
+
+    updateCommentCount: function(){
+        this.set({comment_count: window.StreamComments[this.id].length}) ;
     }
 
 });
@@ -92,10 +97,8 @@ window.PostView = Backbone.View.extend({
     template: _.template($('.stream .post-template').html()),
     initialize: function(){
         this.model.view = this;
-        _.bindAll(this, 'loadComments','addOne', 'addOneAnimated', 'addAll','render');
+        _.bindAll(this,'loadComments','refreshComments', 'addOne', 'addOneAnimated', 'addAll','render');
         this.model.bind('change', this.render, this);
-        //Reloads comments every 40 secs
-        //setInterval(this.loadComments, 40*1000);
     },
     events: {
       "keydown .write-comment": "writeComment",
@@ -121,6 +124,13 @@ window.PostView = Backbone.View.extend({
     loadComments: function(){
       this.model.loadComments({success: this.render, error:this.render});
     },
+
+    refreshComments: function(){
+        if(this.model.get('comments') !== undefined){
+            this.model.loadComments({success: this.render, error:this.render});
+        }
+    },
+
     writeComment: function(e){
     //If Enter was pressed
         if(e.which == 13){
@@ -140,7 +150,6 @@ window.PostView = Backbone.View.extend({
     render: function(){
         if(this.model.get('poster') !== undefined){
             $(this.el).html(this.template(this.model.toJSON()));
-
             //Load comments if they have been loaded
             if(this.model.has('comments') && this.model.get('comments') !== undefined){
                 comment_list = $(this.el).find('.post-comments');
@@ -231,8 +240,8 @@ window.StreamView = Backbone.View.extend({
         //Initializes the Stream collection
         Stream.fetch();
 
-         //Refresh the stream every 30 seconds
-        //setInterval(Stream.updateStream, 30*1000);
+         //Refresh the stream every 60 seconds
+        setInterval(Stream.updateStream, 60*1000);
     },
     createNewPost: function(e){
         e.preventDefault();
