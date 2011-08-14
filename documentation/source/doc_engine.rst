@@ -48,6 +48,13 @@ GET /api/documents?q=Lab
  
 Model
 ^^^^^^^
+
+There are two models for storing documents in Doc Engine: Document and FileObject. **Document** stores the metadata about each document, i.e.
+the serial number, title, and group permission. It also contains a version number that corresponds to a **FileObject**, which stores the file path
+to the actual file on the disk.
+The user can change the version number for a given Document instance and have it serve a specific version of the file.
+
+
 .. autoclass:: doc_engine.models.Document
 .. autoclass:: doc_engine.models.FileObject
 
