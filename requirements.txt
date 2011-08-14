@@ -3,4 +3,5 @@ Django-piston>=0.2.2
 pyPDF>=1.13
 reportlab>= 2.5
 South>=0.7.3
+django-axes>=1.2.4
 Sphinx>=1.0.7
