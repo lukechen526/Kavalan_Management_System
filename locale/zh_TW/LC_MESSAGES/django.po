@@ -124,7 +124,6 @@ msgid "Success?"
 msgstr "成功?"
 
 #: .\doc_engine\models.py:117
-#, fuzzy
 msgid "Access Record"
 msgstr "存取記錄"
 
