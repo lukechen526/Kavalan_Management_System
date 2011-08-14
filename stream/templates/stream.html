@@ -19,13 +19,7 @@
 
         <div class="stream-post">
 
-            <span class="poster-name" >
-                {% if LANGUAGE_CODE == 'zh-tw' %}
-                    <%=poster.last_name %> <%=poster.first_name%>
-                {% else %}
-                    <%=poster.first_name %> &nbsp; <%=poster.last_name%>
-                {% endif %}
-            </span>
+            <span class="poster-name" ><%=poster.profile.full_name %> </span>
 
             <span class="formatted-time-posted">
                 <%=formatted_time_posted%>

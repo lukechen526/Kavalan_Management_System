@@ -26,6 +26,7 @@ Dependencies
 - Django 1.3
 - `Django-piston`_ >= 0.2.2
 - `pyPDF`_ >= 1.13 and `ReportLab ToolKit`_ >= 2.5
+- `guess-language`_ >=0.2
 - `South`_ >= 0.7.3
 - `Django-axes`_ >= 0.1.1
 - Sphinx >= 1.0.7
@@ -39,4 +40,5 @@ Dependencies
 .. _ReportLab ToolKit: http://www.reportlab.com/software/opensource/rl-toolkit/
 .. _South: http://south.aeracode.org/
 .. _Django-axes: http://code.google.com/p/django-axes/
+.. _guess-language: http://pypi.python.org/pypi/guess-language
 

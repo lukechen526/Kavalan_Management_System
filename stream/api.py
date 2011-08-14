@@ -10,7 +10,7 @@ import json
 class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPost
-    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')),
+    fields = ('id', ('groups',('id', 'name')), ('poster',('username', ('profile', ('full_name',)))),
               'processed_content', 'formatted_time_posted', 'link', 'comment_count', 'rank'  )
 
     def read(self, request, post_id=None):
