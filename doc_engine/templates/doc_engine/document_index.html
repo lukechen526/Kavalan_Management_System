@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block title %} Doc Engine{% endblock %}
+
+{% block extra_head %}
+    <link href="{{ STATIC_URL }}doc-engine.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}doc-engine.js"></script>
+{% endblock %}
+
 {% block content %}
 
     <div id="search-tabs">

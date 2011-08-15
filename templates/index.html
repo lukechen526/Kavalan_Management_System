@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% block title %} {% trans "Welcome to Kavalan Management System " %}{% endblock %}
+{% block extra_head %}
+    <script type="text/javascript" src="{{ STATIC_URL }}stream.js"></script>
+    <link href="{{ STATIC_URL }}stream.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
-
-{% include "stream/stream.html" %}
-
+    {% include "stream/stream.html" %}
 {% endblock %}
 
 {% block footer %}

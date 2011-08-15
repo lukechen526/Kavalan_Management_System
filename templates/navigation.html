@@ -1,0 +1,65 @@
+{% load i18n %}
+{% load url from future %}
+
+<!-- Navigation bar -->
+
+<!-- Nav Menu -->
+<ul id="nav-menu">
+    <li> <a href="/"> {% trans "Home" %} </a></li>
+    <li> <a href="/doc_engine/"> {% trans "Document Search" %}</a></li>
+    {% if user.is_staff %}
+        <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
+        <li> <a href="/documentation/index.html"> {% trans "Help" %} </a></li>
+    {% else %}
+        <li> <a href="/documentation/quickstart.html"> {% trans "Help" %} </a></li>
+
+    {% endif %}
+</ul>
+
+
+<!-- Controls -->
+<div id="controls">
+
+    <!-- Account specific-->
+    {% if user.is_authenticated %}
+        <div id="account-menu">
+
+            <div id="expand-menu">
+                <span id="username">{{ user.username }}</span>
+                <span class="arrow-down"></span>
+            </div>
+
+            <div id="account-options">
+                <ul>
+                    <li><a href="/accounts/manage/" id="manage">{% trans "Manage Account" %}</a></li>
+                    <li><a href="/accounts/logout"> {% trans "Logout" %}</a></li>
+                </ul>
+             </div>
+        </div>
+    {% else %}
+        <a href="/accounts/login/">{% trans "Login" %}</a>
+    {% endif %}
+
+    <!-- Options -->
+    <span id="options-icon"></span>
+    <div id="options">
+        <div id="options-menu">
+            <ul>
+                <li>
+                        <form action="/i18n/setlang/" method="post" id="set-lang">
+                        {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ request.path }}" />
+                            <select name="language">
+                                <option value="zh-tw">正體中文</option>
+                                <option value="en-us">English</option>
+                            </select>
+                            <input type="submit" value="Go" />
+                        </form>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</div>
+
+<!-- End of Navigation Bar -->
