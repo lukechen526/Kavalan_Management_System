@@ -132,6 +132,15 @@ MIDDLEWARE_CLASSES = (
     'axes.middleware.FailedLoginMiddleware'
 )
 
+#Use DummyCache for development
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+    }
+}
+
+
+
 ROOT_URLCONF = 'Kavalan_Management_System.urls'
 
 
