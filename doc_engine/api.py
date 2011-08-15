@@ -3,7 +3,7 @@ from piston.utils import *
 from doc_engine.models import Document, BatchRecord
 from django.db.models import Q
 from dynamo.core import build_query
-from doc_engine.models import BatchRecordSearchForm
+from doc_engine.forms import BatchRecordSearchForm
 from piston.utils import validate
 
 class DocumentHandler(BaseHandler):
