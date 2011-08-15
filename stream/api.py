@@ -1,7 +1,8 @@
 #API for Stream
 from piston.handler import BaseHandler
 from piston.utils import *
-from stream.models import StreamPost, StreamPostComment, StreamPostValidationForm, StreamPostCommentValidationForm
+from stream.models import StreamPost, StreamPostComment
+from stream.forms import StreamPostValidationForm, StreamPostCommentValidationForm
 from django.utils.translation import ugettext
 import json
 

@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
-from doc_engine.models import Document, BatchRecordSearchForm, AccessRecord
+from doc_engine.models import Document,  AccessRecord
+from doc_engine.forms import BatchRecordSearchForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from reportlab.pdfgen import canvas

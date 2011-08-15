@@ -1,5 +1,6 @@
 from django.contrib import admin
-from doc_engine.models import Document, FileObject, DocumentForm, AccessRecord, BatchRecord, BatchRecordInputForm
+from doc_engine.models import Document, FileObject, AccessRecord, BatchRecord
+from doc_engine.forms import DocumentForm, BatchRecordInputForm
 
 class FileObjectInline(admin.TabularInline):
     model = FileObject

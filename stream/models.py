@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy, ugettext
 from django.db.models.signals import post_save
@@ -87,11 +86,6 @@ class StreamPost(models.Model):
             else:
                 return unicode('%d %s' %(diff.seconds, ugettext('seconds ago') ))
 
-class StreamPostValidationForm(ModelForm):
-    class Meta:
-        model = StreamPost
-        fields = ('groups', 'content', 'link')
-
 class StreamPostComment(models.Model):
     poster = models.ForeignKey(User, verbose_name=ugettext_lazy('Poster'))
     stream_post = models.ForeignKey(StreamPost, related_name='comments', verbose_name=ugettext_lazy('Original Post'))
@@ -143,7 +137,3 @@ def update_stream_post_rank(sender, **kwargs):
     stream_post = kwargs['instance'].stream_post
     stream_post.save()
     
-class StreamPostCommentValidationForm(ModelForm):
-    class Meta:
-        model = StreamPostComment
-        fields = ('content',)
