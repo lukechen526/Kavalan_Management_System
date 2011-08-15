@@ -213,12 +213,6 @@ window.StreamView = Backbone.View.extend({
     initialize: function(){
 
         //Initialize the UI elements
-        this.$('select').multiselect({
-            noneSelectedText: gettext('Post to which groups?'),
-            checkAllText: gettext('Select all groups'),
-            uncheckAllText: gettext('Unselect all groups'),
-            selectedText: gettext('# groups selected')
-        });
 
         //The Post! button starts out disabled
         this.$('.post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
@@ -245,7 +239,7 @@ window.StreamView = Backbone.View.extend({
     },
     createNewPost: function(e){
         e.preventDefault();
-        var groups = this.$("select").multiselect("getChecked").map(function(){return this.value;}).get();
+        var groups = window.get_selected_groups();
 
         //Validation
         $('.create-post-errors').empty();
