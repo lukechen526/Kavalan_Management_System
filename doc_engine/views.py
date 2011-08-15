@@ -17,7 +17,7 @@ class DocumentIndexView(TemplateView):
     """
     Displays the index page for Doc Engine
     """
-    template_name = "document_index.html"
+    template_name = "doc_engine/document_index.html"
     def get_context_data(self, **kwargs):
         # Call the base implementation first to get a context
         context = super(DocumentIndexView, self).get_context_data(**kwargs)
