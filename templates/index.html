@@ -1,73 +1,20 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load cache %}
+{% get_current_language as LANGUAGE_CODE %}
+
 {% block title %} {% trans "Welcome to Kavalan Management System " %}{% endblock %}
+{% block extra_head %}
+    <script type="text/javascript" src="{{ STATIC_URL }}stream.js"></script>
+    <link href="{{ STATIC_URL }}stream.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block content %}
-
-<div id="stream">
-
-    <div id="create-post">
-        <span id="prompt"> {% trans "What's new?" %}</span>
-        <textarea id ="new-post-content" rows="5" cols="40"></textarea>
-        <input id="new-post-link" placeholder="{% trans 'Share a Link!' %}" type="text"/>
-        {{ user_group_select_form.groups }}
-        <input id="post-button" type="submit" value="{% trans "Post!" %}"/>
-        <span id="create-post-errors"></span>
-    </div>
-
-    <div id="stream-posts">
-
-
-    </div>
-
-    <div id="load-more"><a href=""> {% trans "Load more" %}</a></div>
-
-
-
-
-<script type="text/template" id="post-template">
-
-    <div class="stream-post">
-        <span class="poster-name" >
-            {% if LANGUAGE_CODE == 'zh-tw' %}
-                <%=poster.last_name %> <%=poster.first_name%>
-            {% else %}
-                <%=poster.first_name %> &nbsp; <%=poster.last_name%>
-            {% endif %}
-        </span>
-        <span class="formatted-time-posted">
-            <%=formatted_time_posted%>
-        </span>
-        <div class="processed-content">
-            <%=processed_content%>
-        </div>
-
-        <% if (link != ""){ %>
-            <span class="link">
-                {% trans "Link" %}: <a href="<%=link%>"><%=link%></a>
-            </span>
-        <%}%>
-
-        <span>{% trans "Groups" %}:
-        <%_.each(groups, function(group){%>
-            <span class="group-name"> <%=group.name%></span>
-        <%});%>
-        </span>
-
-
-    </div>
-
-    
-</script>
-
-
-</div>
-
-
-
-
+    {% cache 500 stream-index user.username LANGUAGE_CODE %}
+        {% include "stream/stream-index.html" %}
+    {% endcache %}
     
 {% endblock %}
 
 {% block footer %}
-
 {% endblock %}

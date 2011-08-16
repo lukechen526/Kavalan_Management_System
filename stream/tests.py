@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User, Group
 from django.test.client import Client
-from stream.models import StreamPost, StreamPostComment
 import json
 
 

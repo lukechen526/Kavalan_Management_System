@@ -17,6 +17,7 @@ Contents:
    dynamo
    stream
    security
+   licenses
 
 Indices and tables
 ==================

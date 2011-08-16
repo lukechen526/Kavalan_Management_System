@@ -1,5 +1,4 @@
 from django.db import models
-from django.forms import ModelForm
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy, ugettext
 from django.db.models.signals import post_save
@@ -9,7 +8,9 @@ import cgi
 
 def calculate_rank(inst):
 
-    #Convert both the time posted and current time to seconds since the Epoch time
+    #Convert both the time posted and current time to seconds since the Epoch time.
+    #Rank = 0.7*(the time of rank calculation in seconds since the Epoch time) + 0.3*(the time of posting in seconds since the Epoch time)
+
     try:
         time_posted = int(time.mktime(inst.time_posted.timetuple()))
     except AttributeError:
@@ -21,6 +22,17 @@ def calculate_rank(inst):
 
 
 class StreamPost(models.Model):
+    """
+    Model for posts in the Stream.
+
+    - poster: ForeignKey to User
+    - groups: ManyToManyField to Group
+    - time_posted: DateTimeField, auto_now_add=True
+    - content: TextField, blank=True
+    - link: URLField, blank=True
+    - rank: BigIntegerField
+    
+    """
     poster = models.ForeignKey(User, related_name='stream_posts', verbose_name=ugettext_lazy('Poster'))
     groups = models.ManyToManyField(Group, related_name='stream_posts', verbose_name=ugettext_lazy('Groups'))
     time_posted = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Time Posted'))
@@ -45,6 +57,9 @@ class StreamPost(models.Model):
         return unicode(cgi.escape(self.content))
 
     def formatted_time_posted(self):
+        """
+        Formats the time of posting into more human-readable form, e.g. "4 minutes ago", "3 days ago".
+        """
         now = datetime.datetime.now()
         diff = now - self.time_posted
 
@@ -71,16 +86,11 @@ class StreamPost(models.Model):
             else:
                 return unicode('%d %s' %(diff.seconds, ugettext('seconds ago') ))
 
-class StreamPostValidationForm(ModelForm):
-    class Meta:
-        model = StreamPost
-        fields = ('groups', 'content', 'link')
-
 class StreamPostComment(models.Model):
     poster = models.ForeignKey(User, verbose_name=ugettext_lazy('Poster'))
     stream_post = models.ForeignKey(StreamPost, related_name='comments', verbose_name=ugettext_lazy('Original Post'))
     time_posted = models.DateTimeField(auto_now_add=True, verbose_name=ugettext_lazy('Time Posted'))
-    content = models.TextField(blank=True, verbose_name=ugettext_lazy('Content'))
+    content = models.TextField(verbose_name=ugettext_lazy('Content'))
 
     class Meta:
         ordering = ['-stream_post', 'time_posted']

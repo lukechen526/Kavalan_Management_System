@@ -1,5 +1,6 @@
 from django.views.generic import TemplateView
-from doc_engine.models import Document, BatchRecordSearchForm, AccessRecord
+from doc_engine.models import Document,  AccessRecord
+from doc_engine.forms import BatchRecordSearchForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from reportlab.pdfgen import canvas
@@ -17,11 +18,10 @@ class DocumentIndexView(TemplateView):
     """
     Displays the index page for Doc Engine
     """
-    template_name = "doc_engine/index.html"
+    template_name = "doc_engine/document_index.html"
+    
     def get_context_data(self, **kwargs):
-        # Call the base implementation first to get a context
         context = super(DocumentIndexView, self).get_context_data(**kwargs)
-        # Add in a QuerySet of all the books
         context['batch_record_search_form'] = BatchRecordSearchForm(auto_id=True)
         return context
 
@@ -118,7 +118,7 @@ def DocumentAccess(request, pk):
     document = get_object_or_404(Document, pk=pk)
     document_groups = list(document.permitted_groups.all())
 
-    filepath = os.path.join(MEDIA_ROOT, document.file.name)
+    filepath = os.path.join(MEDIA_ROOT, document.file().name)
     #Generate safe file names for output based on document's serial number and version; the extension should be preserved
     extension = os.path.splitext(filepath)[1]
     output_filename = "".join([x for x in u"%sv%s" %(document.serial_number, document.version) if x.isalpha() or x.isdigit()]) + extension

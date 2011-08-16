@@ -173,7 +173,7 @@ span.arrow-down {
 }
 
 #options-icon{
-    background-image: url('/static/css/gear.png');
+    background-image: url('/static/gear.png');
     background-repeat: no-repeat;
     background-size: 25px 25px;
     width:30px;
@@ -268,55 +268,6 @@ span.arrow-down {
     color: red;
 }
 
-/*for doc_engine/index.html*/
-#search-doc {
-    margin-right: auto;
-    margin-left: auto;
-    width: 80%;
-    margin-top: 10px;
-
-}
-
-#search-doc input{
-
-    width: 60%;
-}
-
-#search-result {
-    margin-top: 2%;
-    margin-left:auto;
-    margin-right: auto;
-    width:60%;
-}
-
-#search-result a, #search-result>span{
-
-    font-size:large;
-    text-decoration: none;
-    display:block;
-    padding: 5px 0px;
-}
-#search-tabs, #search-tabs>* {
-    border: 0;
-}
-
-
-#search-batch-record form li{
-    list-style-type: none;
-}
-.ui-datepicker{
- font-size:12px;
-}
-
-.ui-tabs{
- font-size: 14px;
-}
-
-.physical-location{
-    font-size: larger;
-    font-weight: bold;
-}
-
 
 /* for index.html*/
 footer{
@@ -341,86 +292,4 @@ footer p{
 /*For input buttons*/
 input.ui-widget{
     font-size: 0.9em !important;
-}
-
-
-
-/*For Stream app related items*/
-
-#stream{
-    width: 40%;
-    margin-left: auto;
-    margin-right: auto;
-
-}
-
-#create-post{
-    width:95%;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative;
-
-}
-#prompt{
-    display:block;
-    width: 100%;
-}
-#new-post-content{
-    resize: none;
-    text-align: left;
-    width: 100%;
-
-}
-#new-post-link{
-    display: block;
-    width: 100%;
-    padding:  1px 1px;
-}
-
-#post-button{
-   font-size: 1.1em !important;
-   padding:  2px 4px 2px 4px;
-}
-
-#create-post *.ui-multiselect{
-}
-
-#create-post-errors{
-    color: red;
-    display: block;
-}
-
-#stream-posts{
-    width: 100%;
-    margin-left:auto;
-    margin-right: auto;
-    margin-top: 30px;
-}
-
-.stream-post{
-    border: 1px solid #F2F2F2;
-    padding: 10px 5px;
-    font-size: 15px;
-
-}
-.poster-name{
-  color: #3366CC;
-}
-
-.processed-content{
-    padding: 15px 0;
-
-}
-
-.group-name{
-    padding: 0 5px;
-    color: #3366CC;
-}
-
-.link{
-    display: block;
-}
-#load-more{
-    width: 100%;
-    text-align: center;
 }

@@ -1,7 +1,8 @@
 #API for Stream
 from piston.handler import BaseHandler
 from piston.utils import *
-from stream.models import StreamPost, StreamPostComment, StreamPostValidationForm
+from stream.models import StreamPost, StreamPostComment
+from stream.forms import StreamPostValidationForm, StreamPostCommentValidationForm
 from django.utils.translation import ugettext
 import json
 
@@ -10,7 +11,7 @@ import json
 class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPost
-    fields = ('id', ('groups',('id', 'name')), ('poster',('username', 'last_name', 'first_name')),
+    fields = ('id', ('groups',('id', 'name')), ('poster',('username', ('profile', ('full_name',)))),
               'processed_content', 'formatted_time_posted', 'link', 'comment_count', 'rank'  )
 
     def read(self, request, post_id=None):
@@ -23,8 +24,13 @@ class StreamHandler(BaseHandler):
         #Retrieves the posts accessible to those groups, sorted by rank.
         posts = StreamPost.objects.filter(groups__id__in=groups).distinct('id')
         if post_id:
-            post_id = int(post_id)
-            return posts.filter(id=post_id)
+            try:
+                return posts.get(id__exact=post_id)
+            
+            except StreamPost.DoesNotExist:
+                resp = rc.BAD_REQUEST
+                resp.write('Invalid Post ID')
+                return resp
         else:
             #If no post_id was specified, returns 'num_posts' results, offset by 'offset'.
             return posts[offset:offset+num_posts]
@@ -122,3 +128,134 @@ class StreamHandler(BaseHandler):
 
         post.delete()
         return rc.DELETED
+
+
+class StreamCommentHandler(BaseHandler):
+    allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
+    model = StreamPostComment
+    fields = ('id',
+              ('poster',('username', 'last_name', 'first_name')),
+              'formatted_time_posted',
+              'processed_content')
+
+    def read(self, request, post_id=None, comment_id=None):
+        user = request.user
+        groups = user.groups.all().values_list('id', flat=True).order_by('id')
+
+        #Find a post that matches the given post_id and belongs to one of the request
+        #user's groups
+        if post_id:
+            try:
+                post = StreamPost.objects.get(id__exact=int(post_id), groups__id__in=groups)
+                return post.comments.all()
+            except StreamPost.DoesNotExist:
+                resp = rc.BAD_REQUEST
+                resp.write(ugettext('No post has the specified ID, or the user has no permission to access it'))
+                return resp
+        else:
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('No Post ID was supplied!'))
+            return resp
+
+    def create(self, request, post_id=None, comment_id=None):
+        user = request.user
+        groups = user.groups.all().values_list('id', flat=True).order_by('id')
+
+        model = request.POST.get('model', '')
+        if model:
+            comment = StreamPostCommentValidationForm(json.loads(model))
+        else:
+            comment = StreamPostCommentValidationForm(request.POST)
+
+        #Find a post that matches the given post_id and belongs to one of the request
+        #user's groups
+        if post_id:
+            try:
+                post = StreamPost.objects.get(id__exact=int(post_id), groups__id__in=groups)
+                if comment.is_valid():
+                    comment = StreamPostComment.objects.create(poster=request.user,
+                                                           stream_post=post,
+                                                           content=comment.cleaned_data['content'])
+                    return comment
+                else:
+                    resp = rc.BAD_REQUEST
+                    resp.write(ugettext('Invalid content'))
+                    return resp
+            except StreamPost.DoesNotExist:
+                resp = rc.BAD_REQUEST
+                resp.write(ugettext('No post has the specified ID, or the user has no permission to access it'))
+                return resp
+
+        else:
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('No Post ID was supplied!'))
+            return resp
+
+    def update(self, request, post_id=None, comment_id=None):
+        user = request.user
+        if not (post_id and comment_id):
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('Both Post and Comment IDs must be supplied!'))
+            return resp
+
+        model = request.POST.get('model', '')
+        if model:
+            comment_update = StreamPostCommentValidationForm(json.loads(model))
+        else:
+            comment_update = StreamPostCommentValidationForm(request.POST)
+        
+        try:
+            comment = StreamPostComment.objects.get(stream_post__id__exact=int(post_id),
+                                                    id__exact=int(comment_id))
+            if user != comment.poster:
+                resp = rc.FORBIDDEN
+                resp.write(ugettext('Only the original poster can update the comment!'))
+                return resp
+            
+            if comment_update.is_valid():
+                comment.content = comment_update.cleaned_data['content']
+                comment.save()
+                return comment
+            else:
+                resp = rc.BAD_REQUEST
+                resp.write(ugettext('Invalid content'))
+                return resp
+            
+        except StreamPostComment.DoesNotExist:
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('Invalid Post or Comment ID'))
+            return resp
+        
+    def delete(self, request, post_id=None, comment_id=None):
+        user = request.user
+        if not (post_id and comment_id):
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('Both Post and Comment IDs must be supplied!'))
+            return resp
+
+        try:
+            comment = StreamPostComment.objects.get(stream_post__id__exact=int(post_id),
+                                                    id__exact=int(comment_id))
+            if user != comment.poster:
+                resp = rc.FORBIDDEN
+                resp.write(ugettext('Only the original poster can delete the comment!'))
+                return resp
+            
+            comment.delete()
+            return rc.DELETED
+        
+        except StreamPostComment.DoesNotExist:
+            resp = rc.BAD_REQUEST
+            resp.write(ugettext('Invalid Post or Comment ID'))
+            return resp
+
+
+
+        
+        
+
+
+
+        
+
+    

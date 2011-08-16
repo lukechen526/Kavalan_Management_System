@@ -21,3 +21,12 @@ gets translated into::
 Dynamo does all the necessary validation on the user input to ensure that the fields to which the filters are applied
 actually exist.
 
+Core Functions
+^^^^^^^^^^^^^^^^^^^^
+.. automodule:: dynamo.core
+   :members:
+
+
+Tests
+^^^^^^^^^^^^^^^^^^^^^^^^^
+.. autoclass:: dynamo.tests.BuildQueryTestCase
