@@ -9,29 +9,32 @@ $(document).ready(function(){
     /* section for navigation bar */
 
       //Mark the current link in the nav bar
-     $("nav ul li a").each(function(){
+    $("nav ul li a").each(function(){
 
-        if($(this).attr("href") == window.location.pathname)
-        {
-            $(this).addClass("current");
-        }
-     });
+       if($(this).attr("href") == window.location.pathname)
+       {
+         $(this).addClass("current");
+       }
+    });
 
     //Toggle the display of account-options based on clicking of #username
 
-     $("#expand-menu").bind('click', function(event){
+    $("#expand-menu").bind('click', function(event){
          event.preventDefault();
-         $('#options-icon, #options-menu').removeClass('active');
-         $('#expand-menu, #username, #account-options').toggleClass('active');
-     });
+         $('.active').not('#account-menu, #account-menu *').removeClass('active');
+         $('#account-menu, #account-menu *').toggleClass('active');
+    });
 
-     $("#options-icon").bind('click', function(event){
+    $("#unseen-notices-count").bind('click', function(event){
             event.preventDefault();
-            $('#expand-menu, #username, #account-options').removeClass('active');
-            $('#options-icon, #options-menu').toggleClass('active');
-     });
+            $('.active').not('#notices, #notices * ').removeClass('active');
+            $('#notices, #notices *').toggleClass('active');
+    });
 
+    $("#options-icon").bind('click', function(event){
+            event.preventDefault();
+            $('.active').not('#options, #options *').removeClass('active');
+            $('#options, #options *').toggleClass('active');
+    });
 
-
-    
 });

@@ -29,6 +29,7 @@ Dependencies
 - `guess-language`_ >=0.2
 - `South`_ >= 0.7.3
 - `Django-axes`_ >= 0.1.1
+_ `Django-notification`_ >= 0.2.0
 - Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
@@ -41,4 +42,5 @@ Dependencies
 .. _South: http://south.aeracode.org/
 .. _Django-axes: http://code.google.com/p/django-axes/
 .. _guess-language: http://pypi.python.org/pypi/guess-language
+.. _Django-notification: https://github.com/jtauber/django-notification
 

@@ -40,9 +40,21 @@
         <a href="/accounts/login/">{% trans "Login" %}</a>
     {% endif %}
 
+    <!-- Notices-->
+    <div id="notices">
+    {% with notices=user.profile.unseen_notices %}
+        <span id="unseen-notices-count" class="{% if notices.count %}unseen{% endif %}"><span>{{ notices.count }}</span></span>
+        <div id="unseen-notices">
+            <div id="unseen-notices-header"><div>{% trans "Notifications" %}</div><a href="{% url "notification_notices" %}">{% trans "View All" %}</a></div>
+            <div id="unseen-notices-list">{% include "notification/notices-list.html" %}</div>
+        </div>
+    {% endwith %}
+    </div>
+
+
     <!-- Options -->
-    <span id="options-icon"></span>
     <div id="options">
+        <div id="options-icon"></div>
         <div id="options-menu">
             <ul>
                 <li>
