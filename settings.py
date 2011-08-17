@@ -165,9 +165,8 @@ INSTALLED_APPS = (
     'doc_engine',
     'accounts',
     'dynamo',
-    'piston',
     'stream',
-    'south',
+    'custom_notification',
     'axes',
     'notification',
     'Kavalan_Management_System', #added to permit Javascript i18n

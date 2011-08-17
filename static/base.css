@@ -246,7 +246,6 @@ span.arrow-down {
 
     display: block;
     font-size: small;
-    white-space:nowrap;
     padding: 0 10px;
     background-color: #EEF0F9;
     border-top: 1px solid #DDDFE7;
@@ -264,9 +263,7 @@ span.arrow-down {
 }
 
 #options-icon{
-    background-image: url('/static/gear.png');
-    background-repeat: no-repeat;
-    background-size: 25px 25px;
+    background: transparent url('/static/options.png') no-repeat center;
     width:30px;
     height: 30px;
     cursor: pointer;

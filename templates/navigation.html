@@ -46,7 +46,7 @@
         <span id="unseen-notices-count" class="{% if notices.count %}unseen{% endif %}"><span>{{ notices.count }}</span></span>
         <div id="unseen-notices">
             <div id="unseen-notices-header"><div>{% trans "Notifications" %}</div><a href="{% url "notification_notices" %}">{% trans "View All" %}</a></div>
-            <div id="unseen-notices-list">{% include "notification/notices-list.html" %}</div>
+            <div id="unseen-notices-list">{% include "notification/nav-notices-list.html" %}</div>
         </div>
     {% endwith %}
     </div>

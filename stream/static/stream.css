@@ -8,11 +8,7 @@
 }
 
 .stream .create-post{
-    width:95%;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
-
 }
 .stream .prompt{
     display:block;
