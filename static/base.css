@@ -275,7 +275,7 @@ span.arrow-down {
     display: none;
     position:absolute;
     top:30px;
-    width:150px;
+    width:200px;
     right:20px;
     z-index: 100;
     box-shadow: 0 0 2px 1px #CCCCCC;

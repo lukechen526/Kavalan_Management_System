@@ -43,7 +43,7 @@ ugettext = lambda s: s
 
 LANGUAGES = (
   ('zh-tw', ugettext('Chinese-TW')),
-  ('en-us', ugettext('English')),
+  ('en', ugettext('English')),
 )
 
 NOTIFICATION_LANGUAGE_MODULE = 'accounts.UserProfile'

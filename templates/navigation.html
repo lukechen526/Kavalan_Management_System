@@ -62,9 +62,13 @@
                         {% csrf_token %}
                             <input name="next" type="hidden" value="{{ request.path }}" />
                             <select name="language">
-                                <option value="zh-tw">正體中文</option>
-                                <option value="en-us">English</option>
-                            </select>
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %} selected="true"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})</option>
+                             {% endfor %}
+                             </select>
                             <input type="submit" value="Go" />
                         </form>
                 </li>
