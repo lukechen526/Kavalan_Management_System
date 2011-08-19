@@ -33,9 +33,11 @@ class Document(models.Model):
     title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
     labels = models.ManyToManyField(DocumentLabel, verbose_name=ugettext_lazy('Labels'), blank=True)
     author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
+    location = models.CharField(max_length=30, default='', verbose_name=ugettext_lazy('Physical Location'), blank=True)
     version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Active Version'))
     last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
+
     DOCUMENT_LEVELS = (
         ('1', ugettext_lazy('Level 1')),
         ('2', ugettext_lazy('Level 2')),

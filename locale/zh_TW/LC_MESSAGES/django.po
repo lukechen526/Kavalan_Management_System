@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-19 11:37+0800\n"
+"POT-Creation-Date: 2011-08-19 15:33+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Mark as seen"
 msgstr "標示為讀取"
 
-#: .\doc_engine\forms.py:6 .\doc_engine\models.py:75
+#: .\doc_engine\forms.py:6 .\doc_engine\models.py:77
 msgid "File"
 msgstr "檔案"
 
@@ -144,7 +144,7 @@ msgstr ""
 "上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、序"
 "號，則不要上傳任何檔案。"
 
-#: .\doc_engine\forms.py:11 .\doc_engine\models.py:36
+#: .\doc_engine\forms.py:11 .\doc_engine\models.py:37
 msgid "Active Version"
 msgstr "使用中版本"
 
@@ -154,36 +154,59 @@ msgid ""
 "active."
 msgstr "請輸入新的版本，或使用現有的版本。"
 
-#: .\doc_engine\forms.py:15 .\doc_engine\models.py:78
+#: .\doc_engine\forms.py:15 .\doc_engine\models.py:80
 msgid "Revision Comment"
 msgstr "修訂說明"
 
-#: .\doc_engine\forms.py:22
+#: .\doc_engine\forms.py:21
+msgid "Enter Serial Number/Document Title"
+msgstr "請用文件序號或主旨查詢"
+
+#: .\doc_engine\forms.py:23 .\doc_engine\models.py:47
+msgid "Document Level"
+msgstr "文件分級"
+
+#: .\doc_engine\forms.py:23
+msgid "All results"
+msgstr "全部"
+
+#: .\doc_engine\forms.py:24
+#, fuzzy
+msgid "Filter by document level"
+msgstr "文件分級過濾"
+
+#: .\doc_engine\forms.py:26 .\doc_engine\models.py:13
+#: .\doc_engine\models.py:34
+msgid "Labels"
+msgstr "標籤"
+
+#: .\doc_engine\forms.py:27
+msgid "Filter by labels"
+msgstr "標籤過濾"
+
+#: .\doc_engine\forms.py:30
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
-#: .\doc_engine\forms.py:27 .\doc_engine\models.py:146
+#: .\doc_engine\forms.py:35 .\doc_engine\models.py:148
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\forms.py:28 .\doc_engine\models.py:147
+#: .\doc_engine\forms.py:36 .\doc_engine\models.py:149
 msgid "Batch Number"
 msgstr "批次序號"
 
-#: .\doc_engine\forms.py:29
+#: .\doc_engine\forms.py:37
 msgid "From"
 msgstr "自"
 
-#: .\doc_engine\forms.py:30
+#: .\doc_engine\forms.py:38
 msgid "To"
 msgstr "至"
 
 #: .\doc_engine\models.py:9 .\doc_engine\models.py:12
+#: .\doc_engine\templates\doc_engine\document_index.html.py:20
 msgid "Label"
-msgstr "標籤"
-
-#: .\doc_engine\models.py:13 .\doc_engine\models.py:34
-msgid "Labels"
 msgstr "標籤"
 
 #: .\doc_engine\models.py:32
@@ -198,130 +221,123 @@ msgstr "主旨"
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:37
+#: .\doc_engine\models.py:36 .\doc_engine\models.py:152
+#: .\doc_engine\templates\doc_engine\document_index.html.py:16
+msgid "Physical Location"
+msgstr "實物位置"
+
+#: .\doc_engine\models.py:38
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:38
+#: .\doc_engine\models.py:39
 msgid "Permitted Groups"
 msgstr "授權群組"
 
-#: .\doc_engine\models.py:40
+#: .\doc_engine\models.py:42
 msgid "Level 1"
 msgstr "第一階"
 
-#: .\doc_engine\models.py:41
+#: .\doc_engine\models.py:43
 msgid "Level 2"
 msgstr "第二階"
 
-#: .\doc_engine\models.py:42
+#: .\doc_engine\models.py:44
 msgid "Level 3"
 msgstr "第三階"
 
-#: .\doc_engine\models.py:43
+#: .\doc_engine\models.py:45
 msgid "Level 4"
 msgstr "第四階"
 
-#: .\doc_engine\models.py:45
-msgid "Document Level"
-msgstr "文件分級"
-
-#: .\doc_engine\models.py:46
+#: .\doc_engine\models.py:48
 msgid "Searchable"
 msgstr "可被查詢"
 
-#: .\doc_engine\models.py:49
+#: .\doc_engine\models.py:51
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\models.py:50
+#: .\doc_engine\models.py:52
 msgid "Documents"
 msgstr "文件"
 
-#: .\doc_engine\models.py:76
+#: .\doc_engine\models.py:78
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:81
+#: .\doc_engine\models.py:83
 msgid "File Object"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:82
+#: .\doc_engine\models.py:84
 msgid "File Objects"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:115
+#: .\doc_engine\models.py:117
 msgid "User"
 msgstr "帳號"
 
-#: .\doc_engine\models.py:116
+#: .\doc_engine\models.py:118
 msgid "Access Time"
 msgstr "存取時間"
 
-#: .\doc_engine\models.py:117
+#: .\doc_engine\models.py:119
 msgid "IP"
 msgstr "IP"
 
-#: .\doc_engine\models.py:118
+#: .\doc_engine\models.py:120
 #, fuzzy
 msgid "Document Accessed"
 msgstr "文件"
 
-#: .\doc_engine\models.py:119
+#: .\doc_engine\models.py:121
 msgid "Success?"
 msgstr "成功?"
 
-#: .\doc_engine\models.py:122
+#: .\doc_engine\models.py:124
 msgid "Access Record"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:123
+#: .\doc_engine\models.py:125
 msgid "Access Records"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:131
+#: .\doc_engine\models.py:133
 msgid "SUCCESS"
 msgstr "存取成功"
 
-#: .\doc_engine\models.py:133
+#: .\doc_engine\models.py:135
 msgid "FAILURE"
 msgstr "存取失敗"
 
-#: .\doc_engine\models.py:148
+#: .\doc_engine\models.py:150
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:149
+#: .\doc_engine\models.py:151
 msgid "Date Manufactured"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:150
-msgid "Physical Location"
-msgstr "實物位置"
-
-#: .\doc_engine\models.py:153
+#: .\doc_engine\models.py:155
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:154
+#: .\doc_engine\models.py:156
 msgid "Batch Records"
 msgstr "批次記錄"
 
-#: .\doc_engine\views.py:145
+#: .\doc_engine\views.py:146
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:14
+#: .\doc_engine\templates\doc_engine\document_index.html.py:33
 msgid "Search Documents"
 msgstr "搜尋文件"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:15
+#: .\doc_engine\templates\doc_engine\document_index.html.py:34
 msgid "Search Batch Record"
 msgstr "搜尋批次記錄"
-
-#: .\doc_engine\templates\doc_engine\document_index.html.py:20
-msgid "Enter Serial Number/Document Title"
-msgstr "請用文件序號或主旨查詢"
 
 #: .\stream\api.py:53 .\stream\api.py:98
 msgid "Either content or link has to be non-empty"

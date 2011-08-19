@@ -1,13 +1,13 @@
 from django.contrib import admin
 from doc_engine.models import DocumentLabel, Document, FileObject, AccessRecord, BatchRecord
-from doc_engine.forms import DocumentForm, BatchRecordInputForm
+from doc_engine.forms import DocumentInputForm, BatchRecordInputForm
 
 class FileObjectInline(admin.TabularInline):
     model = FileObject
     readonly_fields = ('file', 'version', 'revision_comment')
 
 class DocumentAdmin(admin.ModelAdmin):
-    form = DocumentForm
+    form = DocumentInputForm
     inlines = [FileObjectInline,]
 
     list_display = ('serial_number', 'title', 'searchable')

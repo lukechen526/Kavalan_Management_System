@@ -1,4 +1,8 @@
 /*for document_index.html*/
+#search-tabs label{
+    padding: 0 5px;
+}
+
 #search-doc {
     margin-right: auto;
     margin-left: auto;
@@ -7,11 +11,18 @@
 
 }
 
-#search-doc input{
-
-    width: 60%;
+#document_level{
+    width: 200px;
 }
 
+#labels{
+    vertical-align: top;
+    width: 350px;
+}
+
+.chzn-container{
+    vertical-align: top;
+}
 #search-result {
     margin-top: 2%;
     margin-left:auto;
@@ -19,13 +30,39 @@
     width:60%;
 }
 
-#search-result a, #search-result>span{
-
+#search-result span.doc-result, #search-result span.batch-result{
     font-size:large;
-    text-decoration: none;
+    color: #3366CC;
     display:block;
     padding: 5px 0px;
 }
+
+#search-result span.doc-result a{
+    text-decoration: none;
+}
+
+#search-result span.doc-result a:visited{
+    color: #3366CC;
+}
+
+span.doc-result .doc-extras{
+    padding: 0 5px;
+}
+
+span.doc-result .doc-location{
+    font-size: smaller;
+    background-color: #adff2f;
+    padding: 0 2px;
+    border-radius: 5px;
+}
+
+span.doc-result .doc-label{
+    font-size: smaller;
+    background-color: #add8e6;
+    padding: 0 2px;
+    border-radius: 5px;
+}
+
 #search-tabs, #search-tabs>* {
     border: 0;
 }
