@@ -11,6 +11,9 @@ class DocumentForm(forms.ModelForm):
     version = forms.CharField(label=ugettext_lazy('Active Version'),
                               initial='1.0',
                               help_text=ugettext_lazy('Enter a new version number, or pick a previous version number to make it active.'))
+
+    revision_comment = forms.CharField(label=ugettext_lazy('Revision Comment'), widget=forms.Textarea, required=False)
+
     class Meta:
         model = Document
 

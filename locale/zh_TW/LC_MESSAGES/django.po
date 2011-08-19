@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-17 16:26+0800\n"
+"POT-Creation-Date: 2011-08-19 11:37+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -130,7 +130,7 @@ msgstr ""
 msgid "Mark as seen"
 msgstr "標示為讀取"
 
-#: .\doc_engine\forms.py:6 .\doc_engine\models.py:54
+#: .\doc_engine\forms.py:6 .\doc_engine\models.py:75
 msgid "File"
 msgstr "檔案"
 
@@ -144,7 +144,7 @@ msgstr ""
 "上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、序"
 "號，則不要上傳任何檔案。"
 
-#: .\doc_engine\forms.py:11 .\doc_engine\models.py:23
+#: .\doc_engine\forms.py:11 .\doc_engine\models.py:36
 msgid "Active Version"
 msgstr "使用中版本"
 
@@ -154,120 +154,156 @@ msgid ""
 "active."
 msgstr "請輸入新的版本，或使用現有的版本。"
 
-#: .\doc_engine\forms.py:19
+#: .\doc_engine\forms.py:15 .\doc_engine\models.py:78
+msgid "Revision Comment"
+msgstr "修訂說明"
+
+#: .\doc_engine\forms.py:22
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
-#: .\doc_engine\forms.py:24 .\doc_engine\models.py:129
+#: .\doc_engine\forms.py:27 .\doc_engine\models.py:146
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\forms.py:25 .\doc_engine\models.py:130
+#: .\doc_engine\forms.py:28 .\doc_engine\models.py:147
 msgid "Batch Number"
 msgstr "批次序號"
 
-#: .\doc_engine\forms.py:26
+#: .\doc_engine\forms.py:29
 msgid "From"
 msgstr "自"
 
-#: .\doc_engine\forms.py:27
+#: .\doc_engine\forms.py:30
 msgid "To"
 msgstr "至"
 
-#: .\doc_engine\models.py:20
+#: .\doc_engine\models.py:9 .\doc_engine\models.py:12
+msgid "Label"
+msgstr "標籤"
+
+#: .\doc_engine\models.py:13 .\doc_engine\models.py:34
+msgid "Labels"
+msgstr "標籤"
+
+#: .\doc_engine\models.py:32
 msgid "Document Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:21
+#: .\doc_engine\models.py:33
 msgid "Title"
 msgstr "主旨"
 
-#: .\doc_engine\models.py:22
+#: .\doc_engine\models.py:35
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:24
+#: .\doc_engine\models.py:37
 msgid "Last Updated"
 msgstr "上次更新"
 
-#: .\doc_engine\models.py:25
+#: .\doc_engine\models.py:38
 msgid "Permitted Groups"
 msgstr "授權群組"
 
-#: .\doc_engine\models.py:28
+#: .\doc_engine\models.py:40
+msgid "Level 1"
+msgstr "第一階"
+
+#: .\doc_engine\models.py:41
+msgid "Level 2"
+msgstr "第二階"
+
+#: .\doc_engine\models.py:42
+msgid "Level 3"
+msgstr "第三階"
+
+#: .\doc_engine\models.py:43
+msgid "Level 4"
+msgstr "第四階"
+
+#: .\doc_engine\models.py:45
+msgid "Document Level"
+msgstr "文件分級"
+
+#: .\doc_engine\models.py:46
+msgid "Searchable"
+msgstr "可被查詢"
+
+#: .\doc_engine\models.py:49
 msgid "Document"
 msgstr "文件"
 
-#: .\doc_engine\models.py:29
+#: .\doc_engine\models.py:50
 msgid "Documents"
 msgstr "文件"
 
-#: .\doc_engine\models.py:55
+#: .\doc_engine\models.py:76
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:59
+#: .\doc_engine\models.py:81
 msgid "File Object"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:60
+#: .\doc_engine\models.py:82
 msgid "File Objects"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:98
+#: .\doc_engine\models.py:115
 msgid "User"
 msgstr "帳號"
 
-#: .\doc_engine\models.py:99
+#: .\doc_engine\models.py:116
 msgid "Access Time"
 msgstr "存取時間"
 
-#: .\doc_engine\models.py:100
+#: .\doc_engine\models.py:117
 msgid "IP"
 msgstr "IP"
 
-#: .\doc_engine\models.py:101
+#: .\doc_engine\models.py:118
 #, fuzzy
 msgid "Document Accessed"
 msgstr "文件"
 
-#: .\doc_engine\models.py:102
+#: .\doc_engine\models.py:119
 msgid "Success?"
 msgstr "成功?"
 
-#: .\doc_engine\models.py:105
+#: .\doc_engine\models.py:122
 msgid "Access Record"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:106
+#: .\doc_engine\models.py:123
 msgid "Access Records"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:114
+#: .\doc_engine\models.py:131
 msgid "SUCCESS"
 msgstr "存取成功"
 
-#: .\doc_engine\models.py:116
+#: .\doc_engine\models.py:133
 msgid "FAILURE"
 msgstr "存取失敗"
 
-#: .\doc_engine\models.py:131
+#: .\doc_engine\models.py:148
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:132
+#: .\doc_engine\models.py:149
 msgid "Date Manufactured"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:133
+#: .\doc_engine\models.py:150
 msgid "Physical Location"
 msgstr "實物位置"
 
-#: .\doc_engine\models.py:136
+#: .\doc_engine\models.py:153
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:137
+#: .\doc_engine\models.py:154
 msgid "Batch Records"
 msgstr "批次記錄"
 
@@ -530,6 +566,3 @@ msgstr "讀取所有通知"
 
 #~ msgid "Documentation"
 #~ msgstr "輔助文件"
-
-#~ msgid "Search"
-#~ msgstr "查詢"

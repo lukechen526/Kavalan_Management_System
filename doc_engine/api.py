@@ -19,7 +19,7 @@ class DocumentHandler(BaseHandler):
         """
         if 'q' in request.GET and request.GET['q']:
             query = request.GET['q']
-            result = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query))
+            result = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query)).filter(searchable=True)
             return result
         else:
             resp = rc.BAD_REQUEST
