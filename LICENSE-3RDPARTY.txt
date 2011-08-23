@@ -84,11 +84,9 @@ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
 --------------------------------------------------
-**Chosen**, a Select Box Enhancer for jQuery and Protoype by Patrick Filler for `Harvest`_
-.. _Harvest:: http//getharvest.com
+Chosen, a Select Box Enhancer for jQuery and Protoype by Patrick Filler for Harvest.
 
-Available for use under the `MIT License`_
-.. _MIT License:://en.wikipedia.org/wiki/MIT_License
+Available for use under the MIT License
 
 Copyright (c) 2011 by Harvest
 
