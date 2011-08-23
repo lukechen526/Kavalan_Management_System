@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     'custom_notification',
     'axes',
     'notification',
+    'south',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 
