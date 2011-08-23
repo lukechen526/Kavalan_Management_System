@@ -41,6 +41,7 @@
     {% endif %}
 
     <!-- Notices-->
+    {% if user.is_authenticated %}
     <div id="notices">
     {% with notices=user.profile.unseen_notices %}
         <span id="unseen-notices-count" class="{% if notices.count %}unseen{% endif %}"><span>{{ notices.count }}</span></span>
@@ -50,6 +51,7 @@
         </div>
     {% endwith %}
     </div>
+    {% endif %}
 
 
     <!-- Options -->
