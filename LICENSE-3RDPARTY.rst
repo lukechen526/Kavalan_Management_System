@@ -7,9 +7,7 @@ distributed with Kavalan Management System.
 4. Chosen
 5. jQuery Multiselect
 
-
 ----------------------------------------------
-
 License for jQuery & jQuery UI
 
 Copyright (c) 2007 John Resig, http://jquery.com/
@@ -85,7 +83,6 @@ WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
 OTHER DEALINGS IN THE SOFTWARE.
 
-
 --------------------------------------------------
 **Chosen**, a Select Box Enhancer for jQuery and Protoype by Patrick Filler for `Harvest`_
 .. _Harvest:: http//getharvest.com
@@ -112,5 +109,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
-
------------------------------------------------------------
