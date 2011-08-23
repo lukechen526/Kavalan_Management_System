@@ -39,12 +39,14 @@ TIME_ZONE = 'Asia/Taipei'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
-_ = lambda s: s
+ugettext = lambda s: s
 
 LANGUAGES = (
-  ('zh-tw', _('Chinese-TW')),
-  ('en-us', _('English')),
+  ('zh-tw', ugettext('Chinese-TW')),
+  ('en', ugettext('English')),
 )
+
+NOTIFICATION_LANGUAGE_MODULE = 'accounts.UserProfile'
 
 LOCALE_PATHS = (os.path.join(DIRNAME, 'locale'), )
 SITE_ID = 1
@@ -139,7 +141,8 @@ CACHES = {
     }
 }
 
-
+#User Console EmailBackbend for development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ROOT_URLCONF = 'Kavalan_Management_System.urls'
 
@@ -162,10 +165,10 @@ INSTALLED_APPS = (
     'doc_engine',
     'accounts',
     'dynamo',
-    'piston',
     'stream',
-    'south',
+    'custom_notification',
     'axes',
+    'notification',
     'Kavalan_Management_System', #added to permit Javascript i18n
 )
 
@@ -179,8 +182,6 @@ AXES_LOCK_OUT_AT_FAILURE = True
 AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
 AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
 AXES_LOCKOUT_URL = '/accounts/lockout/'
-
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

@@ -1,6 +1,6 @@
 from django.views.generic import TemplateView
 from doc_engine.models import Document,  AccessRecord
-from doc_engine.forms import BatchRecordSearchForm
+from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound
 from reportlab.pdfgen import canvas
@@ -22,6 +22,7 @@ class DocumentIndexView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super(DocumentIndexView, self).get_context_data(**kwargs)
+        context['document_search_form'] = DocumentSearchForm(auto_id=True)
         context['batch_record_search_form'] = BatchRecordSearchForm(auto_id=True)
         return context
 

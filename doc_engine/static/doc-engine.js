@@ -12,22 +12,22 @@ $(document).ready(function(){
     return true;
   }
 
+ $('#search-tabs select').chosen();
 /*Document search*/
-$.template("search-doc-resultTemplate",
-         "<a href='${file_url}'>  ${serial_number} &nbsp; ${title} &nbsp; v${version} </a>");
+ $('#q, #document_level, #labels').bind('keyup change', function(event){
 
-    
- $('#q').bind('keyup change', function(event){
+    delayExecute(ajaxDocumentSearch);
+     
+    function ajaxDocumentSearch(){
 
-    delayExecute(ajaxSearch);
-    //
-    function ajaxSearch(){
-
-        var query = $("#q").val();
+        var query = $('#q').val();
+        var document_level  = $('#document_level').val();
+        var labels = $('#labels').val();
+        
         if(query !== ""){
             $.ajax({
                 url:"/api/documents",
-                data:{'q':query},
+                data:{'q':query, 'document_level': document_level, 'labels':labels},
                 success: function(data){
                     $("#search-result").empty();
                     if(data.length == 0){
@@ -35,7 +35,7 @@ $.template("search-doc-resultTemplate",
                     }
                     else{
                         data.forEach(function(item){
-                            $.tmpl( "search-doc-resultTemplate", item).appendTo( "#search-result" );
+                            $(_.template($('#search-doc-template').html(),item)).appendTo( "#search-result" );
                         });
 
                     }
@@ -50,10 +50,8 @@ $.template("search-doc-resultTemplate",
     }
  });
 
+    
 /* Batch Record Search*/
-
- $.template("search-batchrecord-resultTemplate",
-     "<span> ${name} &nbsp; ${batch_number} &nbsp; ${date_manufactured} &nbsp; <span class='physical-location'>  @ ${location}</span></span>");
 
  function ajaxBatchRecordSearch(){
      $.ajax({
@@ -71,7 +69,7 @@ $.template("search-doc-resultTemplate",
 
              else{
                   data.forEach(function(item){
-                      $.tmpl( "search-batchrecord-resultTemplate", item).appendTo( "#search-result" );
+                      $( _.template($('#search-batch-record-template').html(),item)).appendTo( "#search-result" );
                    });
 
              }

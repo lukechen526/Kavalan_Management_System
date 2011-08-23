@@ -8,6 +8,25 @@
 {% endblock %}
 
 {% block content %}
+<script type="text/template" id="search-doc-template">
+    <span class="doc-result">
+        <a href='<%=file_url%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
+            <span class="doc-extras">
+                <% if(location !== ''){ %>
+                    <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
+                <%}%>
+                
+                <% _.each(labels, function(label){ %>
+                    <abbr class="doc-label" title="{% trans "Label" %}"><%=label.content%></abbr>
+                <%});%>
+            </span>
+    </span>
+</script>
+
+<script type="text/template" id="search-batch-record-template">
+    <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <span class='physical-location'>  @ <%=location%></span></span>
+</script>
+
 
     <div id="search-tabs">
     	<ul>
@@ -16,10 +35,7 @@
 	    </ul>
         <div id="search-doc">
             <form action="/api/documents/" method="get" onsubmit="return false;">
-
-                <label for="q"> {% trans "Enter Serial Number/Document Title" %}</label>
-                <input type="text" name="q" id="q">
-
+                {{ document_search_form.as_table }}
             </form>
 
         </div>

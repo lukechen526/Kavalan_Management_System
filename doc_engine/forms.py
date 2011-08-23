@@ -1,8 +1,8 @@
 from django import forms
 from django.utils.translation import ugettext_lazy
-from doc_engine.models import Document, BatchRecord
+from doc_engine.models import Document, BatchRecord, DocumentLabel
 
-class DocumentForm(forms.ModelForm):
+class DocumentInputForm(forms.ModelForm):
     file = forms.FileField(label=ugettext_lazy('File'), required=False,
                            help_text=ugettext_lazy("Upload a new version of the document, or keep the same version number but\
                            upload a new file to overwrite the old one. \
@@ -11,9 +11,20 @@ class DocumentForm(forms.ModelForm):
     version = forms.CharField(label=ugettext_lazy('Active Version'),
                               initial='1.0',
                               help_text=ugettext_lazy('Enter a new version number, or pick a previous version number to make it active.'))
+
+    revision_comment = forms.CharField(label=ugettext_lazy('Revision Comment'), widget=forms.Textarea, required=False)
+
     class Meta:
         model = Document
 
+class DocumentSearchForm(forms.Form):
+    q = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'))
+
+    document_level = forms.ChoiceField(label=ugettext_lazy('Document Level'), required=False, choices=(('',ugettext_lazy('All results')),)+Document.DOCUMENT_LEVELS,
+                                       widget = forms.Select(attrs={'data-placeholder':ugettext_lazy('Filter by document level')}))
+
+    labels = forms.ModelMultipleChoiceField(label=ugettext_lazy('Labels'), queryset=DocumentLabel.objects.all(),
+                                            widget = forms.SelectMultiple(attrs={'data-placeholder':ugettext_lazy('Filter by labels')}))
 
 class BatchRecordInputForm(forms.ModelForm):
     date_manufactured = forms.DateField(label=ugettext_lazy('Date of Manufacture'))

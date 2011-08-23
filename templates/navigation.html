@@ -40,9 +40,21 @@
         <a href="/accounts/login/">{% trans "Login" %}</a>
     {% endif %}
 
+    <!-- Notices-->
+    <div id="notices">
+    {% with notices=user.profile.unseen_notices %}
+        <span id="unseen-notices-count" class="{% if notices.count %}unseen{% endif %}"><span>{{ notices.count }}</span></span>
+        <div id="unseen-notices">
+            <div id="unseen-notices-header"><div>{% trans "Notifications" %}</div><a href="{% url "notification_notices" %}">{% trans "View All" %}</a></div>
+            <div id="unseen-notices-list">{% include "notification/nav-notices-list.html" %}</div>
+        </div>
+    {% endwith %}
+    </div>
+
+
     <!-- Options -->
-    <span id="options-icon"></span>
     <div id="options">
+        <div id="options-icon"></div>
         <div id="options-menu">
             <ul>
                 <li>
@@ -50,9 +62,13 @@
                         {% csrf_token %}
                             <input name="next" type="hidden" value="{{ request.path }}" />
                             <select name="language">
-                                <option value="zh-tw">正體中文</option>
-                                <option value="en-us">English</option>
-                            </select>
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% for language in languages %}
+                                <option value="{{ language.code }}"
+                                {% if language.code == LANGUAGE_CODE %} selected="true"{% endif %}>
+                                    {{ language.name_local }} ({{ language.code }})</option>
+                             {% endfor %}
+                             </select>
                             <input type="submit" value="Go" />
                         </form>
                 </li>

@@ -16,7 +16,7 @@ urlpatterns = patterns('',
     url(r'^doc_engine/', include('doc_engine.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^api/', include('api.urls')),
-    
+    url(r'^notification/', include('notification.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()

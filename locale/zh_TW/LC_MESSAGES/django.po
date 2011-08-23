@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-14 18:35+0800\n"
+"POT-Creation-Date: 2011-08-19 15:33+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,372 +25,42 @@ msgstr "正體中文"
 msgid "English"
 msgstr "英文"
 
-#: .\accounts\models.py:15
+#: .\accounts\management.py:9
+msgid "Request Approved"
+msgstr ""
+
+#: .\accounts\management.py:9
+msgid "your request has been approved"
+msgstr ""
+
+#: .\accounts\management.py:10
+#, fuzzy
+msgid "Request Denied"
+msgstr "無權存取"
+
+#: .\accounts\management.py:10
+msgid "your request has been denied"
+msgstr ""
+
+#: .\accounts\models.py:21
 msgid "User Profile"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:16
+#: .\accounts\models.py:22
 msgid "User Profiles"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:31 .\stream\models.py:38
-#: .\stream\templates\stream.html.py:44
+#: .\accounts\models.py:48 .\stream\models.py:37
+#: .\stream\templates\stream\stream-base.html.py:31
 msgid "Groups"
 msgstr "群組"
 
-#: .\doc_engine\models.py:21
-msgid "Document Serial Number"
-msgstr "文件序號"
-
-#: .\doc_engine\models.py:22
-msgid "Title"
-msgstr "主旨"
-
-#: .\doc_engine\models.py:23
-msgid "Author"
-msgstr "作者"
-
-#: .\doc_engine\models.py:24 .\doc_engine\models.py:93
-msgid "Active Version"
-msgstr "使用中版本"
-
-#: .\doc_engine\models.py:25
-msgid "Last Updated"
-msgstr "上次更新"
-
-#: .\doc_engine\models.py:26
-msgid "Permitted Groups"
-msgstr "授權群組"
-
-#: .\doc_engine\models.py:29
-msgid "Document"
-msgstr "文件"
-
-#: .\doc_engine\models.py:30
-msgid "Documents"
-msgstr "文件"
-
-#: .\doc_engine\models.py:55 .\doc_engine\models.py:88
-msgid "File"
-msgstr "檔案"
-
-#: .\doc_engine\models.py:56
-msgid "Version"
-msgstr "版本"
-
-#: .\doc_engine\models.py:60
-msgid "File Object"
-msgstr "檔案物件"
-
-#: .\doc_engine\models.py:61
-msgid "File Objects"
-msgstr "檔案物件"
-
-#: .\doc_engine\models.py:89
-msgid ""
-"Upload a new version of the document, or keep the same version number "
-"but                           upload a new file to overwrite the old "
-"one.                            If you are just changing the version number, "
-"do not upload any file."
-msgstr ""
-"上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、序"
-"號，則不要上傳任何檔案。"
-
-#: .\doc_engine\models.py:95
-msgid ""
-"Enter a new version number, or pick a previous version number to make it "
-"active."
-msgstr "請輸入新的版本，或使用現有的版本。"
-
-#: .\doc_engine\models.py:110
-msgid "User"
-msgstr "帳號"
-
-#: .\doc_engine\models.py:111
-msgid "Access Time"
-msgstr "存取時間"
-
-#: .\doc_engine\models.py:112
-msgid "IP"
-msgstr "IP"
-
-#: .\doc_engine\models.py:113
-#, fuzzy
-msgid "Document Accessed"
-msgstr "文件"
-
-#: .\doc_engine\models.py:114
-msgid "Success?"
-msgstr "成功?"
-
-#: .\doc_engine\models.py:117
-msgid "Access Record"
-msgstr "存取記錄"
-
-#: .\doc_engine\models.py:118
-msgid "Access Records"
-msgstr "存取記錄"
-
-#: .\doc_engine\models.py:126
-msgid "SUCCESS"
-msgstr "存取成功"
-
-#: .\doc_engine\models.py:128
-msgid "FAILURE"
-msgstr "存取失敗"
-
-#: .\doc_engine\models.py:141 .\doc_engine\models.py:164
-msgid "Product Name"
-msgstr "產品名稱"
-
-#: .\doc_engine\models.py:142 .\doc_engine\models.py:165
-msgid "Batch Number"
-msgstr "批次序號"
-
-#: .\doc_engine\models.py:143
-msgid "Serial Number"
-msgstr "文件序號"
-
-#: .\doc_engine\models.py:144
-msgid "Date Manufactured"
-msgstr "製造日期"
-
-#: .\doc_engine\models.py:145
-msgid "Physical Location"
-msgstr "實物位置"
-
-#: .\doc_engine\models.py:148
-msgid "Batch Record"
-msgstr "批次記錄"
-
-#: .\doc_engine\models.py:149
-msgid "Batch Records"
-msgstr "批次記錄"
-
-#: .\doc_engine\models.py:159
-msgid "Date of Manufacture"
-msgstr "製造日期"
-
-#: .\doc_engine\models.py:166
-msgid "From"
-msgstr "自"
-
-#: .\doc_engine\models.py:167
-msgid "To"
-msgstr "至"
-
-#: .\doc_engine\views.py:145
-msgid "Access Denied"
-msgstr "無權存取"
-
-#: .\doc_engine\templates\document_index.html.py:8
-msgid "Search Documents"
-msgstr "搜尋文件"
-
-#: .\doc_engine\templates\document_index.html.py:9
-msgid "Search Batch Record"
-msgstr "搜尋批次記錄"
-
-#: .\doc_engine\templates\document_index.html.py:14
-msgid "Enter Serial Number/Document Title"
-msgstr "請用文件序號或主旨查詢"
-
-#: .\stream\api.py:52 .\stream\api.py:97
-msgid "Either content or link has to be non-empty"
-msgstr "內容或連接不可為空"
-
-#: .\stream\api.py:69 .\stream\api.py:111
-msgid "StreamPost ID must be supplied"
-msgstr ""
-
-#: .\stream\api.py:77 .\stream\api.py:119
-msgid "No StreamPost with the specified ID was found"
-msgstr ""
-
-#: .\stream\api.py:83
-msgid "Only the original poster can update the post"
-msgstr ""
-
-#: .\stream\api.py:125
-msgid "Only the original poster can delete the post"
-msgstr ""
-
-#: .\stream\api.py:152 .\stream\api.py:185
-msgid ""
-"No post has the specified ID, or the user has no permission to access it"
-msgstr ""
-
-#: .\stream\api.py:156 .\stream\api.py:190
-msgid "No Post ID was supplied!"
-msgstr ""
-
-#: .\stream\api.py:181 .\stream\api.py:220
-msgid "Invalid content"
-msgstr ""
-
-#: .\stream\api.py:197 .\stream\api.py:232
-msgid "Both Post and Comment IDs must be supplied!"
-msgstr ""
-
-#: .\stream\api.py:211
-msgid "Only the original poster can update the comment!"
-msgstr ""
-
-#: .\stream\api.py:225 .\stream\api.py:248
-msgid "Invalid Post or Comment ID"
-msgstr ""
-
-#: .\stream\api.py:240
-msgid "Only the original poster can delete the comment!"
-msgstr ""
-
-#: .\stream\models.py:37 .\stream\models.py:96
-msgid "Poster"
-msgstr "寄件者"
-
-#: .\stream\models.py:39 .\stream\models.py:98
-msgid "Time Posted"
-msgstr ""
-
-#: .\stream\models.py:40 .\stream\models.py:99
-msgid "Content"
-msgstr "內容"
-
-#: .\stream\models.py:41 .\stream\templates\stream.html.py:40
-msgid "Link"
-msgstr "連接"
-
-#: .\stream\models.py:42
-msgid "Rank"
-msgstr ""
-
-#: .\stream\models.py:69 .\stream\models.py:113
-msgid "day ago"
-msgstr "天前"
-
-#: .\stream\models.py:71 .\stream\models.py:115
-msgid "days ago"
-msgstr "天前"
-
-#: .\stream\models.py:75 .\stream\models.py:119
-msgid "hour ago"
-msgstr "小時前"
-
-#: .\stream\models.py:77 .\stream\models.py:121
-msgid "hours ago"
-msgstr "小時前"
-
-#: .\stream\models.py:81 .\stream\models.py:125
-msgid "minute ago"
-msgstr "分鐘前"
-
-#: .\stream\models.py:83 .\stream\models.py:127
-msgid "minutes ago"
-msgstr "分鐘前"
-
-#: .\stream\models.py:86 .\stream\models.py:130
-msgid "second ago"
-msgstr "秒前"
-
-#: .\stream\models.py:88 .\stream\models.py:132
-msgid "seconds ago"
-msgstr "秒前"
-
-#: .\stream\models.py:97
-msgid "Original Post"
-msgstr ""
-
-#: .\stream\templates\stream.html.py:5
-msgid "What's new?"
-msgstr "有新聞嗎？"
-
-#: .\stream\templates\stream.html.py:7
-msgid "Share a Link!"
-msgstr "分享連接"
-
-#: .\stream\templates\stream.html.py:9
-msgid "Post!"
-msgstr "發文！"
-
-#: .\stream\templates\stream.html.py:16
-msgid "Load more"
-msgstr "更多"
-
-#: .\stream\templates\stream.html.py:52
-msgid "Comment"
-msgstr "留言"
-
-#: .\stream\templates\stream.html.py:56
-msgid "comment"
-msgstr "則留言"
-
-#: .\stream\templates\stream.html.py:60
-msgid "comments"
-msgstr "則留言"
-
-#: .\stream\templates\stream.html.py:67
-msgid "Write a comment"
-msgstr "寫一則留言"
-
-#: .\templates\404.html.py:5
-msgid "File Not Found"
-msgstr "無此檔案"
-
-#: .\templates\500.html.py:5
-msgid "Server Error"
-msgstr "伺服器錯誤"
-
-#: .\templates\base.html.py:43 .\templates\flatpages\default.html.py:27
-msgid "Home"
-msgstr "首頁"
-
-#: .\templates\base.html.py:44
-msgid "Document Search"
-msgstr "文件查詢"
-
-#: .\templates\base.html.py:46
-msgid "Admin"
-msgstr "管理頁面"
-
-#: .\templates\base.html.py:47 .\templates\base.html.py:49
-msgid "Help"
-msgstr "說明"
-
-#: .\templates\base.html.py:68
-msgid "Manage Account"
-msgstr "管理帳號"
-
-#: .\templates\base.html.py:69 .\templates\flatpages\default.html.py:36
-msgid "Logout"
-msgstr "登出"
-
-#: .\templates\base.html.py:74 .\templates\flatpages\default.html.py:38
-#: .\templates\registration\login.html.py:26
-msgid "Login"
-msgstr "登入"
-
-#: .\templates\index.html.py:3
-msgid "Welcome to Kavalan Management System "
-msgstr "歡迎使用噶瑪蘭系統"
-
-#: .\templates\flatpages\default.html.py:28
-msgid "Document Search and Retrieval"
-msgstr "文件查詢"
-
-#: .\templates\flatpages\default.html.py:29
-msgid "Inventory"
-msgstr "庫存管理"
-
-#: .\templates\flatpages\default.html.py:30
-msgid "Asset Management"
-msgstr "資產管理"
-
-#: .\templates\registration\create_user.html.py:12
-#: .\templates\registration\password_change_form.html.py:11
+#: .\accounts\templates\registration\create_user.html.py:12
+#: .\accounts\templates\registration\password_change_form.html.py:11
 msgid "Submit"
 msgstr "提交"
 
-#: .\templates\registration\lockout.html.py:8
+#: .\accounts\templates\registration\lockout.html.py:8
 #, python-format
 msgid ""
 "\n"
@@ -404,46 +74,460 @@ msgstr ""
 "嘗試登入太多次！請等 %(cooloff_time)s 再試！\n"
 "\n"
 
-#: .\templates\registration\login.html.py:11
+#: .\accounts\templates\registration\login.html.py:11
 msgid "Your username and password didn't match. Please try again."
 msgstr "您的用戶名及密碼不符，請重新再試"
 
-#: .\templates\registration\login.html.py:26
+#: .\accounts\templates\registration\login.html.py:26
+#: .\templates\navigation.html.py:40
+msgid "Login"
+msgstr "登入"
+
+#: .\accounts\templates\registration\login.html.py:26
 msgid "Reset"
 msgstr "重設"
 
-#: .\templates\registration\manage.html.py:7
+#: .\accounts\templates\registration\manage.html.py:7
 msgid "Username"
 msgstr "帳號"
 
-#: .\templates\registration\manage.html.py:8
+#: .\accounts\templates\registration\manage.html.py:8
 msgid "Name"
 msgstr "姓名"
 
-#: .\templates\registration\manage.html.py:18
+#: .\accounts\templates\registration\manage.html.py:10
 msgid "Password"
 msgstr "密碼"
 
-#: .\templates\registration\manage.html.py:19
+#: .\accounts\templates\registration\manage.html.py:11
 msgid "Change Password"
 msgstr "密碼重設"
 
-#: .\templates\registration\manage.html.py:21
+#: .\accounts\templates\registration\manage.html.py:13
 msgid "E-mail"
 msgstr "E-mail"
 
-#: .\templates\registration\manage.html.py:23
+#: .\accounts\templates\registration\manage.html.py:15
 msgid "Last Login"
 msgstr "上次登入"
 
-#: .\templates\registration\manage.html.py:27
-#: .\templates\registration\manage.html.py:28
+#: .\accounts\templates\registration\manage.html.py:18
+#: .\accounts\templates\registration\manage.html.py:19
 msgid "Create User"
 msgstr "增新帳號"
 
-#: .\templates\registration\password_change_done.html.py:7
+#: .\accounts\templates\registration\password_change_done.html.py:7
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
+
+#: .\custom_notification\templates\notification\nav-notices-list.html.py:4
+#: .\custom_notification\templates\notification\notices.html.py:17
+#, python-format
+msgid "%(notice)s"
+msgstr ""
+
+#: .\custom_notification\templates\notification\notices.html.py:19
+msgid "Mark as seen"
+msgstr "標示為讀取"
+
+#: .\doc_engine\forms.py:6 .\doc_engine\models.py:77
+msgid "File"
+msgstr "檔案"
+
+#: .\doc_engine\forms.py:7
+msgid ""
+"Upload a new version of the document, or keep the same version number "
+"but                           upload a new file to overwrite the old "
+"one.                            If you are just changing the version number, "
+"do not upload any file."
+msgstr ""
+"上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、序"
+"號，則不要上傳任何檔案。"
+
+#: .\doc_engine\forms.py:11 .\doc_engine\models.py:37
+msgid "Active Version"
+msgstr "使用中版本"
+
+#: .\doc_engine\forms.py:13
+msgid ""
+"Enter a new version number, or pick a previous version number to make it "
+"active."
+msgstr "請輸入新的版本，或使用現有的版本。"
+
+#: .\doc_engine\forms.py:15 .\doc_engine\models.py:80
+msgid "Revision Comment"
+msgstr "修訂說明"
+
+#: .\doc_engine\forms.py:21
+msgid "Enter Serial Number/Document Title"
+msgstr "請用文件序號或主旨查詢"
+
+#: .\doc_engine\forms.py:23 .\doc_engine\models.py:47
+msgid "Document Level"
+msgstr "文件分級"
+
+#: .\doc_engine\forms.py:23
+msgid "All results"
+msgstr "全部"
+
+#: .\doc_engine\forms.py:24
+#, fuzzy
+msgid "Filter by document level"
+msgstr "文件分級過濾"
+
+#: .\doc_engine\forms.py:26 .\doc_engine\models.py:13
+#: .\doc_engine\models.py:34
+msgid "Labels"
+msgstr "標籤"
+
+#: .\doc_engine\forms.py:27
+msgid "Filter by labels"
+msgstr "標籤過濾"
+
+#: .\doc_engine\forms.py:30
+msgid "Date of Manufacture"
+msgstr "製造日期"
+
+#: .\doc_engine\forms.py:35 .\doc_engine\models.py:148
+msgid "Product Name"
+msgstr "產品名稱"
+
+#: .\doc_engine\forms.py:36 .\doc_engine\models.py:149
+msgid "Batch Number"
+msgstr "批次序號"
+
+#: .\doc_engine\forms.py:37
+msgid "From"
+msgstr "自"
+
+#: .\doc_engine\forms.py:38
+msgid "To"
+msgstr "至"
+
+#: .\doc_engine\models.py:9 .\doc_engine\models.py:12
+#: .\doc_engine\templates\doc_engine\document_index.html.py:20
+msgid "Label"
+msgstr "標籤"
+
+#: .\doc_engine\models.py:32
+msgid "Document Serial Number"
+msgstr "文件序號"
+
+#: .\doc_engine\models.py:33
+msgid "Title"
+msgstr "主旨"
+
+#: .\doc_engine\models.py:35
+msgid "Author"
+msgstr "作者"
+
+#: .\doc_engine\models.py:36 .\doc_engine\models.py:152
+#: .\doc_engine\templates\doc_engine\document_index.html.py:16
+msgid "Physical Location"
+msgstr "實物位置"
+
+#: .\doc_engine\models.py:38
+msgid "Last Updated"
+msgstr "上次更新"
+
+#: .\doc_engine\models.py:39
+msgid "Permitted Groups"
+msgstr "授權群組"
+
+#: .\doc_engine\models.py:42
+msgid "Level 1"
+msgstr "第一階"
+
+#: .\doc_engine\models.py:43
+msgid "Level 2"
+msgstr "第二階"
+
+#: .\doc_engine\models.py:44
+msgid "Level 3"
+msgstr "第三階"
+
+#: .\doc_engine\models.py:45
+msgid "Level 4"
+msgstr "第四階"
+
+#: .\doc_engine\models.py:48
+msgid "Searchable"
+msgstr "可被查詢"
+
+#: .\doc_engine\models.py:51
+msgid "Document"
+msgstr "文件"
+
+#: .\doc_engine\models.py:52
+msgid "Documents"
+msgstr "文件"
+
+#: .\doc_engine\models.py:78
+msgid "Version"
+msgstr "版本"
+
+#: .\doc_engine\models.py:83
+msgid "File Object"
+msgstr "檔案物件"
+
+#: .\doc_engine\models.py:84
+msgid "File Objects"
+msgstr "檔案物件"
+
+#: .\doc_engine\models.py:117
+msgid "User"
+msgstr "帳號"
+
+#: .\doc_engine\models.py:118
+msgid "Access Time"
+msgstr "存取時間"
+
+#: .\doc_engine\models.py:119
+msgid "IP"
+msgstr "IP"
+
+#: .\doc_engine\models.py:120
+#, fuzzy
+msgid "Document Accessed"
+msgstr "文件"
+
+#: .\doc_engine\models.py:121
+msgid "Success?"
+msgstr "成功?"
+
+#: .\doc_engine\models.py:124
+msgid "Access Record"
+msgstr "存取記錄"
+
+#: .\doc_engine\models.py:125
+msgid "Access Records"
+msgstr "存取記錄"
+
+#: .\doc_engine\models.py:133
+msgid "SUCCESS"
+msgstr "存取成功"
+
+#: .\doc_engine\models.py:135
+msgid "FAILURE"
+msgstr "存取失敗"
+
+#: .\doc_engine\models.py:150
+msgid "Serial Number"
+msgstr "文件序號"
+
+#: .\doc_engine\models.py:151
+msgid "Date Manufactured"
+msgstr "製造日期"
+
+#: .\doc_engine\models.py:155
+msgid "Batch Record"
+msgstr "批次記錄"
+
+#: .\doc_engine\models.py:156
+msgid "Batch Records"
+msgstr "批次記錄"
+
+#: .\doc_engine\views.py:146
+msgid "Access Denied"
+msgstr "無權存取"
+
+#: .\doc_engine\templates\doc_engine\document_index.html.py:33
+msgid "Search Documents"
+msgstr "搜尋文件"
+
+#: .\doc_engine\templates\doc_engine\document_index.html.py:34
+msgid "Search Batch Record"
+msgstr "搜尋批次記錄"
+
+#: .\stream\api.py:53 .\stream\api.py:98
+msgid "Either content or link has to be non-empty"
+msgstr "內容或連接不可為空"
+
+#: .\stream\api.py:70 .\stream\api.py:112
+msgid "StreamPost ID must be supplied"
+msgstr ""
+
+#: .\stream\api.py:78 .\stream\api.py:120
+msgid "No StreamPost with the specified ID was found"
+msgstr ""
+
+#: .\stream\api.py:84
+msgid "Only the original poster can update the post"
+msgstr ""
+
+#: .\stream\api.py:126
+msgid "Only the original poster can delete the post"
+msgstr ""
+
+#: .\stream\api.py:153 .\stream\api.py:186
+msgid ""
+"No post has the specified ID, or the user has no permission to access it"
+msgstr ""
+
+#: .\stream\api.py:157 .\stream\api.py:191
+msgid "No Post ID was supplied!"
+msgstr ""
+
+#: .\stream\api.py:182 .\stream\api.py:221
+msgid "Invalid content"
+msgstr ""
+
+#: .\stream\api.py:198 .\stream\api.py:233
+msgid "Both Post and Comment IDs must be supplied!"
+msgstr ""
+
+#: .\stream\api.py:212
+msgid "Only the original poster can update the comment!"
+msgstr ""
+
+#: .\stream\api.py:226 .\stream\api.py:249
+msgid "Invalid Post or Comment ID"
+msgstr ""
+
+#: .\stream\api.py:241
+msgid "Only the original poster can delete the comment!"
+msgstr ""
+
+#: .\stream\models.py:36 .\stream\models.py:90
+msgid "Poster"
+msgstr "寄件者"
+
+#: .\stream\models.py:38 .\stream\models.py:92
+msgid "Time Posted"
+msgstr ""
+
+#: .\stream\models.py:39 .\stream\models.py:93
+msgid "Content"
+msgstr "內容"
+
+#: .\stream\models.py:40 .\stream\templates\stream\stream-base.html.py:27
+msgid "Link"
+msgstr "連接"
+
+#: .\stream\models.py:41
+msgid "Rank"
+msgstr ""
+
+#: .\stream\models.py:68 .\stream\models.py:107
+msgid "day ago"
+msgstr "天前"
+
+#: .\stream\models.py:70 .\stream\models.py:109
+msgid "days ago"
+msgstr "天前"
+
+#: .\stream\models.py:74 .\stream\models.py:113
+msgid "hour ago"
+msgstr "小時前"
+
+#: .\stream\models.py:76 .\stream\models.py:115
+msgid "hours ago"
+msgstr "小時前"
+
+#: .\stream\models.py:80 .\stream\models.py:119
+msgid "minute ago"
+msgstr "分鐘前"
+
+#: .\stream\models.py:82 .\stream\models.py:121
+msgid "minutes ago"
+msgstr "分鐘前"
+
+#: .\stream\models.py:85 .\stream\models.py:124
+msgid "second ago"
+msgstr "秒前"
+
+#: .\stream\models.py:87 .\stream\models.py:126
+msgid "seconds ago"
+msgstr "秒前"
+
+#: .\stream\models.py:91
+msgid "Original Post"
+msgstr ""
+
+#: .\stream\templates\stream\stream-base.html.py:8
+msgid "Load more"
+msgstr "更多"
+
+#: .\stream\templates\stream\stream-base.html.py:39
+msgid "Comment"
+msgstr "留言"
+
+#: .\stream\templates\stream\stream-base.html.py:43
+msgid "comment"
+msgstr "則留言"
+
+#: .\stream\templates\stream\stream-base.html.py:47
+msgid "comments"
+msgstr "則留言"
+
+#: .\stream\templates\stream\stream-base.html.py:54
+msgid "Write a comment"
+msgstr "寫一則留言"
+
+#: .\stream\templates\stream\stream-index.html.py:24
+msgid "What's new?"
+msgstr "有新聞嗎？"
+
+#: .\stream\templates\stream\stream-index.html.py:26
+msgid "Share a Link!"
+msgstr "分享連接"
+
+#: .\stream\templates\stream\stream-index.html.py:28
+msgid "Post!"
+msgstr "發文！"
+
+#: .\templates\404.html.py:5
+msgid "File Not Found"
+msgstr "無此檔案"
+
+#: .\templates\500.html.py:5
+msgid "Server Error"
+msgstr "伺服器錯誤"
+
+#: .\templates\index.html.py:6
+msgid "Welcome to Kavalan Management System "
+msgstr "歡迎使用噶瑪蘭系統"
+
+#: .\templates\navigation.html.py:8
+msgid "Home"
+msgstr "首頁"
+
+#: .\templates\navigation.html.py:9
+msgid "Document Search"
+msgstr "文件查詢"
+
+#: .\templates\navigation.html.py:11
+msgid "Admin"
+msgstr "管理頁面"
+
+#: .\templates\navigation.html.py:12 .\templates\navigation.html.py:14
+msgid "Help"
+msgstr "說明"
+
+#: .\templates\navigation.html.py:34
+msgid "Manage Account"
+msgstr "管理帳號"
+
+#: .\templates\navigation.html.py:35
+msgid "Logout"
+msgstr "登出"
+
+#: .\templates\navigation.html.py:48
+msgid "Notifications"
+msgstr "通知"
+
+#: .\templates\navigation.html.py:48
+msgid "View All"
+msgstr "讀取所有通知"
+
+#~ msgid "Document Search and Retrieval"
+#~ msgstr "文件查詢"
+
+#~ msgid "Inventory"
+#~ msgstr "庫存管理"
+
+#~ msgid "Asset Management"
+#~ msgstr "資產管理"
 
 #~ msgid "unread"
 #~ msgstr "未讀"
@@ -455,9 +539,6 @@ msgstr "密碼變更成功"
 #~ msgstr "狀態"
 
 #~ msgid "Notification"
-#~ msgstr "通知"
-
-#~ msgid "Notifications"
 #~ msgstr "通知"
 
 #~ msgid "Department"
@@ -501,6 +582,3 @@ msgstr "密碼變更成功"
 
 #~ msgid "Documentation"
 #~ msgstr "輔助文件"
-
-#~ msgid "Search"
-#~ msgstr "查詢"

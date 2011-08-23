@@ -4,6 +4,17 @@ from django.utils.translation import ugettext_lazy
 from django.db.models.signals import pre_delete, post_delete
 from django.dispatch import receiver
 
+
+class DocumentLabel(models.Model):
+    content = models.CharField(max_length=30, verbose_name=ugettext_lazy('Label'))
+
+    class Meta:
+        verbose_name = ugettext_lazy('Label')
+        verbose_name_plural = ugettext_lazy('Labels')
+
+    def __unicode__(self):
+        return self.content
+
 class Document(models.Model):
     """
     Model for digitally stored documents. The model doesn't actually store the file path; it only stores the version
@@ -17,13 +28,25 @@ class Document(models.Model):
     - permitted_groups: ManytoManyField
 
     """
+
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
     title = models.CharField(max_length=100, verbose_name=ugettext_lazy('Title'))
+    labels = models.ManyToManyField(DocumentLabel, verbose_name=ugettext_lazy('Labels'), blank=True)
     author = models.CharField(max_length=100, default='Wufulab Ltd', verbose_name=ugettext_lazy('Author'))
+    location = models.CharField(max_length=30, default='', verbose_name=ugettext_lazy('Physical Location'), blank=True)
     version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Active Version'))
     last_updated = models.DateTimeField(verbose_name=ugettext_lazy('Last Updated'), auto_now=True)
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
 
+    DOCUMENT_LEVELS = (
+        ('1', ugettext_lazy('Level 1')),
+        ('2', ugettext_lazy('Level 2')),
+        ('3', ugettext_lazy('Level 3')),
+        ('4', ugettext_lazy('Level 4')),
+        )
+    document_level = models.CharField(max_length=1, default='4',choices=DOCUMENT_LEVELS, verbose_name=ugettext_lazy('Document Level'))
+    searchable = models.BooleanField(default=False, verbose_name=ugettext_lazy('Searchable'))
+    
     class Meta:
         verbose_name = ugettext_lazy('Document')
         verbose_name_plural = ugettext_lazy('Documents')
@@ -53,7 +76,8 @@ class FileObject(models.Model):
     document = models.ForeignKey(Document, related_name='versions')
     file = models.FileField(upload_to='documents', verbose_name=ugettext_lazy('File'))
     version = models.CharField(max_length=10, verbose_name=ugettext_lazy('Version'))
-    uploaded_date = models.DateTimeField(auto_now_add=True)
+    uploaded_date = models.DateTimeField(auto_now=True)
+    revision_comment = models.TextField(default='', verbose_name=ugettext_lazy('Revision Comment'), blank=True)
 
     class Meta:
         verbose_name = ugettext_lazy('File Object')
@@ -63,26 +87,21 @@ class FileObject(models.Model):
         return unicode(u'%s %s' %(self.document, self.version))
 
 @receiver(pre_delete, sender=FileObject)
-def deleteFileOnServer(sender, **kwargs):
+def on_delete_FileObject(sender, **kwargs):
     """
-    When a FileObject row is being removed from the database, deletes the associated file from storage.
+    When a FileObject row is being removed from the database, deletes the associated file from storage. In addition,
+    changes the version of the Document it is associated with to the latest one, or makes the Document unsearchable
+    if there is no other version.
     """
     file_obj = kwargs['instance']
     file_obj.file.delete()
-
-@receiver(post_delete, sender=FileObject)
-def deleteDocumentWithZeroVersion(sender, **kwargs):
-    """
-    After a FileObject is deleted, if the Document it points to no longer has any associated FileObjects,
-    this function removes it from the database.
-    """
-    file_obj = kwargs['instance']
+    
     try:
-        if file_obj.document.versions.count() == 0 :
-            file_obj.document.delete()
-    except Document.DoesNotExist:
-        pass
-
+        file_obj.document.version = file_obj.document.versions.exclude(id=file_obj.id).latest('uploaded_date').version
+    except FileObject.DoesNotExist:
+        file_obj.document.searchable = False
+        
+    file_obj.document.save()
 
 class AccessRecord(models.Model):
     """

@@ -9,7 +9,7 @@ from piston.utils import validate
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = Document
-    fields = ('title', 'serial_number', 'version', 'file_url')
+    fields = ('title', 'serial_number', 'version', 'file_url', 'location', ('labels',('content',)))
 
     def read(self, request):
         """
@@ -19,8 +19,20 @@ class DocumentHandler(BaseHandler):
         """
         if 'q' in request.GET and request.GET['q']:
             query = request.GET['q']
-            result = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query))
+            result = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query)).filter(searchable=True)
+
+            document_level = request.GET.get('document_level', '')
+            labels = request.GET.getlist('labels[]')
+
+            print labels
+            if document_level:
+                result = result.filter(document_level__exact=document_level)
+
+            if labels:
+                result = result.filter(labels__in=labels).distinct()
+
             return result
+        
         else:
             resp = rc.BAD_REQUEST
             resp.write("Needs a query parameter")
