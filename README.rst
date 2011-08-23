@@ -29,8 +29,8 @@ Dependencies
 - `guess-language`_ >=0.2
 - `South`_ >= 0.7.3
 - `Django-axes`_ >= 0.1.1
-_ `Django-notification`_ >= 0.2.0
-- Sphinx >= 1.0.7
+- `Django-notification`_ >= 0.2.0
+-  Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
 .. _ERP: http://en.wikipedia.org/wiki/Enterprise_resource_planning
