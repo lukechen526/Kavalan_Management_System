@@ -385,8 +385,8 @@ span.arrow-down {
 
 /* for forms */
 
-.errorlist{
-    color: red;
+.errorlist li{
+    color: red !important;
 }
 
 /*For input buttons*/

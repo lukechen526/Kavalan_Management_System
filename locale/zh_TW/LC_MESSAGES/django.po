@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-30 23:53+0800\n"
+"POT-Creation-Date: 2011-08-31 01:01+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -55,10 +55,20 @@ msgstr "用戶配置"
 msgid "Groups"
 msgstr "群組"
 
-#: .\accounts\templates\registration\create_user.html.py:12
+#: .\accounts\templates\registration\create_user.html.py:8
+#: .\stream\views.py:13 .\stream\views.py:18
+msgid "Select one or more groups"
+msgstr "選擇一或多個群組"
+
+#: .\accounts\templates\registration\create_user.html.py:29
 #: .\accounts\templates\registration\password_change_form.html.py:11
 msgid "Submit"
 msgstr "提交"
+
+#: .\accounts\templates\registration\create_user.html.py:30
+#: .\accounts\templates\registration\login.html.py:26
+msgid "Reset"
+msgstr "重設"
 
 #: .\accounts\templates\registration\lockout.html.py:8
 #, python-format
@@ -82,10 +92,6 @@ msgstr "您的用戶名及密碼不符，請重新再試"
 #: .\templates\navigation.html.py:40
 msgid "Login"
 msgstr "登入"
-
-#: .\accounts\templates\registration\login.html.py:26
-msgid "Reset"
-msgstr "重設"
 
 #: .\accounts\templates\registration\manage.html.py:7
 msgid "Username"
@@ -223,6 +229,7 @@ msgstr "作者"
 
 #: .\doc_engine\models.py:36 .\doc_engine\models.py:152
 #: .\doc_engine\templates\doc_engine\document_index.html.py:16
+#: .\doc_engine\templates\doc_engine\document_index.html.py:27
 msgid "Physical Location"
 msgstr "實物位置"
 
@@ -443,10 +450,6 @@ msgstr "秒前"
 #: .\stream\models.py:91
 msgid "Original Post"
 msgstr ""
-
-#: .\stream\views.py:13 .\stream\views.py:18
-msgid "Select one or more groups"
-msgstr "選擇一或多個群組"
 
 #: .\stream\templates\stream\stream-base.html.py:8
 msgid "Load more"

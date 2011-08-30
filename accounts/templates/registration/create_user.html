@@ -3,13 +3,33 @@
 {% load url from future %}
 
 {% block content %}
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#id_groups').attr('data-placeholder', "{% trans "Select one or more groups" %}");
+        $('#id_groups').css('width','300px');
+        $('#id_groups').chosen();
+    });
 
-<form method="post" action="{% url 'accounts.views.create_user' %}" id="login-form">
+</script>
+    
+<form class="form-stacked" method="post" action="{% url 'accounts.views.create_user' %}" id="login-form">
 {% csrf_token %}
-    
-{{ form.as_p }}
-    
-<input type="submit" value={% trans "Submit" %} />
+    {% for field in form.visible_fields %}
+                    <div class="clearfix">
+                        {{ field.label_tag }}
+                        <div class="input">
+                            {{ field }}
+                            {{ field.errors }}
+                        </div>
+                    </div>
+
+                {% endfor %}
+
+<div class="actions">
+    <button class="btn primary" type="submit">{% trans "Submit" %}</button>
+    <button class="btn default" type="reset">{% trans "Reset" %}</button>
+
+</div>
 
 
 </form>
