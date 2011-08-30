@@ -12,6 +12,7 @@
     width: 100%;
 }
 
+/*For Document Search Form*/
 #search-doc form div *{
     vertical-align: middle;
 }
@@ -68,6 +69,10 @@ span.doc-result .doc-label{
     border-radius: 5px;
 }
 
+/*For Batch Record Search Form*/
+#name{
+    width: 300px;
+}
 .ui-datepicker{
  font-size:12px;
 }
@@ -77,6 +82,10 @@ span.doc-result .doc-label{
 }
 
 .physical-location{
-    font-size: larger;
+    display: inline-block;
     font-weight: bold;
+    background-color: #adff2f;
+    border-radius: 5px;
+    padding: 2px 5px;
+
 }
