@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-19 15:33+0800\n"
+"POT-Creation-Date: 2011-08-30 23:53+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -444,6 +444,10 @@ msgstr "秒前"
 msgid "Original Post"
 msgstr ""
 
+#: .\stream\views.py:13 .\stream\views.py:18
+msgid "Select one or more groups"
+msgstr "選擇一或多個群組"
+
 #: .\stream\templates\stream\stream-base.html.py:8
 msgid "Load more"
 msgstr "更多"
@@ -464,15 +468,15 @@ msgstr "則留言"
 msgid "Write a comment"
 msgstr "寫一則留言"
 
-#: .\stream\templates\stream\stream-index.html.py:24
+#: .\stream\templates\stream\stream-index.html.py:18
 msgid "What's new?"
 msgstr "有新聞嗎？"
 
-#: .\stream\templates\stream\stream-index.html.py:26
+#: .\stream\templates\stream\stream-index.html.py:20
 msgid "Share a Link!"
 msgstr "分享連接"
 
-#: .\stream\templates\stream\stream-index.html.py:28
+#: .\stream\templates\stream\stream-index.html.py:22
 msgid "Post!"
 msgstr "發文！"
 
@@ -512,11 +516,11 @@ msgstr "管理帳號"
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\navigation.html.py:48
+#: .\templates\navigation.html.py:49
 msgid "Notifications"
 msgstr "通知"
 
-#: .\templates\navigation.html.py:48
+#: .\templates\navigation.html.py:49
 msgid "View All"
 msgstr "讀取所有通知"
 

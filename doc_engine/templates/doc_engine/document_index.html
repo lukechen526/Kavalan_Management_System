@@ -34,16 +34,28 @@
 		    <li><a href="#search-batch-record">{% trans "Search Batch Record" %}</a></li>
 	    </ul>
         <div id="search-doc">
-            <form action="/api/documents/" method="get" onsubmit="return false;">
-                {{ document_search_form.as_table }}
+            <form class="form-stacked" action="/api/documents/" method="get" onsubmit="return false;">
+                {% for field in  document_search_form.visible_fields %}
+                    <div class="clearfix">
+                        {{ field.label_tag }}
+                        <div class="input">{{ field }}</div>
+                    </div>
+
+                {% endfor %}
             </form>
 
         </div>
 
         <div id="search-batch-record">
 
-            <form action="" method="get" onsubmit="return false;">
-                {{ batch_record_search_form.as_table }}
+            <form class="form-stacked" action="" method="get" onsubmit="return false;">
+                 {% for field in  batch_record_search_form.visible_fields %}
+                     <div class="clearfix">
+                        {{ field.label_tag }}
+                        <div class="input">{{ field }}</div>
+                     </div>
+
+                {% endfor %}
             </form>
 
         </div>

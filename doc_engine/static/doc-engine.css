@@ -1,14 +1,19 @@
 /*for document_index.html*/
-#search-tabs label{
-    padding: 0 5px;
+#search-tabs, #search-tabs>* {
+    border: 0;
 }
 
-#search-doc {
-    margin-right: auto;
-    margin-left: auto;
-    width: 90%;
-    margin-top: 10px;
+#search-tabs form div.clearfix{
+    display: inline-block;
+}
 
+#search-tabs>div{
+    background-color: #F5F5F5;
+    width: 100%;
+}
+
+#search-doc form div *{
+    vertical-align: middle;
 }
 
 #document_level{
@@ -16,13 +21,13 @@
 }
 
 #labels{
-    vertical-align: top;
     width: 350px;
 }
 
-.chzn-container{
-    vertical-align: top;
+#q{
+    width: 300px;
 }
+
 #search-result {
     margin-top: 2%;
     margin-left:auto;
@@ -63,14 +68,6 @@ span.doc-result .doc-label{
     border-radius: 5px;
 }
 
-#search-tabs, #search-tabs>* {
-    border: 0;
-}
-
-
-#search-batch-record form li{
-    list-style-type: none;
-}
 .ui-datepicker{
  font-size:12px;
 }

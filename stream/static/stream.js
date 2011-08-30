@@ -220,6 +220,8 @@ window.StreamView = Backbone.View.extend({
         //Toggles the Post! button based on whether or not text is present in new-post-content or new-post-link
         this.$('.new-post-content, .new-post-link').bind('keyup change', function(){
             $(this).parents('.stream').find('.post-button').addClass("ui-state-disabled").attr('disabled', 'disabled');
+            $('.create-post-errors').hide().empty();
+            
             //Re-enable the button if either content or link is non-empty
             if($(this).parents('.stream').find('.new-post-content').val() != '' ||$(this).parents('.stream').find('.new-post-link').val() != ''){
                 $(this).parents('.stream').find('.post-button').removeAttr('disabled').removeClass('ui-state-disabled');
@@ -242,9 +244,9 @@ window.StreamView = Backbone.View.extend({
         var groups = window.get_selected_groups();
 
         //Validation
-        $('.create-post-errors').empty();
-        if(groups.length == 0){
-           this.$('.create-post-errors').append(document.createTextNode(gettext('You must select at least one group to post to!')));
+        $('.create-post-errors').hide().empty();
+        if(groups == null || groups.length == 0){
+           this.$('.create-post-errors').append(document.createTextNode(gettext('You must select at least one group to post to!'))).show();
             return 0;
         }
 

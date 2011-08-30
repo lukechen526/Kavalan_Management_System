@@ -10,6 +10,10 @@
 .stream .create-post{
     position: relative;
 }
+
+.stream .create-post>*{
+    margin: 2px 0;
+}
 .stream .prompt{
     display:block;
     width: 100%;
@@ -18,25 +22,28 @@
     resize: none;
     text-align: left;
     width: 100%;
+    padding: 0;
 
 }
 .stream .new-post-link{
     display: block;
     width: 100%;
-    padding:  1px 1px;
+    padding: 3px 0;
 }
 
 .stream .post-button{
-   font-size: 1.1em !important;
-   padding:  2px 4px 2px 4px;
+    height: 32px;
+    font-weight: bold;
 }
 
-.stream .create-post *.ui-multiselect{
+#id_groups_chzn{
+    vertical-align: top;
+    width: 450px !important;
+    height: 32px;
 }
 
 .stream .create-post-errors{
-    color: red;
-    display: block;
+    display: none;
 }
 
 .stream .stream-posts{
@@ -58,6 +65,7 @@
 
 .stream .processed-content{
     padding: 15px 0;
+    color: #000000;
 
 }
 
@@ -72,6 +80,7 @@
 .stream .load-more{
     width: 100%;
     text-align: center;
+    font-size: 1.4em;
 }
 .stream .comment-list{
     position: relative;

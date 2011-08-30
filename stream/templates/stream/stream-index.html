@@ -4,17 +4,11 @@
 {% block script %}
         <script type="text/javascript">
         $(document).ready(function(){
-            $("#id_groups").multiselect({
-                    noneSelectedText: gettext('Post to which groups?'),
-                    checkAllText: gettext('Select all groups'),
-                    uncheckAllText: gettext('Unselect all groups'),
-                    selectedText: gettext('# groups selected')
-                });
 
+            $('#id_groups').chosen();
             window.get_selected_groups = function(){
-                return $("#id_groups").multiselect("getChecked").map(function(){return this.value;}).get();
+                return $("#id_groups").val();
             };
-
         });
         </script>
 
@@ -25,6 +19,6 @@
         <textarea class ="new-post-content" rows="5" cols="40"></textarea>
         <input class="new-post-link" placeholder="{% trans 'Share a Link!' %}" type="text"/>
         {{ user_group_select_form.groups }}
-        <input class="post-button" type="submit" value="{% trans "Post!" %}"/>
-        <span class="create-post-errors"></span>
+        <button class="post-button btn primary" type="submit">{% trans "Post!" %}</button>
+        <div class="create-post-errors alert-message block-message error"></div>
 {% endblock %}

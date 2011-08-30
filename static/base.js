@@ -3,9 +3,6 @@ $(document).ready(function(){
      //Prevents the browser from caching the JSON response.
     $.ajaxSetup({ cache: false });
 
-    /* Style buttons with jQuery UI*/
-    $('input:submit, input:reset').button();
-
     /* section for navigation bar */
 
       //Mark the current link in the nav bar
@@ -13,7 +10,7 @@ $(document).ready(function(){
 
        if($(this).attr("href") == window.location.pathname)
        {
-         $(this).addClass("current");
+         $(this).addClass("active");
        }
     });
 
@@ -21,20 +18,20 @@ $(document).ready(function(){
 
     $("#expand-menu").bind('click', function(event){
          event.preventDefault();
-         $('.active').not('#account-menu, #account-menu *').removeClass('active');
-         $('#account-menu, #account-menu *').toggleClass('active');
+         $('.open').not('#account-menu, #account-menu *').removeClass('open');
+         $('#account-menu, #account-menu *').toggleClass('open');
     });
 
     $("#unseen-notices-count").bind('click', function(event){
             event.preventDefault();
-            $('.active').not('#notices, #notices * ').removeClass('active');
-            $('#notices, #notices *').toggleClass('active');
+            $('.open').not('#notices, #notices * ').removeClass('open');
+            $('#notices, #notices *').toggleClass('open');
     });
 
     $("#options-icon").bind('click', function(event){
             event.preventDefault();
-            $('.active').not('#options, #options *').removeClass('active');
-            $('#options, #options *').toggleClass('active');
+            $('.open').not('#options, #options *').removeClass('open');
+            $('#options, #options *').toggleClass('open');
     });
 
 });

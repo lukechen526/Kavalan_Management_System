@@ -79,7 +79,7 @@ nav>ul li a:link, nav>ul li a:visited{
     color: #ffffff;
 }
 
-nav>ul li a.current {
+nav>ul li a.active {
 	border-bottom: 2px solid red;
     margin-bottom: 0;
 	}
@@ -115,7 +115,7 @@ nav>ul li a.current {
     height:100%;
 }
 
-#account-menu.active{
+#account-menu.open{
     background-color: white;
 }
 
@@ -134,7 +134,7 @@ nav>ul li a.current {
     color: #ffffff;
 }
 
-#username.active{
+#username.open{
     color: #3366CC;
 }
 /* create an arrow that points down */
@@ -159,10 +159,11 @@ span.arrow-down {
     z-index: 100;
     box-shadow: 0 0 2px 1px #CCCCCC;
     border: 1px solid #bebebe;
+    font-size: 1.2em;
 
 }
 
-#account-options.active{
+#account-options.open{
     display: block;
 }
 #account-options ul{
@@ -180,7 +181,10 @@ span.arrow-down {
 
 #account-options ul li a{
     color: #3366CC !important;
+    text-align: center;
     padding: 0 10px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 #account-options ul li a:hover{
@@ -196,7 +200,7 @@ span.arrow-down {
 
 }
 
-#notices.active{
+#notices.open{
     background-color: #ffffff;
 }
 
@@ -237,7 +241,7 @@ span.arrow-down {
     color: #000000;
 }
 
-#unseen-notices.active{
+#unseen-notices.open{
     display: block;
 }
 
@@ -249,11 +253,13 @@ span.arrow-down {
 
 #unseen-notices-header div{
     font-weight: bold;
+    font-size: 14px;
     display: inline;
 }
 
 #unseen-notices-header a{
     float: right;
+    font-size: 14px;
     
 }
 #unseen-notices-list ul{
@@ -278,7 +284,7 @@ span.arrow-down {
     height: 100%;
 }
 
-#options.active{
+#options.open{
     background-color: #ffffff;
 }
 
@@ -303,7 +309,7 @@ span.arrow-down {
     background-color: #ffffff;
 }
 
-#options-menu.active{
+#options-menu.open{
     display: block;
 }
 
@@ -328,13 +334,14 @@ span.arrow-down {
 #options-menu ul li *{
     color: #3366CC;
 }
-#set-lang input.ui-widget[type="submit"] {
-    padding: 0.2em !important;
-    margin: 0 0.2em !important;
-    font-size: 0.7em !important;
-    color: #ffffff !important;
+
+#set-lang * {
+    vertical-align: middle;
 }
 
+#set-lang button{
+    padding: 7px 5px 7px;
+}
 
 /* for /accounts/login/ */
 #login-form{

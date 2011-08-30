@@ -134,7 +134,7 @@ class StreamCommentHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
     model = StreamPostComment
     fields = ('id',
-              ('poster',('username', 'last_name', 'first_name')),
+              ('poster',('username', ('profile', ('full_name',)))),
               'formatted_time_posted',
               'processed_content')
 
