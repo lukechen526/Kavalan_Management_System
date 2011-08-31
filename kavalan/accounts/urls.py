@@ -7,7 +7,7 @@ urlpatterns = patterns('django.contrib.auth.views',
     url(r'^password_change_done/$', 'password_change_done'),
 )
 
-urlpatterns += patterns('accounts.views',
+urlpatterns += patterns('...views',
     url(r'^manage/$', 'account_manage'),
     url(r'^create_user/$', 'create_user')
 )

@@ -34,7 +34,7 @@
 		    <li><a href="#search-batch-record">{% trans "Search Batch Record" %}</a></li>
 	    </ul>
         <div id="search-doc">
-            <form class="form-stacked" action="/api/documents/" method="get" onsubmit="return false;">
+            <form class="form-stacked" action="/kavalan/api/documents/" method="get" onsubmit="return false;">
                 {% for field in  document_search_form.visible_fields %}
                     <div class="clearfix">
                         {{ field.label_tag }}

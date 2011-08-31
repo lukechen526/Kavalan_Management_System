@@ -13,9 +13,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^$', IndexView.as_view() ),
-    url(r'^doc_engine/', include('doc_engine.urls')),
-    url(r'^accounts/', include('accounts.urls')),
-    url(r'^api/', include('api.urls')),
+    url(r'^doc_engine/', include('kavalan.doc_engine.urls')),
+    url(r'^accounts/', include('kavalan.accounts.urls')),
+    url(r'^api/', include('kavalan.api.urls')),
     url(r'^notification/', include('notification.urls')),
 )
 

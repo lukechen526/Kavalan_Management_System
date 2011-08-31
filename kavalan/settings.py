@@ -68,10 +68,10 @@ MEDIA_ROOT = os.path.join(DIRNAME, 'uploads')
 MEDIA_URL = '/uploads/'
 
 #URL that points to the documentation
-DOCUMENT_URL = '/documentation/'
+DOCUMENT_URL = '/docs/'
 
 #The path to the built documentation
-DOCUMENTATION_ROOT = os.path.join(DIRNAME, 'documentation/build')
+DOCUMENTATION_ROOT = os.path.join(DIRNAME, 'docs/build')
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -162,11 +162,11 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'doc_engine',
-    'accounts',
+    'kavalan.doc_engine',
+    'kavalan.accounts',
     'dynamo',
     'stream',
-    'custom_notification',
+    'kavalan.custom_notification',
     'axes',
     'notification',
     'south',
