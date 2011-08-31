@@ -6,7 +6,7 @@
 <!-- Nav Menu -->
 <ul id="nav-menu">
     <li> <a href="/"> {% trans "Home" %} </a></li>
-    <li> <a href="/kavalan/doc_engine"> {% trans "Document Search" %}</a></li>
+    <li> <a href="/doc_engine/"> {% trans "Document Search" %}</a></li>
     {% if user.is_staff %}
         <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
         <li> <a href="/docs/index.html"> {% trans "Help" %} </a></li>
@@ -31,13 +31,13 @@
 
             <div id="account-options">
                 <ul>
-                    <li><a href="/kavalan/accounts/manage/" id="manage">{% trans "Manage Account" %}</a></li>
-                    <li><a href="/kavalan/accounts/logout"> {% trans "Logout" %}</a></li>
+                    <li><a href="/accounts/manage/" id="manage">{% trans "Manage Account" %}</a></li>
+                    <li><a href="/accounts/logout/"> {% trans "Logout" %}</a></li>
                 </ul>
              </div>
         </div>
     {% else %}
-        <a href="/kavalan/accounts/login/">{% trans "Login" %}</a>
+        <a href="/accounts/login/">{% trans "Login" %}</a>
     {% endif %}
 
     <!-- Notices-->

@@ -19,7 +19,7 @@ import sys, os
 #sys.path.insert(0, os.path.abspath('.'))
 
 DIRNAME = os.path.dirname(__file__)
-PROJDIR = os.path.join(DIRNAME, "../../")
+PROJDIR = os.path.join(DIRNAME, "../../kavalan")
 sys.path.append(PROJDIR)
 os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
 

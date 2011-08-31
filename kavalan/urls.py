@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 from views import IndexView
 
-# Uncomment the next two lines to enable the admin:
+
 from django.contrib import admin
 admin.autodiscover()
 
@@ -13,9 +13,9 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^i18n/', include('django.conf.urls.i18n')),
     url(r'^$', IndexView.as_view() ),
-    url(r'^doc_engine/', include('kavalan.doc_engine.urls')),
-    url(r'^accounts/', include('kavalan.accounts.urls')),
-    url(r'^api/', include('kavalan.api.urls')),
+    url(r'^doc_engine/', include('doc_engine.urls')),
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'^api/', include('api.urls')),
     url(r'^notification/', include('notification.urls')),
 )
 
@@ -24,7 +24,7 @@ urlpatterns += static(settings.DOCUMENT_URL, document_root=settings.DOCUMENTATIO
 
 js_info_dict = {
     'domain': 'djangojs',
-    'packages': ('Kavalan_Management_System',),
+    'packages': ('kavalan',)
 }
 urlpatterns += patterns('',
     (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', js_info_dict),

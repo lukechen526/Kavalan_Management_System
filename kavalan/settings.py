@@ -9,7 +9,7 @@ DIRNAME = os.path.dirname(__file__)
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
-    ('Luke Chen', 'nuemail@gmail.com')
+    ('Yu- Po Luke Chen', 'nuemail@gmail.com')
 )
 
 MANAGERS = ADMINS
@@ -71,7 +71,7 @@ MEDIA_URL = '/uploads/'
 DOCUMENT_URL = '/docs/'
 
 #The path to the built documentation
-DOCUMENTATION_ROOT = os.path.join(DIRNAME, 'docs/build')
+DOCUMENTATION_ROOT = os.path.join(DIRNAME, '../docs/build')
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
@@ -95,7 +95,7 @@ STATICFILES_DIRS = (
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -118,8 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
-    'django.core.context_processors.request',
-
+    'django.core.context_processors.request'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -144,7 +143,7 @@ CACHES = {
 #User Console EmailBackbend for development
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-ROOT_URLCONF = 'Kavalan_Management_System.urls'
+ROOT_URLCONF = 'kavalan.urls'
 
 
 TEMPLATE_DIRS = (
@@ -162,15 +161,15 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'kavalan.doc_engine',
-    'kavalan.accounts',
+    'doc_engine',
+    'accounts',
     'dynamo',
     'stream',
-    'kavalan.custom_notification',
+    'custom_notification',
     'axes',
     'notification',
     'south',
-    'Kavalan_Management_System', #added to permit Javascript i18n
+    'kavalan' #added to permit Javascript i18n
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
@@ -225,3 +224,4 @@ LOGGING = {
 #Import settings_production.py for production environment
 if not DEBUG:
     from settings_production import *
+

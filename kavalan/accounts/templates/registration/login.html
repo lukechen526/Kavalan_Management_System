@@ -5,30 +5,28 @@
 {% block content %}
 
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form">
-{% csrf_token %}
+    {% csrf_token %}
 
-{% if form.errors %}
-<span class="login-error">{% trans "Your username and password didn't match. Please try again." %}</span>
-{% endif %}
+    {% if form.errors %}
+        <div class="alert-message block-message error">{% trans "Your username and password didn't match. Please try again." %}</div>
+    {% endif %}
 
+    {% for field in form.visible_fields %}
+        <div class="clearfix">
+            {{ field.label_tag }}
+            <div class="input">
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        </div>
+    {% endfor %}
 
-<table>
-<tr>
-    <td>{{ form.username.label_tag }} </td>
-    <td> {{ form.username }}</td>
-</tr>
-<tr>
-    <td>{{ form.password.label_tag }} </td>
-    <td> {{ form.password }}</td>
-</tr>
-<tr>
-    <td></td>
-    <td><input type="submit" value="{% trans "Login" %}" /><input type="reset" value="{% trans "Reset" %}" /></td>
-</tr>
-</table>
+    <div class="actions">
+        <button class="btn primary" type="submit">{% trans "Submit" %}</button>
+        <button class="btn default" type="reset">{% trans "Reset" %}</button>
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
 
-
-<input type="hidden" name="next" value="{{ next }}" />
 </form>
 
 {% endblock %}
