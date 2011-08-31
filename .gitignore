@@ -1,0 +1,6 @@
+*.pyc
+*.mo
+docs/build/*
+kavalan/uploads/*
+kavalan/axes.log
+.idea/*

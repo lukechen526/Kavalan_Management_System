@@ -1,0 +1,24 @@
+{% extends "stream/stream-base.html" %}
+{% load i18n %}
+
+{% block script %}
+        <script type="text/javascript">
+        $(document).ready(function(){
+
+            $('#id_groups').chosen();
+            window.get_selected_groups = function(){
+                return $("#id_groups").val();
+            };
+        });
+        </script>
+
+{% endblock %}
+
+{% block create-post %}
+        <span class="prompt"> {% trans "What's new?" %}</span>
+        <textarea class ="new-post-content" rows="5" cols="40"></textarea>
+        <input class="new-post-link" placeholder="{% trans 'Share a Link!' %}" type="text"/>
+        {{ user_group_select_form.groups }}
+        <button class="post-button btn primary" type="submit">{% trans "Post!" %}</button>
+        <div class="create-post-errors alert-message block-message error"></div>
+{% endblock %}

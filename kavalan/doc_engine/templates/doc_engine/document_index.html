@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block title %} Doc Engine{% endblock %}
+
+{% block extra_head %}
+    <link href="{{ STATIC_URL }}doc-engine.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="{{ STATIC_URL }}doc-engine.js"></script>
+{% endblock %}
+
+{% block content %}
+<script type="text/template" id="search-doc-template">
+    <span class="doc-result">
+        <a href='<%=file_url%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
+            <span class="doc-extras">
+                <% if(location !== ''){ %>
+                    <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
+                <%}%>
+                
+                <% _.each(labels, function(label){ %>
+                    <abbr class="doc-label" title="{% trans "Label" %}"><%=label.content%></abbr>
+                <%});%>
+            </span>
+    </span>
+</script>
+
+<script type="text/template" id="search-batch-record-template">
+    <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <abbr class="physical-location" title="{% trans "Physical Location" %}"><%=location%></abbr></span>
+</script>
+
+
+    <div id="search-tabs">
+    	<ul>
+		    <li><a href="#search-doc">{% trans "Search Documents" %}</a></li>
+		    <li><a href="#search-batch-record">{% trans "Search Batch Record" %}</a></li>
+	    </ul>
+        <div id="search-doc">
+            <form class="form-stacked" action="/kavalan/api/documents/" method="get" onsubmit="return false;">
+                {% for field in  document_search_form.visible_fields %}
+                    <div class="clearfix">
+                        {{ field.label_tag }}
+                        <div class="input">{{ field }}</div>
+                    </div>
+
+                {% endfor %}
+            </form>
+
+        </div>
+
+        <div id="search-batch-record">
+
+            <form class="form-stacked" action="" method="get" onsubmit="return false;">
+                 {% for field in  batch_record_search_form.visible_fields %}
+                     <div class="clearfix">
+                        {{ field.label_tag }}
+                        <div class="input">{{ field }}</div>
+                     </div>
+
+                {% endfor %}
+            </form>
+
+        </div>
+    </div>
+
+    <div id="search-result"></div>
+
+
+{% endblock %}

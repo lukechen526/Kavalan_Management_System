@@ -1,0 +1,91 @@
+/*for document_index.html*/
+#search-tabs, #search-tabs>* {
+    border: 0;
+}
+
+#search-tabs form div.clearfix{
+    display: inline-block;
+}
+
+#search-tabs>div{
+    background-color: #F5F5F5;
+    width: 100%;
+}
+
+/*For Document Search Form*/
+#search-doc form div *{
+    vertical-align: middle;
+}
+
+#document_level{
+    width: 200px;
+}
+
+#labels{
+    width: 350px;
+}
+
+#q{
+    width: 300px;
+}
+
+#search-result {
+    margin-top: 2%;
+    margin-left:auto;
+    margin-right: auto;
+    width:60%;
+}
+
+#search-result span.doc-result, #search-result span.batch-result{
+    font-size:large;
+    color: #3366CC;
+    display:block;
+    padding: 5px 0px;
+}
+
+#search-result span.doc-result a{
+    text-decoration: none;
+}
+
+#search-result span.doc-result a:visited{
+    color: #3366CC;
+}
+
+span.doc-result .doc-extras{
+    padding: 0 5px;
+}
+
+span.doc-result .doc-location{
+    font-size: smaller;
+    background-color: #adff2f;
+    padding: 0 2px;
+    border-radius: 5px;
+}
+
+span.doc-result .doc-label{
+    font-size: smaller;
+    background-color: #add8e6;
+    padding: 0 2px;
+    border-radius: 5px;
+}
+
+/*For Batch Record Search Form*/
+#name{
+    width: 300px;
+}
+.ui-datepicker{
+ font-size:12px;
+}
+
+.ui-tabs{
+ font-size: 14px;
+}
+
+.physical-location{
+    display: inline-block;
+    font-weight: bold;
+    background-color: #adff2f;
+    border-radius: 5px;
+    padding: 2px 5px;
+
+}

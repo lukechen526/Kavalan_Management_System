@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+
+{% block content %}
+
+<form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form">
+    {% csrf_token %}
+
+    {% if form.errors %}
+        <div class="alert-message block-message error">{% trans "Your username and password didn't match. Please try again." %}</div>
+    {% endif %}
+
+    {% for field in form.visible_fields %}
+        <div class="clearfix">
+            {{ field.label_tag }}
+            <div class="input">
+                {{ field }}
+                {{ field.errors }}
+            </div>
+        </div>
+    {% endfor %}
+
+    <div class="actions">
+        <button class="btn primary" type="submit">{% trans "Submit" %}</button>
+        <button class="btn default" type="reset">{% trans "Reset" %}</button>
+    </div>
+    <input type="hidden" name="next" value="{{ next }}" />
+
+</form>
+
+{% endblock %}
