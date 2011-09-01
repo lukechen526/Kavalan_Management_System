@@ -17,21 +17,22 @@ body > #container {
 footer{
     clear: both;
     z-index: 10;
-    height: 2em;
-    margin-top: -2em;
+    height: 20px;
+    margin-top: -20px;
     background-color: #000000;
     color:#d3d3d3;
 }
 
 footer p{
     text-align: center;
+    vertical-align: middle;
 }
 
 #content{
     display: block;
     width: 100%;
     min-height: 100%;
-    margin-bottom: 2em;
+    margin-bottom: 20px;
     margin-top: 30px;
     padding-top: 15px;
     padding-bottom: 15px;
@@ -132,6 +133,7 @@ nav>ul li a.active {
 
 #username{
     color: #ffffff;
+    font-weight: bold;
 }
 
 #username.open{
@@ -345,22 +347,11 @@ span.arrow-down {
 
 /* for /accounts/login/ */
 #login-form{
-    width: 80%;
+    width: 40%;
     margin-left: auto;
     margin-right: auto;
 }
 
-#login-form table{
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-}
-#login-form table tr{
-
-    width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-}
 .login-error {
     color: red;
 }

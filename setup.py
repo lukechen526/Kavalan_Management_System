@@ -8,11 +8,12 @@ except ImportError:
     ez_setup.use_setuptools()
     from setuptools import setup, find_packages
 
-import os
+import kavalan
+version = kavalan.__version__
 
 setup(
     name = "django-kavalan",
-    version = "0.4.2",
+    version = version,
     url = 'https://github.com/lukechen526/Kavalan_Management_System',
     download_url = 'https://github.com/lukechen526/Kavalan_Management_System/zipball/master',
     license = 'BSD',
@@ -24,7 +25,7 @@ setup(
     include_package_data = True,
     zip_safe = False,
     classifiers = [
-        'Development Status :: 3 - Alpha',
+        'Development Status :: 4 - Alpha',
         'Framework :: Django',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
