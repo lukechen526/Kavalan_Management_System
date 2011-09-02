@@ -10,6 +10,7 @@
 #search-tabs>div{
     background-color: #F5F5F5;
     width: 100%;
+    padding: 1.4em 0 !important;
 }
 
 /*For Document Search Form*/
