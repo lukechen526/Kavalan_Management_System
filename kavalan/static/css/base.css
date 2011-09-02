@@ -52,7 +52,6 @@ nav>ul {
     height: 100%;
     padding: 0;
     margin: 0;
-    width:80%;
     float: left;
 }
 
@@ -90,7 +89,8 @@ nav>ul li a.active {
 
 /*Controls */
 #controls {
-    float:right;
+    position: absolute;
+    right: 0;
     height: 100%;
     line-height: 30px;
 }
