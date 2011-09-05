@@ -27,6 +27,19 @@
     <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <abbr class="physical-location" title="{% trans "Physical Location" %}"><%=location%></abbr></span>
 </script>
 
+<script type="text/template" id="search-result-pagination-template">
+
+  <div class="pagination">
+      <ul>
+        <% var i = 1; for(i = 1; i<= num_pages; i++){ %>
+            <li <% if(i==page_number){ %>class="active" <%}%> ><a class="page" rel="<%=i%>" href="javascript:void(0);"><%=i%></a></li>
+        <%}%>
+      </ul>
+</div>
+
+
+</script>
+
 
     <div id="search-tabs">
     	<ul>

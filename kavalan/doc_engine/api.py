@@ -3,7 +3,7 @@ from piston.utils import *
 from doc_engine.models import Document, BatchRecord
 from django.db.models import Q
 from dynamo.core import build_query
-from doc_engine.forms import BatchRecordSearchForm
+from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
 from piston.utils import validate
 import json
 
@@ -23,11 +23,17 @@ class DocumentHandler(BaseHandler):
                 query = json.loads(request.GET.get('query'))
             except:
                 query = dict()
-            
-            sn_title = query.get('sn_title','')
-            document_level = query.get('document_level',None)
-            labels = query.get('labels',None)
-            offset = 0
+
+            query = DocumentSearchForm(query)
+
+            if not query.is_valid():
+                resp = rc.BAD_REQUEST
+                resp.write(str(query.errors))
+                return resp
+
+            sn_title = query.cleaned_data['sn_title']
+            document_level = query.cleaned_data['document_level']
+            labels = query.cleaned_data['labels']
 
             result = Document.objects.all()
             
@@ -40,11 +46,15 @@ class DocumentHandler(BaseHandler):
             if labels:
                 for label in labels:
                     #Apply AND operation to labels
-                    result = result.filter(labels__in=label)
+                    result = result.filter(labels__in=[label])
                     
                 result = result.distinct()
 
-            return result[offset: offset+20]
+            if not sn_title and not labels:
+                #If no sn_title or labels are supplied, returns no result. 
+                return []
+
+            return result
         
         else:
             resp = rc.BAD_REQUEST
@@ -56,7 +66,6 @@ class BatchRecordHandler(BaseHandler):
     model = BatchRecord
     fields = ('name', 'batch_number', 'date_manufactured', 'date_manufactured_minguo', 'location')
 
-    @validate(BatchRecordSearchForm, 'GET')
     def read(self, request):
         
         if request.GET.get('query', None):
@@ -64,11 +73,18 @@ class BatchRecordHandler(BaseHandler):
                 q = json.loads(request.GET.get('query'))
             except:
                 q= dict()
-                
-            name = q.get('name', '')
-            batch_number = q.get('batch_number', '')
-            date_manufactured_from = q.get('date_manufactured_from','')
-            date_manufactured_to = q.get('date_manufactured_to','')
+
+            q = BatchRecordSearchForm(q)
+
+            if not q.is_valid():
+                resp = rc.BAD_REQUEST
+                resp.write(str(q.errors))
+                return resp
+
+            name = q.cleaned_data['name']
+            batch_number = q.cleaned_data['batch_number']
+            date_manufactured_from = q.cleaned_data['date_manufactured_from']
+            date_manufactured_to = q.cleaned_data['date_manufactured_to']
 
             query = dict()
             query['filters'] = []

@@ -18,12 +18,12 @@ class DocumentInputForm(forms.ModelForm):
         model = Document
 
 class DocumentSearchForm(forms.Form):
-    sn_title = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'))
+    sn_title = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'), required=False)
 
     document_level = forms.ChoiceField(label=ugettext_lazy('Document Level'), required=False, choices=(('',ugettext_lazy('All results')),)+Document.DOCUMENT_LEVELS,
                                        widget = forms.Select(attrs={'data-placeholder':ugettext_lazy('Filter by document level')}))
 
-    labels = forms.ModelMultipleChoiceField(label=ugettext_lazy('Labels'), queryset=DocumentLabel.objects.all(),
+    labels = forms.ModelMultipleChoiceField(label=ugettext_lazy('Labels'), required=False, queryset=DocumentLabel.objects.all(),
                                             widget = forms.SelectMultiple(attrs={'data-placeholder':ugettext_lazy('Filter by labels')}))
 
 class BatchRecordInputForm(forms.ModelForm):
