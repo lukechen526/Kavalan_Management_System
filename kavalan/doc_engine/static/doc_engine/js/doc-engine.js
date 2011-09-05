@@ -14,20 +14,24 @@ $(document).ready(function(){
 
  $('#search-tabs select').chosen();
 /*Document search*/
- $('#q, #document_level, #labels').bind('keyup change', function(event){
+ $('#sn_title, #document_level, #labels').bind('keyup change', function(event){
 
     delayExecute(ajaxDocumentSearch);
      
     function ajaxDocumentSearch(){
 
-        var query = $('#q').val();
+        var sn_title = $('#sn_title').val();
         var document_level  = $('#document_level').val();
         var labels = $('#labels').val();
         
-        if(query !== ""){
+        if(sn_title !== "" || labels != null){
+            
             $.ajax({
                 url:"/api/documents",
-                data:{'q':query, 'document_level': document_level, 'labels':labels},
+                data:{query: JSON.stringify({sn_title: sn_title,
+                                             document_level: document_level,
+                                             labels: labels})},
+                
                 success: function(data){
                     $("#search-result").empty();
                     if(data.length == 0){
@@ -56,10 +60,11 @@ $(document).ready(function(){
  function ajaxBatchRecordSearch(){
      $.ajax({
          url:"/api/batchrecords",
-         data: {name: $("#name").val(),
-               batch_number: $("#batch_number").val(),
-               date_manufactured_from: $("#date_manufactured_from").val(),
-               date_manufactured_to: $("#date_manufactured_to").val()},
+         data: {query:JSON.stringify({name: $("#name").val(),
+                                      batch_number: $("#batch_number").val(),
+                                      date_manufactured_from: $("#date_manufactured_from").val(),
+                                      date_manufactured_to: $("#date_manufactured_to").val()})
+         },
          error: function(jqXHR){$("#search-result").empty();},
          success: function(data){
              $("#search-result").empty();
@@ -74,11 +79,7 @@ $(document).ready(function(){
 
              }
 
-
          }
-
-
-
 
      });
 
@@ -152,17 +153,16 @@ $(document).ready(function(){
 
  });
 
-$("#name").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#batch_number").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_from").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
+$("#name, #batch_number, #date_manufactured_from, #date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
 
 
 /*Doc Engine tabs*/
  $('#search-tabs').tabs();
  $('#search-tabs').bind('tabsselect', function(){
      $('#search-result').empty();
-     $('#search-tabs form').each(function(){this.reset();});});
+     $(':input','#search-tabs form').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+     $('#search-tabs form *').find(".search-choice-close").trigger('click');
+ });
 
 /* Datepicker for adding Batch Records in Admin*/
  $('#id_date_manufactured').datepicker();

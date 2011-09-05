@@ -5,6 +5,7 @@ from django.db.models import Q
 from dynamo.core import build_query
 from doc_engine.forms import BatchRecordSearchForm
 from piston.utils import validate
+import json
 
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
@@ -17,21 +18,33 @@ class DocumentHandler(BaseHandler):
         :param request: HttpRequest object containing 'q' for the query
         :return: QuerySet if 'q' is valid, or rc.BAD_REQUEST if not
         """
-        if 'q' in request.GET and request.GET['q']:
-            query = request.GET['q']
-            result = Document.objects.filter(Q(serial_number__icontains=query)|Q(title__icontains=query)).filter(searchable=True)
+        if request.GET.get('query', None):
+            try:
+                query = json.loads(request.GET.get('query'))
+            except:
+                query = dict()
+            
+            sn_title = query.get('sn_title','')
+            document_level = query.get('document_level',None)
+            labels = query.get('labels',None)
+            offset = 0
 
-            document_level = request.GET.get('document_level', '')
-            labels = request.GET.getlist('labels[]')
+            result = Document.objects.all()
+            
+            if sn_title:
+                result = result.filter(Q(serial_number__icontains=sn_title)|Q(title__icontains=sn_title)).filter(searchable=True)
 
-            print labels
             if document_level:
                 result = result.filter(document_level__exact=document_level)
 
             if labels:
-                result = result.filter(labels__in=labels).distinct()
+                for label in labels:
+                    #Apply AND operation to labels
+                    result = result.filter(labels__in=label)
+                    
+                result = result.distinct()
 
-            return result
+            return result[offset: offset+20]
         
         else:
             resp = rc.BAD_REQUEST
@@ -45,44 +58,59 @@ class BatchRecordHandler(BaseHandler):
 
     @validate(BatchRecordSearchForm, 'GET')
     def read(self, request):
-        query = dict()
-        query['filters'] = []
+        
+        if request.GET.get('query', None):
+            try:
+                q = json.loads(request.GET.get('query'))
+            except:
+                q= dict()
+                
+            name = q.get('name', '')
+            batch_number = q.get('batch_number', '')
+            date_manufactured_from = q.get('date_manufactured_from','')
+            date_manufactured_to = q.get('date_manufactured_to','')
 
-        if 'name' in request.GET and request.GET['name']:
-            query['filters'].append(dict(field='name',
-                                         lookuptype='icontains',
-                                         value=request.GET['name'],
-                                         op='AND',
-                                         exclude=False))
+            query = dict()
+            query['filters'] = []
 
-        if 'batch_number' in request.GET and request.GET['batch_number']:
-            query['filters'].append(dict(field='batch_number',
-                                         lookuptype='icontains',
-                                         value=request.GET['batch_number'],
-                                         op='AND',
-                                         exclude=False))
+            if name:
+                query['filters'].append(dict(field='name',
+                                             lookuptype='icontains',
+                                             value=name,
+                                             op='AND',
+                                             exclude=False))
 
-        if 'date_manufactured_from' in request.GET and request.GET['date_manufactured_from']:
-            query['filters'].append(dict(field='date_manufactured',
-                                         lookuptype='gte',
-                                         value=request.GET['date_manufactured_from'],
-                                         op='AND',
-                                         exclude=False))
+            if batch_number:
+                query['filters'].append(dict(field='batch_number',
+                                             lookuptype='icontains',
+                                             value=batch_number,
+                                             op='AND',
+                                             exclude=False))
 
-        if 'date_manufactured_to' in request.GET and request.GET['date_manufactured_to']:
-            query['filters'].append(dict(field='date_manufactured',
-                                         lookuptype='lte',
-                                         value=request.GET['date_manufactured_to'],
-                                         op='AND',
-                                         exclude=False))
-        if not query['filters']:
-            #Needs at least one filter
-            resp = rc.BAD_REQUEST
-            resp.write("Needs at least one filter")
-            return resp
+            if date_manufactured_from:
+                query['filters'].append(dict(field='date_manufactured',
+                                             lookuptype='gte',
+                                             value=date_manufactured_from,
+                                             op='AND',
+                                             exclude=False))
 
+            if date_manufactured_to:
+                query['filters'].append(dict(field='date_manufactured',
+                                             lookuptype='lte',
+                                             value=date_manufactured_to,
+                                             op='AND',
+                                             exclude=False))
+            if not query['filters']:
+                #Needs at least one filter
+                resp = rc.BAD_REQUEST
+                resp.write("Needs at least one filter")
+                return resp
+
+            else:
+                result = build_query(query, BatchRecord)
+                return result
         else:
-            result = build_query(query, BatchRecord)
-            return result
-
+            resp = rc.BAD_REQUEST
+            resp.write("Needs a query parameter")
+            return resp
 

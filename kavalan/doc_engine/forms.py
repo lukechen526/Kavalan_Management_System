@@ -18,7 +18,7 @@ class DocumentInputForm(forms.ModelForm):
         model = Document
 
 class DocumentSearchForm(forms.Form):
-    q = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'))
+    sn_title = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'))
 
     document_level = forms.ChoiceField(label=ugettext_lazy('Document Level'), required=False, choices=(('',ugettext_lazy('All results')),)+Document.DOCUMENT_LEVELS,
                                        widget = forms.Select(attrs={'data-placeholder':ugettext_lazy('Filter by document level')}))
