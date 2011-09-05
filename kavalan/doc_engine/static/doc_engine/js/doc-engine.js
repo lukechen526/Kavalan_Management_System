@@ -14,76 +14,124 @@ $(document).ready(function(){
 
  $('#search-tabs select').chosen();
 /*Document search*/
- $('#q, #document_level, #labels').bind('keyup change', function(event){
+var current_page = 1;
 
-    delayExecute(ajaxDocumentSearch);
-     
-    function ajaxDocumentSearch(){
+function ajaxDocumentSearch(){
 
-        var query = $('#q').val();
-        var document_level  = $('#document_level').val();
-        var labels = $('#labels').val();
-        
-        if(query !== ""){
-            $.ajax({
-                url:"/api/documents",
-                data:{'q':query, 'document_level': document_level, 'labels':labels},
-                success: function(data){
-                    $("#search-result").empty();
-                    if(data.length == 0){
-                        $("#search-result").append(gettext("No Result"));
-                    }
-                    else{
-                        data.forEach(function(item){
-                            $(_.template($('#search-doc-template').html(),item)).appendTo( "#search-result" );
-                        });
+    var sn_title = $('#sn_title').val();
+    var document_level  = $('#document_level').val();
+    var labels = $('#labels').val();
 
-                    }
+    if(sn_title !== "" || labels != null){
+
+        $.ajax({
+            url:"/api/documents",
+            data:{query: JSON.stringify({sn_title: sn_title,
+                                         document_level: document_level,
+                                         labels: labels}),
+                  page_number: current_page
+            },
+            error: function(jqXHR){$("#search-result").empty();},
+            success: function(resp){
+                $("#search-result").empty();
+                data = resp['data'];
+                page_number = resp['page_number'];
+                current_page = page_number;
+                num_pages = resp['num_pages'];
+
+
+                if(data.length == 0){
+                    $("#search-result").append(gettext("No Result"));
                 }
-            });
+                else{
+                    data.forEach(function(item){
+                        $(_.template($('#search-doc-template').html(),item)).appendTo( "#search-result" );
+                    });
 
-        }
-        else{
+                    if( num_pages > 1)
+                    {
+                        $(_.template($('#search-result-pagination-template').html(), {page_number:page_number, num_pages:num_pages})).appendTo("#search-result");
 
-            $("#search-result").empty();
-        }
+                        $('a.page').bind('click', function(event){
+                            event.preventDefault();
+                            current_page = parseInt($(event.target).attr('rel'));
+                            delayExecute(ajaxDocumentSearch);
+                         });
+                    }
+
+
+
+
+                }
+            }
+        });
+
     }
- });
+    
+    else{
+
+        $("#search-result").empty();
+    }
+}
+
+
+$('#sn_title, #document_level, #labels').bind('keyup change', function(event){
+    current_page = 1; 
+    delayExecute(ajaxDocumentSearch);});
+
+
 
     
 /* Batch Record Search*/
-
  function ajaxBatchRecordSearch(){
      $.ajax({
          url:"/api/batchrecords",
-         data: {name: $("#name").val(),
-               batch_number: $("#batch_number").val(),
-               date_manufactured_from: $("#date_manufactured_from").val(),
-               date_manufactured_to: $("#date_manufactured_to").val()},
+         data: {query:JSON.stringify({name: $("#name").val(),
+                                      batch_number: $("#batch_number").val(),
+                                      date_manufactured_from: $("#date_manufactured_from").val(),
+                                      date_manufactured_to: $("#date_manufactured_to").val()}),
+             
+                page_number:current_page
+         },
          error: function(jqXHR){$("#search-result").empty();},
-         success: function(data){
+         success: function(resp){
              $("#search-result").empty();
+             data = resp['data'];
+             page_number = resp['page_number'];
+             num_pages = resp['num_pages'];
+             
              if(data.length == 0){
                  $("#search-result").append(gettext("No Result"));
              }
 
              else{
-                  data.forEach(function(item){
-                      $( _.template($('#search-batch-record-template').html(),item)).appendTo( "#search-result" );
-                   });
+                 data.forEach(function(item){
+                     $( _.template($('#search-batch-record-template').html(),item)).appendTo( "#search-result" );
+                 });
+
+                 if( num_pages > 1){
+                     $(_.template($('#search-result-pagination-template').html(), {page_number:page_number, num_pages:num_pages})).appendTo("#search-result");
+                     $('a.page').bind('click', function(event){
+                         event.preventDefault();
+                         current_page = parseInt($(event.target).attr('rel'));
+                         delayExecute(ajaxBatchRecordSearch);
+     });
+                    }
 
              }
 
-
          }
-
-
-
 
      });
 
 
  }
+
+$("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
+    .bind("change keyup",function(event){
+        current_page = 1;
+        delayExecute(ajaxBatchRecordSearch)});
+        
  (function(){
   //Override the default datepicker to display 民國
     $.datepicker.regional['zh-TW'] = {
@@ -152,17 +200,13 @@ $(document).ready(function(){
 
  });
 
-$("#name").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#batch_number").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_from").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-$("#date_manufactured_to").bind("change keyup",function(event){delayExecute(ajaxBatchRecordSearch)});
-
-
 /*Doc Engine tabs*/
  $('#search-tabs').tabs();
  $('#search-tabs').bind('tabsselect', function(){
      $('#search-result').empty();
-     $('#search-tabs form').each(function(){this.reset();});});
+     $(':input','#search-tabs form').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
+     $('#search-tabs form *').find(".search-choice-close").trigger('click');
+ });
 
 /* Datepicker for adding Batch Records in Admin*/
  $('#id_date_manufactured').datepicker();

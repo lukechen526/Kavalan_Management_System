@@ -176,11 +176,12 @@ AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
 
 #Configuration for Django-Axes
-AXES_LOGIN_FAILURE_LIMIT = True
+AXES_LOGIN_FAILURE_LIMIT = 5
 AXES_LOCK_OUT_AT_FAILURE = True
 AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
 AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
 AXES_LOCKOUT_URL = '/accounts/lockout/'
+AXES_USE_USER_AGENT = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
