@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load url from future %}
+{% load kavalan_tags %}
 
 {% block content %}
 
@@ -11,15 +12,7 @@
         <div class="alert-message block-message error">{% trans "Your username and password didn't match. Please try again." %}</div>
     {% endif %}
 
-    {% for field in form.visible_fields %}
-        <div class="clearfix">
-            {{ field.label_tag }}
-            <div class="input">
-                {{ field }}
-                {{ field.errors }}
-            </div>
-        </div>
-    {% endfor %}
+    {% bootstrap_fields form %}
 
     <div class="actions">
         <button class="btn primary" type="submit">{% trans "Submit" %}</button>

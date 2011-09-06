@@ -9,6 +9,9 @@ urlpatterns = patterns('django.contrib.auth.views',
 
 urlpatterns += patterns('accounts.views',
     url(r'^manage/$', 'account_manage'),
-    url(r'^create_user/$', 'create_user')
+    url(r'^create_user/$', 'create_user'),
 )
-  
+
+urlpatterns += patterns('simpleavatar.views',
+    url(r'^change_avatar/$', 'change', {'template_name': 'registration/change_avatar.html'}, name='account-change-avatar')
+)

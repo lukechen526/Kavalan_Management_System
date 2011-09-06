@@ -116,6 +116,7 @@ nav>ul li a.active {
     height:100%;
 }
 
+
 #account-menu.open{
     background-color: white;
 }
@@ -156,42 +157,59 @@ span.arrow-down {
     position: absolute;
     top: 30px;
     display: none;
-    width:auto;
     right:0px;
+    min-width: 350px;
     z-index: 100;
     box-shadow: 0 0 2px 1px #CCCCCC;
     border: 1px solid #bebebe;
     font-size: 1.2em;
-
+    background-color: #ffffff;
 }
 
 #account-options.open{
     display: block;
+
 }
-#account-options ul{
+
+#account-options div.avatar{
+    width:80px;
+    height: 80px;
+    display: inline-block;
+    padding: 5px;
+    vertical-align: top;
+}
+
+#account-options div.detail{
+    display: inline-block;
+    vertical-align: top;
+}
+
+#account-options div.detail ul{
     width: 100%;
     height: 100%;
     padding: 0;
     margin: 0;
 }
-#account-options ul li{
+#account-options div.detail ul li{
     list-style-type: none;
     background-color: #ffffff;
     width:100%;
     white-space: nowrap;
 }
 
-#account-options ul li a{
+#account-options div.detail ul li a{
     color: #3366CC !important;
     text-align: center;
-    padding: 0 10px;
-    font-size: 16px;
+    padding: 5px 0;
+    font-size: 14px;
     line-height: 24px;
 }
 
-#account-options ul li a:hover{
+#account-options div.detail ul li a:hover{
     text-decoration: underline;
 }
+
+
 
 /*For noticces*/
 #notices{
