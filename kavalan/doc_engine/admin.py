@@ -10,7 +10,7 @@ class DocumentAdmin(admin.ModelAdmin):
     form = DocumentInputForm
     inlines = [FileObjectInline,]
 
-    list_display = ('serial_number', 'title', 'searchable')
+    list_display = ('serial_number', 'title', 'searchable', 'display_labels')
     search_fields = ('serial_number', 'title')
     readonly_fields = ('searchable',)
 

@@ -50,7 +50,10 @@ class Document(models.Model):
     class Meta:
         verbose_name = ugettext_lazy('Document')
         verbose_name_plural = ugettext_lazy('Documents')
-        
+
+    def __unicode__(self):
+        return unicode(u'%s %s' %(self.serial_number, self.title))
+
     def file_url(self):
         return "/doc_engine/access/%s/" % self.pk
 
@@ -58,10 +61,17 @@ class Document(models.Model):
         #Get the file that corresponds to the current version
         return self.versions.get(version__exact=self.version).file
 
-    def __unicode__(self):
-        return unicode(u'%s %s' %(self.serial_number, self.title))
+    def display_labels(self):
+        span_list = []
 
+        for label in self.labels.values_list('content', flat=True):
+            span_list.append('<span style="display: inline-block; background-color: #DACFE8; padding: 0 2px;">%s</span>' % (label,))
+        return ' '.join(span_list)
+    
+    display_labels.allow_tags = True
+    display_labels.short_description = ugettext_lazy('Label')
 
+    
 class FileObject(models.Model):
     """
     Model for storing the file path to the actual file on the disk and the version number. It then points
