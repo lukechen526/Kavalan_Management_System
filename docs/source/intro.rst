@@ -16,7 +16,7 @@ Several apps have been planned for inclusion in the suite. They are all at very 
 - *Doc Engine* for document search and retrieval
 - *Dynamo* for creating database query dynamically based on user input.
 - Stream (for posting status updates and sharing links)
-- Inventory Management
+- Forum (based on a modified version of LBForum)
 - Account and Profile Management
 - The *API* sub-system is used to centralize the management of public APIs exposed by the other sub-systems.
 
@@ -30,6 +30,8 @@ Dependencies
 - `guess-language`_ >=0.2
 - `South`_ >= 0.7.3
 - `Django-axes`_ >= 1.2.4
+- `Django-notification`_ >= 0.2.0
+- `LBForum`_ >= 0.9.20
 - Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
@@ -78,3 +80,5 @@ LICENSE
 .. _South: http://south.aeracode.org/
 .. _Django-axes: http://pypi.python.org/pypi/django-axes/
 .. _guess-language: http://pypi.python.org/pypi/guess-language
+.. _LBForum: https://github.com/lukechen526/LBForum
+.. _Django-notification: https://github.com/jtauber/django-notification

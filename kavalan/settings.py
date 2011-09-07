@@ -226,7 +226,11 @@ LOGGING = {
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
 
 #Settings for LBForum
-from settings_lbforum import *
+try:
+    import lbforum
+    from settings_lbforum import *
+except ImportError:
+    pass
 
 #Import settings_production.py for production environment
 if not DEBUG:
