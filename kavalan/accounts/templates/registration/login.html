@@ -8,8 +8,8 @@
 <form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form">
     {% csrf_token %}
 
-    {% if form.errors %}
-        <div class="alert-message block-message error">{% trans "Your username and password didn't match. Please try again." %}</div>
+    {% if form.non_field_errors %}
+          <div class="alert-message block-message error">{{ form.non_field_errors }}</div>
     {% endif %}
 
     {% bootstrap_fields form %}
