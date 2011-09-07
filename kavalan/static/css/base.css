@@ -392,10 +392,13 @@ span.arrow-down {
      font-weight: bold;
 }
 
-/* for forms */
-
-.errorlist li{
+/* for form errors */
+div.input ul.errorlist{
+    display: inline;
+}
+div.input ul.errorlist li{
     color: red !important;
+    list-style-type: none;
 }
 
 /*For input buttons*/

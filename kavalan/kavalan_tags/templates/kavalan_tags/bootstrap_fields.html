@@ -8,8 +8,8 @@
         {% endif %}
     
         {{ field.label_tag }}
-        <div class="input">{{ field }}</div>
-        {{ field.errors }}
+        <div class="input">{{ field }}<span class="help-inline">{{ field.errors }}</span></div>
+
     </div>
 {% endfor %}
 
