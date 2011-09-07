@@ -9,6 +9,7 @@
 
 .stream .create-post{
     position: relative;
+    padding: 5px; 
 }
 
 .stream .create-post>*{
@@ -39,7 +40,6 @@
 #id_groups_chzn{
     vertical-align: top;
     width: 450px !important;
-    height: 32px;
 }
 
 .stream .create-post-errors{
