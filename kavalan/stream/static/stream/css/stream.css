@@ -9,7 +9,8 @@
 
 .stream .create-post{
     position: relative;
-    padding: 5px; 
+    padding: 5px;
+    max-width: 540px;
 }
 
 .stream .create-post>*{
@@ -35,11 +36,17 @@
 .stream .post-button{
     height: 32px;
     font-weight: bold;
+    min-width: 75px;
+    max-width: 100px;
+    width: 15% !important;
+
 }
 
 #id_groups_chzn{
     vertical-align: top;
-    width: 450px !important;
+    min-width: 300px;
+    max-width: 440px;
+    width: 84% !important;
 }
 
 .stream .create-post-errors{
