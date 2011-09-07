@@ -17,11 +17,14 @@ urlpatterns = patterns('',
     url(r'^accounts/', include('accounts.urls')),
     url(r'^api/', include('api.urls')),
     url(r'^notification/', include('notification.urls')),
+    url(r'^attachments/', include('attachments.urls')),
+    url(r'^forum/', include('lbforum.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
 urlpatterns += static(settings.DOCUMENT_URL, document_root=settings.DOCUMENTATION_ROOT)
-
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    
 js_info_dict = {
     'domain': 'djangojs',
     'packages': ('kavalan',)

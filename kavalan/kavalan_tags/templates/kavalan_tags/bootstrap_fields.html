@@ -1,0 +1,15 @@
+{% for field in  bootstrap_form.visible_fields %}
+    <div class="clearfix">
+        {# Include the hidden fields in the form #}
+        {% if forloop.first %}
+            {% for hidden in bootstrap_form.hidden_fields %}
+                {{ hidden }}
+            {% endfor %}
+        {% endif %}
+    
+        {{ field.label_tag }}
+        <div class="input">{{ field }}</div>
+        {{ field.errors }}
+    </div>
+{% endfor %}
+

@@ -28,23 +28,53 @@ Search API
 
 **Resource URL:** /api/documents
 
-**Parameter:** q(required)= *title or document serial number to query against*
+**Parameter:**
+
+- q(required): *JSON string of the search parameters (serial number/title, document level, and labels*)
+- page_number(optional): *if there are more than one page of results (each page has 10 results), this specifies which page the server should return*
 
 **Response:** A JSON string containing the records matching the query, or an empty []
 
 Example Request:
 
-GET /api/documents?q=Lab
+GET /api/documents?query={"sn_title":"he","document_level":"1","labels":["2"]}&page_number=1
+
+(Shown as the original strings. In reality, they must be URL-encoded before sending.)
+
 ::
 
-    [
-        {
-            "serial_number": "Lab 101",
-            "version": 1.3,
-            "file_url": "/doc_engine/access/1/",
-            "title": "Lab 101 SOP"
-        }
-    ]
+    {
+    "page_number": 1,
+    "num_pages": 1,
+    "data":
+        [
+            {
+                "title": "Test 124",
+                "labels": [
+                    {
+                        "content": "TEST"
+                    }
+                ],
+                "file_url": "/doc_engine/access/4/",
+                "version": "1.0",
+                "location": "",
+                "serial_number": "HE 124"
+            },
+            
+            {
+                "title": "Home, sweet home",
+                "labels": [
+                    {
+                        "content": "TEST"
+                    }
+                ],
+                "file_url": "/doc_engine/access/10/",
+                "version": "1.0",
+                "location": "",
+                "serial_number": "HE 123121212"
+            }
+        ]
+    }
  
 Model
 ^^^^^^^
@@ -98,6 +128,9 @@ API
 
 **Parameters:**
 
+
+All the parameters are enclosed in a JSON query string
+
 +---------------------------------------+-----------------------------------------------+
 |                                       |                                               |
 +=======================================+===============================================+
@@ -116,17 +149,25 @@ API
 
 Example Request:
 
-GET /api/batchrecords?name=Ampi&batch_number=&date_manufactured_from=2011-07-07&date_manufactured_to=
+GET /api/batchrecords?query={"name":"am","batch_number":"AMP12","date_manufactured_from":"2011-04-01","date_manufactured_to":"2011-09-06"}&page_number=1
+
+(Shown as the original strings. In reality, they must be URL-encoded before sending.)
+
 ::
 
-    [
-        {
-            "date_manufactured": "2011-07-08",
-            "batch_number": "AM12",
-            "name": "Ampicillin",
-            "location": "A-12"
-        }
-    ]
+    {
+        "page_number": 1,
+        "num_pages": 1,
+        "data": [
+            {
+                "date_manufactured": "2011-08-19",
+                "batch_number": "AMP12",
+                "name": "Ampicillin",
+                "date_manufactured_minguo": "0100-08-19",
+                "location": "AB 123"
+            }
+        ]
+    }
 
 
 Model

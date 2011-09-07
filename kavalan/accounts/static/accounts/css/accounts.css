@@ -1,0 +1,6 @@
+#change-avatar label[for="avatar-clear_id"]{
+    float:none !important;
+}
+#change-avatar label[for="id_avatar"]{
+    display: none;
+}

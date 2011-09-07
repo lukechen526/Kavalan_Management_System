@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-31 01:01+0800\n"
+"POT-Creation-Date: 2011-09-06 16:20+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\settings.py:45
+#: .\settings.py:44
 msgid "Chinese-TW"
 msgstr "正體中文"
 
-#: .\settings.py:46
+#: .\settings.py:45
 msgid "English"
 msgstr "英文"
 
@@ -55,18 +55,24 @@ msgstr "用戶配置"
 msgid "Groups"
 msgstr "群組"
 
-#: .\accounts\templates\registration\create_user.html.py:8
-#: .\stream\views.py:13 .\stream\views.py:18
-msgid "Select one or more groups"
-msgstr "選擇一或多個群組"
+#: .\accounts\templates\registration\change_avatar.html.py:14
+msgid "Current Avatar:"
+msgstr "現用頭像"
 
-#: .\accounts\templates\registration\create_user.html.py:29
+#: .\accounts\templates\registration\change_avatar.html.py:24
+#: .\accounts\templates\registration\create_user.html.py:21
+#: .\accounts\templates\registration\login.html.py:18
 #: .\accounts\templates\registration\password_change_form.html.py:11
 msgid "Submit"
 msgstr "提交"
 
-#: .\accounts\templates\registration\create_user.html.py:30
-#: .\accounts\templates\registration\login.html.py:26
+#: .\accounts\templates\registration\create_user.html.py:9
+#: .\stream\views.py:13 .\stream\views.py:18
+msgid "Select one or more groups"
+msgstr "選擇一或多個群組"
+
+#: .\accounts\templates\registration\create_user.html.py:22
+#: .\accounts\templates\registration\login.html.py:19
 msgid "Reset"
 msgstr "重設"
 
@@ -84,41 +90,44 @@ msgstr ""
 "嘗試登入太多次！請等 %(cooloff_time)s 再試！\n"
 "\n"
 
-#: .\accounts\templates\registration\login.html.py:11
+#: .\accounts\templates\registration\login.html.py:12
 msgid "Your username and password didn't match. Please try again."
 msgstr "您的用戶名及密碼不符，請重新再試"
 
-#: .\accounts\templates\registration\login.html.py:26
-#: .\templates\navigation.html.py:40
-msgid "Login"
-msgstr "登入"
-
-#: .\accounts\templates\registration\manage.html.py:7
+#: .\accounts\templates\registration\manage.html.py:9
 msgid "Username"
 msgstr "帳號"
 
-#: .\accounts\templates\registration\manage.html.py:8
+#: .\accounts\templates\registration\manage.html.py:15
+msgid "Avatar"
+msgstr ""
+
+#: .\accounts\templates\registration\manage.html.py:16
+msgid "Click to change"
+msgstr ""
+
+#: .\accounts\templates\registration\manage.html.py:21
 msgid "Name"
 msgstr "姓名"
 
-#: .\accounts\templates\registration\manage.html.py:10
+#: .\accounts\templates\registration\manage.html.py:27
 msgid "Password"
 msgstr "密碼"
 
-#: .\accounts\templates\registration\manage.html.py:11
+#: .\accounts\templates\registration\manage.html.py:28
 msgid "Change Password"
 msgstr "密碼重設"
 
-#: .\accounts\templates\registration\manage.html.py:13
+#: .\accounts\templates\registration\manage.html.py:33
 msgid "E-mail"
 msgstr "E-mail"
 
-#: .\accounts\templates\registration\manage.html.py:15
+#: .\accounts\templates\registration\manage.html.py:38
 msgid "Last Login"
 msgstr "上次登入"
 
-#: .\accounts\templates\registration\manage.html.py:18
-#: .\accounts\templates\registration\manage.html.py:19
+#: .\accounts\templates\registration\manage.html.py:45
+#: .\accounts\templates\registration\manage.html.py:46
 msgid "Create User"
 msgstr "增新帳號"
 
@@ -338,11 +347,11 @@ msgstr "批次記錄"
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:33
+#: .\doc_engine\templates\doc_engine\document_index.html.py:46
 msgid "Search Documents"
 msgstr "搜尋文件"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:34
+#: .\doc_engine\templates\doc_engine\document_index.html.py:47
 msgid "Search Batch Record"
 msgstr "搜尋批次記錄"
 
@@ -503,27 +512,35 @@ msgstr "首頁"
 msgid "Document Search"
 msgstr "文件查詢"
 
-#: .\templates\navigation.html.py:11
+#: .\templates\navigation.html.py:10
+msgid "Forum"
+msgstr "論壇"
+
+#: .\templates\navigation.html.py:12
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\navigation.html.py:12 .\templates\navigation.html.py:14
+#: .\templates\navigation.html.py:13 .\templates\navigation.html.py:15
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\navigation.html.py:34
+#: .\templates\navigation.html.py:35
 msgid "Manage Account"
 msgstr "管理帳號"
 
-#: .\templates\navigation.html.py:35
+#: .\templates\navigation.html.py:36
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\navigation.html.py:49
+#: .\templates\navigation.html.py:41
+msgid "Login"
+msgstr "登入"
+
+#: .\templates\navigation.html.py:50
 msgid "Notifications"
 msgstr "通知"
 
-#: .\templates\navigation.html.py:49
+#: .\templates\navigation.html.py:50
 msgid "View All"
 msgstr "讀取所有通知"
 

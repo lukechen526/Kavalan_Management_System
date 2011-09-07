@@ -2,9 +2,6 @@
 
 Stream
 ========
-.. attention::
-
-    *Stream* is still in alpha stage. Use it only for testing purposes.
 
 Overview
 -----------
@@ -13,3 +10,8 @@ Overview
 to which they belong.
 
 
+Models
+------------
+
+.. autoclass:: stream.models.StreamPost
+.. autoclass:: stream.models.StreamPostComment

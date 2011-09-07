@@ -102,6 +102,7 @@ STATICFILES_FINDERS = (
 SECRET_KEY = 'secret'
 
 LOGIN_URL ='/accounts/login/'
+LOGOUT_URL = '/accounts/logout/'
 LOGIN_REDIRECT_URL = '/'
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -165,15 +166,15 @@ INSTALLED_APPS = (
     'dynamo',
     'stream',
     'custom_notification',
+    'kavalan_tags',
     'axes',
     'notification',
+    'simpleavatar',
     'south',
-    'kavalan' #added to permit Javascript i18n
+    'kavalan', #added to permit Javascript i18n
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-
-
 
 #Configuration for Django-Axes
 AXES_LOGIN_FAILURE_LIMIT = 5
@@ -220,6 +221,16 @@ LOGGING = {
         },
     }
 }
+
+
+AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
+
+#Settings for LBForum
+try:
+    import lbforum
+    from settings_lbforum import *
+except ImportError:
+    pass
 
 #Import settings_production.py for production environment
 if not DEBUG:

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load url from future %}
+{% load kavalan_tags %}
 
 {% block content %}
 <script type="text/javascript">
@@ -14,16 +15,7 @@
     
 <form class="form-stacked" method="post" action="{% url 'accounts.views.create_user' %}" id="login-form">
 {% csrf_token %}
-    {% for field in form.visible_fields %}
-                    <div class="clearfix">
-                        {{ field.label_tag }}
-                        <div class="input">
-                            {{ field }}
-                            {{ field.errors }}
-                        </div>
-                    </div>
-
-                {% endfor %}
+{% bootstrap_fields form %}
 
 <div class="actions">
     <button class="btn primary" type="submit">{% trans "Submit" %}</button>

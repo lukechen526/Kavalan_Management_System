@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load url from future %}
+{% load kavalan_tags %}
+{% load avatar_tags %}
+
+{% block extra_head %}
+    <link href="{{ STATIC_URL }}accounts/css/accounts.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<div class=container style="width: 50%;">
+    <p>
+        {% trans "Current Avatar:" %} <br/>
+        {% avatar user %}
+    </p>
+
+    
+    <form method="POST" enctype="multipart/form-data" action="" id="change-avatar">
+        {% csrf_token %}
+        {{ avatar_form.as_p }}
+
+        <div class="actions">
+            <button class="btn primary" type="submit">{% trans "Submit" %}</button>
+        </div>
+
+    </form>
+</div>
+{% endblock %}
