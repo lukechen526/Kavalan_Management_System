@@ -5,8 +5,12 @@ from django.contrib.auth.models import User, Group
 
 class DocumentEngineTest(TestCase):
     
+    fixtures = ['docs.json']
+
     def setUp(self):
+
         test_user = User.objects.create_user(username='test', email='test@example.com', password='test')
+        test_group = Group.objects.create(name='Test Group')
 
     def testAuthenticationRequired(self):
         resp = self.client.get('/doc_engine/')
@@ -29,7 +33,7 @@ class DocumentEngineTest(TestCase):
         query = '{"sn_title":"he","document_level":"","labels":null}'
         page_number = 1
         resp = c.get('/api/documents/', {'query': query, 'page_number': page_number})
-        self.assertContains(resp, 'objects')
+        self.assertContains(resp, '"title": "HEllo world"')
 
     def testBatchRecordQuery(self):
         c = self.client
