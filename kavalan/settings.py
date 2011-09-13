@@ -170,6 +170,7 @@ INSTALLED_APPS = (
     'axes',
     'notification',
     'simpleavatar',
+    'piston', 
     'south',
     'kavalan', #added to permit Javascript i18n
 )
