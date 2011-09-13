@@ -34,17 +34,17 @@ function ajaxDocumentSearch(){
             error: function(jqXHR){$("#search-result").empty();},
             success: function(resp){
                 $("#search-result").empty();
-                data = resp['data'];
+                objects = resp['objects'];
                 page_number = resp['page_number'];
                 current_page = page_number;
                 num_pages = resp['num_pages'];
 
 
-                if(data.length == 0){
+                if(objects.length == 0){
                     $("#search-result").append(gettext("No Result"));
                 }
                 else{
-                    data.forEach(function(item){
+                    objects.forEach(function(item){
                         $(_.template($('#search-doc-template').html(),item)).appendTo( "#search-result" );
                     });
 
@@ -96,16 +96,16 @@ $('#sn_title, #document_level, #labels').bind('keyup change', function(event){
          error: function(jqXHR){$("#search-result").empty();},
          success: function(resp){
              $("#search-result").empty();
-             data = resp['data'];
+             objects = resp['objects'];
              page_number = resp['page_number'];
              num_pages = resp['num_pages'];
              
-             if(data.length == 0){
+             if(objects.length == 0){
                  $("#search-result").append(gettext("No Result"));
              }
 
              else{
-                 data.forEach(function(item){
+                 objects.forEach(function(item){
                      $( _.template($('#search-batch-record-template').html(),item)).appendTo( "#search-result" );
                  });
 

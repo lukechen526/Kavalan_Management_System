@@ -24,14 +24,20 @@ Document
 -------------------------
 Search API
 ^^^^^^^^^^^^^
-**GET /documents**
+**Resource URL:** /api/documents , /api/documents/*document_id*/
 
-**Resource URL:** /api/documents
+**Supported methods:** GET
 
 **Parameter:**
 
+For /api/documents
+
 - q(required): *JSON string of the search parameters (serial number/title, document level, and labels*)
 - page_number(optional): *if there are more than one page of results (each page has 10 results), this specifies which page the server should return*
+
+For /api/documents/*document_id*/
+
+- None
 
 **Response:** A JSON string containing the records matching the query, or an empty []
 
@@ -122,9 +128,8 @@ Batch Record
 
 API
 ^^^^
-**GET /batchrecords**
-
-**Resource URL:** /api/batchrecords
+**Resource URL:** /api/batchrecords , /api/batchrecords/*batchrecord_id*/
+**Supported methods:** GET
 
 **Parameters:**
 

@@ -3,7 +3,7 @@ A common entry point for API handlers placed under other app directories
 """
 from django.conf.urls.defaults import *
 from piston.resource import Resource
-from api.utils import DefaultAuthenticationHandler
+from api.utils import SessionAuthenticationHandler
 from api.emitters import *
 
 #Import API module of other systems
@@ -17,15 +17,15 @@ class CsrfExemptResource(Resource):
         super(CsrfExemptResource, self).__init__(handler, authentication)
         self.csrf_exempt = getattr(self.handler, 'csrf_exempt', True)
 
-document_handler = Resource(DocumentHandler, authentication=DefaultAuthenticationHandler())
-batch_record_handler = Resource(BatchRecordHandler, authentication=DefaultAuthenticationHandler())
-stream_handler = CsrfExemptResource(StreamHandler, authentication=DefaultAuthenticationHandler())
-stream_comment_handler = CsrfExemptResource(StreamCommentHandler, authentication=DefaultAuthenticationHandler())
+document_handler = Resource(DocumentHandler, authentication=SessionAuthenticationHandler())
+batch_record_handler = Resource(BatchRecordHandler, authentication=SessionAuthenticationHandler())
+stream_handler = CsrfExemptResource(StreamHandler, authentication=SessionAuthenticationHandler())
+stream_comment_handler = CsrfExemptResource(StreamCommentHandler, authentication=SessionAuthenticationHandler())
 
 
 urlpatterns = patterns('',
-    url(r'^documents$',document_handler, { 'emitter_format': 'page_json' }),
-    url(r'^batchrecords$', batch_record_handler, { 'emitter_format': 'page_json' } ),
+    url(r'^documents/(?P<document_id>\d*)$',document_handler, { 'emitter_format': 'page_json' }),
+    url(r'^batchrecords/(?P<batchrecord_id>\d*)$', batch_record_handler, { 'emitter_format': 'page_json' } ),
     url(r'stream/(?P<post_id>\d*)/comments/(?P<comment_id>\d*)', stream_comment_handler),
     url(r'^stream/(?P<post_id>\d*)', stream_handler)
 )
