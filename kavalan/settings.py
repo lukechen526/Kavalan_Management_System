@@ -37,7 +37,7 @@ TIME_ZONE = 'Asia/Taipei'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'zh-tw'
+LANGUAGE_CODE = 'en'
 ugettext = lambda s: s
 
 LANGUAGES = (
@@ -223,6 +223,7 @@ LOGGING = {
     }
 }
 
+SOUTH_TESTS_MIGRATE = False
 
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
 

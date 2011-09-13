@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-06 16:20+0800\n"
+"POT-Creation-Date: 2011-09-13 13:36+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -90,10 +90,6 @@ msgstr ""
 "嘗試登入太多次！請等 %(cooloff_time)s 再試！\n"
 "\n"
 
-#: .\accounts\templates\registration\login.html.py:12
-msgid "Your username and password didn't match. Please try again."
-msgstr "您的用戶名及密碼不符，請重新再試"
-
 #: .\accounts\templates\registration\manage.html.py:9
 msgid "Username"
 msgstr "帳號"
@@ -145,7 +141,7 @@ msgstr ""
 msgid "Mark as seen"
 msgstr "標示為讀取"
 
-#: .\doc_engine\forms.py:6 .\doc_engine\models.py:77
+#: .\doc_engine\forms.py:6 .\doc_engine\models.py:87
 msgid "File"
 msgstr "檔案"
 
@@ -169,7 +165,7 @@ msgid ""
 "active."
 msgstr "請輸入新的版本，或使用現有的版本。"
 
-#: .\doc_engine\forms.py:15 .\doc_engine\models.py:80
+#: .\doc_engine\forms.py:15 .\doc_engine\models.py:90
 msgid "Revision Comment"
 msgstr "修訂說明"
 
@@ -203,11 +199,11 @@ msgstr "標籤過濾"
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
-#: .\doc_engine\forms.py:35 .\doc_engine\models.py:148
+#: .\doc_engine\forms.py:35 .\doc_engine\models.py:158
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\forms.py:36 .\doc_engine\models.py:149
+#: .\doc_engine\forms.py:36 .\doc_engine\models.py:159
 msgid "Batch Number"
 msgstr "批次序號"
 
@@ -220,6 +216,7 @@ msgid "To"
 msgstr "至"
 
 #: .\doc_engine\models.py:9 .\doc_engine\models.py:12
+#: .\doc_engine\models.py:72
 #: .\doc_engine\templates\doc_engine\document_index.html.py:20
 msgid "Label"
 msgstr "標籤"
@@ -236,7 +233,7 @@ msgstr "主旨"
 msgid "Author"
 msgstr "作者"
 
-#: .\doc_engine\models.py:36 .\doc_engine\models.py:152
+#: .\doc_engine\models.py:36 .\doc_engine\models.py:162
 #: .\doc_engine\templates\doc_engine\document_index.html.py:16
 #: .\doc_engine\templates\doc_engine\document_index.html.py:27
 msgid "Physical Location"
@@ -278,68 +275,68 @@ msgstr "文件"
 msgid "Documents"
 msgstr "文件"
 
-#: .\doc_engine\models.py:78
+#: .\doc_engine\models.py:88
 msgid "Version"
 msgstr "版本"
 
-#: .\doc_engine\models.py:83
+#: .\doc_engine\models.py:93
 msgid "File Object"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:84
+#: .\doc_engine\models.py:94
 msgid "File Objects"
 msgstr "檔案物件"
 
-#: .\doc_engine\models.py:117
+#: .\doc_engine\models.py:127
 msgid "User"
 msgstr "帳號"
 
-#: .\doc_engine\models.py:118
+#: .\doc_engine\models.py:128
 msgid "Access Time"
 msgstr "存取時間"
 
-#: .\doc_engine\models.py:119
+#: .\doc_engine\models.py:129
 msgid "IP"
 msgstr "IP"
 
-#: .\doc_engine\models.py:120
+#: .\doc_engine\models.py:130
 #, fuzzy
 msgid "Document Accessed"
 msgstr "文件"
 
-#: .\doc_engine\models.py:121
+#: .\doc_engine\models.py:131
 msgid "Success?"
 msgstr "成功?"
 
-#: .\doc_engine\models.py:124
+#: .\doc_engine\models.py:134
 msgid "Access Record"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:125
+#: .\doc_engine\models.py:135
 msgid "Access Records"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:133
+#: .\doc_engine\models.py:143
 msgid "SUCCESS"
 msgstr "存取成功"
 
-#: .\doc_engine\models.py:135
+#: .\doc_engine\models.py:145
 msgid "FAILURE"
 msgstr "存取失敗"
 
-#: .\doc_engine\models.py:150
+#: .\doc_engine\models.py:160
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:151
+#: .\doc_engine\models.py:161
 msgid "Date Manufactured"
 msgstr "製造日期"
 
-#: .\doc_engine\models.py:155
+#: .\doc_engine\models.py:165
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:156
+#: .\doc_engine\models.py:166
 msgid "Batch Records"
 msgstr "批次記錄"
 
@@ -352,7 +349,7 @@ msgid "Search Documents"
 msgstr "搜尋文件"
 
 #: .\doc_engine\templates\doc_engine\document_index.html.py:47
-msgid "Search Batch Record"
+msgid "Search Batch Records"
 msgstr "搜尋批次記錄"
 
 #: .\stream\api.py:53 .\stream\api.py:98
@@ -524,25 +521,28 @@ msgstr "管理頁面"
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\navigation.html.py:35
+#: .\templates\navigation.html.py:38
 msgid "Manage Account"
 msgstr "管理帳號"
 
-#: .\templates\navigation.html.py:36
+#: .\templates\navigation.html.py:39
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\navigation.html.py:41
+#: .\templates\navigation.html.py:45
 msgid "Login"
 msgstr "登入"
 
-#: .\templates\navigation.html.py:50
+#: .\templates\navigation.html.py:54
 msgid "Notifications"
 msgstr "通知"
 
-#: .\templates\navigation.html.py:50
+#: .\templates\navigation.html.py:54
 msgid "View All"
 msgstr "讀取所有通知"
+
+#~ msgid "Your username and password didn't match. Please try again."
+#~ msgstr "您的用戶名及密碼不符，請重新再試"
 
 #~ msgid "Document Search and Retrieval"
 #~ msgstr "文件查詢"
