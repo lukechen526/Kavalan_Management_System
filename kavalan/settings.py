@@ -94,7 +94,8 @@ STATICFILES_DIRS = (
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -170,7 +171,8 @@ INSTALLED_APPS = (
     'axes',
     'notification',
     'simpleavatar',
-    'piston', 
+    'piston',
+    'pipeline',
     'south',
     'kavalan', #added to permit Javascript i18n
 )
@@ -223,6 +225,8 @@ LOGGING = {
     }
 }
 
+
+#Miscellaneous settings
 SOUTH_TESTS_MIGRATE = False
 
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
@@ -238,3 +242,11 @@ except ImportError:
 if not DEBUG:
     from settings_production import *
 
+
+#Import settings_pipeline.py
+if 'pipeline' in INSTALLED_APPS:
+    try:
+        from settings_pipeline import *
+
+    except ImportError:
+        pass
