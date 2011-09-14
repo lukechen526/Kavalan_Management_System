@@ -25,7 +25,7 @@
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
 
     <!-- Project-specific -->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>
+    {% compressed_js 'project' %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
 
     <!-- Per-app header -->
