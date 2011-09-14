@@ -123,8 +123,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MIDDLEWARE_CLASSES = (
-    'django.middleware.gzip.GZipMiddleware',
-    'pipeline.middleware.MinifyHTMLMiddleware',
     'django.middleware.transaction.TransactionMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
@@ -181,14 +179,6 @@ INSTALLED_APPS = (
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
 
-#Configuration for Django-Axes
-AXES_LOGIN_FAILURE_LIMIT = 5
-AXES_LOCK_OUT_AT_FAILURE = True
-AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
-AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
-AXES_LOCKOUT_URL = '/accounts/lockout/'
-AXES_USE_USER_AGENT = True
-
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error.
@@ -228,10 +218,22 @@ LOGGING = {
 }
 
 
+#Import settings_production.py for production environment
+if not DEBUG:
+    from settings_production import *
+
+
 #Miscellaneous settings
 SOUTH_TESTS_MIGRATE = False
-
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
+
+#Settings for django-axes
+AXES_LOGIN_FAILURE_LIMIT = 5
+AXES_LOCK_OUT_AT_FAILURE = True
+AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
+AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
+AXES_LOCKOUT_URL = '/accounts/lockout/'
+AXES_USE_USER_AGENT = True
 
 #Settings for LBForum
 try:
@@ -239,11 +241,6 @@ try:
     from settings_lbforum import *
 except ImportError:
     pass
-
-#Import settings_production.py for production environment
-if not DEBUG:
-    from settings_production import *
-
 
 #Import settings_pipeline.py
 if 'pipeline' in INSTALLED_APPS:
