@@ -1,12 +1,24 @@
 #API for Stream
 from piston.handler import BaseHandler
 from piston.utils import *
+from django.contrib.auth.models import Group
 from stream.models import StreamPost, StreamPostComment
 from stream.forms import StreamPostValidationForm, StreamPostCommentValidationForm
 from django.utils.translation import ugettext
 import json
 
+def get_accessible_group_ids(user):
+    """
+    Returns the groups that are accessible to a given user. A superuser has access to all groups.
+    :param user:
+    :return: a list of Group IDs
+    """
+    if user.is_superuser:
+        groups = Group.objects.all().values_list('id', flat=True).order_by('id')
+    else:
+        groups = user.groups.all().values_list('id', flat=True).order_by('id')
 
+    return groups
 
 class StreamHandler(BaseHandler):
     allowed_methods = ('GET', 'POST', 'PUT', 'DELETE')
@@ -18,9 +30,8 @@ class StreamHandler(BaseHandler):
         user = request.user
         offset = int(request.GET.get('offset', 0))
         num_posts = int(request.GET.get('num_posts', 10))
-
-        #Retrieves the user's group in a list
-        groups = user.groups.all().values_list('id', flat=True).order_by('id')
+        groups = get_accessible_group_ids(user)
+            
         #Retrieves the posts accessible to those groups, sorted by rank.
         posts = StreamPost.objects.filter(groups__id__in=groups).distinct('id')
         if post_id:
@@ -140,7 +151,7 @@ class StreamCommentHandler(BaseHandler):
 
     def read(self, request, post_id=None, comment_id=None):
         user = request.user
-        groups = user.groups.all().values_list('id', flat=True).order_by('id')
+        groups = get_accessible_group_ids(user)
 
         #Find a post that matches the given post_id and belongs to one of the request
         #user's groups
@@ -159,7 +170,7 @@ class StreamCommentHandler(BaseHandler):
 
     def create(self, request, post_id=None, comment_id=None):
         user = request.user
-        groups = user.groups.all().values_list('id', flat=True).order_by('id')
+        groups = get_accessible_group_ids(user)
 
         model = request.POST.get('model', '')
         if model:
@@ -209,7 +220,7 @@ class StreamCommentHandler(BaseHandler):
                                                     id__exact=int(comment_id))
             if user != comment.poster:
                 resp = rc.FORBIDDEN
-                resp.write(ugettext('Only the original poster can update the comment!'))
+                resp.write(ugettext('Only the original commenter can update the comment!'))
                 return resp
             
             if comment_update.is_valid():
