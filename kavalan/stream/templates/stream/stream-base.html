@@ -1,13 +1,17 @@
 {% load i18n %}
 
-{% block script %} <!-- Load custom script here -->{% endblock %}
+<!-- Load custom script here -->
+{% block script %} {% endblock %}
 
+<!-- The Stream div for displaying the controls to create a new post and the actual Stream itself-->
 <div class="stream">
-    <div class="create-post" class="clearfix">{% block create-post %}<!-- Load custom control for post creation here -->{% endblock %}</div>
-    <div class="stream-posts">{% block stream-posts %}{% endblock %}</div>
-    <div class="load-more"><a href=""> {% trans "Load more" %}</a></div>
+    <!-- Load custom control for post creation here -->
+    <div class="create-post" class="clearfix">{% block create-post %}{% endblock %}</div>
 
-    {% block stream-templates %}
+    <!--The Stream of posts and the associated templates -->
+    <div class="stream-posts">{% block stream-posts %}{% endblock %}</div>
+
+     {% block stream-templates %}
            <script type="text/template" class="post-template">
 
         <div class="stream-post">
@@ -74,4 +78,9 @@
         </div>
     </script>
     {% endblock %}
+
+
+    <!-- The Load More button-->
+    <div class="load-more"><a href=""> {% trans "Load more" %}</a></div>
+
 </div>
