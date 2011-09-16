@@ -72,8 +72,8 @@ class DocumentHandler(BaseHandler):
 
                     result = result.distinct()
 
-                if not sn_title and not labels:
-                    #If no sn_title or labels are supplied, returns no result.
+                if sn_title is None and document_level is None and labels is None:
+                    #If no search criteria were entered, then return no result. 
                     return []
 
                 return result
