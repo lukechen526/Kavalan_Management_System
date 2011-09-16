@@ -22,7 +22,7 @@ function ajaxDocumentSearch(){
     var document_level  = $('#document_level').val();
     var labels = $('#labels').val();
 
-    if(sn_title !== "" || labels != null){
+    if(sn_title !== "" || labels != null || document_level != ""){
 
         $.ajax({
             url:"/api/documents",
@@ -74,10 +74,11 @@ function ajaxDocumentSearch(){
     }
 }
 
-
-$('#sn_title, #document_level, #labels').bind('keyup change', function(event){
-    current_page = 1; 
-    delayExecute(ajaxDocumentSearch);});
+var search_doc = function(event){
+    current_page = 1;
+    delayExecute(ajaxDocumentSearch);}
+$('#sn_title#labels').bind('keyup change', search_doc );
+$('#document_level').chosen().change(search_doc);
 
 
 

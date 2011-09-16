@@ -52,6 +52,8 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
         if settings.DEBUG:
             response = HttpResponse(mimetype=mimetype[0])
             response['Content-Disposition'] = 'attachment; filename=%s' % output_filename.encode('utf-8')
+            print "response:", response, "filepath:", filepath
+            
             with open(filepath, 'rb') as f:
                 buffer = StringIO()
                 for line in f.readlines():
