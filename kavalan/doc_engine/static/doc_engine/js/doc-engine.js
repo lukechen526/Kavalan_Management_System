@@ -77,7 +77,7 @@ function ajaxDocumentSearch(){
 var search_doc = function(event){
     current_page = 1;
     delayExecute(ajaxDocumentSearch);}
-$('#sn_title#labels').bind('keyup change', search_doc );
+$('#sn_title, #labels').bind('keyup change', search_doc );
 $('#document_level').chosen().change(search_doc);
 
 
