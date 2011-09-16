@@ -151,7 +151,7 @@ class BatchRecordHandler(BaseHandler):
                 if not query['filters']:
                     #Needs at least one filter
                     resp = rc.BAD_REQUEST
-                    resp.write("Needs at least one filter")
+                    resp.write("At least one search criterion needs to be entered.")
                     return resp
 
                 else:
@@ -159,6 +159,6 @@ class BatchRecordHandler(BaseHandler):
                     return result
             else:
                 resp = rc.BAD_REQUEST
-                resp.write("Needs a query parameter")
+                resp.write("No 'query' parameter was found.")
                 return resp
 
