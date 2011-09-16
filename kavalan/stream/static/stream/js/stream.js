@@ -16,7 +16,7 @@ window.StreamComment = Backbone.Model.extend({
 window.StreamCommentCollection = Backbone.Collection.extend({
     model: StreamComment,
     setPostID: function(post_id){
-     this.url = '/api/stream/'+post_id+'/comments/';
+     this.url = '/api/stream/'+post_id+'/comments';
     }
 });
 
@@ -172,7 +172,7 @@ window.PostView = Backbone.View.extend({
 });
 window.StreamCollection = Backbone.Collection.extend({
     model: StreamPost,
-    url: '/api/stream/',
+    url: '/api/stream',
     initialize: function(){
         _.bindAll(this, 'updateStream');
     },
@@ -181,11 +181,11 @@ window.StreamCollection = Backbone.Collection.extend({
     },
 
     resetParams: function(){
-        this.url = '/api/stream/';
+        this.url = '/api/stream';
     },
 
     setParams: function(offset, num_posts){
-        this.url = '/api/stream/?offset='+offset.toString()+'&num_posts='+num_posts.toString();},
+        this.url = '/api/stream?offset='+offset.toString()+'&num_posts='+num_posts.toString();},
 
     fetchNext: function(options){
         this.setParams(this.length, 10);

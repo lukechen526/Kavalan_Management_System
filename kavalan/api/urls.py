@@ -23,11 +23,23 @@ stream_handler = CsrfExemptResource(StreamHandler, authentication=SessionAuthent
 stream_comment_handler = CsrfExemptResource(StreamCommentHandler, authentication=SessionAuthenticationHandler())
 
 
+#The Golden Rule of API URL: End points should NOT have a trailing slash. However, the url patterns are written so that
+#even if the trailing slash is present, the reqeust will still get dispatched correctly without redirect, by putting '/?$' at the end.
+
 urlpatterns = patterns('',
-    url(r'^documents/(?P<document_id>\d*)$',document_handler, { 'emitter_format': 'page_json' }),
-    url(r'^batchrecords/(?P<batchrecord_id>\d*)$', batch_record_handler, { 'emitter_format': 'page_json' } ),
-    url(r'stream/(?P<post_id>\d*)/comments/(?P<comment_id>\d*)', stream_comment_handler),
-    url(r'^stream/(?P<post_id>\d*)', stream_handler)
+    #URLs for Doc Engine
+    url(r'^documents/?$',document_handler, { 'emitter_format': 'page_json' }),
+    url(r'^documents/(?P<document_id>\d+)/?$',document_handler, { 'emitter_format': 'page_json' }),
+    
+    url(r'^batchrecords/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
+    url(r'^batchrecords/(?P<batchrecord_id>\d+)/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
+
+    #URLs for Stream
+    url(r'^stream/?$', stream_handler),
+    url(r'^stream/(?P<post_id>\d+)/?$', stream_handler),
+    url(r'stream/(?P<post_id>\d+)/comments/?$', stream_comment_handler),
+    url(r'stream/(?P<post_id>\d+)/comments/(?P<comment_id>\d+)/?$', stream_comment_handler)
+
 )
 
 

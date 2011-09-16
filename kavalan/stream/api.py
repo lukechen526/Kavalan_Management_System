@@ -158,7 +158,17 @@ class StreamCommentHandler(BaseHandler):
         if post_id:
             try:
                 post = StreamPost.objects.get(id__exact=int(post_id), groups__id__in=groups)
-                return post.comments.all()
+
+                if comment_id:
+                    try:
+                        return post.comments.get(id=comment_id)
+                    except StreamPostComment.DoesNotExist:
+                        resp = rc.BAD_REQUEST
+                        resp.write(ugettext('No comment has the specified ID, or the user has no permission to access it'))
+                        return resp
+                else:
+                    return post.comments.all()
+                
             except StreamPost.DoesNotExist:
                 resp = rc.BAD_REQUEST
                 resp.write(ugettext('No post has the specified ID, or the user has no permission to access it'))
