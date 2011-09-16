@@ -28,26 +28,27 @@ as follows::
     -A FORWARD -j REJECT --reject-with icmp-host-prohibited
 
 
-Only computers in the local area network is permitted to access Kavalan.
+
+Only computers in the local area network (192.168.2.0/24) are permitted to access Kavalan.
 
 Database
 ----------
 
 Kavalan currently runs on MySQL 5.1.52-1 at Wu-Fu Laboratories. It uses an isolated database; the database user that Django uses
-to access this database is grant permissions ONLY on this database; the root user's login credential is NOT available to the web server.
+to access this database is granted permissions ONLY for this database; the root user's login credential is NOT available to the web server.
 
 
 Web Server
 -------------
 
 Kavalan runs on a Nginx + Apache setup, with Nginx serveing as the reverse proxy and Apache binding to the localhost only.
-ALL traffic to/from the server is transmitted over HTTPS.
+All traffic to/from the server is transmitted over HTTPS with 256-bit AES encryption.
 
 Kavalan Management System/Django
 -------------------------------------
 
-Kavalan requires the user to be authenticated before any action that accesses the database will be permitted. It uses the default
-Django authentication backend, which stores the user passwords in salted-hashes. As mentioned above, all traffic to/from the server
+Kavalan requires users be authenticated before any action that accesses the database will be permitted. It uses the default
+Django authentication backend, which stores the user passwords as salted-hashes in the database. As mentioned above, all traffic to/from the server
 is encrypted, preventing man-in-the-middle attack.
 
 Document Access Security

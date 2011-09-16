@@ -8,44 +8,43 @@
 {% endblock %}
 
 {% block content %}
-<script type="text/template" id="search-doc-template">
-    <span class="doc-result">
-        <a href='<%=file_url%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
-            <span class="doc-extras">
-                <% if(location !== ''){ %>
-                    <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
-                <%}%>
-                
-                <% _.each(labels, function(label){ %>
-                    <abbr class="doc-label" title="{% trans "Label" %}"><%=label.content%></abbr>
-                <%});%>
-            </span>
-    </span>
-</script>
+    
+    <!-- Templates for presenting Document and Batch Record search results-->
+    <script type="text/template" id="search-doc-template">
+        <span class="doc-result">
+            <a href='<%=file_url%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
+                <span class="doc-extras">
+                    <% if(location !== ''){ %>
+                        <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
+                    <%}%>
 
-<script type="text/template" id="search-batch-record-template">
-    <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <abbr class="physical-location" title="{% trans "Physical Location" %}"><%=location%></abbr></span>
-</script>
+                    <% _.each(labels, function(label){ %>
+                        <abbr class="doc-label" title="{% trans "Label" %}"><%=label.content%></abbr>
+                    <%});%>
+                </span>
+        </span>
+    </script>
 
-<script type="text/template" id="search-result-pagination-template">
+    <script type="text/template" id="search-batch-record-template">
+        <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <abbr class="physical-location" title="{% trans "Physical Location" %}"><%=location%></abbr></span>
+    </script>
 
-  <div class="pagination">
-      <ul>
-        <% var i = 1; for(i = 1; i<= num_pages; i++){ %>
-            <li <% if(i==page_number){ %>class="active" <%}%> ><a class="page" rel="<%=i%>" href="javascript:void(0);"><%=i%></a></li>
-        <%}%>
-      </ul>
-</div>
+    <script type="text/template" id="search-result-pagination-template">
+        <div class="pagination">
+          <ul>
+            <% var i = 1; for(i = 1; i<= num_pages; i++){ %>
+                <li <% if(i==page_number){ %>class="active" <%}%> ><a class="page" rel="<%=i%>" href="javascript:void(0);"><%=i%></a></li>
+            <%}%>
+          </ul>
+        </div>
+    </script>
 
-
-</script>
-
-
+    <!-- The tabs for Search Documents and Search Batch Records-->
     <div id="search-tabs">
-    	<ul>
-		    <li><a href="#search-doc">{% trans "Search Documents" %}</a></li>
-		    <li><a href="#search-batch-record">{% trans "Search Batch Record" %}</a></li>
-	    </ul>
+        <ul>
+            <li><a href="#search-doc">{% trans "Search Documents" %}</a></li>
+            <li><a href="#search-batch-record">{% trans "Search Batch Records" %}</a></li>
+        </ul>
         <div id="search-doc">
             <form class="form-stacked" action="/kavalan/api/documents/" method="get" onsubmit="return false;">
                 {% for field in  document_search_form.visible_fields %}
