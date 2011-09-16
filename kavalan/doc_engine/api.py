@@ -4,7 +4,6 @@ from doc_engine.models import Document, BatchRecord
 from django.db.models import Q
 from dynamo.core import build_query
 from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
-from piston.utils import validate
 import json
 
 class DocumentHandler(BaseHandler):
@@ -48,10 +47,20 @@ class DocumentHandler(BaseHandler):
                 document_level = query.cleaned_data['document_level']
                 labels = query.cleaned_data['labels']
 
-                result = Document.objects.all()
+                result = Document.objects.filter(searchable=True)
 
                 if sn_title:
-                    result = result.filter(Q(serial_number__icontains=sn_title)|Q(title__icontains=sn_title)).filter(searchable=True)
+
+                    q = Q()
+                    keywords = sn_title.split() #split the query string into keywords
+
+                    for kw in keywords:
+                        #For every keyword, looks it up in either serial number or title.
+                        #A document is included in the result if EVERY keyword in the query string is present in either
+                        #its serial number OR title.
+                        q = q & (Q(serial_number__icontains=kw)|Q(title__icontains=kw))
+
+                    result = result.filter(q)
 
                 if document_level:
                     result = result.filter(document_level__exact=document_level)
