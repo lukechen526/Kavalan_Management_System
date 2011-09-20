@@ -90,11 +90,12 @@ STATICFILES_DIRS = (
     os.path.join(DIRNAME, 'static'),
 )
 
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder'
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -171,20 +172,13 @@ INSTALLED_APPS = (
     'axes',
     'notification',
     'simpleavatar',
-    'piston', 
+    'piston',
+    'pipeline',
     'south',
     'kavalan', #added to permit Javascript i18n
 )
 
 AUTH_PROFILE_MODULE = 'accounts.UserProfile'
-
-#Configuration for Django-Axes
-AXES_LOGIN_FAILURE_LIMIT = 5
-AXES_LOCK_OUT_AT_FAILURE = True
-AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
-AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
-AXES_LOCKOUT_URL = '/accounts/lockout/'
-AXES_USE_USER_AGENT = True
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -224,9 +218,23 @@ LOGGING = {
     }
 }
 
-SOUTH_TESTS_MIGRATE = False
 
+#Import settings_production.py for production environment
+if not DEBUG:
+    from settings_production import *
+
+
+#Miscellaneous settings
+SOUTH_TESTS_MIGRATE = False
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
+
+#Settings for django-axes
+AXES_LOGIN_FAILURE_LIMIT = 5
+AXES_LOCK_OUT_AT_FAILURE = True
+AXES_COOLOFF_TIME = datetime.timedelta(minutes=10)
+AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
+AXES_LOCKOUT_URL = '/accounts/lockout/'
+AXES_USE_USER_AGENT = True
 
 #Settings for LBForum
 try:
@@ -235,7 +243,10 @@ try:
 except ImportError:
     pass
 
-#Import settings_production.py for production environment
-if not DEBUG:
-    from settings_production import *
+#Import settings_pipeline.py
+if 'pipeline' in INSTALLED_APPS:
+    try:
+        from settings_pipeline import *
 
+    except ImportError:
+        pass
