@@ -57,9 +57,13 @@ class Document(models.Model):
     def file_url(self):
         return "/doc_engine/access/%s/" % self.pk
 
-    def file(self):
+    def _file(self):
         #Get the file that corresponds to the current version
         return self.versions.get(version__exact=self.version).file
+
+    _file.short_description = ugettext_lazy('File')
+
+    file = property(_file)
 
     def display_labels(self):
         span_list = []

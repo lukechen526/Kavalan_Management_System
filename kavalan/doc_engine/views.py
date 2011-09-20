@@ -6,6 +6,7 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFoun
 from reportlab.pdfgen import canvas
 from pyPdf import PdfFileWriter, PdfFileReader
 from django.utils.translation import ugettext
+from django.utils.encoding import smart_str
 from django.conf import settings
 import os
 import mimetypes
@@ -45,15 +46,19 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
 
     #Check the mimetype of the file
     mimetype = mimetypes.guess_type(filepath)
-    if mimetype[0] == 'application/pdf':
-        return createPDFHttpResponse(filepath, output_filename, user, access_time)
+
+    if False:
+        pass
+    #Disables PDF watermarking due to impact on performance
+    #if mimetype[0] == 'application/pdf':
+    #   return createPDFHttpResponse(filepath, output_filename, user, access_time)
+    
     else:
         #Only serve file from Django in development mode; otherwise, use X-sendfile
         if settings.DEBUG:
             response = HttpResponse(mimetype=mimetype[0])
-            response['Content-Disposition'] = 'attachment; filename=%s' % output_filename.encode('utf-8')
-            print "response:", response, "filepath:", filepath
-            
+            response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(output_filename)
+
             with open(filepath, 'rb') as f:
                 buffer = StringIO()
                 for line in f.readlines():
@@ -63,10 +68,10 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
             response.write(attachment)
             return response
         else:
-            response = HttpResponse('application/force-download')
+            response = HttpResponse(mimetype='application/force-download')
             del response['content-type'] #Leave it to the server to decide
-            response['X-Sendfile'] = filepath.encode('utf-8')
-            response['Content-Disposition'] = 'attachment; filename="%s"' % output_filename.encode('utf-8')
+            response['X-Sendfile'] = smart_str(filepath)
+            response['Content-Disposition'] = 'attachment; filename="%s"' % smart_str(output_filename)
             return response
 
 
@@ -101,7 +106,7 @@ def createPDFHttpResponse(filepath, output_filename, user, access_time):
         output.addPage(page)
 
     response = HttpResponse(mimetype='application/pdf')
-    response['Content-Disposition'] = 'inline; filename=%s' % output_filename.encode('utf-8')
+    response['Content-Disposition'] = 'inline; filename=%s' % smart_str(output_filename)
     output.write(response)
     return response
 
@@ -121,7 +126,7 @@ def DocumentAccess(request, pk):
     document = get_object_or_404(Document, pk=pk)
     document_groups = list(document.permitted_groups.all())
 
-    filepath = os.path.join(MEDIA_ROOT, document.file().name)
+    filepath = os.path.join(MEDIA_ROOT, document.file.name)
     #Generate safe file names for output based on document's serial number and version; the extension should be preserved
     extension = os.path.splitext(filepath)[1]
     output_filename = "".join([x for x in u"%sv%s" %(document.serial_number, document.version) if x.isalpha() or x.isdigit()]) + extension
