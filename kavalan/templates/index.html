@@ -4,10 +4,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 
 {% block title %} {% trans "Welcome to Kavalan Management System " %}{% endblock %}
-{% block extra_head %}
-    <link href="{{ STATIC_URL }}stream/css/stream.css" rel="stylesheet" type="text/css">
-    <script type="text/javascript" src="{{ STATIC_URL }}stream/js/stream.js"></script>
-{% endblock %}
+
 
 {% block content %}
     {% cache 500 stream-index user.username LANGUAGE_CODE %}

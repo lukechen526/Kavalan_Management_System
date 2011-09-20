@@ -1,5 +1,6 @@
 {% load i18n %}
 {% load url from future %}
+{% load compressed %}
 <!DOCTYPE html>
 <html>
 
@@ -10,12 +11,8 @@
 <title> {% block title %} {% endblock %}</title>
 
     <!-- ** CSS ** -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-1.1.1.min.css">
-    <link href="{{ STATIC_URL }}css/chosen.css" rel="stylesheet" type="text/css">
-
-    <!-- Project-specific -->
-    <link href="{{ STATIC_URL }}css/custom-theme/jquery-ui-1.8.14.custom.css" rel="stylesheet" type="text/css">
-    <link href="{{ STATIC_URL }}css/base.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.2.0.min.css">
+    {% compressed_css 'all' %}
 
     <!-- ** Javascript ** -->
 
@@ -23,13 +20,13 @@
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tmpl.min.js"></script>
     <script type="text/javascript" src={{ STATIC_URL }}js/underscore-min.js></script>
-    <script type="text/javascript" src={{ STATIC_URL }}js/json2.js></script>
+    <script type="text/javascript" src={{ STATIC_URL }}js/json2-min.js></script>
     <script type="text/javascript" src={{ STATIC_URL }}js/backbone-min.js></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
     <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
 
     <!-- Project-specific -->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/base.js"></script>
+    {% compressed_js 'project' %}
     <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
 
     <!-- Per-app header -->
