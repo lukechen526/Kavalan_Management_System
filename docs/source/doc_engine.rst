@@ -118,11 +118,6 @@ the outcome (success or access denial).
 
 .. autoclass:: doc_engine.models.AccessRecord
 
-3. **Watermarking of PDF documents:** If the document to be accessed is a PDF file, an access watermark is added to the bottom of every page,
-specifying the user who downloaded the file and the time of access.
-
-.. autofunction:: doc_engine.views.createPDFHttpResponse
-
 Batch Record
 ----------------
 

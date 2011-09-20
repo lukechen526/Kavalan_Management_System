@@ -3,19 +3,18 @@ $(document).ready(function(){
 
 /* section for doc_engine */
 
-  //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
-  var typingTimer;
-  var doneTypingInterval = 700;
-  function delayExecute(func){
+//Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
+var typingTimer;
+var doneTypingInterval = 700;
+function delayExecute(func){
     clearTimeout(typingTimer);
     typingTimer = setTimeout(func,doneTypingInterval);
     return true;
-  }
-
- $('#search-tabs select').chosen();
+}
+$('#search-tabs select').chosen();
 /*Document search*/
 var current_page = 1;
-
+    
 function ajaxDocumentSearch(){
 
     var sn_title = $('#sn_title').val();
@@ -202,15 +201,15 @@ $("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
  });
 
 /*Doc Engine tabs*/
- $('#search-tabs').tabs();
- $('#search-tabs').bind('tabsselect', function(){
+var $tabs = $('#search-tabs').tabs();
+$tabs.bind('tabsselect', function(event, ui){
      $('#search-result').empty();
      $(':input','#search-tabs form').not(':button, :submit, :reset, :hidden').val('').removeAttr('checked').removeAttr('selected');
      $('#search-tabs form *').find(".search-choice-close").trigger('click');
+
  });
 
 /* Datepicker for adding Batch Records in Admin*/
- $('#id_date_manufactured').datepicker();
-
+$('#id_date_manufactured').datepicker();
 
 });
