@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User, Group
 from django.utils.translation import ugettext_lazy
-from django.db.models.signals import pre_delete, post_delete
+from django.db.models.signals import pre_delete, post_delete, post_save
 from django.dispatch import receiver
 
 
@@ -171,6 +171,16 @@ class BatchRecord(models.Model):
     def date_manufactured_minguo(self):
         return self.date_manufactured.replace(year=self.date_manufactured.year-1911)
 
+#Clear cache when there is a change in the database
+from django.core.cache import cache
+
+def clear_cache(sender, **kwargs):
+    cache.clear()
+
+post_save.connect(clear_cache, sender=Document)
+post_save.connect(clear_cache, sender=BatchRecord)
+post_delete.connect(clear_cache, sender=Document)
+post_delete.connect(clear_cache, sender=BatchRecord)
 
     
 
