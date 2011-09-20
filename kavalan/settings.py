@@ -133,10 +133,11 @@ MIDDLEWARE_CLASSES = (
     'axes.middleware.FailedLoginMiddleware'
 )
 
-#Use DummyCache for development
+#Use Local memory caching for development
 CACHES = {
     'default': {
-        'BACKEND': 'django.core.cache.backends.dummy.DummyCache',
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+        'LOCATION': 'unique-cache'
     }
 }
 

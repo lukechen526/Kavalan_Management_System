@@ -74,6 +74,10 @@ span.doc-result .doc-label{
 #name{
     width: 300px;
 }
+
+.batch-result * {
+    padding: 0 5px;
+}
 .ui-datepicker{
  font-size:12px;
 }
@@ -82,7 +86,7 @@ span.doc-result .doc-label{
  font-size: 14px;
 }
 
-.physical-location{
+.batch-location{
     display: inline-block;
     font-weight: bold;
     background-color: #adff2f;

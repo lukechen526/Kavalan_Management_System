@@ -26,7 +26,13 @@
     </script>
 
     <script type="text/template" id="search-batch-record-template">
-        <span class="batch-result"> <%=name%> &nbsp; <%=batch_number%> &nbsp; <%=date_manufactured%> &nbsp; <abbr class="physical-location" title="{% trans "Physical Location" %}"><%=location%></abbr></span>
+        <span class="batch-result">
+            <span class="batch-name"><%=name%></span>
+            <span class="batch-number"><%=batch_number%></span>
+            <span class="batch-date"><%=date_manufactured%></span>
+            <span class="batch-date-minguo">民國 <%=date_manufactured_minguo%></span>
+            <abbr class="batch-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
+        </span>
     </script>
 
     <script type="text/template" id="search-result-pagination-template">
