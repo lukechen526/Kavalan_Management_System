@@ -70,6 +70,11 @@ span.doc-result .doc-label{
     border-radius: 5px;
 }
 
+.doc-edit{
+    text-decoration: underline;
+    font-size: 0.8em;
+}
+
 /*For Batch Record Search Form*/
 #name{
     width: 300px;
@@ -93,4 +98,9 @@ span.doc-result .doc-label{
     border-radius: 5px;
     padding: 2px 5px;
 
+}
+
+.batch-edit{
+    text-decoration: underline;
+    font-size: 0.8em;
 }

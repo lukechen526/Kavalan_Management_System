@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-13 13:36+0800\n"
+"POT-Creation-Date: 2011-09-20 11:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -51,7 +51,7 @@ msgid "User Profiles"
 msgstr "用戶配置"
 
 #: .\accounts\models.py:48 .\stream\models.py:37
-#: .\stream\templates\stream\stream-base.html.py:31
+#: .\stream\templates\stream\stream-base.html.py:35
 msgid "Groups"
 msgstr "群組"
 
@@ -217,7 +217,7 @@ msgstr "至"
 
 #: .\doc_engine\models.py:9 .\doc_engine\models.py:12
 #: .\doc_engine\models.py:72
-#: .\doc_engine\templates\doc_engine\document_index.html.py:20
+#: .\doc_engine\templates\doc_engine\document_index.html.py:22
 msgid "Label"
 msgstr "標籤"
 
@@ -234,8 +234,8 @@ msgid "Author"
 msgstr "作者"
 
 #: .\doc_engine\models.py:36 .\doc_engine\models.py:162
-#: .\doc_engine\templates\doc_engine\document_index.html.py:16
-#: .\doc_engine\templates\doc_engine\document_index.html.py:27
+#: .\doc_engine\templates\doc_engine\document_index.html.py:18
+#: .\doc_engine\templates\doc_engine\document_index.html.py:34
 msgid "Physical Location"
 msgstr "實物位置"
 
@@ -340,64 +340,69 @@ msgstr "批次記錄"
 msgid "Batch Records"
 msgstr "批次記錄"
 
-#: .\doc_engine\views.py:146
+#: .\doc_engine\views.py:152
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:46
+#: .\doc_engine\templates\doc_engine\document_index.html.py:51
 msgid "Search Documents"
 msgstr "搜尋文件"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:47
+#: .\doc_engine\templates\doc_engine\document_index.html.py:52
 msgid "Search Batch Records"
 msgstr "搜尋批次記錄"
 
-#: .\stream\api.py:53 .\stream\api.py:98
+#: .\stream\api.py:64 .\stream\api.py:109
 msgid "Either content or link has to be non-empty"
 msgstr "內容或連接不可為空"
 
-#: .\stream\api.py:70 .\stream\api.py:112
+#: .\stream\api.py:81 .\stream\api.py:123
 msgid "StreamPost ID must be supplied"
 msgstr ""
 
-#: .\stream\api.py:78 .\stream\api.py:120
+#: .\stream\api.py:89 .\stream\api.py:131
 msgid "No StreamPost with the specified ID was found"
 msgstr ""
 
-#: .\stream\api.py:84
+#: .\stream\api.py:95
 msgid "Only the original poster can update the post"
 msgstr ""
 
-#: .\stream\api.py:126
+#: .\stream\api.py:137
 msgid "Only the original poster can delete the post"
 msgstr ""
 
-#: .\stream\api.py:153 .\stream\api.py:186
+#: .\stream\api.py:167
+msgid ""
+"No comment has the specified ID, or the user has no permission to access it"
+msgstr ""
+
+#: .\stream\api.py:174 .\stream\api.py:207
 msgid ""
 "No post has the specified ID, or the user has no permission to access it"
 msgstr ""
 
-#: .\stream\api.py:157 .\stream\api.py:191
+#: .\stream\api.py:178 .\stream\api.py:212
 msgid "No Post ID was supplied!"
 msgstr ""
 
-#: .\stream\api.py:182 .\stream\api.py:221
+#: .\stream\api.py:203 .\stream\api.py:242
 msgid "Invalid content"
 msgstr ""
 
-#: .\stream\api.py:198 .\stream\api.py:233
+#: .\stream\api.py:219 .\stream\api.py:254
 msgid "Both Post and Comment IDs must be supplied!"
 msgstr ""
 
-#: .\stream\api.py:212
-msgid "Only the original poster can update the comment!"
+#: .\stream\api.py:233
+msgid "Only the original commenter can update the comment!"
 msgstr ""
 
-#: .\stream\api.py:226 .\stream\api.py:249
+#: .\stream\api.py:247 .\stream\api.py:270
 msgid "Invalid Post or Comment ID"
 msgstr ""
 
-#: .\stream\api.py:241
+#: .\stream\api.py:262
 msgid "Only the original poster can delete the comment!"
 msgstr ""
 
@@ -413,7 +418,7 @@ msgstr ""
 msgid "Content"
 msgstr "內容"
 
-#: .\stream\models.py:40 .\stream\templates\stream\stream-base.html.py:27
+#: .\stream\models.py:40 .\stream\templates\stream\stream-base.html.py:31
 msgid "Link"
 msgstr "連接"
 
@@ -457,25 +462,25 @@ msgstr "秒前"
 msgid "Original Post"
 msgstr ""
 
-#: .\stream\templates\stream\stream-base.html.py:8
-msgid "Load more"
-msgstr "更多"
-
-#: .\stream\templates\stream\stream-base.html.py:39
+#: .\stream\templates\stream\stream-base.html.py:43
 msgid "Comment"
 msgstr "留言"
 
-#: .\stream\templates\stream\stream-base.html.py:43
+#: .\stream\templates\stream\stream-base.html.py:47
 msgid "comment"
 msgstr "則留言"
 
-#: .\stream\templates\stream\stream-base.html.py:47
+#: .\stream\templates\stream\stream-base.html.py:51
 msgid "comments"
 msgstr "則留言"
 
-#: .\stream\templates\stream\stream-base.html.py:54
+#: .\stream\templates\stream\stream-base.html.py:58
 msgid "Write a comment"
 msgstr "寫一則留言"
+
+#: .\stream\templates\stream\stream-base.html.py:84
+msgid "Load more"
+msgstr "更多"
 
 #: .\stream\templates\stream\stream-index.html.py:18
 msgid "What's new?"

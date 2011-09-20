@@ -68,7 +68,7 @@ def get_documents(query_str):
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = Document
-    fields = ('title', 'serial_number', 'version', 'file_url', 'location', ('labels',('content',)))
+    fields = ('id','title', 'serial_number', 'version', 'file_url', 'location', ('labels',('content',)))
 
     def read(self, request, document_id=None):
         """
@@ -167,7 +167,7 @@ def get_batchrecords(query_str):
 class BatchRecordHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = BatchRecord
-    fields = ('name', 'batch_number', 'date_manufactured', 'date_manufactured_minguo', 'location')
+    fields = ('id','name', 'batch_number', 'date_manufactured', 'date_manufactured_minguo', 'location')
 
     def read(self, request, batchrecord_id=None):
 
