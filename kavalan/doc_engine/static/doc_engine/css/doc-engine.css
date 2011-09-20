@@ -1,3 +1,20 @@
+/* Shared styles*/
+#search-result {
+    margin-top: 2%;
+    margin-left:auto;
+    margin-right: auto;
+    width:60%;
+}
+
+#search-result span.doc-result, #search-result span.batch-result{
+    font-size:large;
+    color: #3366CC;
+    display:block;
+    margin-bottom: 20px;
+}
+
+
+
 /*for document_index.html*/
 #search-tabs, #search-tabs>* {
     border: 0;
@@ -30,22 +47,11 @@
     width: 300px;
 }
 
-#search-result {
-    margin-top: 2%;
-    margin-left:auto;
-    margin-right: auto;
-    width:60%;
-}
-
-#search-result span.doc-result, #search-result span.batch-result{
-    font-size:large;
-    color: #3366CC;
-    display:block;
-    padding: 5px 0px;
-}
-
 #search-result span.doc-result a{
-    text-decoration: none;
+ text-decoration: none;
+}
+#search-result span.doc-result a:hover{
+ text-decoration: underline;
 }
 
 #search-result span.doc-result a:visited{
@@ -76,13 +82,10 @@ span.doc-result .doc-label{
 }
 
 .doc-add{
-    padding: 0 10px;
+    display: block !important;
     
 }
 /*For Batch Record Search Form*/
-#name{
-    width: 300px;
-}
 
 .batch-result * {
     padding: 0 5px;
@@ -110,6 +113,6 @@ span.doc-result .doc-label{
 }
 
 .batch-add{
-    padding: 0 10px;
+    display: block !important;
 
 }

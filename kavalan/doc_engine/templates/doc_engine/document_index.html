@@ -6,7 +6,7 @@
 {% block title %} Doc Engine{% endblock %}
 
 {% block content %}
-    
+<div class="container">
     <!-- Templates for presenting Document and Batch Record search results-->
     <script type="text/template" id="search-doc-template">
         <span class="doc-result">
@@ -71,7 +71,7 @@
                 {% endfor %}
 
                 {% if perms.doc_engine.add_document %}
-                    <span class="doc-add"> <a href="{% url 'admin:doc_engine_document_add'  %}" class="btn">+{% trans "Add Document" %}</a></span>
+                    <div class="doc-add clearfix"> <a href="{% url 'admin:doc_engine_document_add'  %}" class="btn">+{% trans "Add Document" %}</a></div>
                 {% endif %}
 
             </form>
@@ -91,7 +91,7 @@
                 {% endfor %}
 
                 {% if perms.doc_engine.add_batchrecord %}
-                    <span class="batch-add"> <a href="{% url 'admin:doc_engine_batchrecord_add'  %}" class="btn">+{% trans "Add Batch Record" %}</a></span>
+                    <div class="batch-add clearfix"> <a href="{% url 'admin:doc_engine_batchrecord_add'  %}" class="btn">+{% trans "Add Batch Record" %}</a></div>
                 {% endif %}
             
             </form>
@@ -101,5 +101,5 @@
 
     <div id="search-result"></div>
 
-
+</div>
 {% endblock %}
