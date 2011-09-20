@@ -1,12 +1,10 @@
 from kavalan.settings import *
 import os, sys
 
-PIPELINE = True
 PIPELINE_VERSION = True
 PIPELINE_AUTO = DEBUG #Disable PIPLELINE auto-regeneration for production environment
 
 STATICFILES_FINDERS = ('pipeline.finders.PipelineFinder',) + STATICFILES_FINDERS
-MIDDLEWARE_CLASSES += ('pipeline.middleware.MinifyHTMLMiddleware',)
 PIPELINE_STORAGE = 'pipeline.storage.PipelineFinderStorage'
 
 PIPELINE_JS_COMPRESSOR = 'pipeline.compressors.closure.ClosureCompressor'
