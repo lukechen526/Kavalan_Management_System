@@ -57,7 +57,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
         #Only serve file from Django in development mode; otherwise, use X-sendfile
         if settings.DEBUG:
             response = HttpResponse(mimetype=mimetype[0])
-            response['Content-Disposition'] = 'attachment; filename=%s' % smart_str(output_filename)
+            response['Content-Disposition'] = 'inline; filename=%s' % smart_str(output_filename)
 
             with open(filepath, 'rb') as f:
                 buffer = StringIO()
@@ -71,7 +71,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
             response = HttpResponse(mimetype='application/force-download')
             del response['content-type'] #Leave it to the server to decide
             response['X-Sendfile'] = smart_str(filepath)
-            response['Content-Disposition'] = 'attachment; filename="%s"' % smart_str(output_filename)
+            response['Content-Disposition'] = 'inline; filename="%s"' % smart_str(output_filename)
             return response
 
 
