@@ -75,6 +75,10 @@ span.doc-result .doc-label{
     font-size: 0.8em;
 }
 
+.doc-add{
+    padding: 0 10px;
+    
+}
 /*For Batch Record Search Form*/
 #name{
     width: 300px;
@@ -103,4 +107,9 @@ span.doc-result .doc-label{
 .batch-edit{
     text-decoration: underline;
     font-size: 0.8em;
+}
+
+.batch-add{
+    padding: 0 10px;
+
 }

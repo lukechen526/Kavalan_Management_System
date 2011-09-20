@@ -51,7 +51,7 @@
         <div class="pagination">
           <ul>
             <% var i = 1; for(i = 1; i<= num_pages; i++){ %>
-                <li <% if(i==page_number){ %>class="active" <%}%> ><a class="page" rel="<%=i%>" href="javascript:void(0);"><%=i%></a></li>
+                <li <% if(i==page_number){ %> class="active" <%}%> ><a class="page" rel="<%=i%>" href="javascript:void(0);"><%=i%></a></li>
             <%}%>
           </ul>
         </div>
@@ -63,8 +63,10 @@
             <li><a href="#search-doc">{% trans "Search Documents" %}</a></li>
             <li><a href="#search-batch-record">{% trans "Search Batch Records" %}</a></li>
         </ul>
+
         <div id="search-doc">
-            <form class="form-stacked" action="/kavalan/api/documents/" method="get" onsubmit="return false;">
+            <form class="form-stacked" action="" method="get" onsubmit="return false;">
+            
                 {% for field in  document_search_form.visible_fields %}
                     <div class="clearfix">
                         {{ field.label_tag }}
@@ -72,22 +74,33 @@
                     </div>
 
                 {% endfor %}
+
+                {% if perms.doc_engine.add_document %}
+                    <span class="doc-add"> <a href="{% url 'admin:doc_engine_document_add'  %}" class="btn">+{% trans "Add Document" %}</a></span>
+                {% endif %}
+
             </form>
+
 
         </div>
 
         <div id="search-batch-record">
 
             <form class="form-stacked" action="" method="get" onsubmit="return false;">
+            
                  {% for field in  batch_record_search_form.visible_fields %}
                      <div class="clearfix">
                         {{ field.label_tag }}
                         <div class="input">{{ field }}</div>
                      </div>
-
                 {% endfor %}
-            </form>
 
+                {% if perms.doc_engine.add_batchrecord %}
+                    <span class="batch-add"> <a href="{% url 'admin:doc_engine_batchrecord_add'  %}" class="btn">+{% trans "Add Batch Record" %}</a></span>
+                {% endif %}
+            
+            </form>
+        
         </div>
     </div>
 
