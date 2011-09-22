@@ -4,3 +4,4 @@ docs/build/*
 kavalan/uploads/*
 kavalan/axes.log
 .idea/*
+.DS_Store

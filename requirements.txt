@@ -8,5 +8,5 @@ reportlab>= 2.5
 guess-language>=0.2
 django-simple-avatar>=0.8.1
 South>=0.7.3
-django-axes>=1.2.4
+django-axes
 Sphinx>=1.0.7
