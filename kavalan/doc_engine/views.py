@@ -17,7 +17,9 @@ except ImportError:
 
 class DocumentIndexView(TemplateView):
     """
+
     Displays the index page for Doc Engine
+
     """
     template_name = "doc_engine/document_index.html"
     
@@ -47,13 +49,12 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
     #Check the mimetype of the file
     mimetype = mimetypes.guess_type(filepath)
 
-    if False:
-        pass
-    #Disables PDF watermarking due to impact on performance
-    #if mimetype[0] == 'application/pdf':
-    #   return createPDFHttpResponse(filepath, output_filename, user, access_time)
+    #Add access watermark to PDF if configured in settings. Otherwise, it will be rendered as a file.
+    if mimetype[0] == 'application/pdf' and getattr(settings, 'PDF_WATERMARK', False):
+       return createPDFHttpResponse(filepath, output_filename, user, access_time)
     
     else:
+
         #Only serve file from Django in development mode; otherwise, use X-sendfile
         if settings.DEBUG:
             response = HttpResponse(mimetype=mimetype[0])
@@ -87,7 +88,6 @@ def createPDFHttpResponse(filepath, output_filename, user, access_time):
     :return: HttpResponse with the file content, or HttpResponseNotFound
     
     """
-    #Add access watermark
     buffer = StringIO()
     p = canvas.Canvas(buffer)
     p.drawString(0,0, "Downloaded by %s at %s" %(user, access_time.isoformat(' ')))
