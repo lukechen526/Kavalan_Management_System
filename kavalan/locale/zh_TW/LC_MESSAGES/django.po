@@ -347,7 +347,7 @@ msgstr "無權存取"
 #: .\doc_engine\templates\doc_engine\document_index.html.py:30
 #: .\doc_engine\templates\doc_engine\document_index.html.py:44
 msgid "Edit"
-msgstr ""
+msgstr "編輯"
 
 #: .\doc_engine\templates\doc_engine\document_index.html.py:63
 msgid "Search Documents"
