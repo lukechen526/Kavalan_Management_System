@@ -2,7 +2,9 @@
 import os
 import datetime
 
-DEBUG = False
+PRODUCTION_ENV = bool(os.environ.get('PRODUCTION_ENV',''))
+
+DEBUG = not PRODUCTION_ENV
 TEMPLATE_DEBUG = DEBUG
 
 DIRNAME = os.path.dirname(__file__)
@@ -218,12 +220,6 @@ LOGGING = {
     }
 }
 
-
-#Import settings_production.py for production environment
-if not DEBUG:
-    from settings_production import *
-
-
 #Miscellaneous settings
 SOUTH_TESTS_MIGRATE = False
 AUTO_GENERATE_AVATAR_SIZES = (80, 48, 28)
@@ -250,3 +246,7 @@ if 'pipeline' in INSTALLED_APPS:
 
     except ImportError:
         pass
+
+#Import settings_production.py for production environment
+if PRODUCTION_ENV:
+    from settings_production import *
