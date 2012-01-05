@@ -3,6 +3,7 @@
 docs/build/*
 kavalan/uploads/*
 kavalan/axes.log
+kavalan/settings_production.py
 .idea/*
 .DS_Store
 *.xml

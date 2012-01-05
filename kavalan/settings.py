@@ -236,17 +236,20 @@ AXES_USE_USER_AGENT = True
 try:
     import lbforum
     from settings_lbforum import *
-except ImportError:
-    pass
+except ImportError as e:
+    print e
 
 #Import settings_pipeline.py
 if 'pipeline' in INSTALLED_APPS:
     try:
         from settings_pipeline import *
 
-    except ImportError:
-        pass
+    except ImportError as e:
+        print e
 
 #Import settings_production.py for production environment
 if PRODUCTION_ENV:
-    from settings_production import *
+    try:
+        from settings_production import *
+    except ImportError as e:
+        print e
