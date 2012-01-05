@@ -29,10 +29,10 @@ class DocumentIndexView(TemplateView):
         context['batch_record_search_form'] = BatchRecordSearchForm(auto_id=True)
         return context
 
-def createFileHttpResponse(filepath, output_filename, user, access_time):
+def create_file_http_response(filepath, output_filename, user, access_time):
     """
     Creates a HttpResponse from the file at *filepath*. If the MIMETYPE of the file is PDF, passes the request to
-    createPDFHttpResponse to add watermark.
+    create_pdf_http_response to add watermark.
     
     :param filepath: Path to the file
     :param output_filename: File name sent to the user
@@ -51,7 +51,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
 
     #Add access watermark to PDF if configured in settings. Otherwise, it will be rendered as a file.
     if mimetype[0] == 'application/pdf' and getattr(settings, 'PDF_WATERMARK', False):
-       return createPDFHttpResponse(filepath, output_filename, user, access_time)
+       return create_pdf_http_response(filepath, output_filename, user, access_time)
     
     else:
 
@@ -76,7 +76,7 @@ def createFileHttpResponse(filepath, output_filename, user, access_time):
             return response
 
 
-def createPDFHttpResponse(filepath, output_filename, user, access_time):
+def create_pdf_http_response(filepath, output_filename, user, access_time):
     """
     Creates a HttpResponse from a watermarked PDF file. Watermark contains the user who accessed the document
     and the time of access.
@@ -111,7 +111,7 @@ def createPDFHttpResponse(filepath, output_filename, user, access_time):
     return response
 
 
-def DocumentAccess(request, pk):
+def document_access(request, pk):
     """
     Searches for the requested document with the given primary key, then checks if the user belongs to a group
     that has the permission to access the document. 
@@ -134,7 +134,7 @@ def DocumentAccess(request, pk):
     #Check if the user has the necessary group permission to access the document or is a superuser
     if user.is_superuser:
         record= AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
-        return createFileHttpResponse(filepath=filepath,
+        return create_file_http_response(filepath=filepath,
                                       output_filename=output_filename,
                                       user=user,
                                       access_time=record.access_time)
@@ -143,7 +143,7 @@ def DocumentAccess(request, pk):
             if group in document_groups:
                 #Allows access if the user is in the permitted group
                 record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
-                return createFileHttpResponse(filepath=filepath,
+                return create_file_http_response(filepath=filepath,
                                               output_filename=output_filename,
                                               user=user,
                                               access_time=record.access_time)

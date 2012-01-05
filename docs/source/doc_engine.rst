@@ -111,7 +111,7 @@ Security is ensured through the following mechanisms:
 his/her group membership is checked against that of the Document. Only a user who passes the test will be given access to the file.
 Others will see "Access Denied."
 
-.. autofunction:: doc_engine.views.createFileHttpResponse
+.. autofunction:: doc_engine.views.create_file_http_response
 
 2. **Access recording:** Each time a user attempts to access a document, a record is written in the database, regardless of
 the outcome (success or access denial).
