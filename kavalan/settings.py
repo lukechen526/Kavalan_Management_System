@@ -2,9 +2,7 @@
 import os
 import datetime
 
-PRODUCTION_ENV = bool(os.environ.get('PRODUCTION_ENV',''))
-
-DEBUG = not PRODUCTION_ENV
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 DIRNAME = os.path.dirname(__file__)
@@ -165,18 +163,18 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django.contrib.admin',
     'django.contrib.admindocs',
-    'doc_engine',
-    'accounts',
-    'dynamo',
-    'stream',
-    'custom_notification',
-    'kavalan_tags',
+
+  # Third-party apps
     'axes',
-    'notification',
     'simpleavatar',
     'piston',
     'pipeline',
     'south',
+
+  # Kavalan Apps
+    'doc_engine',
+    'accounts',
+    'kavalan_tags',
     'kavalan', #added to permit Javascript i18n
 )
 
@@ -232,24 +230,10 @@ AXES_LOCKOUT_TEMPLATE = 'registration/lockout.html'
 AXES_LOCKOUT_URL = '/accounts/lockout/'
 AXES_USE_USER_AGENT = True
 
-#Settings for LBForum
-try:
-    import lbforum
-    from settings_lbforum import *
-except ImportError as e:
-    print e
-
 #Import settings_pipeline.py
 if 'pipeline' in INSTALLED_APPS:
     try:
         from settings_pipeline import *
 
-    except ImportError as e:
-        print e
-
-#Import settings_production.py for production environment
-if PRODUCTION_ENV:
-    try:
-        from settings_production import *
     except ImportError as e:
         print e

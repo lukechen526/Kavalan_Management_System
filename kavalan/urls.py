@@ -16,9 +16,6 @@ urlpatterns = patterns('',
     url(r'^doc_engine/', include('doc_engine.urls')),
     url(r'^accounts/', include('accounts.urls')),
     url(r'^api/', include('api.urls')),
-    url(r'^notification/', include('notification.urls')),
-    url(r'^attachments/', include('attachments.urls')),
-    url(r'^forum/', include('lbforum.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()

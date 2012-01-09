@@ -3,18 +3,6 @@ Introduction
 Kavalan Management System is a Enterprise Resource Planning (ERP_) application suite designed to facilitate the business processes at small- to medium-size firms.
 It is currently being developed with the support of `Wu-Fu Laboratories, Ltd`_. The system aims to be `PIC/S`_ compliant.
 
-Sub-systems
-================
-Several apps have been planned for inclusion in the suite. They are all at very early stage of development
-
-- *Doc Engine* for document search and retrieval
-- *Dynamo* for creating database query dynamically based on user input.
-- Stream (for posting status updates and sharing links)
-- Forum (based on a modified version of LBForum) 
-- Account and Profile Management
-- The *API* sub-system is used to centralize the management of public APIs exposed by the other sub-systems.
-
-
 Author(s)
 ===========
 Luke (Yu-Po) Chen, nuemail@gmail.com
@@ -29,9 +17,7 @@ Dependencies
 - `guess-language`_ >=0.2
 - `South`_ >= 0.7.3
 - `Django-axes`_ >= 0.1.1
-- `Django-notification`_ >= 0.2.0
 - `Django-pipeline`_ >= 1.1.17
-- `LBForum`_ >= 0.9.20
 -  Sphinx >= 1.0.7
 - Database connectors for MySQL or PostgreSQL
 
@@ -44,6 +30,4 @@ Dependencies
 .. _South: http://south.aeracode.org/
 .. _Django-axes: http://code.google.com/p/django-axes/
 .. _guess-language: http://pypi.python.org/pypi/guess-language
-.. _Django-notification: https://github.com/jtauber/django-notification
-.. _LBForum: https://github.com/lukechen526/LBForum
 .. _Django-pipeline: https://github.com/cyberdelia/django-pipeline

@@ -7,7 +7,6 @@
 <ul id="nav-menu">
     <li> <a href="/"> {% trans "Home" %} </a></li>
     <li> <a href="/doc_engine/"> {% trans "Document Search" %}</a></li>
-    <li> <a href="/forum/"> {% trans "Forum" %}</a></li>
     {% if user.is_staff %}
         <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
         <li> <a href="/docs/index.html"> {% trans "Help" %} </a></li>
@@ -43,19 +42,6 @@
         </div>
     {% else %}
         <a href="/accounts/login/">{% trans "Login" %}</a>
-    {% endif %}
-
-    <!-- Notices-->
-    {% if user.is_authenticated %}
-    <div id="notices">
-    {% with notices=user.profile.unseen_notices %}
-        <span id="unseen-notices-count" class="{% if notices.count %}unseen{% endif %}"><span>{{ notices.count }}</span></span>
-        <div id="unseen-notices">
-            <div id="unseen-notices-header"><div>{% trans "Notifications" %}</div><a href="{% url "notification_notices" %}">{% trans "View All" %}</a></div>
-            <div id="unseen-notices-list">{% include "notification/nav-notices-list.html" %}</div>
-        </div>
-    {% endwith %}
-    </div>
     {% endif %}
 
 

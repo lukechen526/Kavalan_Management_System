@@ -7,8 +7,5 @@
 
 
 {% block content %}
-    {% cache 500 stream-index user.username LANGUAGE_CODE %}
-        {% include "stream/stream-index.html" %}
-    {% endcache %}
-    
+
 {% endblock %}

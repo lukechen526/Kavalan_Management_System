@@ -22,7 +22,6 @@ PIPELINE_CSS = {
           'stream/css/stream.css',
           'accounts/css/accounts.css',
           'doc_engine/css/doc-engine.css',
-          'custom_notification/css/notification.css'
         ),
         'output_filename': 'css/all_compressed.r?.css',
     },
@@ -33,7 +32,6 @@ PIPELINE_JS = {
     'project': {
         'source_filenames': (
             'js/base.js',
-            'custom_notification/js/notification.js',
             'doc_engine/js/doc-engine.js',
             'stream/js/stream.js'
         ),

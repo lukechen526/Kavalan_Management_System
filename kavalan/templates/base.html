@@ -2,38 +2,28 @@
 {% load url from future %}
 {% load compressed %}
 <!DOCTYPE html>
-<html>
-
+<!--[if lt IE 7]> <html class="no-js ie6 oldie" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 oldie" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
 <head>
-<meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
+  <title>{% block title %} {% endblock %}</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-<title> {% block title %} {% endblock %}</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <!-- ** CSS ** -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap-1.3.0.min.css">
-    {% compressed_css 'all' %}
+  <!-- CSS concatenated and minified via ant build script-->
+  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/style.css">
 
-    <!-- ** Javascript ** -->
+  {% compressed_css 'all' %}
+  <!-- end CSS-->
 
-    <!-- Third-Party Javascript files-->
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery.tmpl.min.js"></script>
-    <script type="text/javascript" src={{ STATIC_URL }}js/underscore-min.js></script>
-    <script type="text/javascript" src={{ STATIC_URL }}js/json2-min.js></script>
-    <script type="text/javascript" src={{ STATIC_URL }}js/backbone-min.js></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
-    <script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
-
-    <!-- Project-specific -->
-    {% compressed_js 'project' %}
-    <script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
-
-    <!-- Per-app header -->
-    {% block extra_head %}{% endblock %}
-
-    <!-- Extra per-app script -->
-    {% block extra_script %}{% endblock %}
+  <script src="{{ STATIC_URL }}js/modernizr-2.0.6.min.js"></script>
 
 </head>
 
@@ -43,9 +33,27 @@
 <div id="container">
     <nav>{% include "navigation.html" %}</nav>
     <div id="content">{% block content %} {% endblock %}</div>
-    <footer>{% block footer %}  <p> Kavalan Management System, developed and maintained by Wu-Fu Laboratories, Ltd., 2011.</p>{% endblock %}</footer>
+    <footer>{% block footer %}
+        <p> Kavalan Management System, developed and maintained by Wu-Fu Laboratories, Ltd., 2011.</p>{% endblock %}
+    </footer>
 </div>
 
+<!-- Javascripts -->
+<!-- Third-Party JS -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ STATIC_URL }}js/jquery-1.6.2.js"><\/script>')</script>
+<script src="{{ STATIC_URL }}js/jquery.tmpl.min.js"></script>
+<script type="text/javascript" src={{ STATIC_URL }}js/underscore-min.js></script>
+<script type="text/javascript" src={{ STATIC_URL }}js/json2-min.js></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.14.custom.min.js"></script>
+<script type="text/javascript" src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/backbone-min.js"></script>
+
+
+<!-- Project-specific -->
+{% compressed_js 'project' %}
+<script type="text/javascript" src="{% url 'django.views.i18n.javascript_catalog' %}"></script>
+<!-- end of JS -->
 
 
 </body>

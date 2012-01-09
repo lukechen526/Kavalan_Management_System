@@ -74,7 +74,7 @@ class BatchRecordAdmin(admin.ModelAdmin):
     form = BatchRecordInputForm
 
     class Media:
-        js = ('js/jquery-1.6.1.min.js', 'js/jquery-ui-1.8.14.custom.min.js', 'js/chosen.jquery.min.js', 'doc_engine/js/doc-engine.js')
+        js = ('js/jquery-1.6.2.min.js', 'js/jquery-ui-1.8.14.custom.min.js', 'js/chosen.jquery.min.js', 'doc_engine/js/doc-engine.js')
         css ={'all':('css/custom-theme/jquery-ui-1.8.14.custom.css',)}
 
 admin.site.register(DocumentLabel)
