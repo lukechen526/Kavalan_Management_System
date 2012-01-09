@@ -16,6 +16,11 @@
 
 
 /*for document_index.html*/
+
+div.doc-engine.container{
+    max-width: 100%;
+    margin: auto;
+}
 #search-tabs, #search-tabs>* {
     border: 0;
 }
@@ -36,15 +41,15 @@
 }
 
 #document_level{
-    width: 200px;
+    max-width: 200px;
 }
 
 #labels{
-    width: 350px;
+    max-width: 350px;
 }
 
 #q{
-    width: 300px;
+    max-width: 300px;
 }
 
 #search-result span.doc-result a{

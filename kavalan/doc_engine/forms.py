@@ -31,10 +31,23 @@ class BatchRecordInputForm(forms.ModelForm):
     class Meta:
         model = BatchRecord
 
+
+
+class HTML5DateInput(forms.widgets.DateInput):
+    input_type = 'date'
+
+
+
 class BatchRecordSearchForm(forms.Form):
     name = forms.CharField(label=ugettext_lazy('Product Name'), required=False)
     batch_number = forms.CharField(label=ugettext_lazy('Batch Number'), required=False)
-    date_manufactured_from = forms.DateField(label=ugettext_lazy('From'), required=False)
-    date_manufactured_to = forms.DateField(label=ugettext_lazy('To'), required=False)
+    date_manufactured_from = forms.DateField(
+        label=ugettext_lazy('From'),
+#        widget=HTML5DateInput,
+        required=False)
+    date_manufactured_to = forms.DateField(
+        label=ugettext_lazy('To'),
+#        widget=HTML5DateInput,
+        required=False)
 
 

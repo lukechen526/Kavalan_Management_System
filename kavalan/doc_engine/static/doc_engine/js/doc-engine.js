@@ -1,6 +1,5 @@
 $(document).ready(function(){
 
-
 /* section for doc_engine */
 
 //Utility function: delays execution of the function func until doneTypingInterval ms after the last triggering event
