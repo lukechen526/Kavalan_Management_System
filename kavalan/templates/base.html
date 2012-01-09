@@ -32,10 +32,8 @@
 
 <div id="container">
     <nav>{% include "navigation.html" %}</nav>
-    <div id="content">{% block content %} {% endblock %}</div>
-    <footer>{% block footer %}
-        <p> Kavalan Management System, developed and maintained by Wu-Fu Laboratories, Ltd., 2011.</p>{% endblock %}
-    </footer>
+    <div id="content">{% block content %}{% endblock %}</div>
+    <footer>{% block footer %}{% include "footer.html" %}{% endblock %}</footer>
 </div>
 
 <!-- Javascripts -->
