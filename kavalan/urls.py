@@ -15,7 +15,6 @@ urlpatterns = patterns('',
     url(r'^$', IndexView.as_view() ),
     url(r'^doc_engine/', include('doc_engine.urls')),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^api/', include('api.urls')),
 )
 
 urlpatterns += staticfiles_urlpatterns()
