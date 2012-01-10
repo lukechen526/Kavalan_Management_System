@@ -209,6 +209,6 @@ $tabs.bind('tabsselect', function(event, ui){
  });
 
 /* Datepicker for adding Batch Records in Admin*/
-$('#id_date_manufactured').datepicker();
+$('#id_date_of_manufacture').datepicker();
 
 });

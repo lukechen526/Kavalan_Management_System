@@ -171,6 +171,7 @@ INSTALLED_APPS = (
     'pipeline',
     'reversion',
     'south',
+    'haystack',
 
   # Kavalan Apps
     'doc_engine',
@@ -238,3 +239,14 @@ if 'pipeline' in INSTALLED_APPS:
 
     except ImportError as e:
         print e
+
+
+#Django-haystack setting
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.solr_backend.SolrEngine',
+        'URL': 'http://127.0.0.1:8983/solr'
+    },
+}
+
+HAYSTACK_USE_REALTIME_SEARCH = True

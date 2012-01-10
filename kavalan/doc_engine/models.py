@@ -57,10 +57,9 @@ class BaseDocument(models.Model):
     """
     name = models.CharField(max_length=100, verbose_name=ugettext_lazy('Name'))
     date_modified = models.DateTimeField(verbose_name=ugettext_lazy('Date Modified'), auto_now=True)
-    file = models.FileField(upload_to='doc_engine', verbose_name=ugettext_lazy('File'), null=True, blank=True)
     comment = models.TextField(default='', verbose_name=ugettext_lazy('Comment'), blank=True)
     version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Version'))
-    tags = models.ManyToManyField(Tag, related_name='related_%(app_label)s_%(class)s', verbose_name=ugettext_lazy('Tags'))
+    tags = models.ManyToManyField(Tag, related_name='related_%(app_label)s_%(class)s', verbose_name=ugettext_lazy('Tags'), blank=True)
 
     class Meta:
         abstract = True
@@ -82,6 +81,7 @@ class StoredDocument(BaseDocument):
 
     objects = StoredDocumentManager()
 
+    file = models.FileField(upload_to='stored_documents', verbose_name=ugettext_lazy('File'))
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
     location = models.CharField(max_length=30, default='', blank=True, verbose_name=ugettext_lazy('Physical Location'))
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
@@ -106,6 +106,10 @@ class StoredDocument(BaseDocument):
 
     def natural_key(self):
         return (self.name, self.serial_number)
+
+    @models.permalink
+    def get_absolute_url(self):
+        return ('document_access', (), {'pk': str(self.pk)})
 
     def display_tags(self):
         span_list = []

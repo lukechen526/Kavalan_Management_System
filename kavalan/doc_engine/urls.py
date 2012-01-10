@@ -10,11 +10,14 @@ batch_record_handler = Resource(BatchRecordHandler, authentication=SessionAuthen
 
 urlpatterns = patterns('',
     url(r'^$', login_required(DocumentIndexView.as_view())),
-    url(r'^access/(?P<pk>\d+)/?$', login_required(document_access)),
+    url(r'^access/(?P<pk>\d+)/?$', login_required(document_access), name='document_access'),
     url(r'^api/documents/?$',document_handler, { 'emitter_format': 'page_json' }),
     url(r'^api/documents/(?P<document_id>\d+)/?$',document_handler, { 'emitter_format': 'page_json' }),
     url(r'^api/batchrecords/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
     url(r'^api/batchrecords/(?P<batchrecord_id>\d+)/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
+
+    url(r'^search/', include('haystack.urls')),
+
 
 )
 

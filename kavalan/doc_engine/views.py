@@ -123,8 +123,10 @@ def document_access(request, pk):
     MEDIA_ROOT = settings.MEDIA_ROOT
     user = request.user
     user_groups = user.groups.all()
-    document = get_object_or_404(Document, pk=pk)
+    document = get_object_or_404(StoredDocument, pk=pk)
     document_groups = list(document.permitted_groups.all())
+    if not document.file.name:
+        return HttpResponseNotFound(ugettext('No stored file found!'))
 
     filepath = os.path.join(MEDIA_ROOT, document.file.name)
     #Generate safe file names for output based on document's serial number and version; the extension should be preserved
@@ -133,7 +135,7 @@ def document_access(request, pk):
 
     #Check if the user has the necessary group permission to access the document or is a superuser
     if user.is_superuser:
-        record= AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
+        record= AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], item_accessed=document, success=True)
         return create_file_http_response(filepath=filepath,
                                       output_filename=output_filename,
                                       user=user,
@@ -142,14 +144,14 @@ def document_access(request, pk):
         for group in user_groups:
             if group in document_groups:
                 #Allows access if the user is in the permitted group
-                record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=True)
+                record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], item_accessed=document, success=True)
                 return create_file_http_response(filepath=filepath,
                                               output_filename=output_filename,
                                               user=user,
                                               access_time=record.access_time)
 
     #If the user is not authorized, record the attempt, and then return error 403
-    record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], document_accessed=document, success=False)
+    record = AccessRecord.objects.create(user=user, ip=request.META['REMOTE_ADDR'], item_accessed=document, success=False)
     return HttpResponseForbidden(ugettext("Access Denied"))
 
     

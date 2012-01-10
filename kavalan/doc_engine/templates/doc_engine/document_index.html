@@ -22,7 +22,7 @@
                 </span>
 
             {% if perms.doc_engine.change_document %}
-                <span class="doc-edit"><a href="{% url 'admin:doc_engine_document_changelist'  %}<%=id%>"> {% trans "Edit" %} </a></span>
+                <span class="doc-edit"><a href="{% url 'admin:doc_engine_storeddocument_changelist'  %}<%=id%>"> {% trans "Edit" %} </a></span>
             {% endif %}
         </span>
     </script>
@@ -71,7 +71,7 @@
                 {% endfor %}
 
                 {% if perms.doc_engine.add_document %}
-                    <div class="doc-add clearfix"> <a href="{% url 'admin:doc_engine_document_add'  %}" class="btn">+{% trans "Add Document" %}</a></div>
+                    <div class="doc-add clearfix"> <a href="{% url 'admin:doc_engine_storeddocument_add'  %}" class="btn">+{% trans "Add Document" %}</a></div>
                 {% endif %}
 
             </form>

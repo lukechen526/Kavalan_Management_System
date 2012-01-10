@@ -4,6 +4,7 @@ from doc_engine.models import StoredDocument, BatchRecord, Tag
 
 
 class DocumentSearchForm(forms.Form):
+
     sn_title = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'), required=False)
 
     document_level = forms.ChoiceField(
@@ -14,18 +15,23 @@ class DocumentSearchForm(forms.Form):
 
     tags = forms.ModelMultipleChoiceField(
         label=ugettext_lazy('Tags'),
-        required=False, queryset=Tag.objects.all(),
+        required=False,
+        queryset=Tag.objects.all(),
         widget = forms.SelectMultiple(attrs={'data-placeholder':ugettext_lazy('Filter by labels')}))
 
 class BatchRecordInputForm(forms.ModelForm):
+
     date_of_manufacture = forms.DateField(label=ugettext_lazy('Date of Manufacture'))
+
     class Meta:
         model = BatchRecord
 
 class HTML5DateInput(forms.widgets.DateInput):
+
     input_type = 'date'
 
 class BatchRecordSearchForm(forms.Form):
+
     name = forms.CharField(label=ugettext_lazy('Product Name'), required=False)
     batch_number = forms.CharField(label=ugettext_lazy('Batch Number'), required=False)
     date_of_manufacture_from = forms.DateField(

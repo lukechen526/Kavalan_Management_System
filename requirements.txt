@@ -10,3 +10,6 @@ django-simple-avatar>=0.8.1
 South>=0.7.3
 django-axes
 Sphinx>=1.0.7
+pysolr
+poster
+
