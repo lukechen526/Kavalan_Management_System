@@ -11,9 +11,7 @@ class Migration(SchemaMigration):
         # Adding model 'Tag'
         db.create_table('doc_engine_tag', (
             ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('tag', self.gf('django.db.models.fields.SlugField')(default='', max_length=50, db_index=True)),
-            ('content_type', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['contenttypes.ContentType'])),
-            ('object_id', self.gf('django.db.models.fields.PositiveIntegerField')()),
+            ('tag', self.gf('django.db.models.fields.CharField')(default='', max_length=20)),
         ))
         db.send_create_signal('doc_engine', ['Tag'])
 
@@ -36,6 +34,7 @@ class Migration(SchemaMigration):
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('file', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
             ('comment', self.gf('django.db.models.fields.TextField')(default='', blank=True)),
+            ('version', self.gf('django.db.models.fields.CharField')(default='1.0', max_length=10)),
             ('serial_number', self.gf('django.db.models.fields.CharField')(unique='True', max_length=50)),
             ('location', self.gf('django.db.models.fields.CharField')(default='', max_length=30)),
             ('document_level', self.gf('django.db.models.fields.CharField')(default='4', max_length=1)),
@@ -44,6 +43,14 @@ class Migration(SchemaMigration):
 
         # Adding unique constraint on 'StoredDocument', fields ['name', 'serial_number']
         db.create_unique('doc_engine_storeddocument', ['name', 'serial_number'])
+
+        # Adding M2M table for field tags on 'StoredDocument'
+        db.create_table('doc_engine_storeddocument_tags', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('storeddocument', models.ForeignKey(orm['doc_engine.storeddocument'], null=False)),
+            ('tag', models.ForeignKey(orm['doc_engine.tag'], null=False))
+        ))
+        db.create_unique('doc_engine_storeddocument_tags', ['storeddocument_id', 'tag_id'])
 
         # Adding M2M table for field permitted_groups on 'StoredDocument'
         db.create_table('doc_engine_storeddocument_permitted_groups', (
@@ -61,11 +68,20 @@ class Migration(SchemaMigration):
             ('date_modified', self.gf('django.db.models.fields.DateTimeField')(auto_now=True, blank=True)),
             ('file', self.gf('django.db.models.fields.files.FileField')(max_length=100, null=True, blank=True)),
             ('comment', self.gf('django.db.models.fields.TextField')(default='', blank=True)),
+            ('version', self.gf('django.db.models.fields.CharField')(default='1.0', max_length=10)),
             ('batch_number', self.gf('django.db.models.fields.CharField')(max_length=30)),
             ('serial_number', self.gf('django.db.models.fields.IntegerField')()),
             ('location', self.gf('django.db.models.fields.CharField')(max_length=30)),
         ))
         db.send_create_signal('doc_engine', ['BatchRecord'])
+
+        # Adding M2M table for field tags on 'BatchRecord'
+        db.create_table('doc_engine_batchrecord_tags', (
+            ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
+            ('batchrecord', models.ForeignKey(orm['doc_engine.batchrecord'], null=False)),
+            ('tag', models.ForeignKey(orm['doc_engine.tag'], null=False))
+        ))
+        db.create_unique('doc_engine_batchrecord_tags', ['batchrecord_id', 'tag_id'])
 
 
     def backwards(self, orm):
@@ -82,11 +98,17 @@ class Migration(SchemaMigration):
         # Deleting model 'StoredDocument'
         db.delete_table('doc_engine_storeddocument')
 
+        # Removing M2M table for field tags on 'StoredDocument'
+        db.delete_table('doc_engine_storeddocument_tags')
+
         # Removing M2M table for field permitted_groups on 'StoredDocument'
         db.delete_table('doc_engine_storeddocument_permitted_groups')
 
         # Deleting model 'BatchRecord'
         db.delete_table('doc_engine_batchrecord')
+
+        # Removing M2M table for field tags on 'BatchRecord'
+        db.delete_table('doc_engine_batchrecord_tags')
 
 
     models = {
@@ -146,7 +168,9 @@ class Migration(SchemaMigration):
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'location': ('django.db.models.fields.CharField', [], {'max_length': '30'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
-            'serial_number': ('django.db.models.fields.IntegerField', [], {})
+            'serial_number': ('django.db.models.fields.IntegerField', [], {}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'related_doc_engine_batchrecord'", 'symmetrical': 'False', 'to': "orm['doc_engine.Tag']"}),
+            'version': ('django.db.models.fields.CharField', [], {'default': "'1.0'", 'max_length': '10'})
         },
         'doc_engine.storeddocument': {
             'Meta': {'ordering': "['name', '-date_modified']", 'unique_together': "(('name', 'serial_number'),)", 'object_name': 'StoredDocument'},
@@ -158,14 +182,14 @@ class Migration(SchemaMigration):
             'location': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '30'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'permitted_groups': ('django.db.models.fields.related.ManyToManyField', [], {'to': "orm['auth.Group']", 'symmetrical': 'False', 'blank': 'True'}),
-            'serial_number': ('django.db.models.fields.CharField', [], {'unique': "'True'", 'max_length': '50'})
+            'serial_number': ('django.db.models.fields.CharField', [], {'unique': "'True'", 'max_length': '50'}),
+            'tags': ('django.db.models.fields.related.ManyToManyField', [], {'related_name': "'related_doc_engine_storeddocument'", 'symmetrical': 'False', 'to': "orm['doc_engine.Tag']"}),
+            'version': ('django.db.models.fields.CharField', [], {'default': "'1.0'", 'max_length': '10'})
         },
         'doc_engine.tag': {
             'Meta': {'object_name': 'Tag'},
-            'content_type': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['contenttypes.ContentType']"}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'object_id': ('django.db.models.fields.PositiveIntegerField', [], {}),
-            'tag': ('django.db.models.fields.SlugField', [], {'default': "''", 'max_length': '50', 'db_index': 'True'})
+            'tag': ('django.db.models.fields.CharField', [], {'default': "''", 'max_length': '20'})
         }
     }
 
