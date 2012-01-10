@@ -19,7 +19,6 @@ PIPELINE_CSS = {
           'css/chosen.css',
           'css/custom-theme/jquery-ui-1.8.14.custom.css',
           'css/base.css',
-          'stream/css/stream.css',
           'accounts/css/accounts.css',
           'doc_engine/css/doc-engine.css',
         ),
@@ -33,7 +32,6 @@ PIPELINE_JS = {
         'source_filenames': (
             'js/base.js',
             'doc_engine/js/doc-engine.js',
-            'stream/js/stream.js'
         ),
         'output_filename': 'js/project_compressed.r?.js'
     }
