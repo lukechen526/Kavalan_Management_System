@@ -1,5 +1,5 @@
 from django.views.generic import TemplateView
-from doc_engine.models import Document,  AccessRecord
+from doc_engine.models import StoredDocument,  AccessRecord
 from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
 from django.shortcuts import get_object_or_404
 from django.http import HttpResponse, HttpResponseForbidden, HttpResponseNotFound

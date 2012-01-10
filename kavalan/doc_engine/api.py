@@ -1,6 +1,6 @@
 from piston.handler import BaseHandler
 from piston.utils import *
-from doc_engine.models import Document, BatchRecord
+from doc_engine.models import StoredDocument, BatchRecord
 from django.db.models import Q
 from dynamo.core import build_query
 from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
@@ -30,9 +30,9 @@ def get_documents(query_str):
 
     sn_title = query.cleaned_data['sn_title']
     document_level = query.cleaned_data['document_level']
-    labels = query.cleaned_data['labels']
+    tags = query.cleaned_data['tags']
 
-    result = Document.objects.filter(searchable=True)
+    result = StoredDocument.objects.filter(searchable=True)
 
     if sn_title:
         q = Q()
@@ -49,14 +49,14 @@ def get_documents(query_str):
     if document_level:
         result = result.filter(document_level__exact=document_level)
 
-    if labels:
-        for label in labels:
+    if tags:
+        for label in tags:
             #Apply AND operation to labels
             result = result.filter(labels__in=[label])
 
         result = result.distinct()
 
-    if sn_title is None and document_level is None and labels is None:
+    if sn_title is None and document_level is None and tags is None:
         #If no search criteria were specified, results an empty list.
         result = []
 
@@ -67,7 +67,7 @@ def get_documents(query_str):
 
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
-    model = Document
+    model = StoredDocument
     fields = ('id','title', 'serial_number', 'version', 'file_url', 'location', ('labels',('content',)))
 
     def read(self, request, document_id=None):
@@ -80,8 +80,8 @@ class DocumentHandler(BaseHandler):
         if document_id:
             #If document_id was specified, tries to return the requested object; otherwise, throws an error
             try:
-                return Document.objects.get(id__exact=document_id)
-            except Document.DoesNotExist:
+                return StoredDocument.objects.get(id__exact=document_id)
+            except StoredDocument.DoesNotExist:
                 resp = rc.BAD_REQUEST
                 resp.write('Invalid Document ID')
                 return resp
@@ -136,14 +136,14 @@ def get_batchrecords(query_str):
                                      exclude=False))
 
     if date_manufactured_from:
-        query['filters'].append(dict(field='date_manufactured',
+        query['filters'].append(dict(field='date_of_manufacture',
                                      lookuptype='gte',
                                      value=date_manufactured_from,
                                      op='AND',
                                      exclude=False))
 
     if date_manufactured_to:
-        query['filters'].append(dict(field='date_manufactured',
+        query['filters'].append(dict(field='date_of_manufacture',
                                      lookuptype='lte',
                                      value=date_manufactured_to,
                                      op='AND',
@@ -167,7 +167,7 @@ def get_batchrecords(query_str):
 class BatchRecordHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = BatchRecord
-    fields = ('id','name', 'batch_number', 'date_manufactured', 'date_manufactured_minguo', 'location')
+    fields = ('id','name', 'batch_number', 'date_of_manufacture', 'date_of_manufacture_in_minguo', 'location')
 
     def read(self, request, batchrecord_id=None):
 

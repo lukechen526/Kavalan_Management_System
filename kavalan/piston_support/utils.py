@@ -1,4 +1,6 @@
+# Custom utility classes and functions for using Piston
 from piston.utils import rc
+from piston.resource import Resource
 
 class SessionAuthenticationHandler(object):
     """
@@ -11,4 +13,9 @@ class SessionAuthenticationHandler(object):
 
     def challenge(self):
         return rc.FORBIDDEN
-        
+
+class CsrfExemptResource(Resource):
+    """A Custom Resource that is csrf exempt"""
+    def __init__(self, handler, authentication=None):
+        super(CsrfExemptResource, self).__init__(handler, authentication)
+        self.csrf_exempt = getattr(self.handler, 'csrf_exempt', True)

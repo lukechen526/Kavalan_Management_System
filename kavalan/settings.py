@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     'simpleavatar',
     'piston',
     'pipeline',
+    'reversion',
     'south',
 
   # Kavalan Apps

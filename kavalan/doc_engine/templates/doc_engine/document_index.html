@@ -10,14 +10,14 @@
     <!-- Templates for presenting Document and Batch Record search results-->
     <script type="text/template" id="search-doc-template">
         <span class="doc-result">
-            <a href='<%=file_url%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
+            <a href='<%=file%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
                 <span class="doc-extras">
                     <% if(location !== ''){ %>
                         <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
                     <%}%>
 
-                    <% _.each(labels, function(label){ %>
-                        <abbr class="doc-label" title="{% trans "Label" %}"><%=label.content%></abbr>
+                    <% _.each(tags, function(label){ %>
+                        <abbr class="doc-tag" title="{% trans "Tag" %}"><%=tag.tag%></abbr>
                     <%});%>
                 </span>
 

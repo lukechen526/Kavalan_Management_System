@@ -163,7 +163,7 @@ GET /api/batchrecords?query={"name":"am","batch_number":"AMP12","date_manufactur
                 "date_manufactured": "2011-08-19",
                 "batch_number": "AMP12",
                 "name": "Ampicillin",
-                "date_manufactured_minguo": "0100-08-19",
+                "date_of_manufacture_in_minguo": "0100-08-19",
                 "location": "AB 123"
             }
         ]
