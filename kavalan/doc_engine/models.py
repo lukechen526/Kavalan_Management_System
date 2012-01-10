@@ -4,11 +4,10 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.utils.translation import ugettext_lazy
 
+
 class Tag(models.Model):
-    tag = models.SlugField(default='')
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
+
+    tag = models.CharField(max_length=20)
 
     class Meta:
         verbose_name = ugettext_lazy('Tag')
@@ -60,7 +59,8 @@ class BaseDocument(models.Model):
     date_modified = models.DateTimeField(verbose_name=ugettext_lazy('Date Modified'), auto_now=True)
     file = models.FileField(upload_to='doc_engine', verbose_name=ugettext_lazy('File'), null=True, blank=True)
     comment = models.TextField(default='', verbose_name=ugettext_lazy('Comment'), blank=True)
-    tags = generic.GenericRelation(Tag, related_name='%(app_label)s_%(class)s_related')
+    version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Version'))
+    tags = models.ManyToManyField(Tag, related_name='related_%(app_label)s_%(class)s', verbose_name=ugettext_lazy('Tags'))
 
     class Meta:
         abstract = True
@@ -83,7 +83,7 @@ class StoredDocument(BaseDocument):
     objects = StoredDocumentManager()
 
     serial_number = models.CharField(max_length=50, unique='True', verbose_name=ugettext_lazy('Document Serial Number'))
-    location = models.CharField(max_length=30, default='', verbose_name=ugettext_lazy('Physical Location'))
+    location = models.CharField(max_length=30, default='', blank=True, verbose_name=ugettext_lazy('Physical Location'))
     permitted_groups = models.ManyToManyField(Group, blank=True, verbose_name=ugettext_lazy('Permitted Groups'))
     access_records = generic.GenericRelation('AccessRecord')
 
@@ -102,7 +102,7 @@ class StoredDocument(BaseDocument):
         unique_together = ('name', 'serial_number')
 
     def __unicode__(self):
-        return u'%s %s' %(self.name, self.serial_number)
+        return '%s %s - %s' %(self.name, self.serial_number, self.version )
 
     def natural_key(self):
         return (self.name, self.serial_number)

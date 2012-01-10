@@ -4,10 +4,10 @@ from doc_engine.forms import BatchRecordInputForm
 import reversion
 
 class StoredDocumentAdmin(reversion.VersionAdmin):
-    pass
-
+    history_latest_first = True
 
 class BatchRecordAdmin(reversion.VersionAdmin):
+    history_latest_first = True
     form = BatchRecordInputForm
 
     class Media:
