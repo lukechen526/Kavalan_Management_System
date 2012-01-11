@@ -5,14 +5,6 @@ $(document).ready(function(){
 
     /* section for navigation bar */
 
-      //Mark the current link in the nav bar
-    $("nav ul li a").each(function(){
-
-       if($(this).attr("href") == window.location.pathname)
-       {
-         $(this).addClass("active");
-       }
-    });
 
     //Toggle the display of account-options based on clicking of #username
 
