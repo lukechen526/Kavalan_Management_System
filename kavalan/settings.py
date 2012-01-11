@@ -2,6 +2,7 @@
 import os
 import datetime
 
+PRODUCTION_ENV = bool(os.environ.get('PRODUCTION_ENV', ''))
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -250,3 +251,10 @@ HAYSTACK_CONNECTIONS = {
 }
 
 HAYSTACK_USE_REALTIME_SEARCH = True
+
+# Import settings_production.py
+if PRODUCTION_ENV:
+    try:
+        from settings_production import *
+    except ImportError as e:
+        print e
