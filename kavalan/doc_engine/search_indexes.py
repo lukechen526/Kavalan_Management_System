@@ -5,6 +5,8 @@ from django.conf import settings
 from django.template import loader, Context
 import mimetypes
 import os
+from django.utils.encoding import smart_str
+from django.core.files import File
 try:
     from cStringIO import StringIO
 except ImportError:
@@ -28,14 +30,23 @@ class StoredDocumentIndex(indexes.Indexable, BaseSearch):
         # file_obj must have a .name attribute even if you need to set one
         # manually before calling extract_file_contents:
 
+        filepath = obj.file.name
+        
         try:
-            if obj.file.name :
-                mimetype = mimetypes.guess_type(obj.file.name)
+            if filepath :
+                mimetype = mimetypes.guess_type(filepath)
 
                 if mimetype[0] == 'application/pdf' or mimetype[0] == 'application/msword':
-                    file_obj = open(os.path.join(settings.MEDIA_ROOT, obj.file.name), 'rb')
-                    extracted_data = self._get_backend(None).extract_file_contents(file_obj)
-                    file_obj.close()
+                    with open(os.path.join(settings.MEDIA_ROOT, filepath), 'rb') as file_obj:
+
+                        file_obj = File(file_obj)
+
+                        # Create a unique file name containing only ASCII characters
+                        extension = os.path.splitext(file_obj.name)[1]
+                        file_obj.name = "".join([x for x in "%sv%s" %(smart_str(obj.serial_number), smart_str(obj.version)) if x.isalpha() or x.isdigit()]) + extension
+
+                        # Extract the file content
+                        extracted_data = self._get_backend(None).extract_file_contents(file_obj)
                 else:
                     extracted_data = dict()
             else:

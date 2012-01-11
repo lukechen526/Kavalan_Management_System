@@ -5,7 +5,7 @@ from doc_engine.models import StoredDocument, BatchRecord, Tag
 
 class DocumentSearchForm(forms.Form):
 
-    sn_title = forms.CharField(label=ugettext_lazy('Enter Serial Number/Document Title'), required=False)
+    qw = forms.CharField(label=ugettext_lazy('Enter a query word'), required=False)
 
     document_level = forms.ChoiceField(
         label=ugettext_lazy('Document Level'),

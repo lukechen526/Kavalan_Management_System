@@ -1,21 +1,13 @@
 from piston.handler import BaseHandler
 from piston.utils import *
 from doc_engine.models import StoredDocument, BatchRecord
-from django.db.models import Q
 from dynamo.core import build_query
 from doc_engine.forms import DocumentSearchForm, BatchRecordSearchForm
 import json
-from django.core.cache import cache
-import pickle
+from haystack.query import SearchQuerySet
 
 def get_documents(query_str):
 
-    #Tries to load the result from cache first, using the query string as
-    result = cache.get(query_str.replace(' ', '')) #To be compatible with Memcached, all whitespaces have to be removed from the cache key
-    if result:
-        return pickle.loads(result) #Memcached returns a pickled QuerySet that needs to be unpickled before returning to the client
-
-    #If not result is in the cache, then retrieves Documents from the database
     try:
         query = json.loads(query_str)
     except:
@@ -28,47 +20,37 @@ def get_documents(query_str):
         resp.write(str(query.errors))
         return resp
 
-    sn_title = query.cleaned_data['sn_title']
+    qw = query.cleaned_data['qw']
     document_level = query.cleaned_data['document_level']
     tags = query.cleaned_data['tags']
 
-    result = StoredDocument.objects.filter(searchable=True)
+    result = StoredDocument.objects.all()
 
-    if sn_title:
-        q = Q()
-        keywords = sn_title.split() #split the query string into keywords
-
-        for kw in keywords:
-            #For every keyword, looks it up in either serial number or title.
-            #A document is included in the result if EVERY keyword in the query string is present in either
-            #its serial number OR title.
-            q = q & (Q(serial_number__icontains=kw)|Q(title__icontains=kw))
-
-        result = result.filter(q)
+    if qw:
+        sqs = SearchQuerySet().auto_query(query_string=qw)
+        sqs_pk_list = sqs.values_list('pk', flat=True)
+        result = result.filter(pk__in=sqs_pk_list)
 
     if document_level:
         result = result.filter(document_level__exact=document_level)
 
     if tags:
-        for label in tags:
+        for tag in tags:
             #Apply AND operation to labels
-            result = result.filter(labels__in=[label])
+            result = result.filter(tag__in=[tag])
 
         result = result.distinct()
 
-    if sn_title is None and document_level is None and tags is None:
+    if qw is None and document_level is None and tags is None:
         #If no search criteria were specified, results an empty list.
         result = []
 
-    #Caches the result before returning it to the client
-    cache.set(query_str.replace(' ',''), pickle.dumps(result))
-    
     return result
 
 class DocumentHandler(BaseHandler):
     allowed_methods = ('GET',)
     model = StoredDocument
-    fields = ('id','title', 'serial_number', 'version', 'file_url', 'location', ('labels',('content',)))
+    fields = ('id','name', 'serial_number', 'version', 'file', 'location', ('tags',('tag',)))
 
     def read(self, request, document_id=None):
         """
@@ -96,12 +78,6 @@ class DocumentHandler(BaseHandler):
 
 def get_batchrecords(query_str):
 
-    #Tries to load the result from cache first, using the query string as
-    result = cache.get(query_str.replace(' ', '')) #To be compatible with Memcached, all whitespaces have to be removed from the cache key
-    if result:
-        return pickle.loads(result) #Memcached returns a pickled QuerySet that needs to be unpickled before returning to the client
-
-    #If not result is in the cache, then retrieves Documents from the database
     try:
         q = json.loads(query_str)
     except:
@@ -115,8 +91,8 @@ def get_batchrecords(query_str):
 
     name = q.cleaned_data['name']
     batch_number = q.cleaned_data['batch_number']
-    date_manufactured_from = q.cleaned_data['date_manufactured_from']
-    date_manufactured_to = q.cleaned_data['date_manufactured_to']
+    date_of_manufacture_from = q.cleaned_data['date_of_manufacture_from']
+    date_of_manufacture_to = q.cleaned_data['date_of_manufacture_to']
 
     query = dict()
     query['filters'] = []
@@ -135,17 +111,17 @@ def get_batchrecords(query_str):
                                      op='AND',
                                      exclude=False))
 
-    if date_manufactured_from:
+    if date_of_manufacture_from:
         query['filters'].append(dict(field='date_of_manufacture',
                                      lookuptype='gte',
-                                     value=date_manufactured_from,
+                                     value=date_of_manufacture_from,
                                      op='AND',
                                      exclude=False))
 
-    if date_manufactured_to:
+    if date_of_manufacture_to:
         query['filters'].append(dict(field='date_of_manufacture',
                                      lookuptype='lte',
-                                     value=date_manufactured_to,
+                                     value=date_of_manufacture_to,
                                      op='AND',
                                      exclude=False))
     
@@ -158,9 +134,6 @@ def get_batchrecords(query_str):
     else:
         result = build_query(query, BatchRecord)
 
-        #Caches the result before returning it to the client
-        cache.set(query_str.replace(' ',''), pickle.dumps(result))
-        
         return result
 
             

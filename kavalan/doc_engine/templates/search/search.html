@@ -1,6 +1,4 @@
 {% extends 'base.html' %}
-{% load kavalan_tags %}
-{% load highlight %}
 
 {% block content %}
     <h2>Search</h2>
@@ -22,6 +20,9 @@
             {% for result in page.object_list %}
                 <p>
                     <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a>
+                    {% for highlighted_text in result.highlighted.text %}
+                        <div>{{ highlighted_text|safe}}</div>
+                     {% endfor %}
 
                 </p>
             {% empty %}

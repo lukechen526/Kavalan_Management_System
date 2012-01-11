@@ -16,26 +16,26 @@ var current_page = 1;
     
 function ajaxDocumentSearch(){
 
-    var sn_title = $('#sn_title').val();
+    var qw = $('#qw').val();
     var document_level  = $('#document_level').val();
-    var labels = $('#labels').val();
+    var tags = $('#tags').val();
 
-    if(sn_title !== "" || labels != null || document_level != ""){
+    if(qw !== "" || tags != null || document_level != ""){
 
         $.ajax({
-            url:"/api/documents",
-            data:{query: JSON.stringify({sn_title: sn_title,
+            url:"/doc_engine/api/documents",
+            data:{query: JSON.stringify({qw: qw,
                                          document_level: document_level,
-                                         labels: labels}),
+                                         tags: tags}),
                   page_number: current_page
             },
             error: function(jqXHR){$("#search-result").empty();},
             success: function(resp){
                 $("#search-result").empty();
-                objects = resp['objects'];
-                page_number = resp['page_number'];
+                var objects = resp['objects'];
+                var page_number = resp['page_number'];
                 current_page = page_number;
-                num_pages = resp['num_pages'];
+                var num_pages = resp['num_pages'];
 
 
                 if(objects.length == 0){
@@ -56,10 +56,6 @@ function ajaxDocumentSearch(){
                             delayExecute(ajaxDocumentSearch);
                          });
                     }
-
-
-
-
                 }
             }
         });
@@ -75,7 +71,7 @@ function ajaxDocumentSearch(){
 var search_doc = function(event){
     current_page = 1;
     delayExecute(ajaxDocumentSearch);}
-$('#sn_title, #labels').bind('keyup change', search_doc );
+$('#qw, #tags').bind('keyup change', search_doc );
 $('#document_level').chosen().change(search_doc);
 
 
@@ -84,20 +80,20 @@ $('#document_level').chosen().change(search_doc);
 /* Batch Record Search*/
  function ajaxBatchRecordSearch(){
      $.ajax({
-         url:"/api/batchrecords",
+         url:"/doc_engine/api/batchrecords",
          data: {query:JSON.stringify({name: $("#name").val(),
                                       batch_number: $("#batch_number").val(),
-                                      date_manufactured_from: $("#date_manufactured_from").val(),
-                                      date_manufactured_to: $("#date_manufactured_to").val()}),
+                                      date_manufactured_from: $("#date_of_manufacture_from").val(),
+                                      date_manufactured_to: $("#date_of_manufacture_to").val()}),
              
                 page_number:current_page
          },
          error: function(jqXHR){$("#search-result").empty();},
          success: function(resp){
              $("#search-result").empty();
-             objects = resp['objects'];
-             page_number = resp['page_number'];
-             num_pages = resp['num_pages'];
+             var objects = resp['objects'];
+             var page_number = resp['page_number'];
+             var num_pages = resp['num_pages'];
              
              if(objects.length == 0){
                  $("#search-result").append(gettext("No Result"));
@@ -184,10 +180,10 @@ $("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
 
  })();
 
- var dates = $('#date_manufactured_from, #date_manufactured_to').datepicker({
+ var dates = $('#date_of_manufacture_from, #date_of_manufacture_to').datepicker({
      //Restrict the range of date for date_manufactured_to to those no earlier than date_manufactured_from
      onSelect: function( selectedDate ) {
-             var option = this.id == "date_manufactured_from" ? "minDate" : "maxDate",
+             var option = this.id == "date_of_manufacture_from" ? "minDate" : "maxDate",
                  instance = $( this ).data( "datepicker" ),
                  date = $.datepicker.parseDate(
                      instance.settings.dateFormat ||

@@ -109,7 +109,7 @@ class StoredDocument(BaseDocument):
 
     @models.permalink
     def get_absolute_url(self):
-        return ('document_access', (), {'pk': str(self.pk)})
+        return ('doc_engine:document_access', (), {'pk': str(self.pk)})
 
     def display_tags(self):
         span_list = []

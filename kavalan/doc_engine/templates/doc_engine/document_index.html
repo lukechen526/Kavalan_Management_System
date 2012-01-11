@@ -10,13 +10,13 @@
     <!-- Templates for presenting Document and Batch Record search results-->
     <script type="text/template" id="search-doc-template">
         <span class="doc-result">
-            <a href='<%=file%>'> <%=serial_number%> &nbsp; <%=title%> &nbsp; v<%=version%> </a>
+            <a href='<%=file.name%>'> <%=serial_number%> &nbsp; <%=name%> &nbsp; v<%=version%> </a>
                 <span class="doc-extras">
                     <% if(location !== ''){ %>
                         <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
                     <%}%>
 
-                    <% _.each(tags, function(label){ %>
+                    <% _.each(tags, function(tag){ %>
                         <abbr class="doc-tag" title="{% trans "Tag" %}"><%=tag.tag%></abbr>
                     <%});%>
                 </span>
@@ -31,8 +31,8 @@
         <span class="batch-result">
             <span class="batch-name"><%=name%></span>
             <span class="batch-number"><%=batch_number%></span>
-            <span class="batch-date"><%=date_manufactured%></span>
-            <span class="batch-date-minguo">民國 <%=date_manufactured_minguo%></span>
+            <span class="batch-date"><%=date_of_manufacture%></span>
+            <span class="batch-date-minguo">民國 <%=date_of_manufacture_in_minguo%></span>
             <abbr class="batch-location" title="{% trans "Physical Location" %}"><%=location%></abbr>
 
             {% if perms.doc_engine.change_batchrecord %}
