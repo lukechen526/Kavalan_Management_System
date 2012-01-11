@@ -7,3 +7,4 @@ kavalan/settings_production.py
 .idea/*
 .DS_Store
 *.xml
+fabfile.py
