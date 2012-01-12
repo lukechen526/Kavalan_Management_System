@@ -18,9 +18,14 @@ BaseSearch = indexes.RealTimeSearchIndex if getattr(settings, 'HAYSTACK_USE_REAL
 class StoredDocumentIndex(indexes.Indexable, BaseSearch):
 
     text = indexes.CharField(document=True, use_template=True)
+    tags = indexes.MultiValueField()
+    document_level = indexes.CharField(model_attr='document_level')
 
     def get_model(self):
         return StoredDocument
+
+    def prepare_tags(self, obj):
+        return [tag.tag for tag in obj.tags.all()]
 
     def prepare(self, obj):
         data = super(StoredDocumentIndex, self).prepare(obj)

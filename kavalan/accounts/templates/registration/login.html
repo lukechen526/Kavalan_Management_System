@@ -4,22 +4,25 @@
 {% load kavalan_tags %}
 
 {% block content %}
+<div class="signin-box">
 
-<form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form">
-    {% csrf_token %}
+    <h2>{% trans "Sign in" %}</h2>
+    <form method="post" action="{% url 'django.contrib.auth.views.login' %}" id="login-form" class="form-stacked">
 
-    {% if form.non_field_errors %}
-          <div class="alert-message block-message error">{{ form.non_field_errors }}</div>
-    {% endif %}
+        {% csrf_token %}
 
-    {% bootstrap_fields form %}
+        {% bootstrap_fields form %}
 
-    <div class="actions">
+        {% if form.non_field_errors %}
+              <div class="alert-message block-message error">{{ form.non_field_errors }}</div>
+        {% endif %}
+
         <button class="btn primary" type="submit">{% trans "Submit" %}</button>
         <button class="btn default" type="reset">{% trans "Reset" %}</button>
-    </div>
-    <input type="hidden" name="next" value="{{ next }}" />
+        <input type="hidden" name="next" value="{{ next }}" />
+    </form>
 
-</form>
+</div>
+
 
 {% endblock %}

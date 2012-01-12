@@ -44,7 +44,7 @@ div.doc-engine.container{
     max-width: 200px;
 }
 
-#labels{
+#tags{
     max-width: 350px;
 }
 
@@ -74,7 +74,7 @@ span.doc-result .doc-location{
     border-radius: 5px;
 }
 
-span.doc-result .doc-label{
+span.doc-result .doc-tag{
     font-size: smaller;
     background-color: #add8e6;
     padding: 0 2px;

@@ -10,7 +10,12 @@
     <!-- Templates for presenting Document and Batch Record search results-->
     <script type="text/template" id="search-doc-template">
         <span class="doc-result">
-            <a href='<%=file.name%>'> <%=serial_number%> &nbsp; <%=name%> &nbsp; v<%=version%> </a>
+            <a href="<%=url%>"
+               class="doc-link"
+               title="<%=name%>"
+               data-content="<%=highlighted_text%>"
+               data-html="true"
+               rel="popover"> <%=serial_number%> &nbsp; <%=name%> &nbsp; v<%=version%> </a>
                 <span class="doc-extras">
                     <% if(location !== ''){ %>
                         <abbr class="doc-location" title="{% trans "Physical Location" %}"><%=location%></abbr>

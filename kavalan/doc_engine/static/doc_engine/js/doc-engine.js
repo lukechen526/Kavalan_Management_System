@@ -45,6 +45,11 @@ function ajaxDocumentSearch(){
                     objects.forEach(function(item){
                         $(_.template($('#search-doc-template').html(),item)).appendTo( "#search-result" );
                     });
+                    //Enable Bootstrap popover for dekstop browser
+
+                    if (!DetectIphoneOrIpod()) {
+                        $('.doc-link').popover();
+                    }
 
                     if( num_pages > 1)
                     {
@@ -83,8 +88,8 @@ $('#document_level').chosen().change(search_doc);
          url:"/doc_engine/api/batchrecords",
          data: {query:JSON.stringify({name: $("#name").val(),
                                       batch_number: $("#batch_number").val(),
-                                      date_manufactured_from: $("#date_of_manufacture_from").val(),
-                                      date_manufactured_to: $("#date_of_manufacture_to").val()}),
+                                      date_of_manufacture_from: $("#date_of_manufacture_from").val(),
+                                      date_of_manufacture_to: $("#date_of_manufacture_to").val()}),
              
                 page_number:current_page
          },
@@ -207,4 +212,60 @@ $tabs.bind('tabsselect', function(event, ui){
 /* Datepicker for adding Batch Records in Admin*/
 $('#id_date_of_manufacture').datepicker();
 
+
+
+
 });
+
+var deviceIphone = "iphone";
+var deviceIpod = "ipod";
+var deviceIPad = "ipad"
+
+//Initialize our user agent string to lower case.
+var uagent = navigator.userAgent.toLowerCase();
+
+//**************************
+// Detects if the current device is an iPhone.
+function DetectIphone()
+{
+   if (uagent.search(deviceIphone) > -1)
+      return true;
+   else
+      return false;
+}
+
+//**************************
+// Detects if the current device is an iPod Touch.
+function DetectIpod()
+{
+   if (uagent.search(deviceIpod) > -1)
+      return true;
+   else
+      return false;
+}
+
+
+//**************************
+// Detects if the current device is an iPad.
+function DetectIpad()
+{
+   if (uagent.search(deviceIPad) > -1)
+      return true;
+   else
+      return false;
+}
+
+
+//**************************
+// Detects if the current device is an iPhone or iPod Touch.
+function DetectIphoneOrIpod()
+{
+    if (DetectIphone())
+       return true;
+    else if (DetectIpod())
+       return true;
+    else if (DetectIpad())
+        return true;
+    else
+       return false;
+}
