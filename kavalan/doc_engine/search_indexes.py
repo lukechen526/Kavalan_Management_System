@@ -20,12 +20,16 @@ class StoredDocumentIndex(indexes.Indexable, BaseSearch):
     text = indexes.CharField(document=True, use_template=True)
     tags = indexes.MultiValueField()
     document_level = indexes.CharField(model_attr='document_level')
+    name_auto = indexes.NgramField()
 
     def get_model(self):
         return StoredDocument
 
     def prepare_tags(self, obj):
         return [tag.tag for tag in obj.tags.all()]
+
+    def prepare_name_auto(self, obj):
+        return "%s %s" %(obj.name, obj.serial_number)
 
     def prepare(self, obj):
         data = super(StoredDocumentIndex, self).prepare(obj)

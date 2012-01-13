@@ -78,6 +78,12 @@ var search_doc = function(event){
     delayExecute(ajaxDocumentSearch);}
 $('#qw, #tags').bind('keyup change', search_doc );
 $('#document_level').chosen().change(search_doc);
+$('#qw').autocomplete({
+    source: '/doc_engine/autocomplete/',
+    autoFocus: true
+});
+
+
 
 
 

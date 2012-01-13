@@ -1,3 +1,4 @@
 {{ object.name }}
 {{ object.serial_number }}
+{{ object.comment }}
 {{ extracted.contents|striptags|safe }}

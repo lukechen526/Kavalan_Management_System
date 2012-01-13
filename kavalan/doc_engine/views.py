@@ -15,6 +15,10 @@ try:
 except ImportError:
     from StringIO import StringIO
 
+from haystack.query import SearchQuerySet
+from haystack.inputs import Clean
+import json
+
 class DocumentIndexView(TemplateView):
     """
 
@@ -155,3 +159,12 @@ def document_access(request, pk):
     return HttpResponseForbidden(ugettext("Access Denied"))
 
     
+def autocomplete(request):
+    term = request.GET.get('term', '')
+    if term:
+        sqs = SearchQuerySet().autocomplete(name_auto=term)
+        keywords = [dict(id=sqr.pk, value=sqr.name_auto) for sqr in sqs]
+    else:
+        keywords = []
+
+    return HttpResponse(json.dumps(keywords), mimetype='application/json')

@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from doc_engine.views import DocumentIndexView, document_access
+from doc_engine.views import DocumentIndexView, document_access, autocomplete
 from doc_engine.api import *
 from django.contrib.auth.decorators import login_required
 from piston_support.utils import SessionAuthenticationHandler
@@ -18,6 +18,8 @@ urlpatterns = patterns('',
     url(r'^api/documents/(?P<document_id>\d+)/?$',document_search_view),
     url(r'^api/batchrecords/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
     url(r'^api/batchrecords/(?P<batchrecord_id>\d+)/?$', batch_record_handler, { 'emitter_format': 'page_json' } ),
+    url(r'^autocomplete/', autocomplete)
+
 )
 
 urlpatterns += patterns('haystack.views',
