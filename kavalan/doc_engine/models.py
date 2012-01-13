@@ -102,7 +102,7 @@ class StoredDocument(BaseDocument):
         unique_together = ('name', 'serial_number')
 
     def __unicode__(self):
-        return '%s %s - %s' %(self.name, self.serial_number, self.version )
+        return '%s %s - %s' %(self.serial_number, self.name, self.version )
 
     def natural_key(self):
         return (self.name, self.serial_number)

@@ -29,7 +29,7 @@ class StoredDocumentIndex(indexes.Indexable, BaseSearch):
         return [tag.tag for tag in obj.tags.all()]
 
     def prepare_name_auto(self, obj):
-        return "%s %s" %(obj.name, obj.serial_number)
+        return "%s %s" %(obj.serial_number, obj.name)
 
     def prepare(self, obj):
         data = super(StoredDocumentIndex, self).prepare(obj)

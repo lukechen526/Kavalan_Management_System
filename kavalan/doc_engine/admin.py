@@ -5,10 +5,14 @@ import reversion
 
 class StoredDocumentAdmin(reversion.VersionAdmin):
     history_latest_first = True
+    date_hierarchy = 'date_modified'
+    search_fields = ['serial_number', 'name']
+
 
 class BatchRecordAdmin(reversion.VersionAdmin):
     history_latest_first = True
     form = BatchRecordInputForm
+    search_fields = ['batch_number', 'name']
 
     class Media:
         js = ('js/jquery-1.6.2.min.js', 'js/jquery-ui-1.8.14.custom.min.js', 'js/chosen.jquery.min.js', 'doc_engine/js/doc-engine.js')

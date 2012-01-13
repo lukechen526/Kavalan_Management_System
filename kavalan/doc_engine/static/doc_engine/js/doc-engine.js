@@ -191,20 +191,39 @@ $("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
 
  })();
 
- var dates = $('#date_of_manufacture_from, #date_of_manufacture_to').datepicker({
-     //Restrict the range of date for date_manufactured_to to those no earlier than date_manufactured_from
-     onSelect: function( selectedDate ) {
-             var option = this.id == "date_of_manufacture_from" ? "minDate" : "maxDate",
-                 instance = $( this ).data( "datepicker" ),
-                 date = $.datepicker.parseDate(
-                     instance.settings.dateFormat ||
-                     $.datepicker._defaults.dateFormat,
-                     selectedDate, instance.settings );
-             dates.not( this ).datepicker( "option", option, date );
-         },
-     onClose: function(){delayExecute(ajaxBatchRecordSearch);}
+//   Enable jQuery UI datepicker on dekstop browsers
+    if (!DetectIDevice()) {
+        var dates = $('#date_of_manufacture_from, #date_of_manufacture_to').datepicker({
+            //Restrict the range of date for date_manufactured_to to those no earlier than date_manufactured_from
+            onSelect:function (selectedDate) {
+                var option = this.id == "date_of_manufacture_from" ? "minDate" : "maxDate",
+                    instance = $(this).data("datepicker"),
+                    date = $.datepicker.parseDate(
+                        instance.settings.dateFormat ||
+                            $.datepicker._defaults.dateFormat,
+                        selectedDate, instance.settings);
+                dates.not(this).datepicker("option", option, date);
+            },
+            onClose:function () {
+                delayExecute(ajaxBatchRecordSearch);
+            }
 
- });
+        });
+    }
+
+//    Otherwise, change to input type to 'date' for mobile browsers
+    else {
+
+        $('#date_of_manufacture_from').get(0).type = 'date';
+        $('#date_of_manufacture_to').get(0).type = 'date';
+    }
+
+
+
+/* Datepicker for adding Batch Records in Admin*/
+$('#id_date_of_manufacture').datepicker();
+
+
 
 /*Doc Engine tabs*/
 var $tabs = $('#search-tabs').tabs();
@@ -215,8 +234,7 @@ $tabs.bind('tabsselect', function(event, ui){
 
  });
 
-/* Datepicker for adding Batch Records in Admin*/
-$('#id_date_of_manufacture').datepicker();
+
 
 });
 

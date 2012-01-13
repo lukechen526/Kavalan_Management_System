@@ -253,7 +253,6 @@ msgid "Stored Document"
 msgstr "儲存文件"
 
 #: doc_engine/models.py:100
-#, fuzzy
 msgid "Stored Documents"
 msgstr "儲存文件"
 
