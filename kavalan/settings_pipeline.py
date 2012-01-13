@@ -47,6 +47,7 @@ PIPELINE_JS = {
     'project': {
         'source_filenames': (
             'js/base.js',
+            'js/kavalan.utils.js',
             'doc_engine/js/doc-engine.js',
         ),
         'output_filename': 'js/project_compressed.r?.js'

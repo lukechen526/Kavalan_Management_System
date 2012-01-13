@@ -16,7 +16,10 @@
 
 
 /*for document_index.html*/
-
+div.popover em{
+    color: red;
+    font-weight: bold;
+}
 div.doc-engine.container{
     max-width: 100%;
     margin: auto;
