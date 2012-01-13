@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User, Group
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from django.utils.translation import ugettext_lazy
+from django.utils.translation import ugettext_lazy, pgettext_lazy
 
 
 class Tag(models.Model):
@@ -55,7 +55,7 @@ class BaseDocument(models.Model):
     - tags
 
     """
-    name = models.CharField(max_length=100, verbose_name=ugettext_lazy('Name'))
+    name = models.CharField(max_length=100, verbose_name=pgettext_lazy('name of a document','Name'))
     date_modified = models.DateTimeField(verbose_name=ugettext_lazy('Date Modified'), auto_now=True)
     comment = models.TextField(default='', verbose_name=ugettext_lazy('Comment'), blank=True)
     version = models.CharField(max_length=10, default='1.0', verbose_name=ugettext_lazy('Version'))

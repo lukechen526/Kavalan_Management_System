@@ -8,81 +8,65 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-20 12:40+0800\n"
+"POT-Creation-Date: 2012-01-13 09:49+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
 
-#: .\settings.py:44
+#: settings.py:45
 msgid "Chinese-TW"
 msgstr "正體中文"
 
-#: .\settings.py:45
+#: settings.py:46
 msgid "English"
 msgstr "英文"
 
-#: .\accounts\management.py:9
-msgid "Request Approved"
-msgstr ""
-
-#: .\accounts\management.py:9
-msgid "your request has been approved"
-msgstr ""
-
-#: .\accounts\management.py:10
-#, fuzzy
-msgid "Request Denied"
-msgstr "無權存取"
-
-#: .\accounts\management.py:10
-msgid "your request has been denied"
-msgstr ""
-
-#: .\accounts\models.py:21
+#: accounts/models.py:21
 msgid "User Profile"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:22
+#: accounts/models.py:22
 msgid "User Profiles"
 msgstr "用戶配置"
 
-#: .\accounts\models.py:48 .\stream\models.py:37
-#: .\stream\templates\stream\stream-base.html.py:35
+#: accounts/models.py:48 stream/models.py:37
+#: stream/templates/stream/stream-base.html:35
 msgid "Groups"
 msgstr "群組"
 
-#: .\accounts\templates\registration\change_avatar.html.py:14
+#: accounts/templates/registration/change_avatar.html:14
 msgid "Current Avatar:"
 msgstr "現用頭像"
 
-#: .\accounts\templates\registration\change_avatar.html.py:24
-#: .\accounts\templates\registration\create_user.html.py:21
-#: .\accounts\templates\registration\login.html.py:18
-#: .\accounts\templates\registration\password_change_form.html.py:11
+#: accounts/templates/registration/change_avatar.html:24
+#: accounts/templates/registration/create_user.html:21
+#: accounts/templates/registration/login.html:20
+#: accounts/templates/registration/password_change_form.html:11
 msgid "Submit"
 msgstr "提交"
 
-#: .\accounts\templates\registration\create_user.html.py:9
-#: .\stream\views.py:13 .\stream\views.py:18
+#: accounts/templates/registration/create_user.html:9 stream/views.py:13
+#: stream/views.py:18
 msgid "Select one or more groups"
 msgstr "選擇一或多個群組"
 
-#: .\accounts\templates\registration\create_user.html.py:22
-#: .\accounts\templates\registration\login.html.py:19
+#: accounts/templates/registration/create_user.html:22
+#: accounts/templates/registration/login.html:21
 msgid "Reset"
 msgstr "重設"
 
-#: .\accounts\templates\registration\lockout.html.py:8
+#: accounts/templates/registration/lockout.html:8
 #, python-format
 msgid ""
 "\n"
 "    \n"
-"You have failed too many times! Please try logging in again in %"
-"(cooloff_time)s.\n"
+"You have failed too many times! Please try logging in again in "
+"%(cooloff_time)s.\n"
 "\n"
 msgstr ""
 "\n"
@@ -90,474 +74,483 @@ msgstr ""
 "嘗試登入太多次！請等 %(cooloff_time)s 再試！\n"
 "\n"
 
-#: .\accounts\templates\registration\manage.html.py:9
+#: accounts/templates/registration/login.html:9
+msgid "Sign in"
+msgstr ""
+
+#: accounts/templates/registration/manage.html:9
 msgid "Username"
 msgstr "帳號"
 
-#: .\accounts\templates\registration\manage.html.py:15
+#: accounts/templates/registration/manage.html:15
 msgid "Avatar"
 msgstr ""
 
-#: .\accounts\templates\registration\manage.html.py:16
+#: accounts/templates/registration/manage.html:16
 msgid "Click to change"
 msgstr ""
 
-#: .\accounts\templates\registration\manage.html.py:21
+#: accounts/templates/registration/manage.html:21
 msgid "Name"
 msgstr "姓名"
 
-#: .\accounts\templates\registration\manage.html.py:27
+#: accounts/templates/registration/manage.html:27
 msgid "Password"
 msgstr "密碼"
 
-#: .\accounts\templates\registration\manage.html.py:28
+#: accounts/templates/registration/manage.html:28
 msgid "Change Password"
 msgstr "密碼重設"
 
-#: .\accounts\templates\registration\manage.html.py:33
+#: accounts/templates/registration/manage.html:33
 msgid "E-mail"
 msgstr "E-mail"
 
-#: .\accounts\templates\registration\manage.html.py:38
+#: accounts/templates/registration/manage.html:38
 msgid "Last Login"
 msgstr "上次登入"
 
-#: .\accounts\templates\registration\manage.html.py:45
-#: .\accounts\templates\registration\manage.html.py:46
+#: accounts/templates/registration/manage.html:45
+#: accounts/templates/registration/manage.html:46
 msgid "Create User"
 msgstr "增新帳號"
 
-#: .\accounts\templates\registration\password_change_done.html.py:7
+#: accounts/templates/registration/password_change_done.html:7
 msgid "You have successfully changed your password."
 msgstr "密碼變更成功"
 
-#: .\custom_notification\templates\notification\nav-notices-list.html.py:4
-#: .\custom_notification\templates\notification\notices.html.py:17
-#, python-format
-msgid "%(notice)s"
-msgstr ""
+#: doc_engine/forms.py:8
+msgid "Enter a query word"
+msgstr "請輪入關鍵字"
 
-#: .\custom_notification\templates\notification\notices.html.py:19
-msgid "Mark as seen"
-msgstr "標示為讀取"
-
-#: .\doc_engine\forms.py:6 .\doc_engine\models.py:64 .\doc_engine\models.py:91
-msgid "File"
-msgstr "檔案"
-
-#: .\doc_engine\forms.py:7
-msgid ""
-"Upload a new version of the document, or keep the same version number "
-"but                           upload a new file to overwrite the old "
-"one.                            If you are just changing the version number, "
-"do not upload any file."
-msgstr ""
-"上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、序"
-"號，則不要上傳任何檔案。"
-
-#: .\doc_engine\forms.py:11 .\doc_engine\models.py:37
-msgid "Active Version"
-msgstr "使用中版本"
-
-#: .\doc_engine\forms.py:13
-msgid ""
-"Enter a new version number, or pick a previous version number to make it "
-"active."
-msgstr "請輸入新的版本，或使用現有的版本。"
-
-#: .\doc_engine\forms.py:15 .\doc_engine\models.py:94
-msgid "Revision Comment"
-msgstr "修訂說明"
-
-#: .\doc_engine\forms.py:21
-msgid "Enter Serial Number/Document Title"
-msgstr "請用文件序號或主旨查詢"
-
-#: .\doc_engine\forms.py:23 .\doc_engine\models.py:47
+#: doc_engine/forms.py:11 doc_engine/models.py:96
 msgid "Document Level"
 msgstr "文件分級"
 
-#: .\doc_engine\forms.py:23
+#: doc_engine/forms.py:13
 msgid "All results"
 msgstr "全部"
 
-#: .\doc_engine\forms.py:24
+#: doc_engine/forms.py:14
 #, fuzzy
 msgid "Filter by document level"
 msgstr "文件分級過濾"
 
-#: .\doc_engine\forms.py:26 .\doc_engine\models.py:13
-#: .\doc_engine\models.py:34
-msgid "Labels"
+#: doc_engine/forms.py:17 doc_engine/models.py:14 doc_engine/models.py:62
+msgid "Tags"
 msgstr "標籤"
 
-#: .\doc_engine\forms.py:27
-msgid "Filter by labels"
+#: doc_engine/forms.py:20
+msgid "Filter by tags"
 msgstr "標籤過濾"
 
-#: .\doc_engine\forms.py:30
+#: doc_engine/forms.py:24 doc_engine/models.py:139
 msgid "Date of Manufacture"
 msgstr "製造日期"
 
-#: .\doc_engine\forms.py:35 .\doc_engine\models.py:162
+#: doc_engine/forms.py:35
 msgid "Product Name"
 msgstr "產品名稱"
 
-#: .\doc_engine\forms.py:36 .\doc_engine\models.py:163
+#: doc_engine/forms.py:36 doc_engine/models.py:137
 msgid "Batch Number"
 msgstr "批次序號"
 
-#: .\doc_engine\forms.py:37
+#: doc_engine/forms.py:38
 msgid "From"
 msgstr "自"
 
-#: .\doc_engine\forms.py:38
+#: doc_engine/forms.py:42
 msgid "To"
 msgstr "至"
 
-#: .\doc_engine\models.py:9 .\doc_engine\models.py:12
-#: .\doc_engine\models.py:76
-#: .\doc_engine\templates\doc_engine\document_index.html.py:25
-msgid "Label"
+#: doc_engine/models.py:13 doc_engine/models.py:122
+#: doc_engine/templates/doc_engine/document_index.html:25
+msgid "Tag"
 msgstr "標籤"
 
-#: .\doc_engine\models.py:32
-msgid "Document Serial Number"
-msgstr "文件序號"
-
-#: .\doc_engine\models.py:33
-msgid "Title"
-msgstr "主旨"
-
-#: .\doc_engine\models.py:35
-msgid "Author"
-msgstr "作者"
-
-#: .\doc_engine\models.py:36 .\doc_engine\models.py:166
-#: .\doc_engine\templates\doc_engine\document_index.html.py:21
-#: .\doc_engine\templates\doc_engine\document_index.html.py:41
-msgid "Physical Location"
-msgstr "實物位置"
-
-#: .\doc_engine\models.py:38
-msgid "Last Updated"
-msgstr "上次更新"
-
-#: .\doc_engine\models.py:39
-msgid "Permitted Groups"
-msgstr "授權群組"
-
-#: .\doc_engine\models.py:42
-msgid "Level 1"
-msgstr "第一階"
-
-#: .\doc_engine\models.py:43
-msgid "Level 2"
-msgstr "第二階"
-
-#: .\doc_engine\models.py:44
-msgid "Level 3"
-msgstr "第三階"
-
-#: .\doc_engine\models.py:45
-msgid "Level 4"
-msgstr "第四階"
-
-#: .\doc_engine\models.py:48
-msgid "Searchable"
-msgstr "可被查詢"
-
-#: .\doc_engine\models.py:51
-msgid "Document"
-msgstr "文件"
-
-#: .\doc_engine\models.py:52
-msgid "Documents"
-msgstr "文件"
-
-#: .\doc_engine\models.py:92
-msgid "Version"
-msgstr "版本"
-
-#: .\doc_engine\models.py:97
-msgid "File Object"
-msgstr "檔案物件"
-
-#: .\doc_engine\models.py:98
-msgid "File Objects"
-msgstr "檔案物件"
-
-#: .\doc_engine\models.py:131
+#: doc_engine/models.py:24
 msgid "User"
 msgstr "帳號"
 
-#: .\doc_engine\models.py:132
+#: doc_engine/models.py:25
 msgid "Access Time"
 msgstr "存取時間"
 
-#: .\doc_engine\models.py:133
+#: doc_engine/models.py:26
 msgid "IP"
 msgstr "IP"
 
-#: .\doc_engine\models.py:134
-#, fuzzy
-msgid "Document Accessed"
-msgstr "文件"
-
-#: .\doc_engine\models.py:135
-msgid "Success?"
-msgstr "成功?"
-
-#: .\doc_engine\models.py:138
+#: doc_engine/models.py:33
 msgid "Access Record"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:139
+#: doc_engine/models.py:34
 msgid "Access Records"
 msgstr "存取記錄"
 
-#: .\doc_engine\models.py:147
+#: doc_engine/models.py:42
 msgid "SUCCESS"
 msgstr "存取成功"
 
-#: .\doc_engine\models.py:149
+#: doc_engine/models.py:44
 msgid "FAILURE"
 msgstr "存取失敗"
 
-#: .\doc_engine\models.py:164
+#: doc_engine/models.py:58
+msgctxt "name of a document"
+msgid "Name"
+msgstr "文件名稱"
+
+#: doc_engine/models.py:59
+msgid "Date Modified"
+msgstr "修改日期"
+
+#: doc_engine/models.py:60 stream/templates/stream/stream-base.html:43
+msgid "Comment"
+msgstr "註解"
+
+#: doc_engine/models.py:61
+msgid "Version"
+msgstr "版本"
+
+#: doc_engine/models.py:84
+msgid "File"
+msgstr "檔案"
+
+#: doc_engine/models.py:85
+msgid "Document Serial Number"
+msgstr "文件序號"
+
+#: doc_engine/models.py:86 doc_engine/models.py:140
+#: doc_engine/templates/doc_engine/document_index.html:21
+#: doc_engine/templates/doc_engine/document_index.html:41
+msgid "Physical Location"
+msgstr "實物位置"
+
+#: doc_engine/models.py:87
+msgid "Permitted Groups"
+msgstr "授權群組"
+
+#: doc_engine/models.py:91
+msgid "Level 1"
+msgstr "第一階"
+
+#: doc_engine/models.py:92
+msgid "Level 2"
+msgstr "第二階"
+
+#: doc_engine/models.py:93
+msgid "Level 3"
+msgstr "第三階"
+
+#: doc_engine/models.py:94
+msgid "Level 4"
+msgstr "第四階"
+
+#: doc_engine/models.py:99
+msgid "Stored Document"
+msgstr "儲存文件"
+
+#: doc_engine/models.py:100
+#, fuzzy
+msgid "Stored Documents"
+msgstr "儲存文件"
+
+#: doc_engine/models.py:138
 msgid "Serial Number"
 msgstr "文件序號"
 
-#: .\doc_engine\models.py:165
-msgid "Date Manufactured"
-msgstr "製造日期"
-
-#: .\doc_engine\models.py:169
+#: doc_engine/models.py:143
 msgid "Batch Record"
 msgstr "批次記錄"
 
-#: .\doc_engine\models.py:170
+#: doc_engine/models.py:144
 msgid "Batch Records"
 msgstr "批次記錄"
 
-#: .\doc_engine\views.py:153
+#: doc_engine/views.py:129
+msgid "No stored file found!"
+msgstr "找不到檔案！"
+
+#: doc_engine/views.py:155
 msgid "Access Denied"
 msgstr "無權存取"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:30
-#: .\doc_engine\templates\doc_engine\document_index.html.py:44
+#: doc_engine/templates/doc_engine/document_index.html:30
+#: doc_engine/templates/doc_engine/document_index.html:44
 msgid "Edit"
 msgstr "編輯"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:63
+#: doc_engine/templates/doc_engine/document_index.html:63
 msgid "Search Documents"
 msgstr "搜尋文件"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:64
+#: doc_engine/templates/doc_engine/document_index.html:64
 msgid "Search Batch Records"
 msgstr "搜尋批次記錄"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:79
+#: doc_engine/templates/doc_engine/document_index.html:79
 msgid "Add Document"
 msgstr "新增文件"
 
-#: .\doc_engine\templates\doc_engine\document_index.html.py:99
+#: doc_engine/templates/doc_engine/document_index.html:99
 msgid "Add Batch Record"
 msgstr "新增批次記錄"
 
-#: .\stream\api.py:64 .\stream\api.py:109
+#: stream/api.py:64 stream/api.py:109
 msgid "Either content or link has to be non-empty"
 msgstr "內容或連接不可為空"
 
-#: .\stream\api.py:81 .\stream\api.py:123
+#: stream/api.py:81 stream/api.py:123
 msgid "StreamPost ID must be supplied"
 msgstr ""
 
-#: .\stream\api.py:89 .\stream\api.py:131
+#: stream/api.py:89 stream/api.py:131
 msgid "No StreamPost with the specified ID was found"
 msgstr ""
 
-#: .\stream\api.py:95
+#: stream/api.py:95
 msgid "Only the original poster can update the post"
 msgstr ""
 
-#: .\stream\api.py:137
+#: stream/api.py:137
 msgid "Only the original poster can delete the post"
 msgstr ""
 
-#: .\stream\api.py:167
+#: stream/api.py:167
 msgid ""
 "No comment has the specified ID, or the user has no permission to access it"
 msgstr ""
 
-#: .\stream\api.py:174 .\stream\api.py:207
+#: stream/api.py:174 stream/api.py:207
 msgid ""
 "No post has the specified ID, or the user has no permission to access it"
 msgstr ""
 
-#: .\stream\api.py:178 .\stream\api.py:212
+#: stream/api.py:178 stream/api.py:212
 msgid "No Post ID was supplied!"
 msgstr ""
 
-#: .\stream\api.py:203 .\stream\api.py:242
+#: stream/api.py:203 stream/api.py:242
 msgid "Invalid content"
 msgstr ""
 
-#: .\stream\api.py:219 .\stream\api.py:254
+#: stream/api.py:219 stream/api.py:254
 msgid "Both Post and Comment IDs must be supplied!"
 msgstr ""
 
-#: .\stream\api.py:233
+#: stream/api.py:233
 msgid "Only the original commenter can update the comment!"
 msgstr ""
 
-#: .\stream\api.py:247 .\stream\api.py:270
+#: stream/api.py:247 stream/api.py:270
 msgid "Invalid Post or Comment ID"
 msgstr ""
 
-#: .\stream\api.py:262
+#: stream/api.py:262
 msgid "Only the original poster can delete the comment!"
 msgstr ""
 
-#: .\stream\models.py:36 .\stream\models.py:90
+#: stream/models.py:36 stream/models.py:90
 msgid "Poster"
 msgstr "寄件者"
 
-#: .\stream\models.py:38 .\stream\models.py:92
+#: stream/models.py:38 stream/models.py:92
 msgid "Time Posted"
 msgstr ""
 
-#: .\stream\models.py:39 .\stream\models.py:93
+#: stream/models.py:39 stream/models.py:93
 msgid "Content"
 msgstr "內容"
 
-#: .\stream\models.py:40 .\stream\templates\stream\stream-base.html.py:31
+#: stream/models.py:40 stream/templates/stream/stream-base.html:31
 msgid "Link"
 msgstr "連接"
 
-#: .\stream\models.py:41
+#: stream/models.py:41
 msgid "Rank"
 msgstr ""
 
-#: .\stream\models.py:68 .\stream\models.py:107
+#: stream/models.py:68 stream/models.py:107
 msgid "day ago"
 msgstr "天前"
 
-#: .\stream\models.py:70 .\stream\models.py:109
+#: stream/models.py:70 stream/models.py:109
 msgid "days ago"
 msgstr "天前"
 
-#: .\stream\models.py:74 .\stream\models.py:113
+#: stream/models.py:74 stream/models.py:113
 msgid "hour ago"
 msgstr "小時前"
 
-#: .\stream\models.py:76 .\stream\models.py:115
+#: stream/models.py:76 stream/models.py:115
 msgid "hours ago"
 msgstr "小時前"
 
-#: .\stream\models.py:80 .\stream\models.py:119
+#: stream/models.py:80 stream/models.py:119
 msgid "minute ago"
 msgstr "分鐘前"
 
-#: .\stream\models.py:82 .\stream\models.py:121
+#: stream/models.py:82 stream/models.py:121
 msgid "minutes ago"
 msgstr "分鐘前"
 
-#: .\stream\models.py:85 .\stream\models.py:124
+#: stream/models.py:85 stream/models.py:124
 msgid "second ago"
 msgstr "秒前"
 
-#: .\stream\models.py:87 .\stream\models.py:126
+#: stream/models.py:87 stream/models.py:126
 msgid "seconds ago"
 msgstr "秒前"
 
-#: .\stream\models.py:91
+#: stream/models.py:91
 msgid "Original Post"
 msgstr ""
 
-#: .\stream\templates\stream\stream-base.html.py:43
-msgid "Comment"
-msgstr "留言"
-
-#: .\stream\templates\stream\stream-base.html.py:47
+#: stream/templates/stream/stream-base.html:47
 msgid "comment"
 msgstr "則留言"
 
-#: .\stream\templates\stream\stream-base.html.py:51
+#: stream/templates/stream/stream-base.html:51
 msgid "comments"
 msgstr "則留言"
 
-#: .\stream\templates\stream\stream-base.html.py:58
+#: stream/templates/stream/stream-base.html:58
 msgid "Write a comment"
 msgstr "寫一則留言"
 
-#: .\stream\templates\stream\stream-base.html.py:84
+#: stream/templates/stream/stream-base.html:84
 msgid "Load more"
 msgstr "更多"
 
-#: .\stream\templates\stream\stream-index.html.py:18
+#: stream/templates/stream/stream-index.html:18
 msgid "What's new?"
 msgstr "有新聞嗎？"
 
-#: .\stream\templates\stream\stream-index.html.py:20
+#: stream/templates/stream/stream-index.html:20
 msgid "Share a Link!"
 msgstr "分享連接"
 
-#: .\stream\templates\stream\stream-index.html.py:22
+#: stream/templates/stream/stream-index.html:22
 msgid "Post!"
 msgstr "發文！"
 
-#: .\templates\404.html.py:5
+#: templates/404.html:5
 msgid "File Not Found"
 msgstr "無此檔案"
 
-#: .\templates\500.html.py:5
+#: templates/500.html:5
 msgid "Server Error"
 msgstr "伺服器錯誤"
 
-#: .\templates\index.html.py:6
+#: templates/index.html:6
 msgid "Welcome to Kavalan Management System "
 msgstr "歡迎使用噶瑪蘭系統"
 
-#: .\templates\navigation.html.py:8
+#: templates/navigation.html:14
 msgid "Home"
 msgstr "首頁"
 
-#: .\templates\navigation.html.py:9
+#: templates/navigation.html:15
 msgid "Document Search"
 msgstr "文件查詢"
 
-#: .\templates\navigation.html.py:10
-msgid "Forum"
-msgstr "論壇"
-
-#: .\templates\navigation.html.py:12
+#: templates/navigation.html:17
 msgid "Admin"
 msgstr "管理頁面"
 
-#: .\templates\navigation.html.py:13 .\templates\navigation.html.py:15
+#: templates/navigation.html:18 templates/navigation.html.py:20
 msgid "Help"
 msgstr "說明"
 
-#: .\templates\navigation.html.py:38
+#: templates/navigation.html:43
 msgid "Manage Account"
 msgstr "管理帳號"
 
-#: .\templates\navigation.html.py:39
+#: templates/navigation.html:44
 msgid "Logout"
 msgstr "登出"
 
-#: .\templates\navigation.html.py:45
+#: templates/navigation.html:50
 msgid "Login"
 msgstr "登入"
 
-#: .\templates\navigation.html.py:54
-msgid "Notifications"
-msgstr "通知"
+#, fuzzy
+#~ msgid "Request Denied"
+#~ msgstr "無權存取"
 
-#: .\templates\navigation.html.py:54
-msgid "View All"
-msgstr "讀取所有通知"
+#~ msgid "Mark as seen"
+#~ msgstr "標示為讀取"
+
+#~ msgid ""
+#~ "Upload a new version of the document, or keep the same version number "
+#~ "but                           upload a new file to overwrite the old "
+#~ "one.                            If you are just changing the version "
+#~ "number, do not upload any file."
+#~ msgstr ""
+#~ "上傳新版本的文件檔案，或覆蓋原有版本的舊檔案。如果只更動文件的版本、主旨、"
+#~ "序號，則不要上傳任何檔案。"
+
+#~ msgid "Active Version"
+#~ msgstr "使用中版本"
+
+#~ msgid ""
+#~ "Enter a new version number, or pick a previous version number to make it "
+#~ "active."
+#~ msgstr "請輸入新的版本，或使用現有的版本。"
+
+#~ msgid "Revision Comment"
+#~ msgstr "修訂說明"
+
+#~ msgid "Enter Serial Number/Document Title"
+#~ msgstr "請用文件序號或主旨查詢"
+
+#~ msgid "Labels"
+#~ msgstr "標籤"
+
+#~ msgid "Label"
+#~ msgstr "標籤"
+
+#~ msgid "Title"
+#~ msgstr "主旨"
+
+#~ msgid "Author"
+#~ msgstr "作者"
+
+#~ msgid "Last Updated"
+#~ msgstr "上次更新"
+
+#~ msgid "Searchable"
+#~ msgstr "可被查詢"
+
+#~ msgid "Document"
+#~ msgstr "文件"
+
+#~ msgid "Documents"
+#~ msgstr "文件"
+
+#~ msgid "File Object"
+#~ msgstr "檔案物件"
+
+#~ msgid "File Objects"
+#~ msgstr "檔案物件"
+
+#, fuzzy
+#~ msgid "Document Accessed"
+#~ msgstr "文件"
+
+#~ msgid "Success?"
+#~ msgstr "成功?"
+
+#~ msgid "Forum"
+#~ msgstr "論壇"
+
+#~ msgid "Notifications"
+#~ msgstr "通知"
+
+#~ msgid "View All"
+#~ msgstr "讀取所有通知"
 
 #~ msgid "Your username and password didn't match. Please try again."
 #~ msgstr "您的用戶名及密碼不符，請重新再試"

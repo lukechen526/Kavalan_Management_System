@@ -17,7 +17,7 @@ class DocumentSearchForm(forms.Form):
         label=ugettext_lazy('Tags'),
         required=False,
         queryset=Tag.objects.all(),
-        widget = forms.SelectMultiple(attrs={'data-placeholder':ugettext_lazy('Filter by labels')}))
+        widget = forms.SelectMultiple(attrs={'data-placeholder':ugettext_lazy('Filter by tags')}))
 
 class BatchRecordInputForm(forms.ModelForm):
 
