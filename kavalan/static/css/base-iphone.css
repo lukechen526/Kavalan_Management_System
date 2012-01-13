@@ -1,0 +1,16 @@
+#controls{
+    position: relative;
+    float: right;
+    background-color: #333333;
+    width: 100%;
+}
+
+#account-options{
+    width: 250px;
+    right: -200px;
+}
+
+#options-menu{
+    width:200px;
+    right: -100px;
+}
