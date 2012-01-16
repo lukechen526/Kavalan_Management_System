@@ -191,8 +191,7 @@ $("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
 
  })();
 
-//   Enable jQuery UI datepicker on dekstop browsers
-    if (!DetectIDevice()) {
+
         var dates = $('#date_of_manufacture_from, #date_of_manufacture_to').datepicker({
             //Restrict the range of date for date_manufactured_to to those no earlier than date_manufactured_from
             onSelect:function (selectedDate) {
@@ -209,14 +208,14 @@ $("#name, #batch_number, #date_manufactured_from, #date_manufactured_to")
             }
 
         });
-    }
+
 
 //    Otherwise, change to input type to 'date' for mobile browsers
-    else {
-
-        $('#date_of_manufacture_from').get(0).type = 'date';
-        $('#date_of_manufacture_to').get(0).type = 'date';
-    }
+//    else {
+//
+//        $('#date_of_manufacture_from').get(0).type = 'date';
+//        $('#date_of_manufacture_to').get(0).type = 'date';
+//    }
 
 
 

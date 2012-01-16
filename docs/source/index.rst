@@ -14,8 +14,6 @@ Contents:
    intro
    quickstart
    doc_engine
-   dynamo
-   stream
    security
    licenses
 

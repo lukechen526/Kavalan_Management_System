@@ -22,12 +22,12 @@ urlpatterns = patterns('',
 
 )
 
-urlpatterns += patterns('haystack.views',
-    url(r'^search/$',
-        search_view_factory(view_class=SearchView,form_class= HighlightedSearchForm),
-        name='search'
-    ),
-
-
-)
+#urlpatterns += patterns('haystack.views',
+#    url(r'^search/$',
+#        search_view_factory(view_class=SearchView,form_class= HighlightedSearchForm),
+#        name='search'
+#    ),
+#
+#
+#)
 

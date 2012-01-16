@@ -17,25 +17,25 @@ Client-Server Communication
 ------------------------------
 The search functionality of *Doc Engine* is exposed via its public API
 
-``/api/documents`` for Document search
-``/api/batchrecords`` for Batch Record search
+``/doc_engine/api/documents`` for Document search
+``doc_engine/api/batchrecords`` for Batch Record search
 
 Document
 -------------------------
 Search API
 ^^^^^^^^^^^^^
-**Resource URL:** /api/documents , /api/documents/*document_id*/
+**Resource URL:** /doc_engine/api/documents , /doc_engine/api/documents/*document_id*/
 
 **Supported methods:** GET
 
 **Parameter:**
 
-For /api/documents
+For /doc_engine/api/documents
 
 - q(required): *JSON string of the search parameters (serial number/title, document level, and labels*)
 - page_number(optional): *if there are more than one page of results (each page has 10 results), this specifies which page the server should return*
 
-For /api/documents/*document_id*/
+For /doc_engine/api/documents/*document_id*/
 
 - None
 
@@ -43,7 +43,7 @@ For /api/documents/*document_id*/
 
 Example Request:
 
-GET /api/documents?query={"sn_title":"he","document_level":"1","labels":["2"]}&page_number=1
+GET /doc_engine/api/documents?query={"sn_title":"he","document_level":"1","labels":["2"]}&page_number=1
 
 (Shown as the original strings. In reality, they must be URL-encoded before sending.)
 
@@ -91,8 +91,8 @@ to the actual file on the disk.
 The user can change the version number for a given Document instance and have it serve a specific version of the file.
 
 
-.. autoclass:: doc_engine.models.Document
-.. autoclass:: doc_engine.models.FileObject
+.. autoclass:: doc_engine.models.BaseDocument
+.. autoclass:: doc_engine.models.StoredDocument
 
 Create/Update/Delete
 ^^^^^^^^^^^^^^^^^^^^^
@@ -123,7 +123,8 @@ Batch Record
 
 API
 ^^^^
-**Resource URL:** /api/batchrecords , /api/batchrecords/*batchrecord_id*/
+**Resource URL:** /doc_engine/api/batchrecords , /doc_engine/api/batchrecords/*batchrecord_id*/
+
 **Supported methods:** GET
 
 **Parameters:**
@@ -149,7 +150,7 @@ All the parameters are enclosed in a JSON query string
 
 Example Request:
 
-GET /api/batchrecords?query={"name":"am","batch_number":"AMP12","date_manufactured_from":"2011-04-01","date_manufactured_to":"2011-09-06"}&page_number=1
+GET /doc_engine/api/batchrecords?query={"name":"am","batch_number":"AMP12","date_manufactured_from":"2011-04-01","date_manufactured_to":"2011-09-06"}&page_number=1
 
 (Shown as the original strings. In reality, they must be URL-encoded before sending.)
 
