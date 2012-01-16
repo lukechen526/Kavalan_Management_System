@@ -41,7 +41,7 @@ def get_documents(query_json):
         if tags:
             for tag in tags:
                 #Apply AND operation to labels
-                sqs = sqs.filter(tags__contains=Clean(tag))
+                sqs = sqs.filter(tags__contains=Clean(tag.tag))
 
     return [
     dict(id=sqr.object.id,

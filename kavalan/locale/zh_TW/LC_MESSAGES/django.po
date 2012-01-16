@@ -76,7 +76,7 @@ msgstr ""
 
 #: accounts/templates/registration/login.html:9
 msgid "Sign in"
-msgstr ""
+msgstr "登入"
 
 #: accounts/templates/registration/manage.html:9
 msgid "Username"
@@ -84,11 +84,11 @@ msgstr "帳號"
 
 #: accounts/templates/registration/manage.html:15
 msgid "Avatar"
-msgstr ""
+msgstr "頭像"
 
 #: accounts/templates/registration/manage.html:16
 msgid "Click to change"
-msgstr ""
+msgstr "按此變更"
 
 #: accounts/templates/registration/manage.html:21
 msgid "Name"
