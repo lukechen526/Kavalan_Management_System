@@ -7,7 +7,6 @@ from django.dispatch import receiver
 from django.utils.translation import ugettext_lazy, activate
 from django.conf import settings
 import guess_language as gl
-from notification import models as notification
 
 
 LANGUAGES_CHOICES = settings.LANGUAGES
@@ -23,9 +22,6 @@ class UserProfile(models.Model):
 
     def __unicode__(self):
         return unicode(self.user)
-
-    def unseen_notices(self):
-        return notification.Notice.objects.notices_for(self.user, unseen=True)
 
 @receiver(post_save, sender=User)
 def create_profile(sender, **kwargs):
