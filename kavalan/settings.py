@@ -3,7 +3,7 @@ import os
 import datetime
 
 PRODUCTION_ENV = bool(os.environ.get('PRODUCTION_ENV', ''))
-DEBUG = True
+DEBUG = not PRODUCTION_ENV
 TEMPLATE_DEBUG = DEBUG
 
 DIRNAME = os.path.dirname(__file__)
