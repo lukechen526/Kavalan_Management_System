@@ -98,6 +98,7 @@ class StoredDocument(BaseDocument):
     class Meta(BaseDocument.Meta):
         verbose_name = ugettext_lazy('Stored Document')
         verbose_name_plural = ugettext_lazy('Stored Documents')
+        ordering = ['-date_modified', 'serial_number']
 
         unique_together = ('name', 'serial_number')
 
