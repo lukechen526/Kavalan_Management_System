@@ -7,6 +7,7 @@ class StoredDocumentAdmin(reversion.VersionAdmin):
     history_latest_first = True
     date_hierarchy = 'date_modified'
     search_fields = ['serial_number', 'name']
+    list_display = ('serial_number', 'name', 'date_modified')
 
 
 class BatchRecordAdmin(reversion.VersionAdmin):
