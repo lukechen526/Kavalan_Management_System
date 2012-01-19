@@ -6,6 +6,7 @@
 {% url "home" as home %}
 {% url "doc_engine:index" as doc_engine_index %}
 {% url "accounts" as accounts %}
+{% url "admin:index" as admin %}
 
 <!-- Navigation bar -->
 
@@ -14,7 +15,7 @@
     <li> <a href="{{ home }}" class="{% active request home %}"> {% trans "Home" %} </a></li>
     <li> <a href="{{ doc_engine_index }}" class="{% active request doc_engine_index %}"> {% trans "Document Search" %}</a></li>
     {% if user.is_staff %}
-        <li> <a href="/admin/"> {% trans "Admin" %} </a></li>
+        <li> <a href={{ admin }}> {% trans "Admin" %} </a></li>
         <li> <a href="/docs/index.html"> {% trans "Help" %} </a></li>
     {% else %}
         <li> <a href="/docs/quickstart.html"> {% trans "Help" %} </a></li>
